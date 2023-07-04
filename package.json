@@ -1,0 +1,41 @@
+{
+  "name": "hydrizon",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build && next export"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
+    "@react-google-maps/api": "^2.18.1",
+    "fs": "^0.0.1-security",
+    "gsap": "./gsap/gsap-bonus.tgz",
+    "i18next": "^23.2.6",
+    "next": "13.2.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-i18next": "^13.0.1",
+    "react-icons": "^4.8.0",
+    "react-parallax": "^3.5.1",
+    "react-slick": "^0.29.0",
+    "sib-api-v3-sdk": "^8.5.0",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "eslint": "8.36.0",
+    "eslint-config-next": "13.2.4",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  }
+}
