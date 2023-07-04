@@ -48,7 +48,16 @@ export default function Home() {
     const advTL = gsap.timeline({
       scrollTrigger: {
         trigger: '#advSection',
-        start: 'top 100px',
+        start: 'top 300px',
+        // end: 'center center',
+        ease: 'none',
+        scrub: 1,
+      },
+    });
+    const advTL2Content = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#advSection',
+        start: 'top 150%',
         // end: 'center center',
         ease: 'none',
         scrub: 1,
@@ -73,10 +82,13 @@ export default function Home() {
 
       },
     });
+
+
+
     advTL2.fromTo(advSection_img_1.current, { x: '100%' }, { x: '0', duration: 5 }, 0);
-    advTL.fromTo(advSection_img_2.current, { y: '100%' }, { y: '0', duration: 5 }, 0);
-    advTL.fromTo(advSection_content.current, { y: '100%' }, { y: '0', duration: 5 }, 0)
-    advContent.fromTo(advSection_content_btn.current, { opacity: 0 }, { opacity: 100, duration: 5 }, 0)
+    advTL.fromTo(advSection_img_2.current, { y: '100%' }, { y: '-100%', duration: 5 }, '=-5');
+    advTL2Content.fromTo(advSection_content.current, { y: '100%' }, { y: '0', duration: 5 }, 0)
+    // advContent.fromTo(advSection_content_btn.current, { opacity: 0 }, { opacity: 100, duration: 5 }, 0)
 
 
 
@@ -89,24 +101,33 @@ export default function Home() {
         scrub: 1,
       },
     });
-    ruralTourismTL.fromTo(ruralTourism_image1.current, { opacity: 0 }, { opacity: 100, }, 0);
 
     const ruralTourismTLContent = gsap.timeline({
       scrollTrigger: {
         trigger: '#ruralTourism',
-        start: 'top 300px',
-        end: 'top -400px',
+        start: 'top 200%',
+        end: 'top top',
         ease: 'none',
         scrub: 1,
       },
     });
-    ruralTourismTLContent.fromTo(ruralTourism_image2.current, { x: '-100%' }, { x: '0', duration: 5 }, 0);
-    ruralTourismTLContent.fromTo(ruralTourism_content.current, { y: '100%' }, { y: '0', duration: 5 }, 0);
+    const ruralTourismTLContent2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#ruralTourism',
+        start: 'top 100%',
+        end: 'top top',
+        ease: 'none',
+        scrub: 1,
+      },
+    });
+    ruralTourismTLContent.fromTo(ruralTourism_image1.current, { x: '-100%' }, { x: 0, duration: 3 }, 0);
+    ruralTourismTLContent2.fromTo(ruralTourism_image2.current, { x: '-100%' }, { x: '0', duration: 3 }, 0);
+    ruralTourismTLContent.fromTo(ruralTourism_content.current, { y: '100%' }, { y: '0', duration: 3 }, 0);
 
     const ruralTourismTLContentbtn = gsap.timeline({
       scrollTrigger: {
         trigger: '#ruralTourism',
-        start: 'center 40%',
+        start: 'center 60%',
         ease: 'none',
         scrub: 1,
       },
@@ -123,23 +144,25 @@ export default function Home() {
       },
     });
 
-    ecotourismTL.fromTo(ecotourism_image1.current, { x: '100%' }, { x: 0 }, 0);
+    ecotourismTL.fromTo(ecotourism_image1.current, { x: '100%' }, { x: '10%' }, 0);
 
     const ecotourismTLContent = gsap.timeline({
       scrollTrigger: {
         trigger: '#ecotourism',
-        start: 'top 400px',
+        start: 'top 350%',
         ease: 'none',
         scrub: 1,
       },
     });
-    ecotourismTLContent.fromTo(ecotourism_image2.current, { opacity: 0 }, { opacity: 100, duration: 5 }, '=-5');
-    ecotourismTLContent.fromTo(ecotourism_content.current, { y: '100%' }, { y: '0', duration: 5 }, '=-5');
+
+
+    ecotourismTLContent.fromTo(ecotourism_image2.current, { y: '100%' }, { y: 0, duration: 3 }, 0);
+    ecotourismTLContent.fromTo(ecotourism_content.current, { y: '100%' }, { y: '-20%', duration: 3 }, 0);
 
     const ecotourismTLContentbtn = gsap.timeline({
       scrollTrigger: {
         trigger: '#ecotourism',
-        start: 'center 20%',
+        start: 'center 70%',
         ease: 'none',
         scrub: 1,
       },
@@ -223,7 +246,7 @@ export default function Home() {
           </div>
         </section>
         <section className="w-full relative " id="advSection" ref={advSection}>
-          <div className=" absolute top-0 right-0 flex items-end justify-end" id="advSection_img_1" ref={advSection_img_1}>
+          <div className=" absolute top-0 right-0 flex items-end justify-end" id="advSection_img_1" ref={advSection_img_1} >
             <Image
               src="/home/adb.png"
               className="hidden lg:hidden xl:block"
@@ -271,7 +294,7 @@ export default function Home() {
           </div>
 
           <div className="container  relative h-[700px]" id="advSection_content" ref={advSection_content} >
-            <div className=" pt-96 lg:pt-52 xl:pt-60 px-3 lg:px-0 lg:w-[500px] xl:pl-20 absolute left-0 lg:pr-10 xl:pr-0 lg:left-0 xl:left-16" >
+            <div className=" pt-96 lg:pt-52 xl:pt-60 px-3 lg:px-0 lg:w-[500px] xl:pl-20 absolute left-0 lg:pr-10 xl:pr-0 lg:left-0 xl:left-16">
               <h1 className="text-[25px] lg:text-[30px] tBold  text-[#E98108]">
                 {t("AdventureTourism")}
               </h1>
@@ -430,7 +453,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <div className=" mt-40 relative  bg-[#552A0F]">
+        <div className="relative  bg-[#552A0F]">
           <Parallax
             strength={500}
             className=" relative h-[1000px]  "
