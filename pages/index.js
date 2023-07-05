@@ -176,13 +176,13 @@ export default function Home() {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     animateADV()
-    let smoother = ScrollSmoother.create({
-      smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
-      effects: true // looks for data-speed and data-lag attributes on elements
-    });
+    // let smoother = ScrollSmoother.create({
+    //   smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
+    //   effects: true // looks for data-speed and data-lag attributes on elements
+    // });
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      smoother.kill();
+      // smoother.kill();
 
     };
   }, [animateADV]);
@@ -204,9 +204,9 @@ export default function Home() {
   };
   const { t } = useTranslation();
   return (
-    <div className="relative min-h-screen overflow-hidden" id="smooth-wrapper">
+    <div className="relative min-h-screen overflow-hidden" >
       <Topbar />
-      <main id="smooth-content">
+      <main >
         <section id="herosection" ref={herosection}>
           <div className="w-full relative  min-h-screen">
             <Image
@@ -245,7 +245,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="w-full relative " id="advSection" ref={advSection}>
+        <section className="w-full relative overflow-hidden" id="advSection" ref={advSection}>
           <div className=" absolute top-0 right-0 flex items-end justify-end" id="advSection_img_1" ref={advSection_img_1} >
             <Image
               src="/home/adb.png"
@@ -315,7 +315,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full relative" id="ruralTourism" ref={ruralTourism}>
+        <section className="w-full relative overflow-hidden" id="ruralTourism" ref={ruralTourism}>
           <div className="absolute top-0 left-0 flex items-center justify-end" id="ruralTourism_image1" ref={ruralTourism_image1}>
             <Image
               src="/home/agb.png"
@@ -383,7 +383,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="w-full relative mt-24" id="ecotourism" ref={ecotourism}>
+        <section className="w-full relative mt-24 overflow-hidden" id="ecotourism" ref={ecotourism}>
           <div className="absolute top-0 right-0 flex items-center justify-end" id="ecotourism_image1" ref={ecotourism_image1}>
             <Image
               src="/home/ecob.png"
@@ -453,7 +453,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <div className="relative  bg-[#552A0F]">
+        <div className="relative  bg-[#552A0F] overflow-hidden" >
           <Parallax
             strength={500}
             className=" relative h-[1000px]  "
@@ -587,7 +587,7 @@ export default function Home() {
             </div>
           </Parallax>
         </div>
-        <div className="w-full mt-16 lg:mt-40 mb-20">
+        <div className="w-full mt-16 lg:mt-40 mb-20 overflow-hidden">
           <div className="container">
             <h1 className="text-[25px] text-center lg:bottom-20 lg:text-[30px] tBold text-[#5A2910] pb-16">
               {t("DanTripStatistics")}
@@ -633,7 +633,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full mt-40 mb-20">
+        <div className="w-full mt-40 mb-20 overflow-hidden">
           <div className="container">
             <h1 className="text-[30px] tBold text-[#5A2910] pb-16">
               {t("LatestNews")}
