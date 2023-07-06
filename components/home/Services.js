@@ -493,16 +493,16 @@ export default function Services() {
             </section>
             <section className="panelcontainer relative" ref={panelcontainer} >
                 <div className="panel">
-                    <Image src="/home/Group8029@2x.png" alt="" fill objectFit="cover" id="panel_image1" />
+                    <Image src="/home/Group8029@2x.jpg" alt="" fill objectFit="cover" id="panel_image1" />
                 </div>
                 <div className="panel">
-                    <Image src="/home/Group8028@2x.png" alt="" fill objectFit="cover" id="panel_image2" />
+                    <Image src="/home/Group8028@2x.jpg" alt="" fill objectFit="cover" id="panel_image2" />
                 </div>
                 <div className="panel">
-                    <Image src="/home/Group8027@2x.png" alt="" fill objectFit="cover" id="panel_image3" />
+                    <Image src="/home/Group8027@2x.jpg" alt="" fill objectFit="cover" id="panel_image3" />
                 </div>
                 <div className="panel">
-                    <Image src="/home/Group8026@2x.png" alt="" fill objectFit="cover" id="panel_image4" />
+                    <Image src="/home/Group8026@2x.jpg" alt="" fill objectFit="cover" id="panel_image4" />
                 </div>
                 <div className="absolute top-0 left-0 w-screen" >
                     <div className=" container">

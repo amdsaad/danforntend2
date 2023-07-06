@@ -198,9 +198,9 @@ export default function Home() {
             <h1 className="text-[25px] text-center lg:bottom-20 lg:text-[30px] tBold text-[#5A2910] pb-16">
               {t("DanTripStatistics")}
             </h1>
-            <div className=" hidden lg:grid grid-cols-5 gap-10">
+            <div className=" hidden lg:grid grid-cols-5 gap-10 " >
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, ind) => (
-                <div key={ind} className="relative w-full">
+                <div key={ind} className="relative w-full transition hover:shadow-2xl ">
                   <img
                     key={ind}
                     src={`/home/${item}.png`}
