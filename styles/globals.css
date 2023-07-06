@@ -4,27 +4,24 @@
 
 @font-face {
   font-family: readexProRegular;
-  src: url("/fonts/ReadexPro-Regular.ttf");
+  src: url('/fonts/ReadexPro-Regular.ttf');
 }
 @font-face {
   font-family: readexProthin;
-  src: url("/fonts/ReadexPro-Light.ttf");
+  src: url('/fonts/ReadexPro-Light.ttf');
 }
 @font-face {
   font-family: readexProBold;
-  src: url("/fonts/ReadexPro-Bold.ttf");
+  src: url('/fonts/ReadexPro-Bold.ttf');
 }
 
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: readexProRegular;
-    
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: readexProRegular;
 }
-html{
+html {
   scroll-behavior: smooth;
 }
 a {
@@ -32,16 +29,16 @@ a {
   text-decoration: none;
 }
 
-.thin{
-  font-family: readexProthin!important;
+.thin {
+  font-family: readexProthin !important;
 }
-.tBold{
-  font-family: readexProBold!important;
+.tBold {
+  font-family: readexProBold !important;
 }
 
-.container{
-  margin:  auto;
-/* mix-blend-mode:; */
+.container {
+  margin: auto;
+  /* mix-blend-mode:; */
 }
 
 header {
@@ -49,36 +46,34 @@ header {
   z-index: 1000;
 }
 
-.rtl{
+.rtl {
   direction: rtl;
 }
 
-.sectionWrapper{
+.sectionWrapper {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 }
-.backgroundimage{
+.backgroundimage {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.content{
+.content {
   z-index: 1;
   text-align: center;
 }
 
-.bg-gradiunt{
-  background-image: linear-gradient( #4F2C14, #291508);
+.bg-gradiunt {
+  background-image: linear-gradient(#4f2c14, #291508);
 }
-.bg-gradiunt2{
-  background-image: linear-gradient( #4F2C14, #291508);
-
-  
+.bg-gradiunt2 {
+  background-image: linear-gradient(#4f2c14, #291508);
 }
 .slick-prev {
   left: 3% !important;
@@ -89,84 +84,92 @@ header {
   z-index: 100000;
 }
 
-
-.slick-prev:before, .slick-next:before{
-  color: #e0d7d7!important;
+.slick-prev:before,
+.slick-next:before {
+  color: #e0d7d7 !important;
 }
 
-.future_slide .slick-prev:before{
-  display: none!important;
+.future_slide .slick-prev:before {
+  display: none !important;
 }
-.future_slide .slick-next:before{
-  display: none!important;
+.future_slide .slick-next:before {
+  display: none !important;
 }
 
-.future_slide .slick-slider{
-height: 490px!important;
-
+.future_slide .slick-slider {
+  height: 490px !important;
 }
 .future_slide .slick-slide > div {
-  margin-right:  30px!important;
-  width: 740px!important;
+  margin-right: 30px !important;
+  width: 740px !important;
 }
 
 .future_slide .slick-dots {
-bottom: 50px!important
+  bottom: 50px !important;
 }
 .hide_arrow .slick-dots {
-bottom: -50px!important
+  bottom: -50px !important;
 }
 .future_slide .slick-dots li {
-border-radius: 100%;
-background: #552A0E!important;
-opacity: 24%!important;
+  border-radius: 100%;
+  background: #552a0e !important;
+  opacity: 24% !important;
 }
 .hide_arrow .slick-dots li {
-border-radius: 100%;
-background: #ffffff!important;
-opacity: 24%!important;
-
+  border-radius: 100%;
+  background: #ffffff !important;
+  opacity: 24% !important;
 }
-.future_slide li.slick-active{
-  opacity: 100%!important;
+.future_slide li.slick-active {
+  opacity: 100% !important;
 }
-.hide_arrow li.slick-active{
-  opacity: 100%!important;
-}
-
-
-
-.future_slide2 .slick-slider{
-height: 430px!important;
-
+.hide_arrow li.slick-active {
+  opacity: 100% !important;
 }
 
+.future_slide2 .slick-slider {
+  height: 430px !important;
+}
 
 .future_slide2 .slick-dots {
-bottom: 50px!important
+  bottom: 50px !important;
 }
 .future_slide2 .slick-dots li {
-border-radius: 100%;
-background: #552A0E!important;
-opacity: 24%!important;
+  border-radius: 100%;
+  background: #552a0e !important;
+  opacity: 24% !important;
 }
-.future_slide2 li.slick-active{
-  opacity: 100%!important;
-}
-
-.slick-dots li.slick-active button:before{
-  color:transparent!important;
+.future_slide2 li.slick-active {
+  opacity: 100% !important;
 }
 
-.bg_highLight{
+.slick-dots li.slick-active button:before {
+  color: transparent !important;
+}
+
+.bg_highLight {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
 .gridItem {
-  transition: width .5s ease!important;
-  
+  transition: width 0.5s ease !important;
 }
 
-.react-parallax .react-parallax-bgimage{
-  height: 1000px!important;
+.react-parallax .react-parallax-bgimage {
+  height: 1000px !important;
+}
+
+.panelcontainer {
+  width: 400%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.panel {
+  height: 100vh !important;
+  width: 100vw !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 4rem;
 }
