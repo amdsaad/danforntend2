@@ -160,16 +160,18 @@ header {
 }
 
 .panelcontainer {
-  width: 400%;
-  height: 100%;
+  width: 400vw !important;
+  height: 100vh !important;
   display: flex;
   flex-wrap: nowrap;
+  direction: ltr !important;
 }
 .panel {
-  height: 100vh !important;
+  height: 100% !important;
   width: 100vw !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   font-size: 4rem;
+  overflow: hidden;
 }

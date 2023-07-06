@@ -1,5 +1,5 @@
 // create next js component
-import React, { useLayoutEffect, useRef, useEffect } from "react";
+import React, { useLayoutEffect, useRef, useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { FaHandshake } from "react-icons/fa";
@@ -9,11 +9,16 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
 import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
+import { useRouter } from 'next/router';
 
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
 export default function Services() {
+    const router = useRouter();
+    const { locale: activeLocale } = router;
+
+
     const advSection = useRef(null);
     const advSection_img_1 = useRef(null);
     const advSection_img_2 = useRef(null);
@@ -32,6 +37,8 @@ export default function Services() {
     const servicesRoot = useRef();
     const herosection = useRef(null);
     const scrollRef = useRef(null);
+    const panelcontainer = useRef(null);
+    const [scrollPosition, setScrollPosition] = useState(0);
 
     const scrollToElement = () => {
         const element = scrollRef.current;
@@ -160,7 +167,74 @@ export default function Services() {
                 },
             });
             ecotourismTLContentbtn.fromTo(ecotourism_content_btn.current, { opacity: 0 }, { opacity: 100 }, 0);
+            const sections = gsap.utils.toArray(".panel");
 
+            const scrollTween = gsap.to(sections, {
+                xPercent: -100 * (sections.length - 1),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".panelcontainer",
+                    pin: true,
+                    invalidateOnRefresh: true,
+                    anticipatePin: 1,
+                    scrub: 1.23,
+                    end: () => "+=3000",
+                    preventOverlaps: true,
+                    toggleClass: "active",
+                }
+            });
+            gsap.set(".image11, .image12, .image13,.image14", { opacity: 0.5, filter: 'grayscale(1)' });
+
+
+            gsap.to(".image11", {
+                opacity: 1,
+                filter: 'grayscale(0)',
+                scrollTrigger: {
+                    trigger: "#panel_image1",
+                    containerAnimation: scrollTween,
+                    start: "0",
+                    toggleActions: "play none none reverse",
+                    id: "1",
+                },
+
+            });
+            gsap.to(".image12", {
+                opacity: 1,
+                filter: 'grayscale(0)',
+                scrollTrigger: {
+                    trigger: "#panel_image2",
+                    containerAnimation: scrollTween,
+                    start: "left 50%",
+                    toggleActions: "play none none reverse",
+
+                    id: "2",
+                },
+
+            });
+            gsap.to(".image13", {
+                opacity: 1,
+                filter: 'grayscale(0)',
+                scrollTrigger: {
+                    trigger: "#panel_image3",
+                    containerAnimation: scrollTween,
+                    start: "left 50%",
+                    toggleActions: "play none none reverse",
+                    id: "3",
+                },
+
+            });
+            gsap.to(".image14", {
+                opacity: 1,
+                filter: 'grayscale(0)',
+                scrollTrigger: {
+                    trigger: "#panel_image4",
+                    containerAnimation: scrollTween,
+                    start: "left 50%",
+                    toggleActions: "play none none reverse",
+                    id: "4",
+                },
+
+            });
 
 
         }, servicesRoot);
@@ -413,6 +487,107 @@ export default function Services() {
                                 <BiSearch className="w-5 h-5 " />
                                 {t("DiscoverMore")}
                             </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className="panelcontainer relative" ref={panelcontainer} >
+                <div className="panel">
+                    <Image src="/home/Group8029@2x.png" alt="" fill objectFit="cover" id="panel_image1" />
+                </div>
+                <div className="panel">
+                    <Image src="/home/Group8028@2x.png" alt="" fill objectFit="cover" id="panel_image2" />
+                </div>
+                <div className="panel">
+                    <Image src="/home/Group8027@2x.png" alt="" fill objectFit="cover" id="panel_image3" />
+                </div>
+                <div className="panel">
+                    <Image src="/home/Group8026@2x.png" alt="" fill objectFit="cover" id="panel_image4" />
+                </div>
+                <div className="absolute top-0 left-0 w-screen" >
+                    <div className=" container">
+
+                        <div className="w-full grid grid-cols-1 pt-10 lg:pt-[150px] thin lg:grid-cols-2">
+                            <div className="flex lg:hidden pt-20 px-4 items-center gap-10">
+                                <Image
+                                    height={59}
+                                    width={59}
+                                    src="/home/l1.png"
+                                    className="image11"
+                                    alt=""
+                                />
+                                <Image
+                                    height={59}
+                                    width={59}
+                                    src="/home/l2.png"
+                                    className="image12"
+                                    alt=""
+                                />
+                                <Image
+                                    height={59}
+                                    width={59}
+                                    src="/home/l3.png"
+
+                                    className="image13"
+                                    alt=""
+                                />
+
+                                <Image
+                                    height={59}
+                                    width={59}
+                                    src="/home/l4.png"
+                                    className="image14"
+                                    alt=""
+                                />
+                            </div>
+                            <div>
+                                <p className="text-[25px] tBold lg:text-[30px] text-white">
+                                    {t("AboutDan")}
+                                </p>
+                                <p className=" text-[15px] lg:text-[18px] mt-10 thin text-white">
+                                    {t("TourismDevelopment")}
+                                </p>
+                                <p className="text-[15px] lg:text-[18px] mt-10 thin text-white">
+                                    {t("NatureConnection")}
+                                </p>
+                            </div>
+                            <div className="hidden lg:flex lg:flex-col items-center gap-10">
+                                <Image
+                                    height={94}
+                                    width={93}
+                                    src="/home/l1.png"
+
+                                    className="image11"
+                                    alt=""
+                                />
+                                <Image
+                                    height={94}
+                                    width={93}
+                                    src="/home/l2.png"
+
+                                    className="image12"
+                                    alt=""
+                                />
+                                <Image
+                                    height={94}
+                                    width={93}
+                                    src="/home/l3.png"
+
+                                    className="image13"
+                                    alt=""
+                                />
+                                <div
+                                >
+                                    <Image
+                                        height={94}
+                                        width={93}
+                                        src="/home/l4.png"
+                                        className="image14"
+                                        alt=""
+                                    />
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
