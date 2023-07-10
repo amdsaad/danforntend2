@@ -160,7 +160,8 @@ header {
 }
 
 .panelcontainer {
-  width: 400vw !important;
+  max-width: fit-content !important;
+  width: fit-content !important;
   height: 100vh !important;
   display: flex;
   flex-wrap: nowrap;
@@ -174,4 +175,8 @@ header {
   align-items: center !important;
   font-size: 4rem;
   overflow: hidden;
+}
+
+.panel img {
+  position:relative !important
 }
