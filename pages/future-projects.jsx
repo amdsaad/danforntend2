@@ -1,14 +1,18 @@
-import React, { useRef } from "react";
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
-import Image from "next/image";
-import Slider from "react-slick";
-import { FaHandshake } from "react-icons/fa";
-import { Parallax } from "react-parallax";
-import { useTranslation } from "react-i18next";
-const FutureProject = () => {
+import React, { useRef, useCallback, useEffect,useState } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+import Topbar from '../components/layout/Topbar';
+import Footer from '../components/layout/Footer';
+import Image from 'next/image';
+import Slider from 'react-slick';
+import { FaHandshake } from 'react-icons/fa';
+import { Parallax } from 'react-parallax';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+
+export default function FutureProject() {
   const settings = {
-    className: "slider variable-width",
+    className: 'slider variable-width',
     dots: true,
     infinite: true,
     centerMode: true,
@@ -32,14 +36,37 @@ const FutureProject = () => {
     autoplaySpeed: 3000,
   };
   const scrollRef = useRef(null);
+  const [future, setFuture] = useState('');
+  const router = useRouter();
 
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+  const getFuture = useCallback(async () => {
+    try {
+      await axios
+        .get(`${apiURL}/futureprojects`, {
+          headers: {
+            'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
+          },
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            setFuture(response?.data?.data);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [setFuture, router.locale]);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    getFuture();
+  }, [getFuture]);
   return (
     <div className=" min-h-screen w-full relative">
       <Topbar />
@@ -63,10 +90,10 @@ const FutureProject = () => {
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[24px] lg:text-[50px] text-white font-bold">
-                  {t("Future Projects")}
+                  {t('Future Projects')}
                 </h1>
                 <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6 ">
-                  {t("Company Goal")}
+                  {t('Company Goal')}
                 </p>
                 <Image
                   src="/home/arrow.png"
@@ -100,7 +127,7 @@ const FutureProject = () => {
               alt=""
             />
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">
-              {t("LaunchLocation")}
+              {t('LaunchLocation')}
             </p>
           </div>
         </div>
@@ -121,7 +148,7 @@ const FutureProject = () => {
             <div className="w-full  lg:pr-[420px]">
               <div className="flex mt-20 lg:mt-24 items-center justify-between">
                 <h1 className="text-[24px] lg:text-[30px] tBold pr-10 lg:pr-0 text-txt ">
-                  {t("Start")}
+                  {t('Start')}
                 </h1>
                 <div className=" lg:flex items-center hidden gap-2">
                   <Image src="/home/l1.png" width={40} height={41} alt="" />
@@ -137,17 +164,17 @@ const FutureProject = () => {
                 </div>
               </div>
               <p className="thin text-txt text-[14px] pr-8 lg:pr-0 lg:text-[18px] pt-5">
-                {t("start_text")}
+                {t('start_text')}
               </p>
             </div>
             <div className="w-full pt-6 lg:pt-[150px] lg:pr-[420px]">
               <div className="flex mt-24 items-center justify-between">
                 <h1 className="text-[24px] lg:text-[30px] tBold text-txt pr-8 lg:pr-0 ">
-                  {t("Objective")}
+                  {t('Objective')}
                 </h1>
               </div>
               <p className="thin text-txt text-[14px] pr-8 lg:pr-0 lg:text-[18px] pt-5">
-                {t("objective_text")}
+                {t('objective_text')}
               </p>
             </div>
           </div>
@@ -156,7 +183,7 @@ const FutureProject = () => {
       <section className=" mb-20 hidden lg:block future_slide overflow-hidden">
         <Slider {...settings}>
           <div
-            style={{ marginRight: "20px" }}
+            style={{ marginRight: '20px' }}
             className="bg-[#E98108] bg-opacity-20 relative h-96 "
           >
             <img
@@ -180,7 +207,7 @@ const FutureProject = () => {
             </div>
           </div>
           <div
-            style={{ marginRight: "20px" }}
+            style={{ marginRight: '20px' }}
             className="bg-[#64C07D] bg-opacity-20 relative h-96 "
           >
             <img
@@ -204,7 +231,7 @@ const FutureProject = () => {
             </div>
           </div>
           <div
-            style={{ marginRight: "20px" }}
+            style={{ marginRight: '20px' }}
             className="bg-[#1A92D3] bg-opacity-20 relative h-96 "
           >
             <img
@@ -232,7 +259,7 @@ const FutureProject = () => {
       <section className=" mb-20 block lg:hidden future_slide2 overflow-hidden">
         <Slider {...settings2}>
           <div
-            style={{ marginRight: "20px" }}
+            style={{ marginRight: '20px' }}
             className="bg-[#E98108] bg-opacity-20 relative h-80 "
           >
             <img
@@ -259,7 +286,7 @@ const FutureProject = () => {
           </div>
 
           <div
-            style={{ marginRight: "20px" }}
+            style={{ marginRight: '20px' }}
             className="bg-[#64C07D] bg-opacity-20 relative h-80 "
           >
             <img
@@ -285,7 +312,7 @@ const FutureProject = () => {
             </div>
           </div>
           <div
-            style={{ marginRight: "20px" }}
+            style={{ marginRight: '20px' }}
             className="bg-[#1A92D3] bg-opacity-20 relative h-80 "
           >
             <img
@@ -319,21 +346,21 @@ const FutureProject = () => {
               strength={500}
               className=" relative h-[1200px]   "
               bgImage="/future/Group 8199.png"
-              bgImageStyle={{ objectFit: "cover", height: "h-[1200px]" }}
+              bgImageStyle={{ objectFit: 'cover', height: 'h-[1200px]' }}
             >
               <div className=" absolute w-full h-full top-0 left-0">
                 <div className=" container py-20">
                   <div className="flex items-start gap-4 lg:items-center lg:flex-row flex-col lg:justify-between">
                     <h1 className="text-white tBold text-[24px] lg:text-[30px]">
-                      {t("FranchiseOpportunities")}
+                      {t('FranchiseOpportunities')}
                     </h1>
                     <button className="px-5 py-2  text-sm    hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full flex items-center gap-2">
                       <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                      {t("handShake")}
+                      {t('handShake')}
                     </button>
                   </div>
                   <p className="text-white text-[14px] lg:text-[18px] thin lg:w-4/5 pt-8">
-                    {t("franchise_text")}
+                    {t('franchise_text')}
                   </p>
                   <div className=" mt-20 w-full px-10 py-3 hover:bg-opacity-25 flex flex-col lg:items-center lg:flex-row  bg-white bg-opacity-20 lg:gap-10">
                     <h1 className="text-white font-bold text-[32px] lg:text-[81px]">
@@ -379,6 +406,12 @@ const FutureProject = () => {
       <Footer />
     </div>
   );
-};
+}
 
-export default FutureProject;
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

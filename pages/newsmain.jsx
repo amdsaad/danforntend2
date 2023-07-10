@@ -1,21 +1,72 @@
-import React, { useRef, useState } from "react";
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
-import Image from "next/image";
-import { BiSearch } from "react-icons/bi";
-import Link from "next/link";
-import { useTranslation } from "react-i18next";
-const Newsmain = () => {
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+import Topbar from '../components/layout/Topbar';
+import Footer from '../components/layout/Footer';
+import Image from 'next/image';
+import { BiSearch } from 'react-icons/bi';
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
+import config from '../components/config';
+const apiURL = config.api_url;
+import axios from 'axios';
+import { useRouter } from 'next/router';
+export default function Newsmain() {
   const [open, setOpen] = useState(false);
   const scrollRef = useRef(null);
-
+  const [categories, setCategories] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const router = useRouter();
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+  const getCategories = useCallback(async () => {
+    try {
+      await axios
+        .get(`${apiURL}/categorypost`, {
+          headers: {
+            'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
+          },
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            setCategories(response?.data?.data);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [setCategories, router.locale]);
+  const getPosts = useCallback(
+    async (id) => {
+      try {
+        await axios
+          .get(`${apiURL}/posts${id ? '?category_id=' + id : ''}`, {
+            headers: {
+              'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
+            },
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              console.log(response?.data?.data);
+              setPosts(response?.data?.data);
+            }
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [setPosts, router.locale],
+  );
   const { t } = useTranslation();
+
+  useEffect(() => {
+    getCategories();
+    getPosts();
+  }, [getCategories, getPosts]);
   return (
     <div className=" w-full min-h-screen relative ">
       <Topbar />
@@ -39,10 +90,10 @@ const Newsmain = () => {
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[24px]  lg:text-[50px] text-white font-bold">
-                  {t("MediaCenter")}
+                  {t('MediaCenter')}
                 </h1>
                 <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6 ">
-                  {t("Objective2")}
+                  {t('Objective2')}
                 </p>
                 <Image
                   src="/home/arrow.png"
@@ -62,7 +113,7 @@ const Newsmain = () => {
         <div className="container">
           <div className="flex items-center  justify-between">
             <h1 className="text-txt tBold text-[24px] lg:text-[30px]">
-              {t("MediaCenter")}
+              {t('MediaCenter')}
             </h1>
             <div className="flex items-center  lg:w-auto gap-5">
               <div className="p-3 rounded-full hidden lg:flex cursor-pointer transition-all duration-500 ease-linear items-center gap-2 bg-[#552A0E] ">
@@ -106,7 +157,9 @@ const Newsmain = () => {
           <div className=" grid mt-20 grid-cols-1 lg:grid-cols-3 gap-10">
             {[1, 2, 3, 4, 5, 6, 8, 9, 10].map((item) => (
               <Link
-                href="/news-read"
+                href={
+                  router.locale === 'en' ? `/en/news/${item}` : `/news/${item}`
+                }
                 key={item}
                 className="bg-[#e0e0e047] cursor-pointer"
               >
@@ -124,23 +177,29 @@ const Newsmain = () => {
                   <p className="text-[#562E15] text-sm lg:text-base ">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Quisque lorem lacus, molestie id lacus Lorem ipsum dolor sit
-                    amet, consectetur{" "}
+                    amet, consectetur{' '}
                   </p>
                   <div className=" mt-3 flex text-[11px] lg:text-base text-[#562E15]   w-full">
-                    Read More {">"}
+                    Read More {'>'}
                   </div>
                 </div>
               </Link>
             ))}
           </div>
           <div className="mt-10 w-full py-4 cursor-pointer tBold bg-[#e0e0e047] text-center text-txt text-[16px] lg:text-[30px]">
-            {t("LearnMore")}
+            {t('LearnMore')}
           </div>
         </div>
       </section>
       <Footer />
     </div>
   );
-};
+}
 
-export default Newsmain;
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

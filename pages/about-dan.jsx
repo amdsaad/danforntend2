@@ -1,10 +1,12 @@
-import React, { useRef, useState } from "react";
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
-import Image from "next/image";
-import { AiOutlineTwitter } from "react-icons/ai";
-import Slider from "react-slick";
-const AboutDan = () => {
+import React, { useRef, useState } from 'react';
+import Topbar from '../components/layout/Topbar';
+import Footer from '../components/layout/Footer';
+import Image from 'next/image';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+import { AiOutlineTwitter } from 'react-icons/ai';
+import Slider from 'react-slick';
+export default function AboutDan() {
   const [activeEffect, setActiveEffect] = useState(false);
   const [activeKey, setActiveKey] = useState(5);
   const [gridOpen, setGridOpen] = useState(false);
@@ -23,23 +25,23 @@ const AboutDan = () => {
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
   const [open, setOpen] = useState(false);
-  const [aboutDanLang, setAboutDanLang] = useState("");
+  const [aboutDanLang, setAboutDanLang] = useState('');
   const [active, setActive] = useState(0);
   const { t } = useTranslation();
   return (
     <div className=" min-h-screen relative">
-        <SideBar
+      <SideBar
         open={open}
         setOpen={setOpen}
         language={aboutDanLang}
         setLanguage={setAboutDanLang}
       />
       <Topbar aboutDanLang={aboutDanLang} setAboutDanLang={setAboutDanLang} />
-    
+
       <section>
         <div className="w-full relative  min-h-screen">
           <Image
@@ -60,10 +62,10 @@ const AboutDan = () => {
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[24px]  lg:text-[50px] text-white font-bold">
-                  {t("AboutDan")}
+                  {t('AboutDan')}
                 </h1>
                 <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6 ">
-                  {t("CompanyMission")}
+                  {t('CompanyMission')}
                 </p>
                 <Image
                   src="/home/arrow.png"
@@ -97,7 +99,7 @@ const AboutDan = () => {
               alt=""
             />
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">
-              {t("DanLaunchLocations")}
+              {t('DanLaunchLocations')}
             </p>
           </div>
         </div>
@@ -123,7 +125,7 @@ const AboutDan = () => {
                   setActive(0);
                 }}
                 className={`border cursor-pointer ${
-                  active === 2 ? " opacity-25" : "opacity-100"
+                  active === 2 ? ' opacity-25' : 'opacity-100'
                 } child_h h-full hover:bg-[#ffffff10] py-24`}
               >
                 <Image
@@ -141,10 +143,10 @@ const AboutDan = () => {
                   alt=""
                 />
                 <h1 className="text-[25px] lg:text-[50px] tBold text-white text-center py-4">
-                  {t("Vision")}
+                  {t('Vision')}
                 </h1>
                 <p className="text-center thin text-white text-[18px] px-10">
-                  {t("vison_text")}
+                  {t('vison_text')}
                 </p>
               </div>
               <div
@@ -157,7 +159,7 @@ const AboutDan = () => {
                   setActive(0);
                 }}
                 className={`border cursor-pointer ${
-                  active === 1 ? " opacity-25" : "opacity-100"
+                  active === 1 ? ' opacity-25' : 'opacity-100'
                 } child_h h-full hover:bg-[#ffffff10] py-24`}
               >
                 <Image
@@ -175,10 +177,10 @@ const AboutDan = () => {
                   alt=""
                 />
                 <h1 className="text-[25px] lg:text-[50px] tBold text-white text-center py-4">
-                  {t("Mission")}
+                  {t('Mission')}
                 </h1>
                 <p className="text-center thin text-white text-[18px] px-10">
-                  {t("mission_text")}
+                  {t('mission_text')}
                 </p>
               </div>
             </div>
@@ -198,10 +200,10 @@ const AboutDan = () => {
                   />
 
                   <h1 className="text-[35px] lg:text-[50px] tBold text-white text-center py-4">
-                    {t("Vision")}
+                    {t('Vision')}
                   </h1>
                   <p className="text-center thin text-white pb-10 text-[16px] lg:text-[18px] px-10">
-                    {t("vison_text")}
+                    {t('vison_text')}
                   </p>
                 </div>
                 <div
@@ -217,10 +219,10 @@ const AboutDan = () => {
                     alt=""
                   />
                   <h1 className="text-[35px] lg:text-[50px] font-bold text-white text-center py-4">
-                    {t("Mission")}
+                    {t('Mission')}
                   </h1>
                   <p className="text-center thin text-white  pb-10  text-[16px] lg:text-[18px] px-10">
-                    {t("mission_text")}
+                    {t('mission_text')}
                   </p>
                 </div>
               </Slider>
@@ -229,7 +231,7 @@ const AboutDan = () => {
         </div>
         <div
           className={`absolute top-0 left-0 w-full transition duration-200 ease-linear h-full z-10 ${
-            activeEffect && "bg_highLight"
+            activeEffect && 'bg_highLight'
           }`}
         ></div>
       </section>
@@ -250,7 +252,7 @@ const AboutDan = () => {
             alt=""
           />
           <p className="text-[#552A0E] text-center text-[24px] tBold lg:text-[30px]   ">
-            {t("Values")}
+            {t('Values')}
           </p>
         </div>
         <div className="container-fluid">
@@ -263,21 +265,21 @@ const AboutDan = () => {
               }}
               className={`gridItem  ${
                 activeKey === 5
-                  ? "w-full h-[400px] lg:h-full lg:w-[80%]"
-                  : "w-full h-[130px] lg:h-full lg:w-[20%]"
+                  ? 'w-full h-[400px] lg:h-full lg:w-[80%]'
+                  : 'w-full h-[130px] lg:h-full lg:w-[20%]'
               }  cursor-pointer relative`}
             >
               <img
                 src="/about/5.png"
                 className=" object-cover h-full w-full"
-                style={{ transition: "all 1s ease" }}
+                style={{ transition: 'all 1s ease' }}
                 alt=""
               />
               {activeKey !== 5 && (
                 <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
                   <h1 className="transform lg:rotate-90 tBold ">
-                    {" "}
-                    {t("Values")}
+                    {' '}
+                    {t('Values')}
                   </h1>
                 </div>
               )}
@@ -289,8 +291,8 @@ const AboutDan = () => {
               }}
               className={`gridItem  ${
                 activeKey === 4
-                  ? "w-full h-[400px] lg:h-full lg:w-[80%]"
-                  : "w-full h-[130px] lg:h-full lg:w-[20%]"
+                  ? 'w-full h-[400px] lg:h-full lg:w-[80%]'
+                  : 'w-full h-[130px] lg:h-full lg:w-[20%]'
               }  cursor-pointer relative`}
             >
               <img
@@ -301,8 +303,8 @@ const AboutDan = () => {
               {activeKey !== 4 && (
                 <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
                   <h1 className="transform lg:rotate-90 tBold">
-                    {" "}
-                    {t("Values")}
+                    {' '}
+                    {t('Values')}
                   </h1>
                 </div>
               )}
@@ -315,8 +317,8 @@ const AboutDan = () => {
               }}
               className={`gridItem  ${
                 activeKey === 3
-                  ? "w-full h-[400px] lg:h-full lg:w-[80%]"
-                  : "w-full h-[130px] lg:h-full lg:w-[20%]"
+                  ? 'w-full h-[400px] lg:h-full lg:w-[80%]'
+                  : 'w-full h-[130px] lg:h-full lg:w-[20%]'
               }  cursor-pointer relative`}
             >
               <img
@@ -327,7 +329,7 @@ const AboutDan = () => {
               {activeKey !== 3 && (
                 <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
                   <h1 className="transform lg:rotate-90 tBold">
-                    {t("Values")}
+                    {t('Values')}
                   </h1>
                 </div>
               )}
@@ -340,8 +342,8 @@ const AboutDan = () => {
               }}
               className={` gridItem  ${
                 activeKey === 2
-                  ? "w-full h-[400px] lg:h-full lg:w-[80%]"
-                  : "w-full h-[130px] lg:h-full lg:w-[20%]"
+                  ? 'w-full h-[400px] lg:h-full lg:w-[80%]'
+                  : 'w-full h-[130px] lg:h-full lg:w-[20%]'
               }  cursor-pointer relative`}
             >
               <img
@@ -352,7 +354,7 @@ const AboutDan = () => {
               {activeKey !== 2 && (
                 <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
                   <h1 className="transform lg:rotate-90 tBold">
-                    {t("Values")}
+                    {t('Values')}
                   </h1>
                 </div>
               )}
@@ -365,8 +367,8 @@ const AboutDan = () => {
               }}
               className={` gridItem  ${
                 activeKey === 1
-                  ? "w-full h-[400px] lg:h-full lg:w-[80%]"
-                  : "w-full h-[130px] lg:h-full lg:w-[20%]"
+                  ? 'w-full h-[400px] lg:h-full lg:w-[80%]'
+                  : 'w-full h-[130px] lg:h-full lg:w-[20%]'
               }   cursor-pointer relative`}
             >
               <img
@@ -377,7 +379,7 @@ const AboutDan = () => {
               {activeKey !== 1 && (
                 <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
                   <h1 className="transform lg:rotate-90 tBold">
-                    {t("Values")}
+                    {t('Values')}
                   </h1>
                 </div>
               )}
@@ -389,7 +391,7 @@ const AboutDan = () => {
 
       <section className="pb-20">
         <p className="text-[#552A0E] pb-10 text-center text-[24px] tBold lg:text-[30px]   ">
-          {t("BoardOfDirectors")}
+          {t('BoardOfDirectors')}
         </p>
         <div className="container">
           <div className=" hidden lg:grid grid-cols-3 gap-16">
@@ -526,14 +528,17 @@ const AboutDan = () => {
               alt=""
             />
             <h1 className="text-[#552A0E]  text-center text-[24px] tBold lg:text-[30px] bold  ">
-              {t("OurLeadership")}
+              {t('OurLeadership')}
             </h1>
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">
-              {t("ExpertTeam")}
+              {t('ExpertTeam')}
             </p>
           </div>
           <div className=" hidden lg:grid grid-cols-3 mt-10 gap-16">
-            <div  onClick={() => setOpen(true)} className="bg-[#F7F7F7] cursor-pointer px-6 pt-6">
+            <div
+              onClick={() => setOpen(true)}
+              className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
+            >
               <div className="flex items-start justify-between">
                 <div>
                   <p className="thin text-[16px] text-txt">
@@ -551,7 +556,10 @@ const AboutDan = () => {
               </div>
               <img src="/about/shck.png" className="mt-5" alt="" />
             </div>
-            <div  onClick={() => setOpen(true)} className="bg-[#F7F7F7] cursor-pointer px-6 pt-6">
+            <div
+              onClick={() => setOpen(true)}
+              className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
+            >
               <div className="flex items-start justify-between">
                 <div>
                   <p className="thin text-[16px] text-txt">
@@ -569,7 +577,10 @@ const AboutDan = () => {
               </div>
               <img src="/about/shck.png" className="mt-5" alt="" />
             </div>
-            <div  onClick={() => setOpen(true)} className="bg-[#F7F7F7] cursor-pointer px-6 pt-6">
+            <div
+              onClick={() => setOpen(true)}
+              className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
+            >
               <div className="flex items-start justify-between">
                 <div>
                   <p className="thin text-[16px] text-txt">
@@ -590,7 +601,10 @@ const AboutDan = () => {
           </div>
           <div className=" block mt-10 lg:hidden w-full ">
             <Slider {...settings}>
-              <div  onClick={() => setOpen(true)} className="bg-[#F7F7F7] cursor-pointer px-6 pt-6">
+              <div
+                onClick={() => setOpen(true)}
+                className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
+              >
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="thin text-[16px] text-txt">
@@ -608,7 +622,10 @@ const AboutDan = () => {
                 </div>
                 <img src="/about/shck.png" className="mt-5" alt="" />
               </div>
-              <div  onClick={() => setOpen(true)} className="bg-[#F7F7F7] cursor-pointer px-6 pt-6">
+              <div
+                onClick={() => setOpen(true)}
+                className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
+              >
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="thin text-[16px] text-txt">
@@ -626,7 +643,10 @@ const AboutDan = () => {
                 </div>
                 <img src="/about/shck.png" className="mt-5" alt="" />
               </div>
-              <div  onClick={() => setOpen(true)} className="bg-[#F7F7F7] cursor-pointer px-6 pt-6">
+              <div
+                onClick={() => setOpen(true)}
+                className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
+              >
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="thin text-[16px] text-txt">
@@ -652,7 +672,7 @@ const AboutDan = () => {
       <div className="bg-[#552A0E] w-full py-20">
         <div className="container">
           <h1 className="text-[25px] lg:text-[30px] tBold text-white">
-          {t("CEOMessage")}
+            {t('CEOMessage')}
           </h1>
           <p className="py-3 pt-10 text-[14px] lg:text-[18px] text-white thin">
             من الكثبان الرملية المهيبة إلى سلاسل الجبال الخلابة والواحات
@@ -697,7 +717,7 @@ const AboutDan = () => {
                   عبدالرحمن أبا الخيل
                 </h1>
                 <h1 className="text-white text-[14px] lg:text-[18px]">
-                  {" "}
+                  {' '}
                   الرئيس التنفيذي
                 </h1>
                 <AiOutlineTwitter className="w-6 h-6 text-white mt-5" />
@@ -709,29 +729,29 @@ const AboutDan = () => {
       <Footer />
     </div>
   );
-};
+}
 
 const Exportable = ({ t }) => {
   return (
     <div className="absolute w-full h-full  flex items-center lg:items-start justify-center flex-col p-10 top-0 left-0 z-10">
       <h1 className="text-white text-[25px] lg:text-[50px] tBold text-center lg:text-left  ">
-        {t("Values")}
+        {t('Values')}
       </h1>
       <p className="text-white text-[14px] lg:text-[18px] hidden   lg:block  lg:w-2/3">
-        {t("CommunityCommitment")}
+        {t('CommunityCommitment')}
       </p>
       <p className="text-white text-[14px] lg:text-[18px] block text-center lg:hidden  lg:w-2/3">
-        {t("CommunityCommitment")}
+        {t('CommunityCommitment')}
       </p>
     </div>
   );
 };
 
-import { Fragment } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import { useTranslation } from "react-i18next";
+import { Fragment } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 
 function SideBar({ open, setOpen, language, setLanguage }) {
   return (
@@ -739,7 +759,7 @@ function SideBar({ open, setOpen, language, setLanguage }) {
       <Dialog
         as="div"
         className="relative z-10"
-        style={{ zIndex: "999999999999999999" }}
+        style={{ zIndex: '999999999999999999' }}
         onClose={setOpen}
       >
         <Transition.Child
@@ -758,20 +778,20 @@ function SideBar({ open, setOpen, language, setLanguage }) {
           <div className="absolute inset-0 overflow-hidden">
             <div
               className={`pointer-events-none fixed inset-y-0 ${
-                language !== "rtl" ? "left-0" : "right-0"
+                language !== 'rtl' ? 'left-0' : 'right-0'
               } flex max-w-full`}
             >
               <Transition.Child
                 as={Fragment}
                 enter="transform transition ease-in-out duration-500 sm:duration-700"
                 enterFrom={
-                  language !== "rtl" ? "-translate-x-full" : "translate-x-full"
+                  language !== 'rtl' ? '-translate-x-full' : 'translate-x-full'
                 }
                 enterTo="translate-x-0"
                 leave="transform transition ease-in-out duration-500 sm:duration-700"
                 leaveFrom="translate-x-0"
                 leaveTo={
-                  language !== "rtl" ? "-translate-x-full" : "translate-x-full"
+                  language !== 'rtl' ? '-translate-x-full' : 'translate-x-full'
                 }
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
@@ -793,7 +813,7 @@ function SideBar({ open, setOpen, language, setLanguage }) {
                         <Link href="/">
                           <img
                             src="/logo.png"
-                            style={{ width: "100%", objectFit: "contain" }}
+                            style={{ width: '100%', objectFit: 'contain' }}
                             className=" h-10 "
                             alt=""
                           />
@@ -802,9 +822,9 @@ function SideBar({ open, setOpen, language, setLanguage }) {
                       <img
                         src="/about/shck.png"
                         className={
-                          language !== "rtl"
-                            ? "mt-5 transform -scale-x-100"
-                            : "mt-5"
+                          language !== 'rtl'
+                            ? 'mt-5 transform -scale-x-100'
+                            : 'mt-5'
                         }
                         alt=""
                       />
@@ -864,4 +884,10 @@ function SideBar({ open, setOpen, language, setLanguage }) {
   );
 }
 
-export default AboutDan;
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

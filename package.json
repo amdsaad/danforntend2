@@ -13,6 +13,7 @@
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@react-google-maps/api": "^2.18.1",
+    "axios": "^1.4.0",
     "fs": "^0.0.1-security",
     "gsap": "./gsap/gsap-bonus.tgz",
     "i18next": "^23.2.7",
