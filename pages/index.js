@@ -10,172 +10,18 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
 import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
+import config from '../components/config';
+const apiURL = config.api_url;
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
 
 export default function Home() {
+  const router = useRouter();
   const [scrollPosition, setScrollPosition] = useState(0);
 
-
-  // useLayoutEffect(() => {
-  //   let ctx = gsap.context(() => {
-  //     const advTL = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: '#advSection',
-  //         start: 'top 300px',
-  //         // end: 'center center',
-  //         ease: 'none',
-  //         scrub: 1,
-  //       },
-  //     });
-  //     const advTL2Content = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: '#advSection',
-  //         start: 'top 150%',
-  //         // end: 'center center',
-  //         ease: 'none',
-  //         scrub: 1,
-  //       },
-  //     });
-  //     const advTL2 = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: '#herosection',
-  //         start: 'center center',
-  //         // end: 'bottom bottom',
-  //         ease: 'none',
-  //         scrub: 1,
-  //       },
-  //     });
-  //     const advContent = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: '#advSection',
-  //         start: 'top -200px',
-  //         end: 'bottom 100px',
-  //         ease: 'none',
-  //         scrub: 1,
-
-  //       },
-  //     });
-
-  //     advTL2.fromTo(advSection_img_1.current, { x: '100%' }, { x: '0', duration: 5 }, 0);
-  //     advTL.fromTo(advSection_img_2.current, { y: '100%' }, { y: '-100%', duration: 5 }, '=-5');
-  //     advTL2Content.fromTo(advSection_content.current, { y: '100%' }, { y: '0', duration: 5 }, 0)
-  //     // advContent.fromTo(advSection_content_btn.current, { opacity: 0 }, { opacity: 100, duration: 5 }, 0)
-
-  //     // *********ruralTourism************
-  //     const ruralTourismTL = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: '#advSection',
-  //         start: 'center 40%',
-  //         ease: 'none',
-  //         scrub: 1,
-  //       },
-  //     });
-
-  //     const ruralTourismTLContent = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: '#ruralTourism',
-  //         start: 'top 200%',
-  //         end: 'top top',
-  //         ease: 'none',
-  //         scrub: 1,
-  //       },
-  //     });
-  //     const ruralTourismTLContent2 = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: '#ruralTourism',
-  //         start: 'top 100%',
-  //         end: 'top top',
-  //         ease: 'none',
-  //         scrub: 1,
-  //       },
-  //     });
-  //     ruralTourismTLContent.fromTo(ruralTourism_image1.current, { x: '-100%' }, { x: 0, duration: 3 }, 0);
-  //     ruralTourismTLContent2.fromTo(ruralTourism_image2.current, { x: '-100%' }, { x: '0', duration: 3 }, 0);
-  //     ruralTourismTLContent.fromTo(ruralTourism_content.current, { y: '100%' }, { y: '0', duration: 3 }, 0);
-
-  //     const ruralTourismTLContentbtn = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: '#ruralTourism',
-  //         start: 'center 60%',
-  //         ease: 'none',
-  //         scrub: 1,
-  //       },
-  //     });
-  //     ruralTourismTLContentbtn.fromTo(ruralTourism_content_btn.current, { opacity: 0 }, { opacity: 100 }, 0);
-
-  //     // ************ ecotourism *******************
-  //     const ecotourismTL = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: '#ruralTourism',
-  //         start: 'center center',
-  //         ease: 'none',
-  //         scrub: 1,
-  //       },
-  //     });
-
-  //     ecotourismTL.fromTo(ecotourism_image1.current, { x: '100%' }, { x: '10%' }, 0);
-
-  //     const ecotourismTLContent = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: '#ecotourism',
-  //         start: 'top 350%',
-  //         ease: 'none',
-  //         scrub: 1,
-  //       },
-  //     });
-
-
-  //     ecotourismTLContent.fromTo(ecotourism_image2.current, { y: '100%' }, { y: 0, duration: 3 }, 0);
-  //     ecotourismTLContent.fromTo(ecotourism_content.current, { y: '100%' }, { y: '-20%', duration: 3 }, 0);
-
-  //     const ecotourismTLContentbtn = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: '#ecotourism',
-  //         start: 'center 70%',
-  //         ease: 'none',
-  //         scrub: 1,
-  //       },
-  //     });
-  //     ecotourismTLContentbtn.fromTo(ecotourism_content_btn.current, { opacity: 0 }, { opacity: 100 }, 0);
-
-  //     const sections = gsap.utils.toArray(".panel");
-
-  //     gsap.to(sections, {
-  //       xPercent: -100 * (sections.length - 1),
-  //       ease: "none",
-  //       scrollTrigger: {
-  //         trigger: ".panelcontainer",
-  //         pin: true,
-  //         invalidateOnRefresh: true,
-  //         anticipatePin: 1,
-  //         scrub: 1.23,
-  //         end: () => "+=3000",
-  //         preventOverlaps: true
-  //       }
-  //     });
-
-
-  //   }, root);
-
-  //   return () => ctx.revert();
-  // }, []);
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  //   // animateADV()
-  //   // animate2()
-  //   // let smoother = ScrollSmoother.create({
-  //   //   smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
-  //   //   effects: true // looks for data-speed and data-lag attributes on elements
-  //   // });
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //     // smoother.kill();
-
-  //   };
-  // }, [animateADV,]);
   const settings = {
     dots: true,
     infinite: true,
@@ -183,7 +29,42 @@ export default function Home() {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const [tourisms, setTourisms] = useState([]);
+  const [title = '', setTitle] = useState('');
+  const [description = '', setDescription] = useState('');
+  const [about_1, setAbout1] = useState('');
+  const [about_2, setAbout2] = useState('');
+  const getHome = useCallback(async () => {
+    try {
+      await axios
+        .get(`${apiURL}/home`, {
+          headers: {
+            'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'
+              }`,
+          },
+        })
+        .then((response) => {
+          console.log('response', response.data.data);
+          if (response.status === 200) {
+            setTitle(response?.data?.data?.titele);
+            setDescription(response?.data?.data?.description);
+            setTourisms(response?.data?.data?.typetourisms);
+            setAbout1(response?.data?.data?.about);
+            setAbout2(response?.data?.data?.about1);
 
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [router.locale]);
+  useEffect(() => {
+
+    getHome();
+
+
+
+  }, [getHome]);
 
   const { t } = useTranslation();
   return (
@@ -191,7 +72,7 @@ export default function Home() {
       <Topbar />
       <main >
 
-        <Services />
+        <Services tourisms={tourisms} title={title} description={description} about_1={about_1} about_2={about_2} />
 
         <div className="w-full mt-16 lg:mt-40 mb-20 overflow-hidden">
           <div className="container">

@@ -14,10 +14,11 @@ import { useRouter } from 'next/router';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
-export default function Services() {
+export default function Services({ tourisms, title, description , about_1, about_2}) {
+    console.log('tourisms', tourisms);
+
     const router = useRouter();
     const { locale: activeLocale } = router;
-
 
     const advSection = useRef(null);
     const advSection_img_1 = useRef(null);
@@ -265,10 +266,10 @@ export default function Services() {
                         <div className="container h-full ">
                             <div className=" flex flex-col h-full justify-center  lg:justify-end items-start lg:pb-32">
                                 <h1 className=" text-[35px] lg:text-[50px] text-white font-bold">
-                                    {t("OurNature")}
+                                    {title}
                                 </h1>
                                 <p className="text-white text-[16px] lg:text-[22px] lg:w-2/5 py-6 ">
-                                    {t("DanCompanyGoal")}
+                                    {description}
                                 </p>
                                 <Image
                                     src="/home/arrow.png"
@@ -334,19 +335,19 @@ export default function Services() {
                 <div className="container  relative h-[700px]" id="advSection_content" ref={advSection_content} >
                     <div className=" pt-96 lg:pt-52 xl:pt-60 px-3 lg:px-0 lg:w-[500px] xl:pl-20 absolute left-0 lg:pr-10 xl:pr-0 lg:left-0 xl:left-16">
                         <h1 className="text-[25px] lg:text-[30px] tBold  text-[#E98108]">
-                            {t("AdventureTourism")}
+                            {tourisms[0]?.name}
                         </h1>
                         <p className="pt-10 pb-16 thin text-[#54290E] text-[16px] lg:text-[18px] font-thin ">
-                            {t("InspireReconnection")}
+                            {tourisms[0]?.description}
                         </p>
                         <div className="flex items-center gap-4  w-full" id="advSection_content_btn" ref={advSection_content_btn}>
                             <button className="pr-3 pl-[30px] py-2 hidden   hover:bg-[#F97A00] bg-transparent text-pr hover:text-white border border-pr rounded-full lg:flex items-center gap-2">
                                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                                {t("JoinDanPartners")}
+                                {tourisms[0]?.button_1}
                             </button>
                             <button className="pr-3 pl-[30px] py-2 text-white  bg-[#F97A00] hover:bg-transparent hover:text-pr border border-pr rounded-full flex items-center gap-2">
                                 <BiSearch className="w-5 h-5 " />
-                                {t("DiscoverMore")}
+                                {tourisms[0]?.button_2}
                             </button>
                         </div>
                     </div>
@@ -403,19 +404,19 @@ export default function Services() {
                 <div className="container relative h-[750px] lg:h-[700px]" id="ruralTourism_content" ref={ruralTourism_content}>
                     <div className=" pt-[460px] lg:pt-52 xl:pt-60 px-3 lg:px-0 lg:w-[400px] xl:w-1/3 absolute xl:right-[100px]">
                         <h1 className="text-[25px] lg:text-[30px] bottom-20  tBold text-[#64C07D] ">
-                            {t("RuralTourism")}
+                            {tourisms[1]?.name}
                         </h1>
                         <p className="pt-10 pb-16 thin text-[#54290E] text-[16px] lg:text-[18px] font-thin bottom-20">
-                            {t("DiscoverKingdomRoots")}
+                            {tourisms[1]?.description}
                         </p>
                         <div className="flex items-center gap-4 " id="ruralTourism_content_btn" ref={ruralTourism_content_btn}>
                             <button className="pr-3 pl-[30px] py-2   hover:bg-pr bg-transparent text-pr hover:text-white border border-pr rounded-full hidden lg:flex items-center gap-2">
                                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                                {t("JoinDanPartners")}
+                                {tourisms[1]?.button_1}
                             </button>
                             <button className="pr-3 pl-[30px] py-2 text-white  bg-[#00A386] hover:bg-transparent hover:text-[#00A386] border border-[#00A386] rounded-full flex items-center gap-2">
                                 <BiSearch className="w-5 h-5 " />
-                                {t("DiscoverMore")}
+                                {tourisms[1]?.button_2}
                             </button>
                         </div>
                     </div>
@@ -472,20 +473,20 @@ export default function Services() {
                     <div className="  pt-[350px] px-3 lg:px-0 lg:pt-40 lg:pr-10 xl:pr-0 xl:pt-80 lg:w-[500px] absolute left-0">
                         <div className="flex items-center gap-5 ">
                             <h1 className="text-[18px] lg:text-[30px] tBold   text-[#1A92D3] ">
-                                {t("Ecotourism")}
+                                {tourisms[2]?.name}
                             </h1>
                         </div>
                         <p className="pt-10 pb-16 thin text-[#54290E] text-[16px] lg:text-[18px] ">
-                            {t("EnjoyDailyLife")}
+                            {tourisms[2]?.description}
                         </p>
                         <div className="flex items-center gap-4 " id="ecotourism_content_btn" ref={ecotourism_content_btn}>
                             <button className="pr-3 pl-[30px] py-2 hidden   hover:bg-[#F97A00] bg-transparent text-pr hover:text-white border border-pr rounded-full lg:flex items-center gap-2">
                                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                                {t("JoinDanPartners")}
+                                {tourisms[2]?.button_1}
                             </button>
                             <button className="pr-3 pl-[30px] py-2 text-white  bg-[#0095D9] hover:bg-transparent hover:text-[#0095D9] border border-[#0095D9] rounded-full flex items-center gap-2">
                                 <BiSearch className="w-5 h-5 " />
-                                {t("DiscoverMore")}
+                                {tourisms[2]?.button_2}
                             </button>
                         </div>
                     </div>
@@ -531,7 +532,6 @@ export default function Services() {
                                     className="image13"
                                     alt=""
                                 />
-
                                 <Image
                                     height={59}
                                     width={59}
@@ -544,12 +544,24 @@ export default function Services() {
                                 <p className="text-[25px] tBold lg:text-[30px] text-white">
                                     {t("AboutDan")}
                                 </p>
-                                <p className=" text-[15px] lg:text-[18px] mt-10 thin text-white">
-                                    {t("TourismDevelopment")}
+                                <div
+                                    className="text-[15px] lg:text-[18px] mt-10 thin text-white"
+                                    dangerouslySetInnerHTML={{
+                                        __html: about_1,
+                                    }}
+                                ></div>
+                                <div
+                                    className="text-[15px] lg:text-[18px] mt-10 thin text-white"
+                                    dangerouslySetInnerHTML={{
+                                        __html: about_2,
+                                    }}
+                                ></div>
+                                {/* <p className=" text-[15px] lg:text-[18px] mt-10 thin text-white">
+                                    {about_1}
                                 </p>
                                 <p className="text-[15px] lg:text-[18px] mt-10 thin text-white">
-                                    {t("NatureConnection")}
-                                </p>
+                                    {about_2}
+                                </p> */}
                             </div>
                             <div className="hidden lg:flex lg:flex-col items-center gap-10">
                                 <Image

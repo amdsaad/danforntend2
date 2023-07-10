@@ -1,20 +1,67 @@
-import React, { useRef, useState } from "react";
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
-import Image from "next/image";
-import { BiSearch } from "react-icons/bi";
-import { useTranslation } from "react-i18next";
-const Careers = () => {
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+import Topbar from '../components/layout/Topbar';
+import Footer from '../components/layout/Footer';
+import Image from 'next/image';
+import { BiSearch } from 'react-icons/bi';
+import { useTranslation } from 'next-i18next';
+import config from '../components/config';
+const apiURL = config.api_url;
+import axios from 'axios';
+import { useRouter } from 'next/router';
+export default function Careers() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const scrollRef = useRef(null);
 
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
   const { t } = useTranslation();
+  const [culture, setCulture] = useState('');
+  const [join, setJoin] = useState('');
+  const [cultureTitle, setCultureTitle] = useState('');
+  const [joinTitle, setJoinTitle] = useState('');
+  const [btnFirst, setBtnFirst] = useState('');
+  const [btnSecond, setBtnSecond] = useState('');
+  const getCareer = useCallback(async () => {
+    try {
+      await axios
+        .get(`${apiURL}/settings`, {
+          headers: {
+            'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
+          },
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            setCulture(response?.data?.work_culture);
+            setJoin(response?.data?.Join_dan);
+            setCultureTitle(response?.data?.work_titele);
+            setJoinTitle(response?.data?.Join_titele);
+            setBtnFirst(response?.data?.culture_button_1);
+            setBtnSecond(response?.data?.culture_button_2);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [
+    setCulture,
+    setJoin,
+    setCultureTitle,
+    setJoinTitle,
+    setBtnFirst,
+    setBtnSecond,
+    router.locale,
+  ]);
+  useEffect(() => {
+    getCareer();
+  }, [getCareer]);
+
   return (
     <div className="min-h-screen relative w-full">
       <Topbar />
@@ -38,10 +85,10 @@ const Careers = () => {
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[24px]  lg:text-[50px] text-white font-bold">
-                  {t("JoinUs")}
+                  {t('JoinUs')}
                 </h1>
                 <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6 ">
-                  {t("join_desc")}
+                  {t('join_desc')}
                 </p>
                 <Image
                   src="/home/arrow.png"
@@ -75,7 +122,7 @@ const Careers = () => {
               alt=""
             />
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">
-              {t("career_h1")}
+              {t('career_h1')}
             </p>
           </div>
         </div>
@@ -98,15 +145,15 @@ const Careers = () => {
               alt=""
             />
             <h1 className="text-txt tet-[16px] tBold font-medium  lg:text-[30px]">
-              {t("c_title")}
+              {t('c_title')}
             </h1>
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">
-              {t("c_desc")}
+              {t('c_desc')}
             </p>
 
             <div className="px-5 bg-[#552A0E] rounded-full py-2 text-[17px] text-white flex items-center gap-6 cursor-pointer">
               <img src="/comp/icon.png" className="w-6 h-6" alt="" />
-              {t("c_btn")}
+              {t('c_btn')}
             </div>
           </div>
         </div>
@@ -122,7 +169,7 @@ const Careers = () => {
                 src={`/home/l1.png`}
                 alt=""
               />
-              {t("c_title_2")}
+              {t('c_title_2')}
             </h1>
             <div className="flex items-center gap-5">
               <div className="p-3 rounded-full flex transition-all duration-500 ease-linear items-center gap-2 bg-[#e0e0e047] ">
@@ -147,7 +194,7 @@ const Careers = () => {
                 <p className="text-sm">Full Time</p>
                 <div className="flex items-center mt-20 justify-between">
                   <p className="text-sm">Published on 23/03/2022</p>
-                  <p className="font-bold cursor-pointer">More {" >>"}</p>
+                  <p className="font-bold cursor-pointer">More {' >>'}</p>
                 </div>
               </div>
             ))}
@@ -157,6 +204,12 @@ const Careers = () => {
       <Footer />
     </div>
   );
-};
+}
 
-export default Careers;
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

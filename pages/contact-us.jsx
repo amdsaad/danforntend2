@@ -1,23 +1,28 @@
-import React, { useRef } from "react";
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
-import Image from "next/image";
-import { BsLinkedin, BsTwitter } from "react-icons/bs";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import { useTranslation } from "react-i18next";
+import React, { useRef } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-const ContactUs = () => {
+import Topbar from '../components/layout/Topbar';
+import Footer from '../components/layout/Footer';
+import Image from 'next/image';
+import { BsLinkedin, BsTwitter } from 'react-icons/bs';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { useTranslation } from 'next-i18next';
+import config from '../components/config';
+const apiURL = config.api_url;
+import axios from 'axios';
+import { useRouter } from 'next/router';
+export default function ContactUs() {
   const scrollRef = useRef(null);
 
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
   const mapStyles = {
-    height: "400px",
-    width: "100%",
+    height: '400px',
+    width: '100%',
   };
 
   const defaultCenter = {
@@ -48,10 +53,10 @@ const ContactUs = () => {
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[24px]  lg:text-[50px] text-white font-bold">
-                  {t("contact_us")}
+                  {t('contact_us')}
                 </h1>
                 <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6 ">
-                  {t("contact_txt")}
+                  {t('contact_txt')}
                 </p>
                 <Image
                   src="/home/arrow.png"
@@ -85,7 +90,7 @@ const ContactUs = () => {
               alt=""
             />
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">
-              {t("contact_desc")}
+              {t('contact_desc')}
             </p>
           </div>
         </div>
@@ -97,40 +102,40 @@ const ContactUs = () => {
               <input
                 type="text"
                 className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin"
-                placeholder={t("FullName")}
+                placeholder={t('FullName')}
               />
             </div>
             <div>
               <input
                 type="text"
                 className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin"
-                placeholder={t("Email")}
+                placeholder={t('Email')}
               />
             </div>
             <div>
               <input
                 type="text"
                 className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-txt placeholder:text-txt thin"
-                placeholder={t("MobileNumber")}
+                placeholder={t('MobileNumber')}
               />
             </div>
             <div className="lg:col-span-2">
               <input
                 type="text"
                 className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin"
-                placeholder={t("City")}
+                placeholder={t('City')}
               />
             </div>
             <div className="lg:col-span-2">
               <input
                 type="text"
                 className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin"
-                placeholder={t("AreaOfInterest")}
+                placeholder={t('AreaOfInterest')}
               />
             </div>
             <div className="lg:col-span-4">
               <textarea
-                placeholder={t("MessageText")}
+                placeholder={t('MessageText')}
                 className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin"
                 name=""
                 id=""
@@ -141,17 +146,17 @@ const ContactUs = () => {
           </div>
           <div className="flex items-center flex-col lg:flex-row gap-10 justify-between mt-10">
             <div className=" hidden lg:flex items-center gap-3">
-              <p className="text-[19px] text-txt ">{t("FollowUs")}</p>
+              <p className="text-[19px] text-txt ">{t('FollowUs')}</p>
               <BsTwitter className="w-6 h-6 text-txt" />
-              <BsLinkedin className="w-6 h-6 text-txt thin" />{" "}
+              <BsLinkedin className="w-6 h-6 text-txt thin" />{' '}
             </div>
             <button className="px-32 py-3 thin bg-[#E5E6E7] text-txt hover:bg-txt hover:text-white  bg-opacity-40 text-lg">
-              {t("send")}
+              {t('send')}
             </button>
             <div className=" flex lg:hidden items-center gap-3">
               <p className="text-[19px] text-txt ">تابعنا</p>
               <BsTwitter className="w-6 h-6 text-txt" />
-              <BsLinkedin className="w-6 h-6 text-txt thin" />{" "}
+              <BsLinkedin className="w-6 h-6 text-txt thin" />{' '}
             </div>
           </div>
           <div className="mt-10 bg-white">
@@ -174,6 +179,12 @@ const ContactUs = () => {
       <Footer />
     </div>
   );
-};
+}
 
-export default ContactUs;
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

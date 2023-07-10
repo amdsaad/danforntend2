@@ -1,11 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
-import Image from "next/image";
-import { IoIosArrowForward } from "react-icons/io";
-import { BiShareAlt } from "react-icons/bi";
-import { AiFillFilePdf } from "react-icons/ai";
-import { FaPlay, FaPause } from "react-icons/fa";
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import Topbar from '../components/layout/Topbar';
+import Footer from '../components/layout/Footer';
+import Image from 'next/image';
+import { IoIosArrowForward } from 'react-icons/io';
+import { BiShareAlt } from 'react-icons/bi';
+import { AiFillFilePdf } from 'react-icons/ai';
+import { FaPlay, FaPause } from 'react-icons/fa';
+import config from '../components/config';
+const apiURL = config.api_url;
+import axios from 'axios';
+import { useRouter } from 'next/router';
 const NewsRead = () => {
   return (
     <div className="relative min-h-screen w-full">
@@ -79,8 +83,10 @@ const NewsRead = () => {
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
                 fugiat delectus ipsam iure tempore quia dolor assumenda! Id,
                 officia velit ipsum, eum saepe itaque, qui aspernatur
-                consequuntur repellendus dolor laudantium.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam et ab iste dolorum libero sit suscipit quod amet expedita neque aut iure voluptates nostrum quae distinctio dicta recusandae, enim cum.
+                consequuntur repellendus dolor laudantium. Lorem ipsum dolor sit
+                amet consectetur adipisicing elit. Aliquam et ab iste dolorum
+                libero sit suscipit quod amet expedita neque aut iure voluptates
+                nostrum quae distinctio dicta recusandae, enim cum.
               </p>
             </div>
           </div>
@@ -116,6 +122,9 @@ const BigScreenVideo = () => {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef(null);
   const progressRef = useRef(null);
+  const [post, setPost] = useState(false);
+  const router = useRouter();
+  const { nid } = router.query;
 
   const handlePlayClick = () => {
     const video = videoRef.current;
@@ -139,6 +148,27 @@ const BigScreenVideo = () => {
     progressRef.current.style.width = `${progress}%`;
   };
 
+  const getNews = useCallback(async () => {
+    if (nid) {
+      try {
+        await axios
+          .get(`${apiURL}/posts/${nid}`, {
+            headers: {
+              'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
+            },
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              setPost(response?.data?.data);
+              console.log(response?.data?.data);
+            }
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [setPost, router.locale]);
+
   useEffect(() => {
     const video = videoRef.current;
 
@@ -151,16 +181,16 @@ const BigScreenVideo = () => {
     setIsPlaying(false);
 
     // Reset the progress bar
-    progressRef.current.style.width = "0%";
+    progressRef.current.style.width = '0%';
 
     // Add event listeners
-    video.addEventListener("timeupdate", updateProgressBar);
-
+    video.addEventListener('timeupdate', updateProgressBar);
+    getNews();
     // Clean up the event listener on unmount
     return () => {
-      video.removeEventListener("timeupdate", updateProgressBar);
+      video.removeEventListener('timeupdate', updateProgressBar);
     };
-  }, []);
+  }, [getNews]);
 
   return (
     <div
@@ -202,7 +232,7 @@ const BigScreenVideo = () => {
         <div
           ref={progressRef}
           className="h-full "
-          style={{ width: "0%" }}
+          style={{ width: '0%' }}
         ></div>
       </div>
     </div>
