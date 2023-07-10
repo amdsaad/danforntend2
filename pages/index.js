@@ -31,7 +31,7 @@ export default function Home() {
     slidesToScroll: 1,
   };
   const settingsDesktop = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -107,7 +107,7 @@ export default function Home() {
             <div className="w-full hidden lg:block ">
               <Slider {...settingsDesktop}>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, ind) => (
-                  <div key={ind} className="relative w-full">
+                  <div key={ind} className="relative w-full p-4">
                     <img
                       key={ind}
                       src={`/home/${item}.png`}
