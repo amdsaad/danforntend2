@@ -9,6 +9,9 @@ import { FaHandshake } from 'react-icons/fa';
 import { Parallax } from 'react-parallax';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import axios from 'axios';
+import config from '../components/config';
+const apiURL = config.api_url;
 
 export default function FutureProject() {
   const settings = {

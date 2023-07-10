@@ -21,6 +21,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 export default function Home() {
   const router = useRouter();
   const [scrollPosition, setScrollPosition] = useState(0);
+  const { locale } = router;
 
   const settings = {
     dots: true,
@@ -28,6 +29,14 @@ export default function Home() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+  };
+  const settingsDesktop = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    rtl: locale === 'ar' ? true : false,
   };
   const [tourisms, setTourisms] = useState([]);
   const [title = '', setTitle] = useState('');
@@ -79,7 +88,7 @@ export default function Home() {
             <h1 className="text-[25px] text-center lg:bottom-20 lg:text-[30px] tBold text-[#5A2910] pb-16">
               {t("DanTripStatistics")}
             </h1>
-            <div className=" hidden lg:grid grid-cols-5 gap-10 " >
+            {/* <div className=" hidden lg:grid grid-cols-5 gap-10 " >
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, ind) => (
                 <div key={ind} className="relative w-full transition hover:shadow-2xl ">
                   <img
@@ -94,8 +103,30 @@ export default function Home() {
                   </div>
                 </div>
               ))}
+            </div> */}
+            <div className="w-full hidden lg:block ">
+              <Slider {...settingsDesktop}>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, ind) => (
+                  <div key={ind} className="relative w-full">
+                    <img
+                      key={ind}
+                      src={`/home/${item}.png`}
+                      alt=""
+                      className="rounded-md w-full object-cover"
+                    />
+                    <div className="absolute bottom-5 right-5 z-10">
+                      <h1 className="text-white font-bold text-6xl  text-right">
+                        4,160
+                      </h1>
+                      <p className="text-xs text-white thin pt-1 text-right">
+                        وحدة ضيافة
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </Slider>
             </div>
-            <div className="w-full block lg:hidden">
+            <div className="w-full block lg:hidden px-4">
               <Slider {...settings}>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, ind) => (
                   <div key={ind} className="relative w-full">
