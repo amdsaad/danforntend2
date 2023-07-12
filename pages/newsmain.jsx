@@ -33,6 +33,7 @@ export default function Newsmain() {
         })
         .then((response) => {
           if (response.status === 200) {
+            console.log('categorypost', response?.data?.data);
             setCategories(response?.data?.data);
           }
         });
@@ -51,7 +52,7 @@ export default function Newsmain() {
           })
           .then((response) => {
             if (response.status === 200) {
-              console.log(response?.data?.data);
+              console.log('posts', response?.data?.data);
               setPosts(response?.data?.data);
             }
           });
@@ -135,27 +136,20 @@ export default function Newsmain() {
             </div>
           </div>
           <div className="mt-10 flex items-center overflow-x-auto gap-3">
-            <div className="px-5 border whitespace-nowrap bg-[#7BBE83] rounded-full text-[13px] text-white py-1 cursor-pointer">
-              اقتصاد وبيئة
-            </div>
-            <div className="px-5 border whitespace-nowrap bg-[#552A0E] rounded-full text-[13px] text-white py-1 cursor-pointer">
-              متفرقات
-            </div>
-            <div className="px-5 border whitespace-nowrap bg-[#E98108] rounded-full text-[13px] text-white py-1 cursor-pointer">
-              اخبار المشاريع
-            </div>
-            <div className="px-5 border whitespace-nowrap bg-[#F84D4A] rounded-full text-[13px] text-white py-1 cursor-pointer">
-              اقتصاد وبيئة
-            </div>
-            <div className="px-5 border whitespace-nowrap bg-[#1A92D3] rounded-full text-[13px] text-white py-1 cursor-pointer">
-              متفرقات
-            </div>
-            <div className="px-5 border whitespace-nowrap border-[#7EBD85]  rounded-full text-[13px] text-[#7EBD85] py-1 cursor-pointer">
-              اخبار المشاريع
-            </div>
+            {categories.map((item) => (
+              <div
+                key={item.id}
+                className="px-5 border whitespace-nowrap rounded-full text-[13px] text-white py-1 cursor-pointer"
+                style={{
+                  backgroundColor: `${item?.color}`,
+                }}
+              >
+                {item?.name}
+              </div>
+            ))}
           </div>
           <div className=" grid mt-20 grid-cols-1 lg:grid-cols-3 gap-10">
-            {[1, 2, 3, 4, 5, 6, 8, 9, 10].map((item) => (
+            {posts?.map((item) => (
               <Link
                 href={
                   router.locale === 'en' ? `/en/news/${item}` : `/news/${item}`
@@ -166,21 +160,24 @@ export default function Newsmain() {
                 <img src="/home/hand.png" alt="" />
                 <div className="px-4 py-6">
                   <div className="flex items-center justify-between">
-                    <button className="px-3 rounded-full py-1 text-sm text-white bg-[#7EBD85]">
-                      Project News
+                    <button
+                      className="px-3 rounded-full py-1 text-sm text-white"
+                      style={{
+                        backgroundColor: `${item.category_color}`,
+                      }}
+                    >
+                      {item.category_name}
                     </button>
-                    <p className="text-[#562E15]">22/11/2023</p>
+                    <p className="text-[#562E15]">{item.created_at.date}</p>
                   </div>
                   <p className="text-[18px]  pt-8 pb-3 text-[#562E15] font-semibold">
-                    News Title
+                    {item.name}
                   </p>
                   <p className="text-[#562E15] text-sm lg:text-base ">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Quisque lorem lacus, molestie id lacus Lorem ipsum dolor sit
-                    amet, consectetur{' '}
+                    {item.bio}
                   </p>
                   <div className=" mt-3 flex text-[11px] lg:text-base text-[#562E15]   w-full">
-                    Read More {'>'}
+                    {t('readmore')} {'>'}{' '}
                   </div>
                 </div>
               </Link>
