@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Topbar from '../components/layout/Topbar';
@@ -11,9 +11,50 @@ import config from '../components/config';
 const apiURL = config.api_url;
 import axios from 'axios';
 import { useRouter } from 'next/router';
-export default function ContactUs() {
-  const scrollRef = useRef(null);
 
+export default function ContactUs() {
+  const router = useRouter();
+  const [title, setTitle] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [city, setCity] = useState('');
+  const [message, setMessage] = useState('');
+  const [feedback, setFeedback] = useState('');
+
+  const scrollRef = useRef(null);
+  const getContact = useCallback(async () => {
+    try {
+      await axios
+        .get(`${apiURL}/settings`, {
+          headers: {
+            'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
+          },
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            console.log('contact us', response);
+            setTitle(response?.data?.contactus_titele);
+            setName(response?.data?.name_con);
+            setEmail(response?.data?.email_con);
+            setMobile(response?.data?.phone_con);
+            setCity(response?.data?.city_con);
+            setMessage(response?.data?.text_con);
+            setFeedback(response?.data?.feedback);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [
+    setTitle,
+    setName,
+    setEmail,
+    setMobile,
+    setCity,
+    setMessage,
+    router.locale,
+  ]);
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
@@ -30,6 +71,11 @@ export default function ContactUs() {
     lng: 46.674211, // Specify the initial center longitude
   };
   const { t } = useTranslation();
+
+  React.useEffect(() => {
+    getContact();
+  }, [getContact]);
+
   return (
     <div className=" relative w-full min-h-screen">
       <Topbar />
@@ -52,11 +98,12 @@ export default function ContactUs() {
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
-                <h1 className=" text-[24px]  lg:text-[50px] text-white font-bold">
-                  {t('contact_us')}
+                <h1 className=" text-[24px]  lg:text-[35px] text-white font-bold">
+                  {title}
                 </h1>
-                <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6 ">
-                  {t('contact_txt')}
+                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 ">
+                  {/* TODO: need to check this input */}
+                  {feedback}
                 </p>
                 <Image
                   src="/home/arrow.png"
@@ -90,6 +137,7 @@ export default function ContactUs() {
               alt=""
             />
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">
+              {/* TODO: TO BE ADDED IN THE BACKEND  */}
               {t('contact_desc')}
             </p>
           </div>
@@ -102,40 +150,41 @@ export default function ContactUs() {
               <input
                 type="text"
                 className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin"
-                placeholder={t('FullName')}
+                placeholder={name}
               />
             </div>
             <div>
               <input
                 type="text"
                 className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin"
-                placeholder={t('Email')}
+                placeholder={email}
               />
             </div>
             <div>
               <input
                 type="text"
                 className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-txt placeholder:text-txt thin"
-                placeholder={t('MobileNumber')}
+                placeholder={mobile}
               />
             </div>
             <div className="lg:col-span-2">
               <input
                 type="text"
                 className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin"
-                placeholder={t('City')}
+                placeholder={city}
               />
             </div>
             <div className="lg:col-span-2">
               <input
                 type="text"
                 className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin"
+                // TODO: to be added in the backend
                 placeholder={t('AreaOfInterest')}
               />
             </div>
             <div className="lg:col-span-4">
               <textarea
-                placeholder={t('MessageText')}
+                placeholder={message}
                 className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin"
                 name=""
                 id=""
@@ -147,8 +196,9 @@ export default function ContactUs() {
           <div className="flex items-center flex-col lg:flex-row gap-10 justify-between mt-10">
             <div className=" hidden lg:flex items-center gap-3">
               <p className="text-[19px] text-txt ">{t('FollowUs')}</p>
+              {/* TODO: add social media from the backend */}
               <BsTwitter className="w-6 h-6 text-txt" />
-              <BsLinkedin className="w-6 h-6 text-txt thin" />{' '}
+              <BsLinkedin className="w-6 h-6 text-txt thin" />
             </div>
             <button className="px-32 py-3 thin bg-[#E5E6E7] text-txt hover:bg-txt hover:text-white  bg-opacity-40 text-lg">
               {t('send')}
@@ -156,7 +206,7 @@ export default function ContactUs() {
             <div className=" flex lg:hidden items-center gap-3">
               <p className="text-[19px] text-txt ">تابعنا</p>
               <BsTwitter className="w-6 h-6 text-txt" />
-              <BsLinkedin className="w-6 h-6 text-txt thin" />{' '}
+              <BsLinkedin className="w-6 h-6 text-txt thin" />
             </div>
           </div>
           <div className="mt-10 bg-white">

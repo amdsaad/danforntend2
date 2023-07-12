@@ -117,10 +117,11 @@ export default function Newsmain() {
               {t('MediaCenter')}
             </h1>
             <div className="flex items-center  lg:w-auto gap-5">
-              <div className="p-3 rounded-full hidden lg:flex cursor-pointer transition-all duration-500 ease-linear items-center gap-2 bg-[#552A0E] ">
+              {/* <div className="p-3 rounded-full hidden lg:flex cursor-pointer transition-all duration-500 ease-linear items-center gap-2 bg-[#552A0E] ">
                 <img src="/news/bar.png" className="w-6 h-6 " alt="" />
-              </div>
+              </div> */}
               <div className="px-2 py-2 lg:p-3 rounded-full flex transition-all duration-500 ease-linear items-center gap-2 bg-[#552A0E] ">
+                {/* TODO: filter posts with title */}
                 {open && (
                   <input
                     type="text"
@@ -136,6 +137,7 @@ export default function Newsmain() {
             </div>
           </div>
           <div className="mt-10 flex items-center overflow-x-auto gap-3">
+            {/* TODO: FILTER ON CLICK AS PER THE CATEGORY */}
             {categories.map((item) => (
               <div
                 key={item.id}
@@ -152,7 +154,9 @@ export default function Newsmain() {
             {posts?.map((item) => (
               <Link
                 href={
-                  router.locale === 'en' ? `/en/news/${item.id}` : `/news/${item.id}`
+                  router.locale === 'en'
+                    ? `/en/news/${item.id}`
+                    : `/news/${item.id}`
                 }
                 key={item}
                 className="bg-[#e0e0e047] cursor-pointer"

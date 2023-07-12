@@ -298,7 +298,7 @@ export default function Services({ tourisms, title, description, about_1, about_
             <h1 className="text-[25px] lg:text-[30px] bottom-20  tBold text-[#64C07D] ">{tourisms[1]?.name}</h1>
             <p className="pt-10 pb-16 thin text-[#54290E] text-[16px] lg:text-[18px] font-thin bottom-20">{tourisms[1]?.description}</p>
             <div className="flex items-center gap-4 " id="ruralTourism_content_btn" ref={ruralTourism_content_btn}>
-              <button className="pr-3 pl-[30px] py-2   hover:bg-pr bg-transparent text-pr hover:text-white border border-pr rounded-full hidden lg:flex items-center gap-2">
+              <button className="pr-3 pl-[30px] py-2 hover:bg-pr bg-transparent text-pr hover:text-white border border-pr rounded-full hidden lg:flex items-center gap-2">
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {tourisms[1]?.button_1}
               </button>

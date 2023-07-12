@@ -38,7 +38,6 @@ export default function AboutDan() {
   const settings = {
     dots: true,
     arrows: true,
-
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -92,10 +91,10 @@ export default function AboutDan() {
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
-                <h1 className=" text-[24px]  lg:text-[50px] text-white font-bold">
+                <h1 className=" text-[24px]  lg:text-[35px] text-white font-bold">
                   {about?.titele}
                 </h1>
-                <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6 ">
+                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 ">
                   {about?.description}
                 </p>
                 <Image

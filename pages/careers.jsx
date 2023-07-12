@@ -45,6 +45,8 @@ export default function Careers() {
             setJoinTitle(response?.data?.Join_titele);
             setBtnFirst(response?.data?.culture_button_1);
             setBtnSecond(response?.data?.culture_button_2);
+            setCultureTitle(response?.data?.work_titele);
+            setCulture(response?.data?.work_culture);
           }
         });
     } catch (error) {
@@ -87,12 +89,12 @@ export default function Careers() {
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[24px]  lg:text-[50px] text-white font-bold">
                   {/* TODO: to be updated from backend */}
-                  {t('JoinUs')}
+                  {cultureTitle}
                 </h1>
-                <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6 ">
+                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 ">
                   {/* TODO: to be updated from backend */}
 
-                  {t('join_desc')}
+                  {culture}
                 </p>
                 <Image
                   src="/home/arrow.png"

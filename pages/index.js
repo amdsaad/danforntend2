@@ -29,6 +29,9 @@ export default function Home() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+
+    
   };
   const settingsDesktop = {
     dots: true,
@@ -37,6 +40,8 @@ export default function Home() {
     slidesToShow: 3,
     slidesToScroll: 1,
     rtl: locale === 'ar' ? true : false,
+    autoplay: true,
+
   };
   const [tourisms, setTourisms] = useState([]);
   const [title = '', setTitle] = useState('');
@@ -101,9 +106,9 @@ export default function Home() {
                       alt=""
                       className="rounded-md w-full object-cover"
                     />
-                    <div className="absolute bottom-5 right-5 z-10">
+                    <div className="absolute bottom-5 right-5 z-10 p-4">
                       <h1 className="text-white font-bold text-6xl  text-right">
-                        {item.number}
+                        <span>{item.number} </span> <span className="text-[20px]">{item.text_number}</span>
                       </h1>
                       <p className="text-xs text-white thin pt-1 text-right">
                         {item.titele}

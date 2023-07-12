@@ -95,10 +95,10 @@ export default function FutureProject() {
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:justify-end items-start lg:pb-32">
-                <h1 className=" text-[24px] lg:text-[50px] text-white font-bold">
+                <h1 className=" text-[24px] lg:text-[35px] text-white font-bold">
                   {future?.titele}
                 </h1>
-                <p className="text-white text-[16px] lg:text-[18px] lg:w-3/5 py-6 ">
+                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 ">
                   {future?.description}
                 </p>
                 <Image
@@ -195,7 +195,7 @@ export default function FutureProject() {
           >
             <img
               className="absolute top-0 left-0"
-              src="/future/Adv-slide.png"
+              src={typetourisms[0]?.image}
               alt=""
             />
             <div className="w-3/6  top-16 rtl absolute font-bold right-10">
@@ -215,7 +215,7 @@ export default function FutureProject() {
           >
             <img
               className="absolute top-0 left-0"
-              src="/future/agri-slide.png"
+              src={typetourisms[1]?.image}
               alt=""
             />
             <div className="w-3/6  top-16 rtl absolute font-bold right-10">
@@ -235,7 +235,7 @@ export default function FutureProject() {
           >
             <img
               className="absolute top-0 left-0"
-              src="/future/Adv-slide.png"
+              src={typetourisms[2]?.image}
               alt=""
             />
             <div className="w-3/6  top-16 rtl absolute font-bold right-10">
@@ -252,6 +252,7 @@ export default function FutureProject() {
         </Slider>
       </section>
       <section className=" mb-20 block lg:hidden future_slide2 overflow-hidden">
+        {/* TODO: ADJUST THE MOBILE SLIDER */}
         <Slider {...settings2}>
           <div
             style={{ marginRight: '20px' }}
@@ -347,6 +348,7 @@ export default function FutureProject() {
                 <div className=" container py-20">
                   <div className="flex items-start gap-4 lg:items-center lg:flex-row flex-col lg:justify-between">
                     <h1 className="text-white tBold text-[24px] lg:text-[30px]">
+                      {/* TODO: add title on the backend  */}
                       {future?.titele}
                     </h1>
                     <button className="px-5 py-2  text-sm    hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full flex items-center gap-2">
