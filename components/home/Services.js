@@ -10,10 +10,11 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
-export default function Services({ tourisms, title, description, about_1, about_2 }) {
+export default function Services({ tourisms, title, description, about_1, about_2, silders }) {
   const router = useRouter();
   const { locale } = router;
 
@@ -273,10 +274,10 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {tourisms[0]?.button_1}
               </button>
-              <button className="pr-3 pl-[30px] py-2 text-white  bg-[#F97A00] hover:bg-transparent hover:text-pr border border-pr rounded-full flex items-center gap-2">
+              <Link href={'/future-projects'} className="pr-3 pl-[30px] py-2 text-white  bg-[#F97A00] hover:bg-transparent hover:text-pr border border-pr rounded-full flex items-center gap-2">
                 <BiSearch className="w-5 h-5 " />
                 {tourisms[0]?.button_2}
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -302,10 +303,10 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {tourisms[1]?.button_1}
               </button>
-              <button className="pr-3 pl-[30px] py-2 text-white  bg-[#00A386] hover:bg-transparent hover:text-[#00A386] border border-[#00A386] rounded-full flex items-center gap-2">
+              <Link href={'/future-projects'} className="pr-3 pl-[30px] py-2 text-white  bg-[#00A386] hover:bg-transparent hover:text-[#00A386] border border-[#00A386] rounded-full flex items-center gap-2">
                 <BiSearch className="w-5 h-5 " />
                 {tourisms[1]?.button_2}
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -332,27 +333,36 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {tourisms[2]?.button_1}
               </button>
-              <button className="pr-3 pl-[30px] py-2 text-white  bg-[#0095D9] hover:bg-transparent hover:text-[#0095D9] border border-[#0095D9] rounded-full flex items-center gap-2">
+              <Link href={'/future-projects'} className="pr-3 pl-[30px] py-2 text-white  bg-[#0095D9] hover:bg-transparent hover:text-[#0095D9] border border-[#0095D9] rounded-full flex items-center gap-2">
                 <BiSearch className="w-5 h-5 " />
                 {tourisms[2]?.button_2}
-              </button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
       <section className="relative ltr horizontal-scroll  h-screen">
         <div className="panelcontainer absolute " ref={panelcontainer}>
+
+          {/* {
+            silders.map((item) => (
+
+              <div key={item.id} className="panel">
+                <Image src={item.url} alt="" fill objectFit="cover" id="panel_image1" />
+              </div>
+            ))
+          } */}
           <div className="panel">
-            <Image src="/home/Group8029@2x.jpg" alt="" fill objectFit="cover" id="panel_image1" />
+            <Image src={silders[0]?.url} alt="" fill objectFit="cover" id="panel_image1" />
           </div>
           <div className="panel">
-            <Image src="/home/Group8028@2x.jpg" alt="" fill objectFit="cover" id="panel_image2" />
+            <Image src={silders[1]?.url} alt="" fill objectFit="cover" id="panel_image2" />
           </div>
           <div className="panel">
-            <Image src="/home/Group8027@2x.jpg" alt="" fill objectFit="cover" id="panel_image3" />
+            <Image src={silders[2]?.url} alt="" fill objectFit="cover" id="panel_image3" />
           </div>
           <div className="panel">
-            <Image src="/home/Group8026@2x.jpg" alt="" fill objectFit="cover" id="panel_image4" />
+            <Image src={silders[3]?.url} alt="" fill objectFit="cover" id="panel_image4" />
           </div>
 
         </div>

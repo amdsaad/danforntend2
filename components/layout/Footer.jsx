@@ -1,13 +1,13 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 import {
   AiOutlineInstagram,
   AiFillLinkedin,
   AiFillTwitterCircle,
-} from "react-icons/ai";
+} from 'react-icons/ai';
 
-import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 const Footer = () => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -24,35 +24,35 @@ const Footer = () => {
           <Link legacyBehavior href="/about-dan">
             <a
               className={
-                router.pathname == "/about-dan"
-                  ? "text-pr"
-                  : " thin hover:text-pr text-white"
+                router.pathname == '/about-dan'
+                  ? 'text-pr'
+                  : ' thin hover:text-pr text-white'
               }
             >
-              {t("about-dan")}
+              {t('about-dan')}
             </a>
           </Link>
 
           <Link legacyBehavior href="/future-projects">
             <a
               className={
-                router.pathname == "/future-projects"
-                  ? "text-pr"
-                  : " thin hover:text-pr text-white"
+                router.pathname == '/future-projects'
+                  ? 'text-pr'
+                  : ' thin hover:text-pr text-white'
               }
             >
-              {t("future-projects")}
+              {t('future-projects')}
             </a>
           </Link>
           <Link legacyBehavior href="/newsmain">
             <a
               className={
-                router.pathname == "/newsmain"
-                  ? "text-pr"
-                  : " thin hover:text-pr text-white"
+                router.pathname == '/newsmain'
+                  ? 'text-pr'
+                  : ' thin hover:text-pr text-white'
               }
             >
-              {t("newsmain")}
+              {t('newsmain')}
             </a>
           </Link>
         </div>
@@ -75,42 +75,47 @@ const Footer = () => {
           <Link legacyBehavior href="/careers">
             <a
               className={
-                router.pathname == "/careers"
-                  ? "text-pr"
-                  : " thin hover:text-pr text-white"
+                router.pathname == '/careers'
+                  ? 'text-pr'
+                  : ' thin hover:text-pr text-white'
               }
             >
-              {t("careers")}
+              {t('careers')}
             </a>
           </Link>
 
           <Link legacyBehavior href="/contact-us">
             <a
               className={
-                router.pathname == "/contact-us"
-                  ? "text-pr"
-                  : " thin hover:text-pr text-white"
+                router.pathname == '/contact-us'
+                  ? 'text-pr'
+                  : ' thin hover:text-pr text-white'
               }
             >
-              {t("contact-us")}
+              {t('contact-us')}
             </a>
           </Link>
           <Link legacyBehavior href="/terms-conditions">
             <a
               className={
-                router.pathname == "/terms-conditions"
-                  ? "text-pr"
-                  : " thin hover:text-pr  text-white"
+                router.pathname == '/terms-conditions'
+                  ? 'text-pr'
+                  : ' thin hover:text-pr  text-white'
               }
             >
-              {t("PrivacyAndUsagePolicy")}
+              {t('PrivacyAndUsagePolicy')}
             </a>
           </Link>
         </div>
         <div></div>
         <div className="flex items-center gap-3">
-          <img src="/home/flogo.png" alt="" />
-          <div></div>
+          <a
+            href="https://www.pif.gov.sa/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/home/flogo.png" alt="" />
+          </a>
         </div>
       </div>
       <div className="container block lg:hidden i pt-12">
@@ -139,13 +144,18 @@ const Footer = () => {
         </div>
 
         <div className="flex items-center justify-center gap-3">
-          <img src="/home/flogo.png" alt="" />
-          <div></div>
+          <a
+            href="https://www.pif.gov.sa/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/home/flogo.png" alt="" />
+          </a>
         </div>
       </div>
       <div className=" w-full text-center pt-7 pb-8 mt-10 ">
         <p className="text-xs lg:text-sm text-white thin">
-          {t("AllRightsReserved")}
+          {t('AllRightsReserved')}
         </p>
       </div>
     </div>

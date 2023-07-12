@@ -31,7 +31,7 @@ export default function Home() {
     slidesToScroll: 1,
     autoplay: true,
 
-    
+
   };
   const settingsDesktop = {
     dots: true,
@@ -50,6 +50,7 @@ export default function Home() {
   const [about_2, setAbout2] = useState('');
   const [stories, setStories] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [silders, setSilders] = useState([]);
   const getHome = useCallback(async () => {
     try {
       await axios
@@ -69,6 +70,7 @@ export default function Home() {
             setAbout2(response?.data?.data?.about1);
             setStories(response?.data?.data?.stories);
             setPosts(response?.data?.data?.posts);
+            setSilders(response?.data?.data?.silders);
           }
         });
     } catch (error) {
@@ -89,7 +91,7 @@ export default function Home() {
       <Topbar />
       <main >
 
-        <Services tourisms={tourisms} title={title} description={description} about_1={about_1} about_2={about_2} />
+        <Services tourisms={tourisms} title={title} description={description} about_1={about_1} about_2={about_2} silders={silders} />
 
         <div className="w-full mt-16 lg:mt-40 mb-20 overflow-hidden">
           <div className="container">
