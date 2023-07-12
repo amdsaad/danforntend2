@@ -38,6 +38,7 @@ export default function Careers() {
         })
         .then((response) => {
           if (response.status === 200) {
+            console.log('getCareer', response?.data);
             setCulture(response?.data?.work_culture);
             setJoin(response?.data?.Join_dan);
             setCultureTitle(response?.data?.work_titele);
@@ -85,9 +86,12 @@ export default function Careers() {
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[24px]  lg:text-[50px] text-white font-bold">
+                  {/* TODO: to be updated from backend */}
                   {t('JoinUs')}
                 </h1>
                 <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6 ">
+                  {/* TODO: to be updated from backend */}
+
                   {t('join_desc')}
                 </p>
                 <Image
@@ -145,15 +149,15 @@ export default function Careers() {
               alt=""
             />
             <h1 className="text-txt tet-[16px] tBold font-medium  lg:text-[30px]">
-              {t('c_title')}
+              {joinTitle}
             </h1>
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">
-              {t('c_desc')}
+              {join}
             </p>
 
             <div className="px-5 bg-[#552A0E] rounded-full py-2 text-[17px] text-white flex items-center gap-6 cursor-pointer">
               <img src="/comp/icon.png" className="w-6 h-6" alt="" />
-              {t('c_btn')}
+              {btnFirst}
             </div>
           </div>
         </div>
@@ -169,7 +173,7 @@ export default function Careers() {
                 src={`/home/l1.png`}
                 alt=""
               />
-              {t('c_title_2')}
+              {btnSecond}
             </h1>
             <div className="flex items-center gap-5">
               <div className="p-3 rounded-full flex transition-all duration-500 ease-linear items-center gap-2 bg-[#e0e0e047] ">
