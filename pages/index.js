@@ -43,6 +43,8 @@ export default function Home() {
   const [description = '', setDescription] = useState('');
   const [about_1, setAbout1] = useState('');
   const [about_2, setAbout2] = useState('');
+  const [stories, setStories] = useState([]);
+  const [posts, setPosts] = useState([]);
   const getHome = useCallback(async () => {
     try {
       await axios
@@ -60,7 +62,8 @@ export default function Home() {
             setTourisms(response?.data?.data?.typetourisms);
             setAbout1(response?.data?.data?.about);
             setAbout2(response?.data?.data?.about1);
-
+            setStories(response?.data?.data?.stories);
+            setPosts(response?.data?.data?.posts);
           }
         });
     } catch (error) {
@@ -88,38 +91,22 @@ export default function Home() {
             <h1 className="text-[25px] text-center lg:bottom-20 lg:text-[30px] tBold text-[#5A2910] pb-16">
               {t("DanTripStatistics")}
             </h1>
-            {/* <div className=" hidden lg:grid grid-cols-5 gap-10 " >
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, ind) => (
-                <div key={ind} className="relative w-full transition hover:shadow-2xl ">
-                  <img
-                    key={ind}
-                    src={`/home/${item}.png`}
-                    alt=""
-                    className="rounded-md object-cover"
-                  />
-                  <div className="absolute bottom-5 right-5 z-10">
-                    <h1 className="text-white font-bold lg:text-4xl xl:text-6xl">4,160</h1>
-                    <p className="text-xs text-white thin pt-1">وحدة ضيافة</p>
-                  </div>
-                </div>
-              ))}
-            </div> */}
             <div className="w-full hidden lg:block ">
               <Slider {...settingsDesktop}>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, ind) => (
+                {stories.map((item, ind) => (
                   <div key={ind} className="relative w-full p-4">
                     <img
                       key={ind}
-                      src={`/home/${item}.png`}
+                      src={item.icon}
                       alt=""
                       className="rounded-md w-full object-cover"
                     />
                     <div className="absolute bottom-5 right-5 z-10">
                       <h1 className="text-white font-bold text-6xl  text-right">
-                        4,160
+                        {item.number}
                       </h1>
                       <p className="text-xs text-white thin pt-1 text-right">
-                        وحدة ضيافة
+                        {item.titele}
                       </p>
                     </div>
                   </div>
@@ -128,20 +115,20 @@ export default function Home() {
             </div>
             <div className="w-full block lg:hidden px-4">
               <Slider {...settings}>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, ind) => (
-                  <div key={ind} className="relative w-full">
+                {stories.map((item, ind) => (
+                  <div key={ind} className="relative w-full p-4">
                     <img
                       key={ind}
-                      src={`/home/${item}.png`}
+                      src={item.icon}
                       alt=""
                       className="rounded-md w-full object-cover"
                     />
                     <div className="absolute bottom-5 right-5 z-10">
                       <h1 className="text-white font-bold text-6xl  text-right">
-                        4,160
+                        {item.number}
                       </h1>
                       <p className="text-xs text-white thin pt-1 text-right">
-                        وحدة ضيافة
+                        {item.titele}
                       </p>
                     </div>
                   </div>
@@ -157,30 +144,30 @@ export default function Home() {
               {t("LatestNews")}
             </h1>
             <div className=" grid grid-cols-1 lg:grid-cols-3 gap-10">
-              {[1, 2, 3].map((item) => (
+              {posts.map((item) => (
                 <Link
-                  key={item}
+                  key={item.id}
                   href="/news-read"
                   className="bg-[#e0e0e047] cursor-pointer"
                 >
-                  <img src="/home/hand.png" alt="" />
+                  <img src={item.image} alt={item.name + 'image'} />
                   <div className="px-4 py-6">
                     <div className="flex items-center justify-between">
-                      <button className="px-3 rounded-full py-1 text-sm text-white bg-[#7EBD85]">
-                        Project News
+                      <button className={"px-3 rounded-full py-1 text-sm text-white "} style={{
+                        backgroundColor: `${item.category_color}`,
+                      }} >
+                        {item.category_name}
                       </button>
-                      <p className="text-[#562E15]">22/11/2023</p>
+                      <p className="text-[#562E15]">{item.created_at.date}</p>
                     </div>
                     <p className="text-[18px]  pt-8 pb-3 text-[#562E15] font-semibold">
-                      News Title
+                      {item.name}
                     </p>
                     <p className="text-[#562E15] text-sm lg:text-base ">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Quisque lorem lacus, molestie id lacus Lorem ipsum dolor sit
-                      amet, consectetur{" "}
+                      {item.bio}
                     </p>
                     <div className=" mt-3 flex text-[11px] lg:text-base text-[#562E15]   w-full">
-                      Read More {">"}
+                      {t("readmore")} {">"}
                     </div>
                   </div>
                 </Link>
