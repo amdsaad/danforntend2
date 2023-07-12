@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 import Topbar from '../../components/layout/Topbar';
 import Footer from '../../components/layout/Footer';
 import Image from 'next/image';
@@ -10,9 +12,47 @@ import config from '../../components/config';
 const apiURL = config.api_url;
 import axios from 'axios';
 import { useRouter } from 'next/router';
-const NewsRead = () => {
+import Link from 'next/link';
+
+import { useTranslation } from 'next-i18next';
+
+
+export default function NewsRead() {
+    const { t } = useTranslation();
+
+    const [post, setPost] = useState(false);
+    const router = useRouter();
+    const { nid } = router.query;
+    const getNews = useCallback(async () => {
+        if (nid) {
+            try {
+                await axios
+                    .get(`${apiURL}/posts/${nid}`, {
+                        headers: {
+                            "Accept-Language": `${router.locale === "en" ? "en" : "ar"
+                                }`
+                        }
+                    })
+                    .then((response) => {
+                        if (response.status === 200) {
+                            console.log('nid post', response?.data?.data);
+                            setPost(response?.data?.data);
+                        }
+                    });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }, [setPost, nid, router.locale]);
+    useEffect(() => {
+        getNews();
+    }, [router.locale, getNews]);
+    if (!post) {
+        // Returns null on first render, so the client and server match
+        return null;
+    }
     return (
-        <div className="relative min-h-screen w-full">
+        <div className="relative w-full">
             <Topbar gd={true} />
             <section>
                 <div className="w-full relative pb-20 lg:pb-0  min-h-screen">
@@ -30,88 +70,50 @@ const NewsRead = () => {
                         fill
                         objectFit="cover"
                     />
-                    <div className="relative lg:absolute w-full h-full z-10">
+
+                    <div className="relative w-full h-full z-10">
                         <div className="container h-full ">
                             <div className=" flex flex-col   pt-40">
-                                <p className="text-txt text-sm lg:text-base flex items-center gap-1 cursor-pointer">
-                                    <IoIosArrowForward className="w-6 h-6" />
-                                    كل الأخبار
-                                </p>
+                                <Link href="/newsmain">
+                                    <p className="text-txt text-sm lg:text-base flex items-center gap-1 cursor-pointer">
+                                        <IoIosArrowForward className="w-6 h-6" />
+                                        {t("allNews")}
+                                    </p>
+                                </Link>
                                 <h1 className=" text-[22px]  lg:text-[46px] text-txt font-bold">
-                                    الخبر الأول
+                                    {post?.name}
                                 </h1>
                             </div>
                             <div className="flex items-center mt-10 justify-between">
                                 <div className="flex items-center gap-4">
-                                    <div className="px-5 rounded-full py-1 text-[9px] lg:text-base text-white bg-[#F84D4A]">
-                                        اقتصاد وبيئة
+                                    <div className="px-5 rounded-full py-1 text-[9px] lg:text-base text-white" style={{
+                                        backgroundColor: `${post.category_color}`,
+                                    }} >
+                                        {post?.category_name}
                                     </div>
-                                    <p className="text-[9px] lg:text-xl text-txt">نشر في</p>
-                                    <p className="text-[9px] lg:text-xl text-txt">22/11/2023</p>
+                                    <p className="text-[9px] lg:text-xl text-txt">{t('postDate')}</p>
+                                    <p className="text-[9px] lg:text-xl text-txt">{post?.created_at?.date}</p>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <AiFillFilePdf className="w-7 h-7 text-[#E98108] cursor-pointer" />
                                     <BiShareAlt className="w-7 h-7 text-[#E98108] cursor-pointer" />
                                 </div>
                             </div>
-                            <p className="text-[#626262] text-[16px] lg:text-[18px] thin pt-10">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                                lorem lacus, molestie id lacus et, maximus dapibus nisl. Fusce
-                                quis libero urna. In hac habitasse platea dictumst. Donec
-                                tincidunt nisl nec nisi elementum suscipit. Maecenas felis ex,
-                                consectetur a enim vitae, congue elementum nisi. Etiam laoreet,
-                                eros in rutrum mattis, lacus dolor cursus lorem, non scelerisque
-                                libero augue ut nisi. Sed non orci odio. Lorem ipsum dolor sit
-                                amet, consectetur adipiscing elit. Quisque lorem lacus, molestie
-                                id lacus et, maximus dapibus nisl. Fusce quis libero urna. In
-                                hac habitasse platea dictumst. Donec tincidunt nisl nec nisi
-                                elementum suscipit. Maecenas felis ex, consectetur a enim vitae,
-                                congue elementum nisi. Etiam laoreet, eros in rutrum mattis,
-                                lacus dolor cursus lorem, non scelerisque libero augue ut nisi.
-                                Sed non orci odio.
-                            </p>
-                            <p className="text-[#626262] text-[16px] lg:text-[18px] thin pt-6">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                                lorem lacus, molestie id lacus et, maximus dapibus nisl. Fusce
-                                quis libero urna. In hac habitasse platea dictumst. Donec
-                                tincidunt nisl nec nisi elementum suscipit. Maecenas felis ex,
-                                consectetur a enim vitae, congue elementum nisi. Etiam laoreet,
-                                eros in rutrum mattis, lacus dolor cursus lorem, non scelerisque
-                                libero augue ut nisi. Sed non orci odio.
-                            </p>
-                            <p className="text-[#626262] text-[16px] lg:text-[18px] thin pt-6">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
-                                fugiat delectus ipsam iure tempore quia dolor assumenda! Id,
-                                officia velit ipsum, eum saepe itaque, qui aspernatur
-                                consequuntur repellendus dolor laudantium. Lorem ipsum dolor sit
-                                amet consectetur adipisicing elit. Aliquam et ab iste dolorum
-                                libero sit suscipit quod amet expedita neque aut iure voluptates
-                                nostrum quae distinctio dicta recusandae, enim cum.
-                            </p>
+                            <div className='my-10'>
+                                <BigScreenVideo />
+                            </div>
+                            <div
+                                className="text-[#626262] text-[16px] lg:text-[18px] thin my-10"
+                                dangerouslySetInnerHTML={{
+                                    __html: post?.description,
+                                }}
+                            ></div>
+
                         </div>
                     </div>
                 </div>
             </section>
-            <section className="pb-20">
-                <div className="container">
-                    <BigScreenVideo />
-                    <p className="text-[#626262] text-[16px] lg:text-[18px] thin pt-10">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                        lorem lacus, molestie id lacus et, maximus dapibus nisl. Fusce quis
-                        libero urna. In hac habitasse platea dictumst. Donec tincidunt nisl
-                        nec nisi elementum suscipit. Maecenas felis ex, consectetur a enim
-                        vitae, congue elementum nisi. Etiam laoreet, eros in rutrum mattis,
-                        lacus dolor cursus lorem, non scelerisque libero augue ut nisi. Sed
-                        non orci odio. Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. Quisque lorem lacus, molestie id lacus et, maximus dapibus
-                        nisl. Fusce quis libero urna. In hac habitasse platea dictumst.
-                        Donec tincidunt nisl nec nisi elementum suscipit. Maecenas felis ex,
-                        consectetur a enim vitae, congue elementum nisi. Etiam laoreet, eros
-                        in rutrum mattis, lacus dolor cursus lorem, non scelerisque libero
-                        augue ut nisi. Sed non orci odio.
-                    </p>
-                </div>
-            </section>
+
             <Footer />
         </div>
     );
@@ -238,5 +240,31 @@ const BigScreenVideo = () => {
         </div>
     );
 };
-
-export default NewsRead;
+export async function getStaticPaths() {
+    let posts = [];
+    try {
+        await axios
+            .get(`${apiURL}/posts`, { headers: { "Accept-Language": `ar` } })
+            .then((response) => {
+                if (response.status === 200) {
+                    posts = response?.data?.data;
+                }
+            });
+    } catch (error) {
+        console.log(error);
+    }
+    const paths = posts.map((post) => ({
+        params: { nid: JSON.stringify(post.id) }
+    }));
+    return {
+        paths,
+        fallback: true // false or 'blocking'
+    };
+}
+export async function getStaticProps({ locale }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ["common"])),
+        },
+    };
+}

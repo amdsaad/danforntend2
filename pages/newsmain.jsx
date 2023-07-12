@@ -152,7 +152,7 @@ export default function Newsmain() {
             {posts?.map((item) => (
               <Link
                 href={
-                  router.locale === 'en' ? `/en/news/${item}` : `/news/${item}`
+                  router.locale === 'en' ? `/en/news/${item.id}` : `/news/${item.id}`
                 }
                 key={item}
                 className="bg-[#e0e0e047] cursor-pointer"
