@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect,useState } from 'react';
+import React, { useRef, useCallback, useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Topbar from '../components/layout/Topbar';
@@ -14,6 +14,7 @@ import config from '../components/config';
 const apiURL = config.api_url;
 
 export default function FutureProject() {
+  const router = useRouter();
   const settings = {
     className: 'slider variable-width',
     dots: true,
@@ -40,7 +41,7 @@ export default function FutureProject() {
   };
   const scrollRef = useRef(null);
   const [future, setFuture] = useState('');
-  const router = useRouter();
+  const [typetourisms, setTypetourisms] = useState([]);
 
   const scrollToElement = () => {
     const element = scrollRef.current;
@@ -58,7 +59,9 @@ export default function FutureProject() {
         })
         .then((response) => {
           if (response.status === 200) {
+            console.log('future', response?.data?.data);
             setFuture(response?.data?.data);
+            setTypetourisms(response?.data?.data?.typetourisms);
           }
         });
     } catch (error) {
@@ -93,10 +96,10 @@ export default function FutureProject() {
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[24px] lg:text-[50px] text-white font-bold">
-                  {t('Future Projects')}
+                  {future?.titele}
                 </h1>
-                <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6 ">
-                  {t('Company Goal')}
+                <p className="text-white text-[16px] lg:text-[18px] lg:w-3/5 py-6 ">
+                  {future?.description}
                 </p>
                 <Image
                   src="/home/arrow.png"
@@ -130,6 +133,7 @@ export default function FutureProject() {
               alt=""
             />
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">
+              {/* TODO: missing from the backend */}
               {t('LaunchLocation')}
             </p>
           </div>
@@ -151,7 +155,7 @@ export default function FutureProject() {
             <div className="w-full  lg:pr-[420px]">
               <div className="flex mt-20 lg:mt-24 items-center justify-between">
                 <h1 className="text-[24px] lg:text-[30px] tBold pr-10 lg:pr-0 text-txt ">
-                  {t('Start')}
+                  {future?.start_titele}
                 </h1>
                 <div className=" lg:flex items-center hidden gap-2">
                   <Image src="/home/l1.png" width={40} height={41} alt="" />
@@ -167,17 +171,17 @@ export default function FutureProject() {
                 </div>
               </div>
               <p className="thin text-txt text-[14px] pr-8 lg:pr-0 lg:text-[18px] pt-5">
-                {t('start_text')}
+                {future?.start_distinguish}
               </p>
             </div>
             <div className="w-full pt-6 lg:pt-[150px] lg:pr-[420px]">
               <div className="flex mt-24 items-center justify-between">
                 <h1 className="text-[24px] lg:text-[30px] tBold text-txt pr-8 lg:pr-0 ">
-                  {t('Objective')}
+                  {future?.goal_titele}
                 </h1>
               </div>
               <p className="thin text-txt text-[14px] pr-8 lg:pr-0 lg:text-[18px] pt-5">
-                {t('objective_text')}
+                {future?.goal}
               </p>
             </div>
           </div>
@@ -195,65 +199,53 @@ export default function FutureProject() {
               alt=""
             />
             <div className="w-3/6  top-16 rtl absolute font-bold right-10">
-              <h1 className="text-txt text-[22px]">سياحة المغامرات</h1>
+              <h1 className="text-txt text-[22px]">{typetourisms[0]?.name}</h1>
               <p className="text-[14px] mt-5 text-txt thin">
-                ستقدم شركة دان أنشطة في الهواء الطلق مصممة بعناية لتلهم الضيوف
-                لإعادة التواصل مع الطبيعة من خلال مغامراتٍ مثيرة في وجهاتٍ
-                فريدة. سيتم تصميم عروض المغامرات التي سنقدمها لضيوفنا بهدف
-                الاستفادة من الميزات المتنوعة في كل وجهة؛ بما في ذلك الكثبان
-                الرملية، والجبال، والأشجار.
+                {typetourisms[0]?.description}
               </p>
               <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                انضم إلى شركاء دان
+                {typetourisms[0]?.button_1}
               </button>
             </div>
           </div>
           <div
             style={{ marginRight: '20px' }}
-            className="bg-[#64C07D] bg-opacity-20 relative h-96 "
+            className="bg-[#E98108] bg-opacity-20 relative h-96 "
           >
             <img
-              className="absolute bottom-0 left-0"
+              className="absolute top-0 left-0"
               src="/future/agri-slide.png"
               alt=""
             />
             <div className="w-3/6  top-16 rtl absolute font-bold right-10">
-              <h1 className="text-txt text-[22px]">سياحة المغامرات</h1>
+              <h1 className="text-txt text-[22px]">{typetourisms[1]?.name}</h1>
               <p className="text-[14px] mt-5 text-txt thin">
-                ستقدم شركة دان أنشطة في الهواء الطلق مصممة بعناية لتلهم الضيوف
-                لإعادة التواصل مع الطبيعة من خلال مغامراتٍ مثيرة في وجهاتٍ
-                فريدة. سيتم تصميم عروض المغامرات التي سنقدمها لضيوفنا بهدف
-                الاستفادة من الميزات المتنوعة في كل وجهة؛ بما في ذلك الكثبان
-                الرملية، والجبال، والأشجار.
+                {typetourisms[1]?.description}
               </p>
               <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                انضم إلى شركاء دان
+                {typetourisms[1]?.button_1}
               </button>
             </div>
           </div>
           <div
             style={{ marginRight: '20px' }}
-            className="bg-[#1A92D3] bg-opacity-20 relative h-96 "
+            className="bg-[#E98108] bg-opacity-20 relative h-96 "
           >
             <img
-              className="absolute bottom-0 left-0"
-              src="/future/Mask Group 94.png"
+              className="absolute top-0 left-0"
+              src="/future/Adv-slide.png"
               alt=""
             />
             <div className="w-3/6  top-16 rtl absolute font-bold right-10">
-              <h1 className="text-txt text-[22px]">سياحة المغامرات</h1>
+              <h1 className="text-txt text-[22px]">{typetourisms[2]?.name}</h1>
               <p className="text-[14px] mt-5 text-txt thin">
-                ستقدم شركة دان أنشطة في الهواء الطلق مصممة بعناية لتلهم الضيوف
-                لإعادة التواصل مع الطبيعة من خلال مغامراتٍ مثيرة في وجهاتٍ
-                فريدة. سيتم تصميم عروض المغامرات التي سنقدمها لضيوفنا بهدف
-                الاستفادة من الميزات المتنوعة في كل وجهة؛ بما في ذلك الكثبان
-                الرملية، والجبال، والأشجار.
+                {typetourisms[2]?.description}
               </p>
               <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                انضم إلى شركاء دان
+                {typetourisms[2]?.button_1}
               </button>
             </div>
           </div>
@@ -355,50 +347,32 @@ export default function FutureProject() {
                 <div className=" container py-20">
                   <div className="flex items-start gap-4 lg:items-center lg:flex-row flex-col lg:justify-between">
                     <h1 className="text-white tBold text-[24px] lg:text-[30px]">
-                      {t('FranchiseOpportunities')}
+                      {future?.titele}
                     </h1>
                     <button className="px-5 py-2  text-sm    hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full flex items-center gap-2">
                       <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                      {t('handShake')}
+                      {future?.button_1_distinguish}
                     </button>
                   </div>
                   <p className="text-white text-[14px] lg:text-[18px] thin lg:w-4/5 pt-8">
-                    {t('franchise_text')}
+                    {future?.start_distinguish}
                   </p>
-                  <div className=" mt-20 w-full px-10 py-3 hover:bg-opacity-25 flex flex-col lg:items-center lg:flex-row  bg-white bg-opacity-20 lg:gap-10">
-                    <h1 className="text-white font-bold text-[32px] lg:text-[81px]">
-                      ١
-                    </h1>
-                    <p className="text-white thin text-[14px] lg:text-[18px] lg:w-4/5 ">
-                      ستعمل شركة دان على تمكين المزارعين وملاك الأراضي من خلال
-                      منح حق الامتياز وتوفير الدعم في عدة مجالات تشمل: إرشادات
-                      معايير البناء والتصميم، والتسويق.
-                    </p>
-                  </div>
-                  <div className=" mt-20 w-full px-10 py-3 hover:bg-opacity-25 flex flex-col lg:items-center lg:flex-row  bg-white bg-opacity-20 lg:gap-10">
-                    <h1 className="text-white font-bold text-[32px] lg:text-[81px] ">
-                      ٢
-                    </h1>
-                    <p className="text-white thin text-[14px] lg:text-[18px] lg:w-4/5 ">
-                      ستعمل شركة دان على تمكين المزارعين وملاك الأراضي من خلال
-                      منح حق الامتياز وتوفير الدعم في عدة مجالات تشمل: إرشادات
-                      معايير البناء والتصميم، والتسويق.
-                    </p>
-                  </div>
-                  <div className=" mt-20 w-full px-10 py-3 hover:bg-opacity-25 flex flex-col lg:items-center lg:flex-row  bg-white bg-opacity-20 lg:gap-10">
-                    <h1 className="text-white font-bold text-[32px] lg:text-[81px]">
-                      ٣
-                    </h1>
-                    <p className="text-white thin text-[14px] lg:text-[18px] lg:w-4/5 ">
-                      ستعمل شركة دان على تمكين المزارعين وملاك الأراضي من خلال
-                      منح حق الامتياز وتوفير الدعم في عدة مجالات تشمل: إرشادات
-                      معايير البناء والتصميم، والتسويق.
-                    </p>
-                  </div>
+                  {future?.items?.map((item, index) => (
+                    <div
+                      key={index}
+                      className=" mt-20 w-full px-10 py-3 hover:bg-opacity-25 flex flex-col lg:items-center lg:flex-row  bg-white bg-opacity-20 lg:gap-10"
+                    >
+                      <h1 className="text-white font-bold text-[32px] lg:text-[81px]">
+                        {convertToArabic(index + 1, router.locale)}
+                      </h1>
+                      <p className="text-white thin text-[14px] lg:text-[18px] lg:w-4/5 ">
+                        {item.titele}
+                      </p>
+                    </div>
+                  ))}
+
                   <p className="text-white thin lg:w-4/5 pt-8">
-                    نحن على استعدادٍ تامٍ لدعم شركائنا في الامتياز، بمن فيهم
-                    المزارعين وملاك الأراضي، لتأسيس أعمالهم التجارية المستدامة
-                    والمربحة.
+                    {future?.end_distinguish}
                   </p>
                 </div>
               </div>
@@ -410,6 +384,27 @@ export default function FutureProject() {
     </div>
   );
 }
+
+const convertToArabic = (num, locale) => {
+  let res;
+  switch (num) {
+    case 1:
+      res = locale === 'en' ? '1' : '١';
+      break;
+    case 2:
+      res = locale === 'en' ? '2' : '٢';
+      break;
+    case 3:
+      res = locale === 'en' ? '3' : '٣';
+      break;
+    case 4:
+      res = locale === 'en' ? '4' : '٤';
+      break;
+    default:
+      break;
+  }
+  return res;
+};
 
 export async function getStaticProps({ locale }) {
   return {
