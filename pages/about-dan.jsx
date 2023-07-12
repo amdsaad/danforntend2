@@ -1,16 +1,40 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useCallback, useEffect } from 'react';
 import Topbar from '../components/layout/Topbar';
 import Footer from '../components/layout/Footer';
 import Image from 'next/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import config from '../components/config';
+const apiURL = config.api_url;
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 import { AiOutlineTwitter } from 'react-icons/ai';
 import Slider from 'react-slick';
 export default function AboutDan() {
+  const router = useRouter();
   const [activeEffect, setActiveEffect] = useState(false);
   const [activeKey, setActiveKey] = useState(5);
   const [gridOpen, setGridOpen] = useState(false);
-
+  const [about, setAbout] = useState({});
+  const [activeCard, setActiveCard] = useState({});
+  const getAbout = useCallback(async () => {
+    try {
+      await axios
+        .get(`${apiURL}/systemeffects`, {
+          headers: {
+            'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data.data);
+          if (response.status === 200) {
+            setAbout(response?.data?.data);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [setAbout, router.locale]);
   const settings = {
     dots: true,
     arrows: true,
@@ -32,6 +56,10 @@ export default function AboutDan() {
   const [aboutDanLang, setAboutDanLang] = useState('');
   const [active, setActive] = useState(0);
   const { t } = useTranslation();
+  useEffect(() => {
+    getAbout();
+  }, [getAbout]);
+
   return (
     <div className=" min-h-screen relative">
       <SideBar
@@ -39,6 +67,9 @@ export default function AboutDan() {
         setOpen={setOpen}
         language={aboutDanLang}
         setLanguage={setAboutDanLang}
+        activeCard={activeCard}
+        setActive={setActive}
+        locale={router.locale}
       />
       <Topbar aboutDanLang={aboutDanLang} setAboutDanLang={setAboutDanLang} />
 
@@ -62,10 +93,10 @@ export default function AboutDan() {
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[24px]  lg:text-[50px] text-white font-bold">
-                  {t('AboutDan')}
+                  {about?.titele}
                 </h1>
                 <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6 ">
-                  {t('CompanyMission')}
+                  {about?.description}
                 </p>
                 <Image
                   src="/home/arrow.png"
@@ -143,10 +174,10 @@ export default function AboutDan() {
                   alt=""
                 />
                 <h1 className="text-[25px] lg:text-[50px] tBold text-white text-center py-4">
-                  {t('Vision')}
+                  {about?.titele_vision}
                 </h1>
                 <p className="text-center thin text-white text-[18px] px-10">
-                  {t('vison_text')}
+                  {about?.vision}
                 </p>
               </div>
               <div
@@ -177,10 +208,10 @@ export default function AboutDan() {
                   alt=""
                 />
                 <h1 className="text-[25px] lg:text-[50px] tBold text-white text-center py-4">
-                  {t('Mission')}
+                  {about?.titele_message}
                 </h1>
                 <p className="text-center thin text-white text-[18px] px-10">
-                  {t('mission_text')}
+                  {about?.message}
                 </p>
               </div>
             </div>
@@ -395,20 +426,28 @@ export default function AboutDan() {
         </p>
         <div className="container">
           <div className=" hidden lg:grid grid-cols-3 gap-16">
-            {[0, 1, 2, 3, 4, 5].map((item) => (
+            {about?.leaders?.map((item) => (
               <div
-                onClick={() => setOpen(true)}
-                key={item}
+                onClick={() => {
+                  setOpen(true);
+                  setActiveCard(item);
+                }}
+                key={item.id}
                 className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
               >
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="thin text-[16px] text-txt">
-                      عبدالرحمن أبا الخيل
+                      {router.locale === 'en' ? item.name_en : item.name}
                     </p>
-                    <p className="thin text-[14px] text-txt">الرئيس التنفيذي</p>
+                    <p className="thin text-[14px] text-txt">
+                      {router.locale === 'en' ? item.job_en : item.job}
+                    </p>
                   </div>
-                  <AiOutlineTwitter className="w-6 h-6 text-txt" />
+                  <AiOutlineTwitter
+                    className="w-6 h-6"
+                    style={{ color: `${item.color}` }}
+                  />
                 </div>
                 <div className="flex items-center gap-1 mt-4">
                   <Image width={20} height={20} src={`/home/l1.png`} alt="" />
@@ -416,96 +455,45 @@ export default function AboutDan() {
                   <Image width={20} height={20} src={`/home/l3.png`} alt="" />
                   <Image width={20} height={20} src={`/home/l4.png`} alt="" />
                 </div>
-                <img src="/about/shck.png" className="mt-5" alt="" />
+                <img src={item?.avatar} className="mt-5" alt="" />
               </div>
             ))}
           </div>
+
           <div className=" block lg:hidden w-full ">
             <Slider {...settings}>
-              <div
-                onClick={() => setOpen(true)}
-                className="bg-[#F7F7F7] px-6 pt-6"
-              >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="thin text-[16px] text-txt">
-                      عبدالرحمن أبا الخيل
-                    </p>
-                    <p className="thin text-[14px] text-txt">الرئيس التنفيذي</p>
+              {about?.leaders?.map((item) => (
+                <div
+                  key={item.id}
+                  onClick={() => {
+                    setOpen(true);
+                    setActiveCard(item);
+                  }}
+                  className="bg-[#F7F7F7] px-6 pt-6"
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="thin text-[16px] text-txt">
+                        {router.locale === 'en' ? item.name_en : item.name}
+                      </p>
+                      <p className="thin text-[14px] text-txt">
+                        {router.locale === 'en' ? item.job_en : item.job}
+                      </p>
+                    </div>
+                    <AiOutlineTwitter
+                      className="w-6 h-6"
+                      style={{ color: `${item.color}` }}
+                    />
                   </div>
-                  <AiOutlineTwitter className="w-6 h-6 text-txt" />
-                </div>
-                <div className="flex items-center gap-1 mt-4">
-                  <Image width={20} height={20} src={`/home/l1.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l2.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l3.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l4.png`} alt="" />
-                </div>
-                <img src="/about/shck.png" className="mt-5" alt="" />
-              </div>
-              <div
-                onClick={() => setOpen(true)}
-                className="bg-[#F7F7F7] px-6 pt-6"
-              >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="thin text-[16px] text-txt">
-                      عبدالرحمن أبا الخيل
-                    </p>
-                    <p className="thin text-[14px] text-txt">الرئيس التنفيذي</p>
+                  <div className="flex items-center gap-1 mt-4">
+                    <Image width={20} height={20} src={`/home/l1.png`} alt="" />
+                    <Image width={20} height={20} src={`/home/l2.png`} alt="" />
+                    <Image width={20} height={20} src={`/home/l3.png`} alt="" />
+                    <Image width={20} height={20} src={`/home/l4.png`} alt="" />
                   </div>
-                  <AiOutlineTwitter className="w-6 h-6 text-txt" />
+                  <img src={item?.avatar} className="mt-5" alt="" />
                 </div>
-                <div className="flex items-center gap-1 mt-4">
-                  <Image width={20} height={20} src={`/home/l1.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l2.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l3.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l4.png`} alt="" />
-                </div>
-                <img src="/about/shck.png" className="mt-5" alt="" />
-              </div>
-              <div
-                onClick={() => setOpen(true)}
-                className="bg-[#F7F7F7] px-6 pt-6"
-              >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="thin text-[16px] text-txt">
-                      عبدالرحمن أبا الخيل
-                    </p>
-                    <p className="thin text-[14px] text-txt">الرئيس التنفيذي</p>
-                  </div>
-                  <AiOutlineTwitter className="w-6 h-6 text-txt" />
-                </div>
-                <div className="flex items-center gap-1 mt-4">
-                  <Image width={20} height={20} src={`/home/l1.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l2.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l3.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l4.png`} alt="" />
-                </div>
-                <img src="/about/shck.png" className="mt-5" alt="" />
-              </div>
-              <div
-                onClick={() => setOpen(true)}
-                className="bg-[#F7F7F7] px-6 pt-6"
-              >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="thin text-[16px] text-txt">
-                      عبدالرحمن أبا الخيل
-                    </p>
-                    <p className="thin text-[14px] text-txt">الرئيس التنفيذي</p>
-                  </div>
-                  <AiOutlineTwitter className="w-6 h-6 text-txt" />
-                </div>
-                <div className="flex items-center gap-1 mt-4">
-                  <Image width={20} height={20} src={`/home/l1.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l2.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l3.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l4.png`} alt="" />
-                </div>
-                <img src="/about/shck.png" className="mt-5" alt="" />
-              </div>
+              ))}
             </Slider>
           </div>
         </div>
@@ -528,12 +516,13 @@ export default function AboutDan() {
               alt=""
             />
             <h1 className="text-[#552A0E]  text-center text-[24px] tBold lg:text-[30px] bold  ">
-              {t('OurLeadership')}
+              {about?.titele_leadership}
             </h1>
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">
-              {t('ExpertTeam')}
+              {about?.leadership}
             </p>
           </div>
+          {/* TODO:check if there uare different type of memebrs */}
           <div className=" hidden lg:grid grid-cols-3 mt-10 gap-16">
             <div
               onClick={() => setOpen(true)}
@@ -666,15 +655,23 @@ export default function AboutDan() {
               </div>
             </Slider>
           </div>
+          {/* end of todo */}
         </div>
       </section>
 
       <div className="bg-[#552A0E] w-full py-20">
         <div className="container">
           <h1 className="text-[25px] lg:text-[30px] tBold text-white">
+            {/* TODO: missing title from backend */}
             {t('CEOMessage')}
           </h1>
-          <p className="py-3 pt-10 text-[14px] lg:text-[18px] text-white thin">
+          <div
+            className="py-3 pt-10 text-[14px] lg:text-[18px] text-white thin"
+            dangerouslySetInnerHTML={{
+              __html: about?.ceo_message,
+            }}
+          ></div>
+          {/* <p className="py-3 pt-10 text-[14px] lg:text-[18px] text-white thin">
             من الكثبان الرملية المهيبة إلى سلاسل الجبال الخلابة والواحات
             الخضراء، تعد المملكة العربية السعودية موطنًا لعددٍ من الوجهات
             الطبيعية الاستثنائية في العالم. فمنذ فجر التاريخ، شكلت بلادنا
@@ -708,19 +705,25 @@ export default function AboutDan() {
             يجمعهم شغفٌ عميقٌ بالطبيعة، وتوقٌ للتأثير إيجاباً في حياة الآخرين،
             واليوم، نخطو بثقةٍ نحو المستقبل، ونتطلع لغدٍ أفضل، والمساهمة الفاعلة
             في الازدهار المستدام للمملكة العربية السعودية وشعبها.
-          </p>
+          </p> */}
           <div className="flex items-center lg:justify-end mt-20">
             <div className="flex items-center ">
-              <img src="/about/sign.png" alt="" />
+              <img src={about?.ceo?.avatar} alt="" />
               <div>
                 <h1 className="text-white text-[14px] lg:text-[18px]">
-                  عبدالرحمن أبا الخيل
+                  {router.locale === 'en'
+                    ? about?.ceo?.name_en
+                    : about?.ceo?.name}
                 </h1>
                 <h1 className="text-white text-[14px] lg:text-[18px]">
-                  {' '}
-                  الرئيس التنفيذي
+                  {router.locale === 'en'
+                    ? about?.ceo?.job_en
+                    : about?.ceo?.job}
                 </h1>
-                <AiOutlineTwitter className="w-6 h-6 text-white mt-5" />
+                <AiOutlineTwitter
+                  className="w-6 h-6"
+                  style={{ color: `${about?.ceo?.color}` }}
+                />{' '}
               </div>
             </div>
           </div>
@@ -753,7 +756,15 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 
-function SideBar({ open, setOpen, language, setLanguage }) {
+function SideBar({
+  open,
+  setOpen,
+  language,
+  setLanguage,
+  activeCard,
+  setActive,
+  locale,
+}) {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -820,7 +831,7 @@ function SideBar({ open, setOpen, language, setLanguage }) {
                         </Link>
                       </div>
                       <img
-                        src="/about/shck.png"
+                        src={activeCard?.avatar}
                         className={
                           language !== 'rtl'
                             ? 'mt-5 transform -scale-x-100'
@@ -829,10 +840,12 @@ function SideBar({ open, setOpen, language, setLanguage }) {
                         alt=""
                       />
                       <p className="text-[18px] lg:text-[22px] tBold mt-3 text-white">
-                        عبدالرحمن أبا الخيل
+                        {locale === 'en'
+                          ? activeCard?.name_en
+                          : activeCard?.name}
                       </p>
                       <p className="text-[14px] lg:text-[18px] thin  mt-1 text-white">
-                        الرئيس التنفيذي
+                        {locale === 'en' ? activeCard?.job_en : activeCard?.job}
                       </p>
                       <div className="flex items-center gap-1 mt-4">
                         <Image
@@ -861,16 +874,9 @@ function SideBar({ open, setOpen, language, setLanguage }) {
                         />
                       </div>
                       <p className=" mt-4 text-[14px] lg:text-[18px] text-white thin">
-                        في شركة دان، نتطلع لإثراء النسيج الاجتماعي والاقتصادي
-                        للمملكة من خلال إطلاق الإمكانات الهائلة للسياحة القائمة
-                        على الطبيعة في وطننا المعطاء، واليوم، نبني منظومة سياحية
-                        محلية تزدهر باستمرار مستندة إلى مفاهيم مبتكرةٍ تدعم
-                        مجتمعاتنا المحلية وتمكنها، وتعزز النمو الاجتماعي
-                        والاقتصادي المستدام، وتدعو الناس للعودة إلى الطبيعة،
-                        والاستمتاع بجمالها. وتتماشى استراتيجيتنا مع مستهدفات
-                        استراتيجية صندوق الاستثمارات العامة، وستساهم في تطوير
-                        وتمكين القطاعات الواعدة، ودعم الكفاءات الوطنية، واستحداث
-                        فرص العمل، وإثراء جودة الحياة في مختلف أنحاء المملكة.
+                        {locale === 'en'
+                          ? activeCard?.description_en
+                          : activeCard?.description}
                       </p>
                     </div>
                   </div>
