@@ -1,15 +1,15 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import React, { useRef, useState, useEffect, useCallback } from "react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import Topbar from '../components/layout/Topbar';
-import Footer from '../components/layout/Footer';
-import Image from 'next/image';
-import { BiSearch } from 'react-icons/bi';
-import { useTranslation } from 'next-i18next';
-import config from '../components/config';
+import Topbar from "../components/layout/Topbar";
+import Footer from "../components/layout/Footer";
+import Image from "next/image";
+import { BiSearch } from "react-icons/bi";
+import { useTranslation } from "next-i18next";
+import config from "../components/config";
 const apiURL = config.api_url;
-import axios from 'axios';
-import { useRouter } from 'next/router';
+import axios from "axios";
+import { useRouter } from "next/router";
 export default function Careers() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -18,27 +18,27 @@ export default function Careers() {
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
   const { t } = useTranslation();
-  const [culture, setCulture] = useState('');
-  const [join, setJoin] = useState('');
-  const [cultureTitle, setCultureTitle] = useState('');
-  const [joinTitle, setJoinTitle] = useState('');
-  const [btnFirst, setBtnFirst] = useState('');
-  const [btnSecond, setBtnSecond] = useState('');
+  const [culture, setCulture] = useState("");
+  const [join, setJoin] = useState("");
+  const [cultureTitle, setCultureTitle] = useState("");
+  const [joinTitle, setJoinTitle] = useState("");
+  const [btnFirst, setBtnFirst] = useState("");
+  const [btnSecond, setBtnSecond] = useState("");
   const getCareer = useCallback(async () => {
     try {
       await axios
         .get(`${apiURL}/settings`, {
           headers: {
-            'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
+            "Accept-Language": `${router.locale === "en" ? "en" : "ar"}`,
           },
         })
         .then((response) => {
           if (response.status === 200) {
-            console.log('getCareer', response?.data);
+            console.log("getCareer", response?.data);
             setCulture(response?.data?.work_culture);
             setJoin(response?.data?.Join_dan);
             setCultureTitle(response?.data?.work_titele);
@@ -52,15 +52,7 @@ export default function Careers() {
     } catch (error) {
       console.log(error);
     }
-  }, [
-    setCulture,
-    setJoin,
-    setCultureTitle,
-    setJoinTitle,
-    setBtnFirst,
-    setBtnSecond,
-    router.locale,
-  ]);
+  }, [setCulture, setJoin, setCultureTitle, setJoinTitle, setBtnFirst, setBtnSecond, router.locale]);
   useEffect(() => {
     getCareer();
   }, [getCareer]);
@@ -70,20 +62,8 @@ export default function Careers() {
       <Topbar />
       <section>
         <div className="w-full relative  min-h-screen">
-          <Image
-            src="/comp/hero.png"
-            alt="hero"
-            className="hidden lg:block"
-            fill
-            objectFit="cover"
-          />
-          <Image
-            src="/comp/heromob.png"
-            alt="hero"
-            className="block lg:hidden"
-            fill
-            objectFit="cover"
-          />
+          <Image src="/comp/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
+          <Image src="/comp/heromob.png" alt="hero" className="block lg:hidden" fill objectFit="cover" />
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
@@ -96,14 +76,7 @@ export default function Careers() {
 
                   {culture}
                 </p>
-                <Image
-                  src="/home/arrow.png"
-                  width={32}
-                  height={32}
-                  onClick={scrollToElement}
-                  className=" cursor-pointer"
-                  alt=""
-                />
+                <Image src="/home/arrow.png" width={32} height={32} onClick={scrollToElement} className=" cursor-pointer" alt="" />
               </div>
             </div>
           </div>
@@ -113,49 +86,19 @@ export default function Careers() {
       <section className="mt-40 mb-20">
         <div className="container">
           <div className="flex flex-col items-center gap-5 lg:gap-10">
-            <Image
-              className="mx-auto hidden lg:block"
-              width={84}
-              height={84}
-              src={`/home/l2.png`}
-              alt=""
-            />
-            <Image
-              className="mx-auto block lg:hidden"
-              width={40}
-              height={40}
-              src={`/home/l2.png`}
-              alt=""
-            />
-            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">
-              {t('career_h1')}
-            </p>
+            <Image className="mx-auto hidden lg:block" width={84} height={84} src={`/home/l2.png`} alt="" />
+            <Image className="mx-auto block lg:hidden" width={40} height={40} src={`/home/l2.png`} alt="" />
+            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">{t("career_h1")}</p>
           </div>
         </div>
       </section>
       <section className="my-20">
         <div className="container">
           <div className="flex flex-col items-center gap-5 lg:gap-10">
-            <Image
-              className="mx-auto hidden lg:block"
-              width={84}
-              height={84}
-              src={`/home/l4.png`}
-              alt=""
-            />
-            <Image
-              className="mx-auto block lg:hidden"
-              width={40}
-              height={40}
-              src={`/home/l4.png`}
-              alt=""
-            />
-            <h1 className="text-txt tet-[16px] tBold font-medium  lg:text-[30px]">
-              {joinTitle}
-            </h1>
-            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">
-              {join}
-            </p>
+            <Image className="mx-auto hidden lg:block" width={84} height={84} src={`/home/l4.png`} alt="" />
+            <Image className="mx-auto block lg:hidden" width={40} height={40} src={`/home/l4.png`} alt="" />
+            <h1 className="text-txt tet-[16px] tBold font-medium  lg:text-[30px]">{joinTitle}</h1>
+            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">{join}</p>
 
             <div className="px-5 bg-[#552A0E] rounded-full py-2 text-[17px] text-white flex items-center gap-6 cursor-pointer">
               <img src="/comp/icon.png" className="w-6 h-6" alt="" />
@@ -168,28 +111,13 @@ export default function Careers() {
         <div className="container">
           <div className="flex items-center justify-between">
             <h1 className="text-txt flex items-center gap-3 text-[16px] tBold lg:text-[30px]">
-              <Image
-                className="mx-auto "
-                width={34}
-                height={34}
-                src={`/home/l1.png`}
-                alt=""
-              />
+              <Image className="mx-auto " width={34} height={34} src={`/home/l1.png`} alt="" />
               {btnSecond}
             </h1>
             <div className="flex items-center gap-5">
               <div className="p-3 rounded-full flex transition-all duration-500 ease-linear items-center gap-2 bg-[#e0e0e047] ">
-                {open && (
-                  <input
-                    type="text"
-                    className=" border-none outline-none text-txt bg-transparent"
-                    placeholder="Search"
-                  />
-                )}
-                <BiSearch
-                  onClick={() => setOpen(!open)}
-                  className="w-6 h-6 cursor-pointer text-txt"
-                />
+                {open && <input type="text" className=" border-none outline-none text-txt bg-transparent" placeholder="Search" />}
+                <BiSearch onClick={() => setOpen(!open)} className="w-6 h-6 cursor-pointer text-txt" />
               </div>
             </div>
           </div>
@@ -200,7 +128,7 @@ export default function Careers() {
                 <p className="text-sm">Full Time</p>
                 <div className="flex items-center mt-20 justify-between">
                   <p className="text-sm">Published on 23/03/2022</p>
-                  <p className="font-bold cursor-pointer">More {' >>'}</p>
+                  <p className="font-bold cursor-pointer">More {" >>"}</p>
                 </div>
               </div>
             ))}
@@ -215,7 +143,7 @@ export default function Careers() {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }

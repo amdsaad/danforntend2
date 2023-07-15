@@ -25,6 +25,7 @@
     "react-icons": "^4.8.0",
     "react-parallax": "^3.5.1",
     "react-slick": "^0.29.0",
+    "react-transition-group": "^4.4.5",
     "sib-api-v3-sdk": "^8.5.0",
     "slick-carousel": "^1.8.1"
   },

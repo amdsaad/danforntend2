@@ -4,15 +4,19 @@
 
 @font-face {
   font-family: readexProRegular;
-  src: url('/fonts/ReadexPro-Regular.ttf');
+  src: url("/fonts/ReadexPro-Regular.ttf");
 }
 @font-face {
   font-family: readexProthin;
-  src: url('/fonts/ReadexPro-Light.ttf');
+  src: url("/fonts/ReadexPro-Light.ttf");
 }
 @font-face {
   font-family: readexProBold;
-  src: url('/fonts/ReadexPro-Bold.ttf');
+  src: url("/fonts/ReadexPro-Bold.ttf");
+}
+
+::-webkit-scrollbar {
+  width: 0;
 }
 
 * {
@@ -76,11 +80,11 @@ header {
   background-image: linear-gradient(#4f2c14, #291508);
 }
 .slick-prev {
-  left: 3% ;
+  left: 3%;
   z-index: 100000;
 }
 .slick-next {
-  right: 3% ;
+  right: 3%;
   z-index: 100000;
 }
 
@@ -178,5 +182,14 @@ header {
 }
 
 .panel img {
-  position:relative !important
+  position: relative !important;
+}
+
+.transition-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
 }
