@@ -17,7 +17,7 @@ export default function Modal() {
   }
 
   return (
-    <div className=" modal scale-0 w-2/3 h-[50vw] bg-slate-50 rounded-lg  shadow-gray-300 drop-shadow-lg m-auto fixed inset-0">
+    <div className=" modal scale-0 w-2/3 h-2/3 bg-slate-50 rounded-lg  shadow-gray-300 drop-shadow-lg m-auto fixed inset-0">
       <button onClick={animateModal}>Close</button>
 
       <Form />
