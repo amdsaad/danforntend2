@@ -39,22 +39,22 @@ const Layout = ({ children }) => {
   };
 
 
-  let [smoother, setSmoother] = useState();
+  // let [smoother, setSmoother] = useState();
 
    
-  useIsomorphicLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      let smoother = ScrollSmoother.create({
-        smooth: 2,
-        normalizeScroll: true, 
-        ignoreMobileResize: true, 
-        effects: true,
-        preventDefault: true
-      });
-    });
-    setSmoother(smoother);
-    return () => ctx.revert();
-  }, []);
+  // useIsomorphicLayoutEffect(() => {
+  //   const ctx = gsap.context(() => {
+  //     let smoother = ScrollSmoother.create({
+  //       smooth: 2,
+  //       normalizeScroll: true, 
+  //       ignoreMobileResize: true, 
+  //       effects: true,
+  //       preventDefault: true
+  //     });
+  //   });
+  //   setSmoother(smoother);
+  //   return () => ctx.revert();
+  // }, []);
 
 
   return (
@@ -64,13 +64,13 @@ const Layout = ({ children }) => {
       <div className="transition-animation  bg-indigo-50"></div>
       <SwitchTransition>
         <Transition key={router.pathname} timeout={transitionDuration * 1000} in={true} appear={true} onEnter={onPageEnter} onExit={onPageExit} mountOnEnter={true} unmountOnExit={true}>
-      <div id="smooth-wrapper">
-       <div id="smooth-content">
+      {/* <div id="smooth-wrapper">
+       <div id="smooth-content"> */}
 
               <main>{children}</main>
+       {/* </div>
        </div>
-       </div>
-        
+         */}
         </Transition>
       </SwitchTransition>
     </>
