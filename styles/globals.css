@@ -204,3 +204,7 @@ header {
 .slick-slide {
 float:left !important
 }
+
+.modal {
+z-index:1000
+}

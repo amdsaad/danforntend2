@@ -226,8 +226,9 @@ export default function FutureProject() {
       <section>
         <div className="container">
           <div className=" my-20 relative pairlal  ">
-            <Parallax strength={500} className=" relative h-[1200px]   " bgImage="/future/Group 8199.png" bgImageStyle={{ objectFit: "cover", height: "h-[1200px]" }}>
-              <div className=" absolute w-full h-full top-0 left-0">
+          <Parallax strength={0} className=" relative h-[1200px]   " bgImage="/future/Group 8199.png" bgImageStyle={{ objectFit: "cover", height: "h-[1200px]" }}>
+        
+              <div className=" absolute w-full h-full top-0 left-0  ">
                 <div className=" container py-20">
                   <div className="flex items-start gap-4 lg:items-center lg:flex-row flex-col lg:justify-between ">
                     <h1 className="text-white tBold text-[24px] lg:text-[30px] ">
@@ -250,7 +251,8 @@ export default function FutureProject() {
                   <p className="text-white thin lg:w-4/5 pt-8 scrubElements scrubFadeUp">{future?.end_distinguish}</p>
                 </div>
               </div>
-            </Parallax>
+          
+            </Parallax> 
           </div>
         </div>
       </section>

@@ -127,7 +127,7 @@ export default function Services({ tourisms, title, description, about_1, about_
   const { t } = useTranslation("");
 
   return (
-    <div ref={servicesRoot}>
+    <div ref={servicesRoot} className="relative">
        <Modal />
       <section id="herosection" ref={herosection}>
         <div className="w-full relative  min-h-screen">
