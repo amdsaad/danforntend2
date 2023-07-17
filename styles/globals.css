@@ -28,6 +28,12 @@
 html {
   scroll-behavior: smooth;
 }
+
+body {
+overflow-x:hidden !important
+}
+
+
 a {
   color: inherit;
   text-decoration: none;
@@ -192,4 +198,9 @@ header {
   z-index: 9999;
   width: 100%;
   height: 100%;
+}
+
+
+.slick-slide {
+float:left !important
 }

@@ -12,8 +12,8 @@ const apiURL = config.api_url;
 import axios from "axios";
 import { useRouter } from "next/router";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger)
+import ScrollAnimations from "../components/scrollAnimations";
+
 export default function Newsmain() {
   const [open, setOpen] = useState(false);
   const scrollRef = useRef(null);
@@ -71,13 +71,13 @@ export default function Newsmain() {
     getCategories();
     getPosts();
  
-
+    let ctx = gsap.context(() => {
+      ScrollAnimations();
+    });
+    return () => ctx.revert();
 
 
   }, [getCategories, getPosts]);
-
-
-
 
 
 
@@ -104,8 +104,8 @@ export default function Newsmain() {
       <section className="mt-40 mb-20">
         <div className="container">
           <div className="flex items-center  justify-between">
-            <h1 className="text-txt tBold text-[24px] lg:text-[30px]">{t("MediaCenter")}</h1>
-            <div className="flex items-center  lg:w-auto gap-5">
+            <h1 className="text-txt tBold text-[24px] lg:text-[30px] scrubElements scrubFadeRight">{t("MediaCenter")}</h1>
+            <div className="flex items-center  lg:w-auto gap-5 scrubElements scrubRotateFadeUp">
               {/* <div className="p-3 rounded-full hidden lg:flex cursor-pointer transition-all duration-500 ease-linear items-center gap-2 bg-[#552A0E] ">
                 <img src="/news/bar.png" className="w-6 h-6 " alt="" />
               </div> */}
@@ -116,7 +116,7 @@ export default function Newsmain() {
               </div>
             </div>
           </div>
-          <div className="mt-10 flex items-center overflow-x-auto gap-3">
+          <div className="mt-10 flex items-center overflow-x-auto gap-3 scrubElements scrubFadeRight">
             {/* TODO: FILTER ON CLICK AS PER THE CATEGORY */}
             {categories.map((item) => (
               <div
@@ -130,9 +130,9 @@ export default function Newsmain() {
               </div>
             ))}
           </div>
-          <div className=" grid mt-20 grid-cols-1 lg:grid-cols-3 gap-10">
+          <div className=" grid mt-20 grid-cols-1 lg:grid-cols-3 gap-10 scrubElements scrubFadeUp">
             {posts?.map((item) => (
-              <Link href={router.locale === "en" ? `/en/news/${item.id}` : `/news/${item.id}`} key={item} className="bg-[#e0e0e047] cursor-pointer">
+              <Link href={router.locale === "en" ? `/en/news/${item.id}` : `/news/${item.id}`} key={item} className="bg-[#e0e0e047] cursor-pointer ">
                 <img src="/home/hand.png" alt="" />
                 <div className="px-4 py-6">
                   <div className="flex items-center justify-between">
@@ -155,7 +155,7 @@ export default function Newsmain() {
               </Link>
             ))}
           </div>
-          <div className="mt-10 w-full py-4 cursor-pointer tBold bg-[#e0e0e047] text-center text-txt text-[16px] lg:text-[30px]">{t("LearnMore")}</div>
+          <div className="mt-10 w-full py-4 cursor-pointer scrubElements scrubFadeUp tBold bg-[#e0e0e047] text-center text-txt text-[16px] lg:text-[30px]">{t("LearnMore")}</div>
         </div>
       </section>
       <Footer />

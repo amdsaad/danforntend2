@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
+import ScrollAnimations from "../components/scrollAnimations";
+import { gsap } from "gsap";
 import Topbar from "../components/layout/Topbar";
 import Footer from "../components/layout/Footer";
 import Image from "next/image";
@@ -55,6 +56,10 @@ export default function Careers() {
   }, [setCulture, setJoin, setCultureTitle, setJoinTitle, setBtnFirst, setBtnSecond, router.locale]);
   useEffect(() => {
     getCareer();
+    let ctx = gsap.context(() => {
+      ScrollAnimations();
+    });
+    return () => ctx.revert();
   }, [getCareer]);
 
   return (
@@ -86,21 +91,21 @@ export default function Careers() {
       <section className="mt-40 mb-20">
         <div className="container">
           <div className="flex flex-col items-center gap-5 lg:gap-10">
-            <Image className="mx-auto hidden lg:block" width={84} height={84} src={`/home/l2.png`} alt="" />
-            <Image className="mx-auto block lg:hidden" width={40} height={40} src={`/home/l2.png`} alt="" />
-            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">{t("career_h1")}</p>
+            <Image className="mx-auto hidden lg:block scrubElements scrubRotateFadeUp" width={84} height={84} src={`/home/l2.png`} alt="" />
+            <Image className="mx-auto block lg:hidden scrubElements scrubRotateFadeUp" width={40} height={40} src={`/home/l2.png`} alt="" />
+            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp">{t("career_h1")}</p>
           </div>
         </div>
       </section>
       <section className="my-20">
         <div className="container">
           <div className="flex flex-col items-center gap-5 lg:gap-10">
-            <Image className="mx-auto hidden lg:block" width={84} height={84} src={`/home/l4.png`} alt="" />
-            <Image className="mx-auto block lg:hidden" width={40} height={40} src={`/home/l4.png`} alt="" />
-            <h1 className="text-txt tet-[16px] tBold font-medium  lg:text-[30px]">{joinTitle}</h1>
-            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 ">{join}</p>
+            <Image className="mx-auto hidden lg:block scrubElements scrubRotateFadeUp" width={84} height={84} src={`/home/l4.png`} alt="" />
+            <Image className="mx-auto block lg:hidden scrubElements scrubRotateFadeUp" width={40} height={40} src={`/home/l4.png`} alt="" />
+            <h1 className="text-txt tet-[16px] tBold font-medium scrubElements scrubFadeUp lg:text-[30px]">{joinTitle}</h1>
+            <p className="text-[#552A0E] text-center text-[14px] scrubElements scrubFadeUp lg:text-[18px] thin lg:w-4/5 ">{join}</p>
 
-            <div className="px-5 bg-[#552A0E] rounded-full py-2 text-[17px] text-white flex items-center gap-6 cursor-pointer">
+            <div className="px-5 bg-[#552A0E] rounded-full  scrubElements scrubFadeUp py-2 text-[17px] text-white flex items-center gap-6 cursor-pointer">
               <img src="/comp/icon.png" className="w-6 h-6" alt="" />
               {btnFirst}
             </div>
@@ -109,7 +114,7 @@ export default function Careers() {
       </section>
       <section className="my-20">
         <div className="container">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between scrubElements scrubFade">
             <h1 className="text-txt flex items-center gap-3 text-[16px] tBold lg:text-[30px]">
               <Image className="mx-auto " width={34} height={34} src={`/home/l1.png`} alt="" />
               {btnSecond}
@@ -123,7 +128,7 @@ export default function Careers() {
           </div>
           <div className="w-full grid grid-cols-1 mt-10 lg:grid-cols-3 gap-10">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-              <div key={item} className=" bg-[#e0e0e047] p-8">
+              <div key={item} className=" bg-[#e0e0e047] p-8 scrubElements scrubRandom">
                 <h1 className="text-[21px] font-medium">Business Analyst </h1>
                 <p className="text-sm">Full Time</p>
                 <div className="flex items-center mt-20 justify-between">
