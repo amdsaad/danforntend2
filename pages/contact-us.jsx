@@ -2,8 +2,6 @@ import React, { useRef, useState, useCallback, useEffect } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { gsap } from "gsap";
 import ScrollAnimations from "../components/scrollAnimations";
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
 import Image from "next/image";
 import { BsLinkedin, BsTwitter } from "react-icons/bs";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
@@ -17,13 +15,7 @@ import ContactForm from "./form/ContactForm";
 export default function ContactUs() {
   const router = useRouter();
   const [title, setTitle] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [city, setCity] = useState("");
-  const [message, setMessage] = useState("");
   const [feedback, setFeedback] = useState("");
-
   const scrollRef = useRef(null);
   const getContact = useCallback(async () => {
     try {
@@ -37,18 +29,14 @@ export default function ContactUs() {
           if (response.status === 200) {
          
             setTitle(response?.data?.contactus_titele);
-            setName(response?.data?.name_con);
-            setEmail(response?.data?.email_con);
-            setMobile(response?.data?.phone_con);
-            setCity(response?.data?.city_con);
-            setMessage(response?.data?.text_con);
             setFeedback(response?.data?.feedback);
           }
         });
     } catch (error) {
       console.log(error);
     }
-  }, [setTitle, setName, setEmail, setMobile, setCity, setMessage, router.locale]);
+  }, [setTitle, router.locale]);
+
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
@@ -66,7 +54,7 @@ export default function ContactUs() {
   };
   const { t } = useTranslation();
 
-  React.useEffect(() => {
+ useEffect(() => {
     getContact();
     let ctx = gsap.context(() => {
       ScrollAnimations();

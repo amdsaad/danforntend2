@@ -21,7 +21,6 @@ export default function Modal() {
     <div className=" modal  scale-0 fixed inset-0 translate-y-full flex justify-center items-center">
       <div className="container w-2/3 h-2/3 bg-slate-50 rounded-lg flex justify-center items-center shadow-gray-300 drop-shadow-lg m-auto ">
         <button onClick={animateModal} className="absolute top-5 right-5">
-      
           <FiXCircle className="w-6 h-6 text-txt" />
         </button>
         <ContactForm />

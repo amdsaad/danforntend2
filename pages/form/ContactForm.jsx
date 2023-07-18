@@ -51,8 +51,7 @@ export default function ContactForm() {
 
   return (
     <div className=" relative w-full ">
-   
-     
+
           <div className="grid grid-cols-1 gap-x-10 gap-y-4 lg:gap-y-8 lg:grid-cols-4">
             <div className="lg:col-span-2">
               <input type="text" className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin" placeholder={name} />
@@ -78,7 +77,6 @@ export default function ContactForm() {
               <textarea placeholder={message} className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin" name="" id="" ></textarea>
             </div>
             <button className="px-32 py-3 thin bg-[#E5E6E7] text-txt hover:bg-txt hover:text-white  bg-opacity-40 text-lg">{t("send")}</button>
-
           </div>
       
     

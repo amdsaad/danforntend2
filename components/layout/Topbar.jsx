@@ -95,9 +95,6 @@ const Topbar = ({ gd, aboutDanLang, setAboutDanLang }) => {
         </div>
       </header>
     </>
-    // <div className=" w-full h-20  z-20 fixed top-0 left-0 ">
-
-    // </div>
   );
 };
 
@@ -113,7 +110,7 @@ function SideBar({ open, setOpen, language, setLanguage, t }) {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" style={{ zIndex: "999999999999999999" }} onClose={setOpen}>
+      <Dialog as="div" className="relative z-10" style={{ zIndex: "9999" }} onClose={setOpen}>
         <Transition.Child as={Fragment} enter="ease-in-out duration-500" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in-out duration-500" leaveFrom="opacity-100" leaveTo="opacity-0">
           <div className="fixed inset-0 bg-[#000000] bg-opacity-40 transition-opacity" />
         </Transition.Child>
