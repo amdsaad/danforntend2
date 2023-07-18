@@ -10,7 +10,7 @@ import config from "../components/config";
 const apiURL = config.api_url;
 import axios from "axios";
 import { useRouter } from "next/router";
-import ContactForm from "./form/ContactForm";
+import Form from "./form/Form";
 
 export default function ContactUs() {
   const router = useRouter();
@@ -27,7 +27,6 @@ export default function ContactUs() {
         })
         .then((response) => {
           if (response.status === 200) {
-         
             setTitle(response?.data?.contactus_titele);
             setFeedback(response?.data?.feedback);
           }
@@ -54,7 +53,7 @@ export default function ContactUs() {
   };
   const { t } = useTranslation();
 
- useEffect(() => {
+  useEffect(() => {
     getContact();
     let ctx = gsap.context(() => {
       ScrollAnimations();
@@ -64,7 +63,6 @@ export default function ContactUs() {
 
   return (
     <div className=" relative w-full min-h-screen">
-   
       <section>
         <div className="w-full relative  min-h-screen">
           <Image src="/contact/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
@@ -98,7 +96,8 @@ export default function ContactUs() {
       </section>
       <section className="my-20">
         <div className="container">
-       <ContactForm/>
+          <Form />
+
           <div className="flex items-center flex-col lg:flex-row gap-10 justify-between mt-10">
             <div className=" hidden lg:flex items-center gap-3">
               <p className="text-[19px] text-txt ">{t("FollowUs")}</p>
@@ -129,7 +128,6 @@ export default function ContactUs() {
           </div>
         </div>
       </section>
-   
     </div>
   );
 }

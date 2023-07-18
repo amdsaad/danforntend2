@@ -1,16 +1,12 @@
-import Form from "./Form";
 import { useState } from "react";
 import { gsap } from "gsap";
-import ContactForm from "./ContactForm";
+import Form from "./Form";
 import { FiXCircle } from "react-icons/fi";
 
 export default function Modal() {
   const animateModal = () => {
     gsap.to(".modal", {
-      keyframes: [
-        {   backdropFilter: "blur(0px)", },
-         { scale: 0,  y: "100%",  },
-      ],
+      keyframes: [{ backdropFilter: "blur(0px)" }, { scale: 0, y: "100%" }],
       duration: 1.5,
       ease: "power4.inOut",
       onStart: () => (document.body.style = "overflow-x:hidden"),
@@ -23,8 +19,7 @@ export default function Modal() {
         <button onClick={animateModal} className="absolute top-5 right-5">
           <FiXCircle className="w-6 h-6 text-txt" />
         </button>
-        <ContactForm />
-        {/* <Form/> */}
+        <Form />
       </div>
     </div>
   );

@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
+    "@hookform/resolvers": "^3.1.1",
     "@react-google-maps/api": "^2.18.1",
     "axios": "^1.4.0",
     "fs": "^0.0.1-security",
@@ -28,7 +29,8 @@
     "react-slick": "^0.29.0",
     "react-transition-group": "^4.4.5",
     "sib-api-v3-sdk": "^8.5.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
