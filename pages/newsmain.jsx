@@ -55,8 +55,8 @@ export default function Newsmain() {
           })
           .then((response) => {
             if (response.status === 200) {
-              console.log("posts", response?.data?.data);
-              setPosts(response?.data?.data);
+              console.log('posts', response?.data?.data);
+              setPosts(response?.data?.data.Posts);
             }
           });
       } catch (error) {
