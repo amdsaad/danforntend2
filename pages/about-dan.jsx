@@ -27,7 +27,7 @@ export default function AboutDan() {
           },
         })
         .then((response) => {
-          console.log(response.data.data);
+     
           if (response.status === 200) {
             setAbout(response?.data?.data);
           }
@@ -68,8 +68,7 @@ export default function AboutDan() {
 
   return (
     <div className=" min-h-screen relative" ref={aboutRoot}>
-      <SideBar open={open} setOpen={setOpen} language={aboutDanLang} setLanguage={setAboutDanLang} activeCard={activeCard} setActive={setActive} locale={router.locale} />
-      <Topbar aboutDanLang={aboutDanLang} setAboutDanLang={setAboutDanLang} />
+  
       <section>
         <div className="w-full relative  min-h-screen">
           <Image src="/about/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
@@ -473,7 +472,7 @@ export default function AboutDan() {
           </div>
         </div>
       </div>
-      <Footer />
+     
     </div>
   );
 }

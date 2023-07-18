@@ -84,7 +84,7 @@ export default function Newsmain() {
 
   return (
     <div className=" w-full min-h-screen relative ">
-      <Topbar />
+  
       <section>
         <div className="w-full relative  min-h-screen">
           <Image src="/news/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
@@ -158,7 +158,7 @@ export default function Newsmain() {
           <div className="mt-10 w-full py-4 cursor-pointer scrubElements scrubFadeUp tBold bg-[#e0e0e047] text-center text-txt text-[16px] lg:text-[30px]">{t("LearnMore")}</div>
         </div>
       </section>
-      <Footer />
+    
     </div>
   );
 }

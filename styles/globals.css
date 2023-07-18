@@ -208,3 +208,8 @@ float:left !important
 .modal {
 z-index:1000
 }
+
+textarea {
+min-height:200px;
+resize:none
+}

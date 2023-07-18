@@ -60,7 +60,7 @@ export default function FutureProject() {
         })
         .then((response) => {
           if (response.status === 200) {
-            console.log("future", response?.data?.data);
+         
             setFuture(response?.data?.data);
             setTypetourisms(response?.data?.data?.typetourisms);
           }
@@ -86,7 +86,7 @@ export default function FutureProject() {
   }, [getFuture]);
   return (
     <div className=" min-h-screen w-full relative">
-      <Topbar />
+   
       <section>
         <div className="w-full relative  min-h-screen">
           <Image src="/future/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
@@ -256,7 +256,7 @@ export default function FutureProject() {
           </div>
         </div>
       </section>
-      <Footer />
+    
     </div>
   );
 }

@@ -39,7 +39,7 @@ export default function Careers() {
         })
         .then((response) => {
           if (response.status === 200) {
-            console.log("getCareer", response?.data);
+   
             setCulture(response?.data?.work_culture);
             setJoin(response?.data?.Join_dan);
             setCultureTitle(response?.data?.work_titele);
@@ -64,7 +64,7 @@ export default function Careers() {
 
   return (
     <div className="min-h-screen relative w-full">
-      <Topbar />
+ 
       <section>
         <div className="w-full relative  min-h-screen">
           <Image src="/comp/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
@@ -140,7 +140,7 @@ export default function Careers() {
           </div>
         </div>
       </section>
-      <Footer />
+   
     </div>
   );
 }

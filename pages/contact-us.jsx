@@ -12,6 +12,7 @@ import config from "../components/config";
 const apiURL = config.api_url;
 import axios from "axios";
 import { useRouter } from "next/router";
+import ContactForm from "./form/ContactForm";
 
 export default function ContactUs() {
   const router = useRouter();
@@ -34,7 +35,7 @@ export default function ContactUs() {
         })
         .then((response) => {
           if (response.status === 200) {
-            console.log("contact us", response);
+         
             setTitle(response?.data?.contactus_titele);
             setName(response?.data?.name_con);
             setEmail(response?.data?.email_con);
@@ -75,7 +76,7 @@ export default function ContactUs() {
 
   return (
     <div className=" relative w-full min-h-screen">
-      <Topbar />
+   
       <section>
         <div className="w-full relative  min-h-screen">
           <Image src="/contact/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
@@ -109,31 +110,7 @@ export default function ContactUs() {
       </section>
       <section className="my-20">
         <div className="container">
-          <div className="grid grid-cols-1 gap-x-10 gap-y-4 lg:gap-y-8 lg:grid-cols-4">
-            <div className="lg:col-span-2">
-              <input type="text" className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin" placeholder={name} />
-            </div>
-            <div>
-              <input type="text" className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin" placeholder={email} />
-            </div>
-            <div>
-              <input type="text" className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-txt placeholder:text-txt thin" placeholder={mobile} />
-            </div>
-            <div className="lg:col-span-2">
-              <input type="text" className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin" placeholder={city} />
-            </div>
-            <div className="lg:col-span-2">
-              <input
-                type="text"
-                className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin"
-                // TODO: to be added in the backend
-                placeholder={t("AreaOfInterest")}
-              />
-            </div>
-            <div className="lg:col-span-4">
-              <textarea placeholder={message} className=" border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin" name="" id="" cols="30" rows="10"></textarea>
-            </div>
-          </div>
+       <ContactForm/>
           <div className="flex items-center flex-col lg:flex-row gap-10 justify-between mt-10">
             <div className=" hidden lg:flex items-center gap-3">
               <p className="text-[19px] text-txt ">{t("FollowUs")}</p>
@@ -141,7 +118,6 @@ export default function ContactUs() {
               <BsTwitter className="w-6 h-6 text-txt" />
               <BsLinkedin className="w-6 h-6 text-txt thin" />
             </div>
-            <button className="px-32 py-3 thin bg-[#E5E6E7] text-txt hover:bg-txt hover:text-white  bg-opacity-40 text-lg">{t("send")}</button>
             <div className=" flex lg:hidden items-center gap-3">
               <p className="text-[19px] text-txt ">تابعنا</p>
               <BsTwitter className="w-6 h-6 text-txt" />
@@ -165,7 +141,7 @@ export default function ContactUs() {
           </div>
         </div>
       </section>
-      <Footer />
+   
     </div>
   );
 }

@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 const NewsRead = () => {
   return (
     <div className="relative min-h-screen w-full">
-      <Topbar gd={true} />
+    
       <section>
         <div className="w-full relative pb-20 lg:pb-0  min-h-screen">
           <Image src="/nr/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
@@ -61,7 +61,7 @@ const NewsRead = () => {
           </p>
         </div>
       </section>
-      <Footer />
+     
     </div>
   );
 };

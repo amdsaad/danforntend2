@@ -39,16 +39,22 @@ export default function Services({ tourisms, title, description, about_1, about_
   const servicesRoot = useRef();
   const [scrollPosition, setScrollPosition] = useState(0);
 
-
-
-  const animateModal = ()=>{
-    gsap.to('.modal',{
-      y:'0%',
-      duration:1,
-      scale:1,
-      ease:'power2.inOut'
-    })
-  }
+  const animateModal = () => {
+    gsap.to(".modal", {
+      keyframes: [
+        {
+          scale: 1,
+          y: "0%",
+        },
+        {
+          backdropFilter: "blur(10px)",
+        },
+      ],
+      duration: 2,
+      ease: "power2.inOut",
+      onStart:()=>document.body.style = 'overflow:hidden'
+    });
+  };
 
   const scrollToElement = () => {
     const element = scrollRef.current;
@@ -126,9 +132,9 @@ export default function Services({ tourisms, title, description, about_1, about_
 
   const { t } = useTranslation("");
 
-  return (
+return (
     <div ref={servicesRoot} className="relative">
-       <Modal />
+      <Modal />
       <section id="herosection" ref={herosection}>
         <div className="w-full relative  min-h-screen">
           <Image src="/home/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
@@ -173,7 +179,6 @@ export default function Services({ tourisms, title, description, about_1, about_
           </div>
         </div>
       </section>
-
       <section className="w-full relative overflow-hidden" id="ruralTourism" ref={ruralTourism}>
         <div className="absolute top-0 left-0 flex items-center justify-end scrubElements scrubLeft" id="ruralTourism_image1" ref={ruralTourism_image1}>
           <Image src="/home/agb.png" className="hidden lg:hidden xl:block" alt="" width={733} height={708} />
