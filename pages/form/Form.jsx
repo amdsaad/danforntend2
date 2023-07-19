@@ -124,8 +124,7 @@ export default function Form()  {
     }
   };
   const [formInput, setFormInput] = useState(()=>{ 
-    // if(router.route === '/' || router.route === '/contact-us' ){
-    if(router.route === '/'  ){
+    if(router.route === '/' || router.route === '/contact-us' ){
     return(
         <>
         <small className=" text-red-900">{errors.AreaOfInterest?.message}</small>
@@ -136,7 +135,7 @@ export default function Form()  {
       return(
         <>
         <small className=" text-red-900">{errors.resume?.message}</small>
-        <label htmlFor="resume" > {t('resume')}</label>
+        <label htmlFor="resume" className={Input_Classes} > {t('resume')}</label>
         <input type="file" className='hidden' placeholder={t("resume")} {...register("resume")} id="resume"  />
       
       </>
