@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
+    "@hookform/resolvers": "^3.1.1",
     "@react-google-maps/api": "^2.18.1",
     "axios": "^1.4.0",
     "fs": "^0.0.1-security",
@@ -21,12 +22,15 @@
     "next-i18next": "^12.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.1",
     "react-i18next": "^13.0.1",
     "react-icons": "^4.8.0",
     "react-parallax": "^3.5.1",
     "react-slick": "^0.29.0",
+    "react-transition-group": "^4.4.5",
     "sib-api-v3-sdk": "^8.5.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",

@@ -69,5 +69,13 @@
   "contact_txt": "تهدف شركة دان إلى الاستفادة من الإمكانات الطبيعية الثرية التي تزخر بها المملكة العربية السعودية، وتمكين",
   "readmore": "Read More",
   "allNews": "All News",
-  "postDate": "Published Date"
+  "postDate": "Published Date",
+  "formError": {
+    "name": "Please enter full name",
+    "email": "Please enter valid email",
+    "mobile": "Please enter valid mobile number",
+    "city": "Please enter city",
+    "area": "Please enter area",
+    "message": "Please enter message"
+  }
 }
