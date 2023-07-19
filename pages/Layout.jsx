@@ -4,8 +4,8 @@ import { gsap } from "gsap";
 import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-import { SmootherContext } from "./SmootherContext";
-import { useIsomorphicLayoutEffect } from "./isomorphicEffect";
+import { SmootherContext } from "../components/SmootherContext";
+import { useIsomorphicLayoutEffect } from "../components/isomorphicEffect";
 import { useRef, useState,useContext } from "react";
 
 const Layout = ({ children }) => {
