@@ -2,8 +2,6 @@ import React, { useRef, useState, useEffect, useCallback } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ScrollAnimations from "../components/scrollAnimations";
 import { gsap } from "gsap";
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
 import Image from "next/image";
 import { BiSearch } from "react-icons/bi";
 import { useTranslation } from "next-i18next";
@@ -11,6 +9,7 @@ import config from "../components/config";
 const apiURL = config.api_url;
 import axios from "axios";
 import { useRouter } from "next/router";
+import Modal from "./form/Modal";
 export default function Careers() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -62,9 +61,29 @@ export default function Careers() {
     return () => ctx.revert();
   }, [getCareer]);
 
+
+  const animateModal = () => {
+    gsap.to(".modal", {
+      keyframes: [
+        {
+          scale: 1,
+          y: "0%",
+        },
+        {
+          backdropFilter: "blur(10px)",
+        },
+      ],
+      duration: 2,
+      ease: "power2.inOut",
+      onStart:()=>document.body.style = 'overflow:hidden'
+    });
+  };
+
+ 
+
   return (
     <div className="min-h-screen relative w-full">
- 
+      <Modal />
       <section>
         <div className="w-full relative  min-h-screen">
           <Image src="/comp/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
@@ -105,10 +124,10 @@ export default function Careers() {
             <h1 className="text-txt tet-[16px] tBold font-medium scrubElements scrubFadeUp lg:text-[30px]">{joinTitle}</h1>
             <p className="text-[#552A0E] text-center text-[14px] scrubElements scrubFadeUp lg:text-[18px] thin lg:w-4/5 ">{join}</p>
 
-            <div className="px-5 bg-[#552A0E] rounded-full  scrubElements scrubFadeUp py-2 text-[17px] text-white flex items-center gap-6 cursor-pointer">
+            <button onClick={animateModal} className="px-5 bg-[#552A0E] rounded-full  scrubElements scrubFadeUp py-2 text-[17px] text-white flex items-center gap-6 cursor-pointer">
               <img src="/comp/icon.png" className="w-6 h-6" alt="" />
               {btnFirst}
-            </div>
+            </button>
           </div>
         </div>
       </section>

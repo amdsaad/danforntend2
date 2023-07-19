@@ -70,6 +70,7 @@
   "readmore": "Read More",
   "allNews": "All News",
   "postDate": "Published Date",
+  "resume": "resume",
   "formError": {
     "name": "Please enter full name",
     "email": "Please enter valid email",
