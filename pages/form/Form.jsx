@@ -46,14 +46,15 @@ export default function Form() {
 
   useEffect(() => {
     getContact();
-   console.log(t("formError.name"))
   }, [getContact]);
 
   const Input_Classes = "border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin";
   const schema = yup.object().shape({
     name: yup.string().required(t("formError.name")),
     email: yup.string().email().required(t("formError.email")),
+    mobile: yup.number().positive().required(t("formError.mobile")),
     city: yup.string().required(t("formError.city")),
+    AreaOfInterest: yup.string().required(t("formError.area")),
     message: yup.string().required(t("formError.message")),
   });
   const {
@@ -129,6 +130,7 @@ export default function Form() {
             <input type="text" className={Input_Classes} placeholder={email} {...register("email")} />
           </div>
           <div className=" relative  pt-5">
+          <small className=" text-red-900">{errors.mobile?.message}</small>
             <input type="number" className={Input_Classes} placeholder={mobile} {...register("mobile")} />
           </div>
           <div className="lg:col-span-2 relative  pt-5">
@@ -136,6 +138,7 @@ export default function Form() {
             <input type="text" className={Input_Classes} placeholder={city} {...register("city")} />
           </div>
           <div className="lg:col-span-2 relative  pt-5">
+          <small className=" text-red-900">{errors.AreaOfInterest?.message}</small>
             <input type="text" className={Input_Classes} placeholder={t("AreaOfInterest")} {...register("AreaOfInterest")} />
           </div>
           <div className="lg:col-span-4 relative  pt-5">
