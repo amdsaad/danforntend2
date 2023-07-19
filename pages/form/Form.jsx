@@ -10,6 +10,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 export default function Form() {
+  const { t } = useTranslation();
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [name, setName] = useState('');
@@ -51,8 +52,6 @@ export default function Form() {
     router.locale,
   ]);
 
-  const { t } = useTranslation();
-
   useEffect(() => {
     getContact();
   }, [getContact]);
@@ -60,7 +59,7 @@ export default function Form() {
   const Input_Classes =
     'border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin';
   const schema = yup.object().shape({
-    name: yup.string().required('required'),
+    name: yup.string().required(t('formError.name')),
     email: yup.string().email().required('required'),
     city: yup.string().required('required'),
     message: yup.string().required('required'),
