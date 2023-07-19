@@ -186,7 +186,7 @@ export default function Newsmain() {
                     ? `/en/news/${item.id}`
                     : `/news/${item.id}`
                 }
-                key={item}
+                key={item.id}
                 className="bg-[#e0e0e047] cursor-pointer "
               >
                 <img src="/home/hand.png" alt="" />
