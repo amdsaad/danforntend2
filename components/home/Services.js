@@ -152,14 +152,14 @@ export default function Services({ tourisms, title, description, about_1, about_
       </section>
       <section className="w-full relative " id="advSection" ref={advSection}>
         <div className=" absolute top-0 right-0 flex items-end justify-end scrubElements scrubRight" id="advSection_img_1" ref={advSection_img_1}>
-          <Image src={tourisms[0]?.images[2]?.url} className="hidden lg:hidden xl:block" alt="" width={708} height={702} />
-          <Image src={tourisms[0]?.images[2]?.url} className="hidden lg:block xl:hidden" alt="" width={500} height={402} />
-          <Image src={tourisms[0]?.images[2]?.url} className="block lg:hidden" alt="" width={300} height={324} />
+          <Image src={tourisms[0]?.images[1]?.url} className="hidden lg:hidden xl:block" alt="" width={708} height={702} />
+          <Image src={tourisms[0]?.images[1]?.url} className="hidden lg:block xl:hidden" alt="" width={500} height={402} />
+          <Image src={tourisms[0]?.images[1]?.url} className="block lg:hidden" alt="" width={300} height={324} />
         </div>
         <div className=" absolute top-10 right-0 flex items-end justify-end scrubElements scrubFadeUp" id="advSection_img_2" ref={advSection_img_2}>
-          <Image src={tourisms[0]?.images[1]?.url} className="hidden lg:hidden xl:block" alt="" width={708} height={702} />
-          <Image src={tourisms[0]?.images[1]?.url} className="hidden lg:block xl:hidden" alt="" width={508} height={402} />
-          <Image src={tourisms[0]?.images[1]?.url} className="block lg:hidden" alt="" width={300} height={324} />
+          <Image src={tourisms[0]?.images[0]?.url} className="hidden lg:hidden xl:block" alt="" width={708} height={702} />
+          <Image src={tourisms[0]?.images[0]?.url} className="hidden lg:block xl:hidden" alt="" width={508} height={402} />
+          <Image src={tourisms[0]?.images[0]?.url} className="block lg:hidden" alt="" width={300} height={324} />
         </div>
 
         <div className="container  relative h-[700px]" id="advSection_content" ref={advSection_content}>
