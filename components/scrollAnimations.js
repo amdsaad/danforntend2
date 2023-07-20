@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollAnimations() {
+  
   const scrollTriggerOptions = {
     start: "center 90%",
     end: "+=300px",
@@ -118,6 +119,3 @@ export default function ScrollAnimations() {
     }
   });
 }
-
-// 1-- add scrubElements class to the element
-// 1-- choose animation class from ( scrubRight,scrubFadeRight,........ )
