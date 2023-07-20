@@ -41,7 +41,7 @@ export default function AboutDan() {
                 return current.id < previous.id ? current : previous;
               }),
             );
-            console.log('activeKey',  activeKey);
+            console.log('activeKey', activeKey);
           }
         });
     } catch (error) {
@@ -301,13 +301,7 @@ export default function AboutDan() {
               <div
                 key={item.id}
                 onClick={() => {
-                  setActiveKey(
-                    activeKey.id !== item.id
-                      ? item.id
-                      : about?.rate_us.reduce((previous, current) => {
-                          return current.id < previous.id ? current : previous;
-                        }),
-                  );
+                  setActiveKey(item);
                 }}
                 className={`gridItem  ${
                   activeKey.id === item.id
@@ -331,107 +325,6 @@ export default function AboutDan() {
                 {activeKey.id === item.id && <Exportable t={t} d={item} />}
               </div>
             ))}
-
-            {/* <div
-              onClick={() => {
-                setActiveKey(activeKey !== 4 ? 4 : 0);
-              }}
-              className={`gridItem  ${
-                activeKey === 4
-                  ? 'w-full h-[400px] lg:h-full lg:w-[80%]'
-                  : 'w-full h-[130px] lg:h-full lg:w-[20%]'
-              }  cursor-pointer relative scrubElements scrubRandom`}
-            >
-              <img
-                src="/about/4.png"
-                className=" object-cover h-full w-full"
-                alt=""
-              />
-              {activeKey !== 4 && (
-                <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
-                  <h1 className="transform lg:rotate-90 tBold">
-                    {' '}
-                    {t('Values')}
-                  </h1>
-                </div>
-              )}
-              {activeKey === 4 && <Exportable t={t} />}
-            </div>
-            <div
-              onClick={() => {
-                setActiveKey(activeKey !== 3 ? 3 : 0);
-                setGridOpen(activeKey !== 3 ? true : false);
-              }}
-              className={`gridItem  ${
-                activeKey === 3
-                  ? 'w-full h-[400px] lg:h-full lg:w-[80%]'
-                  : 'w-full h-[130px] lg:h-full lg:w-[20%]'
-              }  cursor-pointer relative scrubElements scrubRandom`}
-            >
-              <img
-                src="/about/3.png"
-                className=" object-cover h-full w-full"
-                alt=""
-              />
-              {activeKey !== 3 && (
-                <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
-                  <h1 className="transform lg:rotate-90 tBold">
-                    {t('Values')}
-                  </h1>
-                </div>
-              )}
-              {activeKey === 3 && <Exportable t={t} />}
-            </div>
-            <div
-              onClick={() => {
-                setActiveKey(activeKey !== 2 ? 2 : 0);
-                setGridOpen(activeKey !== 2 ? true : false);
-              }}
-              className={` gridItem  ${
-                activeKey === 2
-                  ? 'w-full h-[400px] lg:h-full lg:w-[80%]'
-                  : 'w-full h-[130px] lg:h-full lg:w-[20%]'
-              }  cursor-pointer relative scrubElements scrubRandom`}
-            >
-              <img
-                src="/about/2.png"
-                className=" object-cover h-full w-full"
-                alt=""
-              />
-              {activeKey !== 2 && (
-                <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
-                  <h1 className="transform lg:rotate-90 tBold">
-                    {t('Values')}
-                  </h1>
-                </div>
-              )}
-              {activeKey === 2 && <Exportable t={t} />}
-            </div>
-            <div
-              onClick={() => {
-                setActiveKey(activeKey !== 1 ? 1 : 0);
-                setGridOpen(activeKey !== 1 ? true : false);
-              }}
-              className={` gridItem  ${
-                activeKey === 1
-                  ? 'w-full h-[400px] lg:h-full lg:w-[80%]'
-                  : 'w-full h-[130px] lg:h-full lg:w-[20%]'
-              }   cursor-pointer relative scrubElements scrubRandom`}
-            >
-              <img
-                src="/about/1.png"
-                className=" object-cover h-full w-full"
-                alt=""
-              />
-              {activeKey !== 1 && (
-                <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
-                  <h1 className="transform lg:rotate-90 tBold">
-                    {t('Values')}
-                  </h1>
-                </div>
-              )}
-              {activeKey === 1 && <Exportable t={t} />}
-            </div> */}
           </div>
         </div>
       </section>
@@ -679,7 +572,7 @@ export default function AboutDan() {
         <div className="container">
           <h1 className="text-[25px] lg:text-[30px] tBold text-white">
             {/* TODO: missing title from backend */}
-            {t('CEOMessage')}
+            {about?.titele_ceo_message}
           </h1>
           <div
             className="py-3 pt-10 text-[14px] lg:text-[18px] text-white thin"
