@@ -81,7 +81,7 @@ export default function Home() {
   return (
 
         <div className="relative min-h-screen overflow-hidden">
-          <Topbar />
+     
           <main>
             <Services tourisms={tourisms} title={title} description={description} about_1={about_1} about_2={about_2} silders={silders} />
 
@@ -151,7 +151,7 @@ export default function Home() {
             </div>
           </main>
 
-          <Footer />
+        
         </div>
   
   );

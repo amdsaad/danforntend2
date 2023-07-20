@@ -95,7 +95,8 @@ export default function Form() {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    setSubmittedData(data)
+    console.log(submittedData);
     setFormMsg("تم إرسال رسالتك بنجاح!");
     let inputs = gsap.utils.toArray("form input");
     let textarea = document.querySelector("form textarea");
@@ -131,7 +132,7 @@ export default function Form() {
           </div>
           <div className="lg:col-span-2 col-span-4 relative pt-5">
             <small className=" text-red-900">{errors.email?.message}</small>
-            <input type="text" className={Input_Classes} placeholder={email} {...register("email")} />
+            <input type="email" className={Input_Classes} placeholder={email} {...register("email")} />
           </div>
           <div className="lg:col-span-2 col-span-4 relative pt-5">
             <small className=" text-red-900">{errors.mobile?.message}</small>
