@@ -36,6 +36,12 @@ export default function AboutDan() {
           if (response.status === 200) {
             console.log(response?.data?.data);
             setAbout(response?.data?.data);
+            setActiveKey(
+              response?.data?.data?.rate_us.reduce((previous, current) => {
+                return current.id < previous.id ? current : previous;
+              }),
+            );
+            console.log('activeKey',  activeKey);
           }
         });
     } catch (error) {
@@ -296,17 +302,15 @@ export default function AboutDan() {
                 key={item.id}
                 onClick={() => {
                   setActiveKey(
-                    activeKey !== item.id
+                    activeKey.id !== item.id
                       ? item.id
                       : about?.rate_us.reduce((previous, current) => {
-                          return current.id < previous.id
-                            ? current
-                            : previous;
+                          return current.id < previous.id ? current : previous;
                         }),
                   );
                 }}
                 className={`gridItem  ${
-                  activeKey === item.id
+                  activeKey.id === item.id
                     ? 'w-full h-[400px] lg:h-full lg:w-[80%]'
                     : 'w-full h-[130px] lg:h-full lg:w-[20%]'
                 }  cursor-pointer relative scrubElements scrubRandom`}
@@ -317,14 +321,14 @@ export default function AboutDan() {
                   style={{ transition: 'all 1s ease' }}
                   alt=""
                 />
-                {activeKey !== item.id && (
+                {activeKey.id !== item.id && (
                   <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
                     <h1 className="transform lg:rotate-90 tBold ">
                       {t('Values')}
                     </h1>
                   </div>
                 )}
-                {activeKey === item.id && <Exportable t={t} d={item} />}
+                {activeKey.id === item.id && <Exportable t={t} d={item} />}
               </div>
             ))}
 
