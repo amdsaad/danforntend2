@@ -77,6 +77,7 @@
     "mobile": "Please enter valid mobile number",
     "city": "Please enter city",
     "area": "Please enter area",
+    "resume": "Please upload your resume",
     "message": "Please enter message"
   }
 }
