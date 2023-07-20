@@ -56,7 +56,7 @@ export default function Home() {
           },
         })
         .then((response) => {
-          console.log("response", response.data.data);
+          console.log("response****", response.data.data);
           if (response.status === 200) {
             setTitle(response?.data?.data?.titele);
             setDescription(response?.data?.data?.description);
@@ -81,7 +81,6 @@ export default function Home() {
   return (
 
         <div className="relative min-h-screen overflow-hidden">
-     
           <main>
             <Services tourisms={tourisms} title={title} description={description} about_1={about_1} about_2={about_2} silders={silders} />
 
@@ -150,8 +149,6 @@ export default function Home() {
               </div>
             </div>
           </main>
-
-        
         </div>
   
   );

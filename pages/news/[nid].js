@@ -247,7 +247,7 @@ export async function getStaticPaths() {
             .get(`${apiURL}/posts`, { headers: { "Accept-Language": `ar` } })
             .then((response) => {
                 if (response.status === 200) {
-                    posts = response?.data?.data;
+                    posts = response?.data?.data.Posts;
                 }
             });
     } catch (error) {
