@@ -52,7 +52,7 @@ export default function Services({ tourisms, title, description, about_1, about_
       ],
       duration: 2,
       ease: "power2.inOut",
-      onStart:()=>document.body.style = 'overflow:hidden'
+      onStart: () => document.body.style = 'overflow:hidden'
     });
   };
 
@@ -131,8 +131,8 @@ export default function Services({ tourisms, title, description, about_1, about_
   }, [locale]);
 
   const { t } = useTranslation("");
-
-return (
+  console.log('tourisms', tourisms)
+  return (
     <div ref={servicesRoot} className="relative">
       <Modal />
       <section id="herosection" ref={herosection}>
@@ -152,14 +152,14 @@ return (
       </section>
       <section className="w-full relative " id="advSection" ref={advSection}>
         <div className=" absolute top-0 right-0 flex items-end justify-end scrubElements scrubRight" id="advSection_img_1" ref={advSection_img_1}>
-          <Image src="/home/adb.png" className="hidden lg:hidden xl:block" alt="" width={708} height={702} />
-          <Image src="/home/adb.png" className="hidden lg:block xl:hidden" alt="" width={500} height={402} />
-          <Image src="/home/adb.png" className="block lg:hidden" alt="" width={300} height={324} />
+          <Image src={tourisms[0]?.images[2]?.url} className="hidden lg:hidden xl:block" alt="" width={708} height={702} />
+          <Image src={tourisms[0]?.images[2]?.url} className="hidden lg:block xl:hidden" alt="" width={500} height={402} />
+          <Image src={tourisms[0]?.images[2]?.url} className="block lg:hidden" alt="" width={300} height={324} />
         </div>
         <div className=" absolute top-10 right-0 flex items-end justify-end scrubElements scrubFadeUp" id="advSection_img_2" ref={advSection_img_2}>
-          <Image src="/home/ad.png" className="hidden lg:hidden xl:block" alt="" width={708} height={702} />
-          <Image src="/home/ad.png" className="hidden lg:block xl:hidden" alt="" width={508} height={402} />
-          <Image src="/home/ad.png" className="block lg:hidden" alt="" width={300} height={324} />
+          <Image src={tourisms[0]?.images[1]?.url} className="hidden lg:hidden xl:block" alt="" width={708} height={702} />
+          <Image src={tourisms[0]?.images[1]?.url} className="hidden lg:block xl:hidden" alt="" width={508} height={402} />
+          <Image src={tourisms[0]?.images[1]?.url} className="block lg:hidden" alt="" width={300} height={324} />
         </div>
 
         <div className="container  relative h-[700px]" id="advSection_content" ref={advSection_content}>
@@ -181,14 +181,14 @@ return (
       </section>
       <section className="w-full relative overflow-hidden" id="ruralTourism" ref={ruralTourism}>
         <div className="absolute top-0 left-0 flex items-center justify-end scrubElements scrubLeft" id="ruralTourism_image1" ref={ruralTourism_image1}>
-          <Image src="/home/agb.png" className="hidden lg:hidden xl:block" alt="" width={733} height={708} />
-          <Image src="/home/agb.png" className="hidden lg:block xl:hidden" alt="" width={533} height={708} />
-          <Image src="/home/agb.png" className="block lg:hidden" alt="" width={338} height={324} />
+          <Image src={tourisms[1]?.images[1]?.url} className="hidden lg:hidden xl:block" alt="" width={733} height={708} />
+          <Image src={tourisms[1]?.images[1]?.url} className="hidden lg:block xl:hidden" alt="" width={533} height={708} />
+          <Image src={tourisms[1]?.images[1]?.url} className="block lg:hidden" alt="" width={338} height={324} />
         </div>
         <div className="absolute top-0 left-0 flex items-center scrubElements scrubLeft justify-end" id="ruralTourism_image2" ref={ruralTourism_image2}>
-          <Image src="/home/ag.png" className="hidden lg:hidden xl:block" alt="" width={372} height={708} />
-          <Image src="/home/ag.png" className="hidden lg:block xl:hidden" alt="" width={272} height={408} />
-          <Image src="/home/ag.png" className="block lg:hidden" alt="" width={171} height={325} />
+          <Image src={tourisms[1]?.images[0]?.url} className="hidden lg:hidden xl:block" alt="" width={372} height={708} />
+          <Image src={tourisms[1]?.images[0]?.url} className="hidden lg:block xl:hidden" alt="" width={272} height={408} />
+          <Image src={tourisms[1]?.images[0]?.url} className="block lg:hidden" alt="" width={171} height={325} />
         </div>
         <div className="container relative h-[750px] lg:h-[700px]" id="ruralTourism_content" ref={ruralTourism_content}>
           <div className=" pt-[460px] lg:pt-52 xl:pt-60 px-3 lg:px-0 lg:w-[400px] xl:w-1/3 absolute xl:right-[100px]">
@@ -209,14 +209,14 @@ return (
       </section>
       <section className="w-full relative mt-24 overflow-hidden " id="ecotourism" ref={ecotourism}>
         <div className="absolute top-0 right-0 flex items-center scrubElements scrubRight justify-end" id="ecotourism_image1" ref={ecotourism_image1}>
-          <Image src="/home/ecob.png" className="hidden lg:hidden xl:block" alt="" width={704} height={706} />
-          <Image src="/home/ecob.png" className="hidden lg:block xl:hidden" alt="" width={492} height={706} />
-          <Image src="/home/ecob.png" className="block lg:hidden" alt="" width={271} height={271} />
+          <Image src={tourisms[2]?.images[0]?.url} className="hidden lg:hidden xl:block" alt="" width={704} height={706} />
+          <Image src={tourisms[2]?.images[0]?.url} className="hidden lg:block xl:hidden" alt="" width={492} height={706} />
+          <Image src={tourisms[2]?.images[0]?.url} className="block lg:hidden" alt="" width={271} height={271} />
         </div>
         <div className="absolute -top-[109px] lg:-top-[151px] scrubElements scrubUp right-0 flex items-center justify-end" id="ecotourism_image2" ref={ecotourism_image2}>
-          <Image src="/home/eco.png" className="hidden lg:hidden xl:block" alt="" width={410} height={900} />
-          <Image src="/home/eco.png" className="hidden lg:block xl:hidden" alt="" width={306} height={300} />
-          <Image src="/home/eco.png" className="block lg:hidden" alt="" width={180} height={346} />
+          <Image src={tourisms[2]?.images[1]?.url} className="hidden lg:hidden xl:block" alt="" width={410} height={900} />
+          <Image src={tourisms[2]?.images[1]?.url} className="hidden lg:block xl:hidden" alt="" width={306} height={300} />
+          <Image src={tourisms[2]?.images[1]?.url} className="block lg:hidden" alt="" width={180} height={346} />
         </div>
         <div className="container relative h-[550px] lg:h-[500px] xl:h-[700px]" id="ecotourism_content" ref={ecotourism_content}>
           <div className="  pt-[350px] px-3 lg:px-0 lg:pt-40 lg:pr-10 xl:pr-0 xl:pt-80 lg:w-[500px] absolute left-0">
