@@ -191,7 +191,7 @@ export default function Newsmain() {
                 key={item.id}
                 className="bg-[#e0e0e047] cursor-pointer "
               >
-                <img src="/home/hand.png" alt="" />
+                <img src={item?.image} alt="" />
                 <div className="px-4 py-6">
                   <div className="flex items-center justify-between">
                     <button
