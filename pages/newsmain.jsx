@@ -25,7 +25,8 @@ export default function Newsmain() {
   const [categories, setCategories] = useState([]);
   const [posts, setPosts] = useState([]);
   const [filteredposts, setFilteredposts] = useState([]);
-  const [search, setSearch] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const router = useRouter();
   const scrollToElement = () => {
     const element = scrollRef.current;
@@ -61,9 +62,11 @@ export default function Newsmain() {
           })
           .then((response) => {
             if (response.status === 200) {
-              // console.log('posts', response?.data?.data);
+              console.log('posts', response?.data?.data);
               setPosts(response?.data?.data.Posts);
               setFilteredposts(response?.data?.data.Posts);
+              setTitle(response?.data?.data.titele);
+              setDescription(response?.data?.data.description);
             }
           });
       } catch (error) {
@@ -106,10 +109,10 @@ export default function Newsmain() {
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[24px]  lg:text-[50px] text-white font-bold">
-                  {t('MediaCenter')}
+                  {title}
                 </h1>
                 <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6 ">
-                  {t('Objective2')}
+                  {description}
                 </p>
                 <Image
                   src="/home/arrow.png"
@@ -143,7 +146,6 @@ export default function Newsmain() {
                     className=" border-none w-28 lg:w-auto text-sm lg:text-base outline-none text-white bg-transparent"
                     placeholder="Search"
                     onChange={(e) => {
-                      setSearch(e.target.value);
                       const filtered = posts.filter((post) =>
                         post.name.toLowerCase().includes(e.target.value),
                       );
