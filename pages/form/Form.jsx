@@ -63,6 +63,7 @@ export default function Form() {
       .required(t("formError.mobile")),
     city: yup.string().required(t("formError.city")),
     AreaOfInterest: yup.string().required(t("formError.area")),
+    resume: yup.mixed(),
     message: yup.string().required(t("formError.message")),
   });
   const {
@@ -124,32 +125,35 @@ export default function Form() {
     <div className=" relative w-full ">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 gap-1 lg:gap-3 lg:grid-cols-4">
-          <div className="lg:col-span-2 relative pt-5">
+          <div className="lg:col-span-2 col-span-4 relative pt-5">
             <small className=" text-red-900">{errors.name?.message}</small>
             <input type="text" className={Input_Classes} placeholder={name} {...register("name")} />
           </div>
-          <div className=" relative  pt-5">
+          <div className="lg:col-span-2 col-span-4 relative pt-5">
             <small className=" text-red-900">{errors.email?.message}</small>
             <input type="text" className={Input_Classes} placeholder={email} {...register("email")} />
           </div>
-          <div className=" relative  pt-5">
+          <div className="lg:col-span-2 col-span-4 relative pt-5">
             <small className=" text-red-900">{errors.mobile?.message}</small>
             <input type="number" className={Input_Classes} placeholder={mobile} {...register("mobile")} />
           </div>
-          <div className="lg:col-span-2 relative  pt-5">
+          <div className="lg:col-span-2 col-span-4 relative  pt-5">
             <small className=" text-red-900">{errors.city?.message}</small>
             <input type="text" className={Input_Classes} placeholder={city} {...register("city")} />
           </div>
-          <div className="lg:col-span-2 relative  pt-5">{formInput}</div>
+          <div className="lg:col-span-2 col-span-4 relative  pt-5">{formInput}</div>
 
-          <div className="lg:col-span-4 relative  pt-5">
+          <div className="col-span-4 relative  pt-5">
             <small className=" text-red-900">{errors.message?.message}</small>
             <textarea placeholder={message} className={Input_Classes} {...register("message")}></textarea>
           </div>
+          <div className="flex flex-wrap col-span-4 justify-between items-center">
           <button className="px-32 py-3 thin bg-[#E5E6E7] text-txt hover:bg-txt hover:text-white  bg-opacity-40 text-lg">{t("send")}</button>
+          <h3>{isSubmitSuccessful && formMsg}</h3>
+          </div>
         </div>
       </form>
-      <h3>{isSubmitSuccessful && formMsg}</h3>
+    
     </div>
   );
 }
