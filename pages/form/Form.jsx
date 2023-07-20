@@ -111,7 +111,7 @@ export default function Form() {
             field: data.interest,
             city: data.city,
           },
-
+         
           { headers: { accept: `application/json` } }
         )
         .then((response) => {
@@ -134,7 +134,7 @@ export default function Form() {
 
   return (
     <div className=" relative w-full ">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} method="POST">
         <div className="grid grid-cols-1 gap-1 lg:gap-3 lg:grid-cols-4">
           <div className="lg:col-span-2 col-span-4 relative pt-5">
             <small className=" text-red-900">{errors.name?.message}</small>
