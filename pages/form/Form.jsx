@@ -96,7 +96,6 @@ export default function Form() {
 
   const onSubmit = (data) => {
     setSubmittedData(data)
-    console.log(submittedData);
     setFormMsg("تم إرسال رسالتك بنجاح!");
     let inputs = gsap.utils.toArray("form input");
     let textarea = document.querySelector("form textarea");
