@@ -11,12 +11,12 @@ import Footer from "../components/layout/Footer";
 import { SmootherContext } from "../components/SmootherContext";
 import { useIsomorphicLayoutEffect } from "../components/isomorphicEffect";
 import {  useState,useContext } from "react";
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
 
 function MyApp({ Component, pageProps }) {
   // let [smoother, setSmoother] = useState();
   // useIsomorphicLayoutEffect(() => {
-  //   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+  //   gsap.registerPlugin( ScrollSmoother);
 
   //   let smoother = ScrollSmoother.create({
   //     smooth: 1,
@@ -30,8 +30,9 @@ function MyApp({ Component, pageProps }) {
   // }, []);
 
   return (
+  
     <Layout>
-      <Topbar />
+    <Topbar />
       {/* <SmootherContext.Provider value={smoother}>
         <div id="smooth-wrapper">
           <div id="smooth-content"> */}
@@ -40,7 +41,8 @@ function MyApp({ Component, pageProps }) {
         </div>
       </SmootherContext.Provider> */}
       <Footer />
-    </Layout>
+      </Layout>
+  
   );
 }
 
