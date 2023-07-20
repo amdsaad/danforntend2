@@ -1,8 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback, useLayoutEffect } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
 import Image from "next/image";
 import { BiSearch } from "react-icons/bi";
 import Link from "next/link";
@@ -70,16 +67,14 @@ export default function Newsmain() {
   useEffect(() => {
     getCategories();
     getPosts();
- 
+  }, [getCategories, getPosts]);
+
+  useEffect(() => {
     let ctx = gsap.context(() => {
       ScrollAnimations();
     });
     return () => ctx.revert();
-
-
-  }, [getCategories, getPosts]);
-
-
+  }, []);
 
 
   return (

@@ -55,11 +55,13 @@ export default function Careers() {
   }, [setCulture, setJoin, setCultureTitle, setJoinTitle, setBtnFirst, setBtnSecond, router.locale]);
   useEffect(() => {
     getCareer();
+  }, [getCareer]);
+  useEffect(() => {
     let ctx = gsap.context(() => {
       ScrollAnimations();
     });
     return () => ctx.revert();
-  }, [getCareer]);
+  }, []);
 
 
   const animateModal = () => {

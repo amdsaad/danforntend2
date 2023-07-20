@@ -15,6 +15,7 @@ const Layout = ({ children }) => {
       stagger: 0.1,
       transformOrigin: "bottom",
     });
+
   };
 
   const onPageExit = () => {

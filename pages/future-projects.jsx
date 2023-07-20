@@ -1,8 +1,7 @@
 import React, { useRef, useCallback, useEffect, useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ScrollAnimations from "../components/scrollAnimations";
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
+
 import Image from "next/image";
 import Slider from "react-slick";
 import { FaHandshake } from "react-icons/fa";
@@ -72,17 +71,16 @@ export default function FutureProject() {
   const { t } = useTranslation();
 
 
- 
-
-
   useEffect(() => {
-    getFuture();
     let ctx = gsap.context(() => {
       ScrollAnimations();
     });
     return () => ctx.revert();
+  }, []);
 
 
+  useEffect(() => {
+    getFuture();
   }, [getFuture]);
   return (
     <div className=" min-h-screen w-full relative">

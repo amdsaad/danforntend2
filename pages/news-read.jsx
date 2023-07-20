@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
+
 import Image from "next/image";
 import { IoIosArrowForward } from "react-icons/io";
 import { BiShareAlt } from "react-icons/bi";

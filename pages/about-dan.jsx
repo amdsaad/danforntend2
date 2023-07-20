@@ -1,7 +1,5 @@
 import React, { useRef, useState, useCallback, useEffect, useLayoutEffect } from "react";
 import ScrollAnimations from "../components/scrollAnimations";
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
 import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import config from "../components/config";
@@ -11,6 +9,7 @@ import { useRouter } from "next/router";
 import { AiOutlineTwitter } from "react-icons/ai";
 import Slider from "react-slick";
 import { gsap } from "gsap";
+
 export default function AboutDan() {
   const router = useRouter();
   const [activeEffect, setActiveEffect] = useState(false);
@@ -60,12 +59,13 @@ export default function AboutDan() {
   const { t } = useTranslation();
   useEffect(() => {
     getAbout();
+  }, [getAbout]);
+  useEffect(() => {
     let ctx = gsap.context(() => {
       ScrollAnimations();
     });
     return () => ctx.revert();
-  }, [getAbout]);
-
+  }, []);
   return (
     <div className=" min-h-screen relative" ref={aboutRoot}>
   
