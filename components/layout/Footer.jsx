@@ -7,7 +7,7 @@ import {
 } from 'react-icons/ai';
 
 import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 const Footer = () => {
   const { t } = useTranslation();
   const router = useRouter();
