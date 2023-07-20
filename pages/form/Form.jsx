@@ -21,7 +21,7 @@ export default function Form() {
   const [mobile, setMobile] = useState("");
   const [city, setCity] = useState("");
   const [message, setMessage] = useState("");
-  const [resume, setResume] = useState("");
+  const [interest, setInterest] = useState("");
   const [feedback, setFeedback] = useState("");
   const [submittedData, setSubmittedData] = useState({});
   const getContact = useCallback(async () => {
@@ -41,12 +41,15 @@ export default function Form() {
             setCity(response?.data?.city_con);
             setMessage(response?.data?.text_con);
             setFeedback(response?.data?.feedback);
+            setInterest(response?.data?.interest);
+            console.log(response?.data?.interest)
+
           }
         });
     } catch (error) {
       console.log(error);
     }
-  }, [setTitle, setName, setEmail, resume, setMobile, setCity, setMessage, router.locale]);
+  }, [setTitle, setName, setEmail, setMobile, setCity, setMessage, router.locale]);
 
   useEffect(() => {
     getContact();
@@ -72,7 +75,7 @@ export default function Form() {
     formState,
     formState: { errors, isSubmitSuccessful },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema), 
   });
   
   const [formInput, setFormInput] = useState(() => {
@@ -80,7 +83,7 @@ export default function Form() {
       return (
         <>
           <small className=" text-red-900">{errors.AreaOfInterest?.message}</small>
-          <input type="text" className={Input_Classes} placeholder={t("AreaOfInterest")} {...register("AreaOfInterest")} />
+          <input type="text" className={Input_Classes} placeholder={interest} {...register("AreaOfInterest")} />
         </>
       );
     } else {
@@ -96,6 +99,7 @@ export default function Form() {
 
   const onSubmit = (data) => {
     setSubmittedData(data)
+    console.log(submittedData)
     setFormMsg("تم إرسال رسالتك بنجاح!");
     let inputs = gsap.utils.toArray("form input");
     let textarea = document.querySelector("form textarea");
