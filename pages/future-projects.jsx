@@ -70,7 +70,6 @@ export default function FutureProject() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    getFuture();
     let ctx = gsap.context(() => {
       ScrollAnimations();
     });

@@ -72,12 +72,13 @@ export default function AboutDan() {
   const { t } = useTranslation();
   useEffect(() => {
     getAbout();
+  }, [getAbout]);
+  useEffect(() => {
     let ctx = gsap.context(() => {
       ScrollAnimations();
     });
     return () => ctx.revert();
-  }, [getAbout]);
-
+  }, []);
   return (
     <div className=" min-h-screen relative" ref={aboutRoot}>
       <section>

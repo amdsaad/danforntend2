@@ -70,12 +70,14 @@
   "readmore": "Read More",
   "allNews": "All News",
   "postDate": "Published Date",
+  "resume": "resume",
   "formError": {
     "name": "Please enter full name",
     "email": "Please enter valid email",
     "mobile": "Please enter valid mobile number",
     "city": "Please enter city",
     "area": "Please enter area",
+    "resume": "Please upload your resume",
     "message": "Please enter message"
   }
 }
