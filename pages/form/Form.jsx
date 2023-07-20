@@ -10,11 +10,11 @@ import { useRouter } from "next/router";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-export default function Form()  {
+export default function Form() {
   const { t } = useTranslation();
   const router = useRouter();
-  const [formMsg , setFormMsg] = useState("")
-  const formRef= useRef()
+
+  const [formMsg, setFormMsg] = useState("");
   const [title, setTitle] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -46,21 +46,21 @@ export default function Form()  {
     } catch (error) {
       console.log(error);
     }
-  }, [setTitle, setName, setEmail,resume, setMobile, setCity, setMessage, router.locale]);
-  
+  }, [setTitle, setName, setEmail, resume, setMobile, setCity, setMessage, router.locale]);
 
-  
   useEffect(() => {
     getContact();
-  
-   
   }, [getContact]);
 
   const Input_Classes = " custominput border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin";
   const schema = yup.object().shape({
     name: yup.string().required(t("formError.name")),
     email: yup.string().email().required(t("formError.email")),
-    mobile: yup.number().transform((value) => (isNaN(value) ? undefined : value)).nullable().required(t("formError.mobile")),
+    mobile: yup
+      .number()
+      .transform((value) => (isNaN(value) ? undefined : value))
+      .nullable()
+      .required(t("formError.mobile")),
     city: yup.string().required(t("formError.city")),
     AreaOfInterest: yup.string().required(t("formError.area")),
     message: yup.string().required(t("formError.message")),
@@ -69,25 +69,40 @@ export default function Form()  {
     register,
     handleSubmit,
     formState,
-    formState: { errors,isSubmitSuccessful  },
+    formState: { errors, isSubmitSuccessful },
   } = useForm({
     resolver: yupResolver(schema),
-    
+  });
+  
+  const [formInput, setFormInput] = useState(() => {
+    if (router.route === "/" || router.route === "/contact-us") {
+      return (
+        <>
+          <small className=" text-red-900">{errors.AreaOfInterest?.message}</small>
+          <input type="text" className={Input_Classes} placeholder={t("AreaOfInterest")} {...register("AreaOfInterest")} />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <small className=" text-red-900">{errors.resume?.message}</small>
+          {/* <label htmlFor="resume" className={Input_Classes} > {t('resume')}</label> */}
+          <input type="file" className="" placeholder={t("resume")} {...register("resume")} id="resume" />
+        </>
+      );
+    }
   });
 
- 
-  
-  
-
-  const onSubmit =  (data) => {
+  const onSubmit = (data) => {
     console.log(data);
-    setFormMsg("تم إرسال رسالتك بنجاح!")
-    let inputs  = gsap.utils.toArray('form input')
-    let textarea  = document.querySelector('form textarea')
-      inputs.forEach((e)=>{
-        e.value = ''
-        textarea.value =''
-      })
+    setFormMsg("تم إرسال رسالتك بنجاح!");
+    let inputs = gsap.utils.toArray("form input");
+    let textarea = document.querySelector("form textarea");
+    inputs.forEach((e) => {
+      e.value = "";
+      textarea.value = "";
+    });
+
     // TODO: send data to from nodemailer
     // try {
     //   await axios
@@ -103,64 +118,11 @@ export default function Form()  {
     //       },
     //       { headers: { accept: `application/json` } }
     //     )
-    //     .then((response) => {
-    //       if (response.status === 200) {
-    //         setCity("");
-    //         setEmail("");
-    //         setField("");
-    //         setMessage("");
-    //         setName("");
-    //         setPhone("");
-    //         toast.success("تم إرسال رسالتك بنجاح!", {
-    //           position: "top-right",
-    //           autoClose: 5000,
-    //           hideProgressBar: false,
-    //           closeOnClick: true,
-    //           pauseOnHover: true,
-    //           draggable: true,
-    //           progress: undefined,
-    //           theme: "light",
-    //         });
-    //       }
-    //     });
-    // } catch (error) {
-    //   toast.error("برجاء التأكد من إملاء البيانات!", {
-    //     position: "top-right",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "light",
-    //   });
-    // }
   };
-  const [formInput, setFormInput] = useState(()=>{ 
-    if(router.route === '/' || router.route === '/contact-us' ){
-    return(
-        <>
-        <small className=" text-red-900">{errors.AreaOfInterest?.message}</small>
-      <input type="text" className={Input_Classes} placeholder={t("AreaOfInterest")} {...register("AreaOfInterest")} />
-        </>
-      )
-    } else {
-      return(
-        <>
-        <small className=" text-red-900">{errors.resume?.message}</small>
-        {/* <label htmlFor="resume" className={Input_Classes} > {t('resume')}</label> */}
-        <input type="file" className='' placeholder={t("resume")} {...register("resume")} id="resume"  />
-      
-      </>
-      )
-    }
-  });
-
-
 
   return (
     <div className=" relative w-full ">
-      <form onSubmit={handleSubmit(onSubmit)} useRef={formRef}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 gap-1 lg:gap-3 lg:grid-cols-4">
           <div className="lg:col-span-2 relative pt-5">
             <small className=" text-red-900">{errors.name?.message}</small>
@@ -178,20 +140,16 @@ export default function Form()  {
             <small className=" text-red-900">{errors.city?.message}</small>
             <input type="text" className={Input_Classes} placeholder={city} {...register("city")} />
           </div>
-          <div className="lg:col-span-2 relative  pt-5">
-            {formInput}
-          </div>
-       
+          <div className="lg:col-span-2 relative  pt-5">{formInput}</div>
+
           <div className="lg:col-span-4 relative  pt-5">
             <small className=" text-red-900">{errors.message?.message}</small>
             <textarea placeholder={message} className={Input_Classes} {...register("message")}></textarea>
           </div>
-          <button  className="px-32 py-3 thin bg-[#E5E6E7] text-txt hover:bg-txt hover:text-white  bg-opacity-40 text-lg">{t("send")}</button>
+          <button className="px-32 py-3 thin bg-[#E5E6E7] text-txt hover:bg-txt hover:text-white  bg-opacity-40 text-lg">{t("send")}</button>
         </div>
       </form>
-      <h3>
-      { isSubmitSuccessful && formMsg}
-      </h3>
+      <h3>{isSubmitSuccessful && formMsg}</h3>
     </div>
   );
 }
