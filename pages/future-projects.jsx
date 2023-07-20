@@ -70,6 +70,7 @@ export default function FutureProject() {
   const { t } = useTranslation();
 
   useEffect(() => {
+    getFuture();
     let ctx = gsap.context(() => {
       ScrollAnimations();
     });
@@ -244,7 +245,7 @@ export default function FutureProject() {
           >
             <img
               className="absolute top-0 left-0"
-              src={typetourisms[0]?.images[0]?.url}
+              src={typetourisms[0]?.image}
               alt=""
             />
             <div className="w-3/6  top-16 rtl absolute font-bold right-10">
@@ -264,7 +265,7 @@ export default function FutureProject() {
           >
             <img
               className="absolute top-0 left-0"
-              src={typetourisms[1]?.images[2]?.url}
+              src={typetourisms[1]?.image}
               alt=""
             />
             <div className="w-3/6  top-16 rtl absolute font-bold right-10">
@@ -284,7 +285,7 @@ export default function FutureProject() {
           >
             <img
               className="absolute top-0 left-0"
-              src={typetourisms[2]?.images[2]?.url}
+              src={typetourisms[2]?.image}
               alt=""
             />
             <div className="w-3/6  top-16 rtl absolute font-bold right-10">
