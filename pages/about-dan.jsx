@@ -6,8 +6,6 @@ import React, {
   useLayoutEffect,
 } from 'react';
 import ScrollAnimations from '../components/scrollAnimations';
-import Topbar from '../components/layout/Topbar';
-import Footer from '../components/layout/Footer';
 import Image from 'next/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import config from '../components/config';
@@ -81,6 +79,13 @@ export default function AboutDan() {
   }, []);
   return (
     <div className=" min-h-screen relative" ref={aboutRoot}>
+      <SideBar
+        open={open}
+        setOpen={setOpen}
+        language={aboutDanLang}
+        setLanguage={setAboutDanLang}
+        activeCard={activeCard}
+      />
       <section>
         <div className="w-full relative  min-h-screen">
           <Image
@@ -291,6 +296,8 @@ export default function AboutDan() {
             alt=""
           />
           <p className="text-[#552A0E] text-center scrubElements scrubFadeUp text-[24px] tBold lg:text-[30px]   ">
+            {/* TODO: add from backend once Islam is done */}
+
             {t('Values')}
           </p>
         </div>
@@ -319,6 +326,7 @@ export default function AboutDan() {
                 {activeKey.id !== item.id && (
                   <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
                     <h1 className="transform lg:rotate-90 tBold ">
+                      {/* TODO: add from backend once Islam is done */}
                       {t('Values')}
                     </h1>
                   </div>
@@ -332,7 +340,7 @@ export default function AboutDan() {
 
       <section className="pb-20">
         <p className="text-[#552A0E] pb-10 text-center text-[24px] tBold lg:text-[30px]  scrubElements scrubRandom ">
-          {t('BoardOfDirectors')}
+          {about?.boardofdirectors}
         </p>
         <div className="container">
           <div className=" hidden lg:grid grid-cols-3 gap-16 scrubElements scrubRandom">
@@ -572,7 +580,6 @@ export default function AboutDan() {
       <div className="bg-[#552A0E] w-full py-20 scrubElements scrubFadeUp">
         <div className="container">
           <h1 className="text-[25px] lg:text-[30px] tBold text-white">
-            {/* TODO: missing title from backend */}
             {about?.titele_ceo_message}
           </h1>
           <div

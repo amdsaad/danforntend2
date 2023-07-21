@@ -1,12 +1,9 @@
 import React, { useRef, useCallback, useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import ScrollAnimations from '../components/scrollAnimations';
-import Topbar from '../components/layout/Topbar';
-import Footer from '../components/layout/Footer';
 import Image from 'next/image';
 import Slider from 'react-slick';
 import { FaHandshake } from 'react-icons/fa';
-import { Parallax } from 'react-parallax';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import axios from 'axios';
