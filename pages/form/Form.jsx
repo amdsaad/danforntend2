@@ -111,12 +111,19 @@ export default function Form() {
             field: data.interest,
             city: data.city,
           },
-         
+
           { headers: { accept: `application/json` } }
         )
         .then((response) => {
           if (response.status === 200) {
             setFormMsg("تم إرسال رسالتك بنجاح!");
+
+            let inputs = gsap.utils.toArray("form input");
+            let textarea = document.querySelector("form textarea");
+            inputs.forEach((e) => {
+              e.value = "";
+              textarea.value = "";
+            });
           }
         });
     } catch (error) {
@@ -124,13 +131,6 @@ export default function Form() {
       setFormMsg("حدث خطأ");
     }
   };
-
-  // let inputs = gsap.utils.toArray("form input");
-  // let textarea = document.querySelector("form textarea");
-  // inputs.forEach((e) => {
-  //   e.value = "";
-  //   textarea.value = "";
-  // });
 
   return (
     <div className=" relative w-full ">
