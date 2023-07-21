@@ -52,7 +52,7 @@ export default function Services({ tourisms, title, description, about_1, about_
       ],
       duration: 2,
       ease: "power2.inOut",
-      onStart: () => document.body.style = 'overflow:hidden'
+      // onStart: () => document.body.style = 'overflow:hidden'
     });
   };
 
