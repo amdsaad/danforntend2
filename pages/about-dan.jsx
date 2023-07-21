@@ -132,18 +132,18 @@ export default function AboutDan() {
               className="mx-auto hidden scrubElements scrubRotateFadeUp  lg:block"
               width={84}
               height={84}
-              src={`/home/l2.png`}
+              src={about?.intro_logo}
               alt=""
             />
             <Image
               className="mx-auto block  scrubElements scrubRotateFadeUp lg:hidden"
               width={40}
               height={40}
-              src={`/home/l2.png`}
+              src={about?.intro_logo}
               alt=""
             />
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp">
-              {t('DanLaunchLocations')}
+              {about?.intro}
             </p>
           </div>
         </div>
