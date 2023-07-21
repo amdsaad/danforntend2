@@ -59,6 +59,7 @@ export default function FutureProject() {
         })
         .then((response) => {
           if (response.status === 200) {
+            console.log('future', response?.data?.data);
             setFuture(response?.data?.data);
             setTypetourisms(response?.data?.data?.typetourisms);
           }
@@ -124,19 +125,18 @@ export default function FutureProject() {
               className="mx-auto hidden lg:block scrubElements scrubRotateFadeUp"
               width={84}
               height={84}
-              src={`/home/l1.png`}
+              src={future?.intro_logo}
               alt=""
             />
             <Image
               className="mx-auto block lg:hidden scrubElements scrubRotateFadeUp"
               width={40}
               height={40}
-              src={`/home/l1.png`}
+              src={future?.intro_logo}
               alt=""
             />
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp">
-              {/* TODO: missing from the backend */}
-              {t('LaunchLocation')}
+              {future?.intro}
             </p>
           </div>
         </div>
@@ -302,31 +302,24 @@ export default function FutureProject() {
         </Slider>
       </section>
       <section className=" mb-20 block lg:hidden future_slide2 overflow-hidden">
-        {/* TODO: ADJUST THE MOBILE SLIDER */}
         <Slider {...settings2}>
           <div
             style={{ marginRight: '20px' }}
             className="bg-[#E98108] bg-opacity-20 relative h-80 "
           >
             <img
-              className="absolute top-0 w-32 lg:w-auto left-0"
-              src="/future/Adv-slide.png"
+              className="absolute top-0 left-0"
+              src={typetourisms[0]?.image}
               alt=""
             />
             <div className="w-4/6  top-20 rtl absolute font-bold right-10">
-              <h1 className="text-txt font-bold text-[14px]">
-                سياحة المغامرات
-              </h1>
-              <p className="text-[12px] mt-5 text-txt thin">
-                ستقدم شركة دان أنشطة في الهواء الطلق مصممة بعناية لتلهم الضيوف
-                لإعادة التواصل مع الطبيعة من خلال مغامراتٍ مثيرة في وجهاتٍ
-                فريدة. سيتم تصميم عروض المغامرات التي سنقدمها لضيوفنا بهدف
-                الاستفادة من الميزات المتنوعة في كل وجهة؛ بما في ذلك الكثبان
-                الرملية، والجبال، والأشجار.
+              <h1 className="text-txt text-[22px]">{typetourisms[0]?.name}</h1>
+              <p className="text-[14px] mt-5 text-txt thin">
+                {typetourisms[0]?.description}
               </p>
               <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                انضم إلى شركاء دان
+                {typetourisms[0]?.button_1}
               </button>
             </div>
           </div>
@@ -336,24 +329,18 @@ export default function FutureProject() {
             className="bg-[#64C07D] bg-opacity-20 relative h-80 "
           >
             <img
-              className="absolute bottom-0 w-40 lg:w-auto left-0"
-              src="/future/agri-slide.png"
+              className="absolute top-0 left-0"
+              src={typetourisms[1]?.image}
               alt=""
             />
             <div className="w-4/6  top-16 rtl absolute font-bold right-10">
-              <h1 className="text-txt font-bold text-[14px]">
-                سياحة المغامرات
-              </h1>
-              <p className="text-[12px] mt-5 text-txt thin">
-                ستقدم شركة دان أنشطة في الهواء الطلق مصممة بعناية لتلهم الضيوف
-                لإعادة التواصل مع الطبيعة من خلال مغامراتٍ مثيرة في وجهاتٍ
-                فريدة. سيتم تصميم عروض المغامرات التي سنقدمها لضيوفنا بهدف
-                الاستفادة من الميزات المتنوعة في كل وجهة؛ بما في ذلك الكثبان
-                الرملية، والجبال، والأشجار.
+              <h1 className="text-txt text-[22px]">{typetourisms[1]?.name}</h1>
+              <p className="text-[14px] mt-5 text-txt thin">
+                {typetourisms[1]?.description}
               </p>
               <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                انضم إلى شركاء دان
+                {typetourisms[1]?.button_1}
               </button>
             </div>
           </div>
@@ -362,74 +349,57 @@ export default function FutureProject() {
             className="bg-[#1A92D3] bg-opacity-20 relative h-80 "
           >
             <img
-              className="absolute bottom-0 w-40 lg:w-auto left-0"
-              src="/future/Mask Group 94.png"
+              className="absolute top-0 left-0"
+              src={typetourisms[2]?.image}
               alt=""
             />
             <div className="w-4/6  top-16 rtl absolute font-bold right-10">
-              <h1 className="text-txt font-bold text-[14px]">
-                سياحة المغامرات
-              </h1>
-              <p className="text-[12px] mt-5 text-txt thin">
-                ستقدم شركة دان أنشطة في الهواء الطلق مصممة بعناية لتلهم الضيوف
-                لإعادة التواصل مع الطبيعة من خلال مغامراتٍ مثيرة في وجهاتٍ
-                فريدة. سيتم تصميم عروض المغامرات التي سنقدمها لضيوفنا بهدف
-                الاستفادة من الميزات المتنوعة في كل وجهة؛ بما في ذلك الكثبان
-                الرملية، والجبال، والأشجار.
+              <h1 className="text-txt text-[22px]">{typetourisms[2]?.name}</h1>
+              <p className="text-[14px] mt-5 text-txt thin">
+                {typetourisms[2]?.description}
               </p>
               <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                انضم إلى شركاء دان
+                {typetourisms[2]?.button_1}
               </button>
             </div>
           </div>
         </Slider>
       </section>
-      <section>
-        <div className="container">
-          <div className=" my-20 relative pairlal  ">
-            <Parallax
-              strength={0}
-              className=" relative h-[1200px]   "
-              bgImage="/future/Group 8199.png"
-              bgImageStyle={{ objectFit: 'cover', height: 'h-[1200px]' }}
-            >
-              <div className=" absolute w-full h-full top-0 left-0  ">
-                <div className=" container py-20">
-                  <div className="flex items-start gap-4 lg:items-center lg:flex-row flex-col lg:justify-between ">
-                    <h1 className="text-white tBold text-[24px] lg:text-[30px] ">
-                      {/* TODO: add title on the backend  */}
-                      {future?.titele}
-                    </h1>
-                    <button className="px-5 py-2  text-sm    hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full flex items-center gap-2">
-                      <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                      {future?.button_1_distinguish}
-                    </button>
-                  </div>
-                  <p className="text-white text-[14px] lg:text-[18px] thin lg:w-4/5 pt-8 scrubElements scrubFadeUp">
-                    {future?.start_distinguish}
-                  </p>
-                  {future?.items?.map((item, index) => (
-                    <div
-                      key={index}
-                      className=" mt-20 w-full px-10 py-3 hover:bg-opacity-25 flex flex-col scrubElements scrubFadeUp lg:items-center lg:flex-row  bg-white bg-opacity-20 lg:gap-10"
-                    >
-                      <h1 className="text-white font-bold text-[32px] lg:text-[81px]">
-                        {convertToArabic(index + 1, router.locale)}
-                      </h1>
-                      <p className="text-white thin text-[14px] lg:text-[18px] lg:w-4/5 ">
-                        {item.titele}
-                      </p>
-                    </div>
-                  ))}
-
-                  <p className="text-white thin lg:w-4/5 pt-8 scrubElements scrubFadeUp">
-                    {future?.end_distinguish}
-                  </p>
-                </div>
-              </div>
-            </Parallax>
+      <section className="mb-8">
+        <div
+          className="container py-20 text-white"
+          style={{ backgroundImage: "url('/future/Group 8199.png')" }}
+        >
+          <div className="flex items-start gap-4 lg:items-center lg:flex-row flex-col lg:justify-between ">
+            <h1 className=" tBold text-[24px] lg:text-[30px] ">
+              {/* TODO: add title on the backend  */}
+              {future?.titele}
+            </h1>
+            <button className="px-5 py-2  text-sm    hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full flex items-center gap-2">
+              <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
+              {future?.button_1_distinguish}
+            </button>
           </div>
+          <p className="text-[14px] lg:text-[18px] thin lg:w-4/5 pt-8 scrubElements scrubFadeUp">
+            {future?.start_distinguish}
+          </p>
+          {future?.items?.map((item, index) => (
+            <div
+              key={index}
+              className=" mt-20 w-full px-10 py-3 hover:bg-opacity-25 flex flex-col scrubElements scrubFadeUp lg:items-center lg:flex-row  bg-white bg-opacity-20 lg:gap-10"
+            >
+              <h1 className=" font-bold text-[32px] lg:text-[81px]">
+                {convertToArabic(index + 1, router.locale)}
+              </h1>
+              <p className=" thin text-[14px] lg:text-[18px] lg:w-4/5 ">
+                {item.titele}
+              </p>
+            </div>
+          ))}
+          <p className=" thin lg:w-4/5 pt-8 scrubElements scrubFadeUp">
+            {future?.end_distinguish}
+          </p>
         </div>
       </section>
     </div>
