@@ -11,7 +11,6 @@ export default function Modal({smoother,setSmoother}) {
       keyframes: [{ backdropFilter: "blur(0px)" }, { scale: 0, y: 0 }],
       duration: 1.5,
       ease: "power4.inOut",
-      // onStart: () => (document.body.style = "overflow-x:hidden"),
     });
   };
 

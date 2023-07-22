@@ -90,7 +90,6 @@ export default function Careers({smoother,setSmoother}) {
       ],
       duration: 2,
       ease: 'power2.inOut',
-      onStart: () => (document.body.style = 'overflow:hidden'),
     });
   };
 
