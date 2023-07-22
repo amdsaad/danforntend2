@@ -1,10 +1,14 @@
-import React, { useRef, useState, useCallback, useEffect, useLayoutEffect } from "react";
-import ScrollAnimations from "../components/scrollAnimations";
-import Topbar from "../components/layout/Topbar";
-import Footer from "../components/layout/Footer";
-import Image from "next/image";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import config from "../components/config";
+import React, {
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+} from 'react';
+import ScrollAnimations from '../components/scrollAnimations';
+import Image from 'next/image';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import config from '../components/config';
 const apiURL = config.api_url;
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -75,6 +79,13 @@ export default function AboutDan() {
   }, []);
   return (
     <div className=" min-h-screen relative" ref={aboutRoot}>
+      <SideBar
+        open={open}
+        setOpen={setOpen}
+        language={aboutDanLang}
+        setLanguage={setAboutDanLang}
+        activeCard={activeCard}
+      />
       <section>
         <div className="w-full relative  min-h-screen">
           <Image src="/about/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
@@ -94,9 +105,23 @@ export default function AboutDan() {
       <section className="mt-40 mb-20 ">
         <div className="container">
           <div className="flex flex-col items-center gap-5 lg:gap-10">
-            <Image className="mx-auto hidden scrubElements scrubRotateFadeUp  lg:block" width={84} height={84} src={`/home/l2.png`} alt="" />
-            <Image className="mx-auto block  scrubElements scrubRotateFadeUp lg:hidden" width={40} height={40} src={`/home/l2.png`} alt="" />
-            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp">{t("DanLaunchLocations")}</p>
+            <Image
+              className="mx-auto hidden scrubElements scrubRotateFadeUp  lg:block"
+              width={84}
+              height={84}
+              src={about?.intro_logo}
+              alt=""
+            />
+            <Image
+              className="mx-auto block  scrubElements scrubRotateFadeUp lg:hidden"
+              width={40}
+              height={40}
+              src={about?.intro_logo}
+              alt=""
+            />
+            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp">
+              {about?.intro}
+            </p>
           </div>
         </div>
       </section>
@@ -159,9 +184,25 @@ export default function AboutDan() {
       </section>
       <section className="mb-20">
         <div className="flex flex-col items-center gap-5 lg:gap-4">
-          <Image className="mx-auto hidden lg:block scrubElements scrubRotateFadeUp" width={84} height={84} src={`/home/l1.png`} alt="" />
-          <Image className="mx-auto block lg:hidden scrubElements scrubRotateFadeUp" width={40} height={40} src={`/home/l1.png`} alt="" />
-          <p className="text-[#552A0E] text-center scrubElements scrubFadeUp text-[24px] tBold lg:text-[30px]   ">{t("Values")}</p>
+          <Image
+            className="mx-auto hidden lg:block scrubElements scrubRotateFadeUp"
+            width={84}
+            height={84}
+            src={`/home/l1.png`}
+            alt=""
+          />
+          <Image
+            className="mx-auto block lg:hidden scrubElements scrubRotateFadeUp"
+            width={40}
+            height={40}
+            src={`/home/l1.png`}
+            alt=""
+          />
+          <p className="text-[#552A0E] text-center scrubElements scrubFadeUp text-[24px] tBold lg:text-[30px]   ">
+            {/* TODO: add from backend once Islam is done */}
+
+            {t('Values')}
+          </p>
         </div>
         <div className="container-fluid ">
           <div className={` mt-10 flex flex-col  lg:flex-row items-center w-full h-[800px] lg:h-[500px] overflow-hidden `}>
@@ -176,7 +217,10 @@ export default function AboutDan() {
                 <img src={item?.icon} className=" object-cover h-full w-full" style={{ transition: "all 1s ease" }} alt="" />
                 {activeKey.id !== item.id && (
                   <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
-                    <h1 className="transform lg:rotate-90 tBold ">{t("Values")}</h1>
+                    <h1 className="transform lg:rotate-90 tBold ">
+                      {/* TODO: add from backend once Islam is done */}
+                      {t('Values')}
+                    </h1>
                   </div>
                 )}
                 {activeKey.id === item.id && <Exportable t={t} d={item} />}
@@ -187,7 +231,9 @@ export default function AboutDan() {
       </section>
 
       <section className="pb-20">
-        <p className="text-[#552A0E] pb-10 text-center text-[24px] tBold lg:text-[30px]  scrubElements scrubRandom ">{t("BoardOfDirectors")}</p>
+        <p className="text-[#552A0E] pb-10 text-center text-[24px] tBold lg:text-[30px]  scrubElements scrubRandom ">
+          {about?.boardofdirectors}
+        </p>
         <div className="container">
           <div className=" hidden lg:grid grid-cols-3 gap-16 scrubElements scrubRandom">
             {about?.leaders?.map((item) => (
@@ -366,7 +412,6 @@ export default function AboutDan() {
       <div className="bg-[#552A0E] w-full py-20 scrubElements scrubFadeUp">
         <div className="container">
           <h1 className="text-[25px] lg:text-[30px] tBold text-white">
-            {/* TODO: missing title from backend */}
             {about?.titele_ceo_message}
           </h1>
           <div

@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { SmootherContext } from "../components/SmootherContext";
 import { useIsomorphicLayoutEffect } from "../components/isomorphicEffect";
 import { useState, useContext } from "react";
-const Layout = ({ children }) => {
+const Layout = ({ children,smoother,setSmoother }) => {
   const router = useRouter();
   const transitionDuration = 0.5;
   const onPageEnter = () => {
@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
     });
   };
 
-  let [smoother, setSmoother] = useState();
+  
   useIsomorphicLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
     let smoother = ScrollSmoother.create({
@@ -39,6 +39,7 @@ const Layout = ({ children }) => {
       ignoreMobileResize: true,
       effects: true,
       preventDefault: true,
+      
     });
     setSmoother(smoother);
     ScrollTrigger.refresh();

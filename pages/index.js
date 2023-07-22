@@ -9,19 +9,18 @@ import Services from "../components/home/Services";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
-import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
+
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 import config from "../components/config";
 const apiURL = config.api_url;
 import axios from "axios";
 import { useRouter } from "next/router";
 
 
-export default function Home() {
+export default function Home({smoother,setSmoother}) {
   const router = useRouter();
   const [scrollPosition, setScrollPosition] = useState(0);
   const { locale } = router;
-
   const settings = {
     dots: true,
     infinite: true,
@@ -77,12 +76,13 @@ export default function Home() {
   }, [getHome]);
 
 
+
   const { t } = useTranslation();
   return (
 
         <div className="relative min-h-screen overflow-hidden">
           <main>
-            <Services tourisms={tourisms} title={title} description={description} about_1={about_1} about_2={about_2} silders={silders} />
+            <Services tourisms={tourisms} title={title} description={description} about_1={about_1} about_2={about_2} silders={silders} smoother={smoother} setSmoother={setSmoother} />
 
             <div className="w-full mt-16 lg:mt-40 mb-20 overflow-hidden">
               <div className="container">

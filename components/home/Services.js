@@ -8,16 +8,14 @@ import { BiSearch } from "react-icons/bi";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
-import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
 import { useRouter } from "next/router";
 import Link from "next/link";
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 import ScrollAnimations from "../scrollAnimations";
 import Modal from "../../pages/form/Modal";
-export default function Services({ tourisms, title, description, about_1, about_2, silders }) {
+export default function Services({ tourisms, title, description, about_1, about_2, silders,smoother,setSmoother }) {
   const router = useRouter();
-  const smoother = useRef();
   const { locale } = router;
   const advSection = useRef(null);
   const advSection_img_1 = useRef(null);
@@ -39,12 +37,17 @@ export default function Services({ tourisms, title, description, about_1, about_
   const servicesRoot = useRef();
   const [scrollPosition, setScrollPosition] = useState(0);
 
+
+
+ 
+
   const animateModal = () => {
+    smoother.paused(true)
     gsap.to(".modal", {
       keyframes: [
         {
           scale: 1,
-          y: "0%",
+          y: window.scrollY,
         },
         {
           backdropFilter: "blur(10px)",
@@ -65,6 +68,7 @@ export default function Services({ tourisms, title, description, about_1, about_
   useEffect(() => {
     let ctx = gsap.context(() => {
       ScrollAnimations();
+      
       let panelWidth = gsap.getProperty(".panel", "width");
       let scrollWidth = gsap.getProperty(".panelcontainer", "width");
       gsap.set(".panelcontainer", { x: `${document.querySelector("html").dir === "rtl" ? "+" : "-"}` + `${scrollWidth - panelWidth}` });
@@ -134,7 +138,7 @@ export default function Services({ tourisms, title, description, about_1, about_
   console.log('tourisms', tourisms)
   return (
     <div ref={servicesRoot} className="relative">
-      <Modal />
+      <Modal smoother={smoother} setSmoother={setSmoother}/>
       <section id="herosection" ref={herosection}>
         <div className="w-full relative  min-h-screen">
           <Image src="/home/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />

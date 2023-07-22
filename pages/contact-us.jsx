@@ -21,6 +21,8 @@ export default function ContactUs() {
     lat: 0,
     lng: 0,
   });
+  const [intro, setIntro] = useState('');
+  const [introImage, setIntroImage] = useState('');
 
   const getContact = useCallback(async () => {
     try {
@@ -39,6 +41,8 @@ export default function ContactUs() {
               lat: parseFloat(response?.data?.lat),
               lng: parseFloat(response?.data?.long),
             });
+            setIntro(response?.data?.intro_contactus);
+            setIntroImage(response?.data?.intro_logo_contactus);
           }
         });
     } catch (error) {
@@ -93,7 +97,6 @@ export default function ContactUs() {
                   {title}
                 </h1>
                 <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 ">
-                  {/* TODO: need to check this input */}
                   {feedback}
                 </p>
                 <Image
@@ -117,19 +120,19 @@ export default function ContactUs() {
               className="mx-auto hidden lg:block scrubElements scrubRotateFadeUp"
               width={84}
               height={84}
-              src={`/home/l3.png`}
+              src={introImage}
               alt=""
             />
             <Image
               className="mx-auto block lg:hidden scrubElements scrubRotateFadeUp"
               width={40}
               height={40}
-              src={`/home/l3.png`}
+              src={introImage}
               alt=""
             />
             <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp">
               {/* TODO: TO BE ADDED IN THE BACKEND  */}
-              {t('contact_desc')}
+              {intro}
             </p>
           </div>
         </div>
