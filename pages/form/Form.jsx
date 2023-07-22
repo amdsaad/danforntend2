@@ -155,21 +155,24 @@ export default function Form() {
     }
   };
   return (
-    <div className=" relative w-full ">
+    <div className=" relative w-full z-10 ">
+      <div className="py-4 text-center">
+        <h1 className="text-[24px]  lg:text-[35px] font-bold">
+          {router.route != '/contact-us' ? title : ''}
+        </h1>
+      </div>
       <form>
-        <div className="grid grid-cols-1 gap-1 lg:gap-3 lg:grid-cols-4">
-          <div className="lg:col-span-2 col-span-4 relative pt-5">
+        <div className="flex flex-col gap-4 lg:flex-row flex-wrap ">
+          <div className="w-[48.5%]">
             <input
               type="text"
               className={Input_Classes}
               placeholder={name}
               onInput={(e) => setFormName(e.target.value)}
             />
-            <div>
-              <small className=" text-red-900">{formNameError}</small>
-            </div>
+            <p className=" text-red-900 text-[12px">{formNameError}</p>
           </div>
-          <div className="lg:col-span-2 col-span-4 relative pt-5">
+          <div className="w-[48.5%]">
             <small className=" text-red-900">{formEmailError}</small>
             <input
               type="email"
@@ -178,7 +181,7 @@ export default function Form() {
               onInput={(e) => setFormEmail(e.target.value)}
             />
           </div>
-          <div className="lg:col-span-2 col-span-4 relative pt-5">
+          <div className="w-[48.5%]">
             <small className=" text-red-900">{formMobileError}</small>
             <input
               type="number"
@@ -187,7 +190,7 @@ export default function Form() {
               onInput={(e) => setFormMobile(e.target.value)}
             />
           </div>
-          <div className="lg:col-span-2 col-span-4 relative  pt-5">
+          <div className="w-[48.5%]">
             <input
               type="text"
               className={Input_Classes}
@@ -196,8 +199,10 @@ export default function Form() {
             />
             <small className=" text-red-900">{formCityError}</small>
           </div>
-          {router.route === '/' || router.route === '/contact-us' ? (
-            <div className="lg:col-span-2 col-span-4 relative  pt-5">
+          {router.route === '/' ||
+          router.route === '/contact-us' ||
+          router.route === '/future-projects' ? (
+            <div className="w-[48%]">
               <small className=" text-red-900">{formInterestError}</small>
               <input
                 type="text"
@@ -207,7 +212,7 @@ export default function Form() {
               />
             </div>
           ) : (
-            <div>
+            <div className="w-[48%]">
               <small className=" text-red-900"></small>
               <input
                 type="file"
@@ -218,7 +223,7 @@ export default function Form() {
             </div>
           )}
 
-          <div className="col-span-4 relative  pt-5">
+          <div className="w-full">
             <small className=" text-red-900">{formMessageError}</small>
             <textarea
               placeholder={message}
@@ -226,9 +231,9 @@ export default function Form() {
               onInput={(e) => setFormMessage(e.target.value)}
             ></textarea>
           </div>
-          <div className="flex flex-wrap col-span-4 justify-between items-center">
+          <div className="">
             <button
-              className="px-32 py-3 thin bg-[#E5E6E7] text-txt hover:bg-txt hover:text-white  bg-opacity-40 text-lg"
+              className="w-full px-32 py-3 thin bg-[#E5E6E7] text-txt hover:bg-txt hover:text-white  bg-opacity-40 text-lg"
               onClick={handleform}
             >
               {t('send')}

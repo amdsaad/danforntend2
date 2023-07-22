@@ -8,8 +8,8 @@ export default function Modal() {
   const animateModal = () => {
     gsap.to(".modal", {
       keyframes: [{ backdropFilter: "blur(0px)" }, { scale: 0, y: "100%" }],
-      duration: 1.5,
-      ease: "power4.inOut",
+      duration: 0.2,
+      ease: "none",
       onStart: () => (document.body.style = "overflow-x:hidden"),
     });
   };
