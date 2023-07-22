@@ -56,7 +56,7 @@ export default function NewsRead() {
             <Topbar gd={true} />
             <section>
                 <div className="w-full relative pb-20 lg:pb-0  min-h-screen">
-                    <Image
+                    {/* <Image
                         src="/nr/hero.png"
                         alt="hero"
                         className="hidden lg:block"
@@ -69,7 +69,7 @@ export default function NewsRead() {
                         className="block lg:hidden"
                         fill
                         objectFit="cover"
-                    />
+                    /> */}
 
                     <div className="relative w-full h-full z-10">
                         <div className="container h-full ">
@@ -95,7 +95,23 @@ export default function NewsRead() {
                                     <p className="text-[9px] lg:text-xl text-txt">{post?.created_at?.date}</p>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <AiFillFilePdf className="w-7 h-7 text-[#E98108] cursor-pointer" />
+                                    {
+                                        post?.file_en && router.locale === "en" ?
+                                            <a download={post.file_en} href={post.file_en}  target="_blank" >
+                                                <AiFillFilePdf className="w-7 h-7 text-[#E98108] cursor-pointer" />
+                                            </a>
+                                            : null
+
+                                    }
+                                    {
+                                        post?.file_ar && router.locale === "ar" ?
+                                            <a download={post.file_ar} href={post.file_ar} target='_blank'  >
+                                                <AiFillFilePdf className="w-7 h-7 text-[#E98108] cursor-pointer" />
+                                            </a>
+                                            : null
+
+                                    }
+
                                     <BiShareAlt className="w-7 h-7 text-[#E98108] cursor-pointer" />
                                 </div>
                             </div>
@@ -114,7 +130,6 @@ export default function NewsRead() {
                 </div>
             </section>
 
-            <Footer />
         </div>
     );
 };
