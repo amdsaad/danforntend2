@@ -213,7 +213,7 @@ export default function Services({ tourisms, title, description, about_1, about_
             <h1 className="text-[25px] lg:text-[30px] bottom-20 scrubElements scrubFadeUp tBold text-[#64C07D] ">{tourisms[1]?.name}</h1>
             <p className="pt-10 pb-16 thin text-[#54290E] scrubElements scrubFadeUp text-[16px] lg:text-[18px] font-thin bottom-20">{tourisms[1]?.description}</p>
             <div className="flex items-center gap-4 scrubElements scrubFadeUp" id="ruralTourism_content_btn" ref={ruralTourism_content_btn}>
-              <button className="pr-3 pl-[30px] py-2  border rounded-full hidden lg:flex items-center gap-2"
+              <button onClick={animateModal} className="pr-3 pl-[30px] py-2  border rounded-full hidden lg:flex items-center gap-2"
                 onMouseEnter={() => setRuralBtnOver1(true)}
                 onMouseLeave={() => setRuralBtnOver1(false)}
                 style={{ backgroundColor: !ruralBtnOver1 ? 'transparent' : tourisms[1]?.color, color: ruralBtnOver1 ? 'white' : tourisms[1]?.color, borderColor: tourisms[1]?.color, }}
@@ -251,7 +251,7 @@ export default function Services({ tourisms, title, description, about_1, about_
             </div>
             <p className="pt-10 pb-16 thin text-[#54290E] scrubElements scrubFadeUp  text-[16px] lg:text-[18px] ">{tourisms[2]?.description}</p>
             <div className="flex items-center gap-4 scrubElements scrubFadeUp " id="ecotourism_content_btn " ref={ecotourism_content_btn}>
-              <button className="pr-3 pl-[30px] py-2 hidde border rounded-full lg:flex items-center gap-2"
+              <button onClick={animateModal} className="pr-3 pl-[30px] py-2 hidde border rounded-full lg:flex items-center gap-2"
                 onMouseEnter={() => setEcoBtnOver1(true)}
                 onMouseLeave={() => setEcoBtnOver1(false)}
                 style={{ backgroundColor: !ecoBtnOver1 ? 'transparent' : tourisms[2]?.color, color: ecoBtnOver1 ? 'white' : tourisms[2]?.color, borderColor: tourisms[2]?.color, }}
