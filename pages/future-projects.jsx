@@ -42,6 +42,10 @@ export default function FutureProject() {
   const [future, setFuture] = useState('');
   const [typetourisms, setTypetourisms] = useState([]);
 
+  const [advBtnOver, setAdvBtnOver] = useState(false);
+  const [ruralBtnOver, setRuralBtnOver] = useState(false);
+  const [ecoBtnOver, setEcoBtnOver] = useState(false);
+
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
@@ -78,7 +82,7 @@ export default function FutureProject() {
   }, [getFuture]);
   return (
     <div className=" min-h-screen w-full relative">
-      <Topbar/>
+      <Topbar />
       <section>
         <div className="w-full relative  min-h-screen">
           <Image
@@ -253,7 +257,18 @@ export default function FutureProject() {
               <p className="text-[14px] mt-5 text-txt thin">
                 {typetourisms[0]?.description}
               </p>
-              <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
+              <button
+                className="px-5 py-2 hidden text-sm mt-20  thin  border rounded-full lg:flex items-center gap-2"
+                onMouseEnter={() => setAdvBtnOver(true)}
+                onMouseLeave={() => setAdvBtnOver(false)}
+                style={{
+                  backgroundColor: advBtnOver
+                    ? 'white'
+                    : typetourisms[0]?.color,
+                  color: !advBtnOver ? 'white' : typetourisms[0]?.color,
+                  borderColor: typetourisms[0]?.color,
+                }}
+              >
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {typetourisms[0]?.button_1}
               </button>
@@ -273,7 +288,18 @@ export default function FutureProject() {
               <p className="text-[14px] mt-5 text-txt thin">
                 {typetourisms[1]?.description}
               </p>
-              <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
+              <button
+                className="px-5 py-2 hidden text-sm mt-20 thin  border rounded-full lg:flex items-center gap-2"
+                onMouseEnter={() => setRuralBtnOver(true)}
+                onMouseLeave={() => setRuralBtnOver(false)}
+                style={{
+                  backgroundColor: ruralBtnOver
+                    ? 'white'
+                    : typetourisms[1]?.color,
+                  color: !ruralBtnOver ? 'white' : typetourisms[1]?.color,
+                  borderColor: typetourisms[1]?.color,
+                }}
+              >
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {typetourisms[1]?.button_1}
               </button>
@@ -293,7 +319,18 @@ export default function FutureProject() {
               <p className="text-[14px] mt-5 text-txt thin">
                 {typetourisms[2]?.description}
               </p>
-              <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
+              <button
+                className="px-5 py-2 hidden text-sm mt-20 thin  border  rounded-full lg:flex items-center gap-2"
+                onMouseEnter={() => setEcoBtnOver(true)}
+                onMouseLeave={() => setEcoBtnOver(false)}
+                style={{
+                  backgroundColor: ecoBtnOver
+                    ? 'white'
+                    : typetourisms[2]?.color,
+                  color: !ecoBtnOver ? 'white' : typetourisms[2]?.color,
+                  borderColor: typetourisms[2]?.color,
+                }}
+              >
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {typetourisms[2]?.button_1}
               </button>
