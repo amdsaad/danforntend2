@@ -10,6 +10,8 @@ import axios from 'axios';
 import config from '../components/config';
 const apiURL = config.api_url;
 import { gsap } from 'gsap';
+import Topbar from '../components/layout/Topbar';
+
 export default function FutureProject() {
   const router = useRouter();
   const settings = {
@@ -21,9 +23,9 @@ export default function FutureProject() {
     slidesToScroll: 1,
     variableWidth: true,
     centerMode: true,
-    autoplay: true,
-    speed: 3000,
-    autoplaySpeed: 3000,
+    // autoplay: true,
+    // speed: 3000,
+    // autoplaySpeed: 3000,
   };
 
   const settings2 = {
@@ -39,6 +41,10 @@ export default function FutureProject() {
   const scrollRef = useRef(null);
   const [future, setFuture] = useState('');
   const [typetourisms, setTypetourisms] = useState([]);
+
+  const [advBtnOver, setAdvBtnOver] = useState(false);
+  const [ruralBtnOver, setRuralBtnOver] = useState(false);
+  const [ecoBtnOver, setEcoBtnOver] = useState(false);
 
   const scrollToElement = () => {
     const element = scrollRef.current;
@@ -76,6 +82,7 @@ export default function FutureProject() {
   }, [getFuture]);
   return (
     <div className=" min-h-screen w-full relative">
+      <Topbar />
       <section>
         <div className="w-full relative  min-h-screen">
           <Image
@@ -236,30 +243,56 @@ export default function FutureProject() {
       </section>
       <section className=" mb-20 hidden lg:block future_slide overflow-hidden">
         <Slider {...settings}>
-          <div
-            style={{ marginRight: '20px' }}
-            className="bg-[#E98108] bg-opacity-20 relative h-96 "
-          >
-            <img
-              className="absolute top-0 left-0"
-              src={typetourisms[0]?.image}
-              alt=""
-            />
-            <div className="w-3/6  top-16 rtl absolute font-bold right-10">
-              <h1 className="text-txt text-[22px]">{typetourisms[0]?.name}</h1>
-              <p className="text-[14px] mt-5 text-txt thin">
-                {typetourisms[0]?.description}
-              </p>
-              <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
-                <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                {typetourisms[0]?.button_1}
-              </button>
+          <div className="relative h-96 ">
+            <div
+              className="h-full w-full bg-opacity-50"
+              style={{
+                marginRight: '20px',
+              }}
+            >
+              <div
+                className="absolute top-0 right-0 left-0 bottom-0 opacity-20"
+                style={{
+                  backgroundColor: typetourisms[0]?.color,
+                }}
+              ></div>
+              <img
+                className="absolute top-0 left-0"
+                src={typetourisms[0]?.image}
+                alt=""
+              />
+              <div className="w-3/6  top-16 rtl absolute font-bold right-10">
+                <h1 className="text-txt text-[22px]">
+                  {typetourisms[0]?.name}
+                </h1>
+                <p className="text-[14px] mt-5 text-txt thin">
+                  {typetourisms[0]?.description}
+                </p>
+                <button
+                  className="px-5 py-2 hidden text-sm mt-20  thin  border rounded-full lg:flex items-center gap-2"
+                  onMouseEnter={() => setAdvBtnOver(true)}
+                  onMouseLeave={() => setAdvBtnOver(false)}
+                  style={{
+                    backgroundColor: advBtnOver
+                      ? 'white'
+                      : typetourisms[0]?.color,
+                    color: !advBtnOver ? 'white' : typetourisms[0]?.color,
+                    borderColor: typetourisms[0]?.color,
+                  }}
+                >
+                  <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
+                  {typetourisms[0]?.button_1}
+                </button>
+              </div>
             </div>
           </div>
-          <div
-            style={{ marginRight: '20px' }}
-            className="bg-[#E98108] bg-opacity-20 relative h-96 "
-          >
+          <div style={{ marginRight: '20px' }} className=" relative h-96 ">
+            <div
+              className="absolute top-0 right-0 left-0 bottom-0 opacity-20"
+              style={{
+                backgroundColor: typetourisms[1]?.color,
+              }}
+            ></div>
             <img
               className="absolute top-0 left-0"
               src={typetourisms[1]?.image}
@@ -270,16 +303,30 @@ export default function FutureProject() {
               <p className="text-[14px] mt-5 text-txt thin">
                 {typetourisms[1]?.description}
               </p>
-              <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
+              <button
+                className="px-5 py-2 hidden text-sm mt-20 thin  border rounded-full lg:flex items-center gap-2"
+                onMouseEnter={() => setRuralBtnOver(true)}
+                onMouseLeave={() => setRuralBtnOver(false)}
+                style={{
+                  backgroundColor: ruralBtnOver
+                    ? 'white'
+                    : typetourisms[1]?.color,
+                  color: !ruralBtnOver ? 'white' : typetourisms[1]?.color,
+                  borderColor: typetourisms[1]?.color,
+                }}
+              >
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {typetourisms[1]?.button_1}
               </button>
             </div>
           </div>
-          <div
-            style={{ marginRight: '20px' }}
-            className="bg-[#E98108] bg-opacity-20 relative h-96 "
-          >
+          <div style={{ marginRight: '20px' }} className="relative h-96 ">
+            <div
+              className="absolute top-0 right-0 left-0 bottom-0 opacity-20"
+              style={{
+                backgroundColor: typetourisms[2]?.color,
+              }}
+            ></div>
             <img
               className="absolute top-0 left-0"
               src={typetourisms[2]?.image}
@@ -290,7 +337,18 @@ export default function FutureProject() {
               <p className="text-[14px] mt-5 text-txt thin">
                 {typetourisms[2]?.description}
               </p>
-              <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
+              <button
+                className="px-5 py-2 hidden text-sm mt-20 thin  border  rounded-full lg:flex items-center gap-2"
+                onMouseEnter={() => setEcoBtnOver(true)}
+                onMouseLeave={() => setEcoBtnOver(false)}
+                style={{
+                  backgroundColor: ecoBtnOver
+                    ? 'white'
+                    : typetourisms[2]?.color,
+                  color: !ecoBtnOver ? 'white' : typetourisms[2]?.color,
+                  borderColor: typetourisms[2]?.color,
+                }}
+              >
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {typetourisms[2]?.button_1}
               </button>
@@ -299,69 +357,108 @@ export default function FutureProject() {
         </Slider>
       </section>
       <section className=" mb-20 block lg:hidden future_slide2 overflow-hidden">
-        <Slider {...settings2}>
-          <div
-            style={{ marginRight: '20px' }}
-            className="bg-[#E98108] bg-opacity-20 relative h-80 "
-          >
+        <div className="relative h-96 ">
+          <div className="h-full w-full ">
+            <div
+              className="absolute top-0 right-0 left-0 bottom-0 opacity-20"
+              style={{
+                backgroundColor: typetourisms[0]?.color,
+              }}
+            ></div>
             <img
-              className="absolute top-0 left-0"
+              className="absolute top-0 left-0 opacity-30"
               src={typetourisms[0]?.image}
               alt=""
             />
-            <div className="w-4/6  top-20 rtl absolute font-bold right-10">
+            <div className="w-3/6  rtl absolute font-bold right-10 flex flex-col justify-center gap-8 h-full">
               <h1 className="text-txt text-[22px]">{typetourisms[0]?.name}</h1>
-              <p className="text-[14px] mt-5 text-txt thin">
+              <p className="text-[14px]  text-txt thin">
                 {typetourisms[0]?.description}
               </p>
-              <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
+              <button
+                className="px-5 py-2 text-sm   thin  border rounded-full flex items-center gap-2"
+                onMouseEnter={() => setAdvBtnOver(true)}
+                onMouseLeave={() => setAdvBtnOver(false)}
+                style={{
+                  backgroundColor: advBtnOver
+                    ? 'white'
+                    : typetourisms[0]?.color,
+                  color: !advBtnOver ? 'white' : typetourisms[0]?.color,
+                  borderColor: typetourisms[0]?.color,
+                }}
+              >
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {typetourisms[0]?.button_1}
               </button>
             </div>
           </div>
-
+        </div>
+        <div className=" relative h-96 ">
           <div
-            style={{ marginRight: '20px' }}
-            className="bg-[#64C07D] bg-opacity-20 relative h-80 "
-          >
-            <img
-              className="absolute top-0 left-0"
-              src={typetourisms[1]?.image}
-              alt=""
-            />
-            <div className="w-4/6  top-16 rtl absolute font-bold right-10">
-              <h1 className="text-txt text-[22px]">{typetourisms[1]?.name}</h1>
-              <p className="text-[14px] mt-5 text-txt thin">
-                {typetourisms[1]?.description}
-              </p>
-              <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
-                <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                {typetourisms[1]?.button_1}
-              </button>
-            </div>
+            className="absolute top-0 right-0 left-0 bottom-0 opacity-20"
+            style={{
+              backgroundColor: typetourisms[1]?.color,
+            }}
+          ></div>
+          <img
+            className="absolute top-0 left-0 opacity-50"
+            src={typetourisms[1]?.image}
+            alt=""
+          />
+          <div className="w-3/6  rtl absolute font-bold right-10 flex flex-col justify-center gap-8 h-full">
+            <h1 className="text-txt text-[22px]">{typetourisms[1]?.name}</h1>
+            <p className="text-[14px] text-txt thin">
+              {typetourisms[1]?.description}
+            </p>
+            <button
+              className="px-5 py-2  text-sm  thin  border rounded-full flex items-center gap-2"
+              onMouseEnter={() => setRuralBtnOver(true)}
+              onMouseLeave={() => setRuralBtnOver(false)}
+              style={{
+                backgroundColor: ruralBtnOver
+                  ? 'white'
+                  : typetourisms[1]?.color,
+                color: !ruralBtnOver ? 'white' : typetourisms[1]?.color,
+                borderColor: typetourisms[1]?.color,
+              }}
+            >
+              <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
+              {typetourisms[1]?.button_1}
+            </button>
           </div>
+        </div>
+        <div className="relative h-96 ">
           <div
-            style={{ marginRight: '20px' }}
-            className="bg-[#1A92D3] bg-opacity-20 relative h-80 "
-          >
-            <img
-              className="absolute top-0 left-0"
-              src={typetourisms[2]?.image}
-              alt=""
-            />
-            <div className="w-4/6  top-16 rtl absolute font-bold right-10">
-              <h1 className="text-txt text-[22px]">{typetourisms[2]?.name}</h1>
-              <p className="text-[14px] mt-5 text-txt thin">
-                {typetourisms[2]?.description}
-              </p>
-              <button className="px-5 py-2 hidden text-sm mt-20   hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full lg:flex items-center gap-2">
-                <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
-                {typetourisms[2]?.button_1}
-              </button>
-            </div>
+            className="absolute top-0 right-0 left-0 bottom-0 opacity-20"
+            style={{
+              backgroundColor: typetourisms[2]?.color,
+            }}
+          ></div>
+          <img
+            className="absolute top-0 left-0"
+            src={typetourisms[2]?.image}
+            alt=""
+          />
+          <div className="w-3/6  rtl absolute font-bold right-10 flex flex-col justify-center gap-8 h-full">
+            <h1 className="text-txt text-[22px]">{typetourisms[2]?.name}</h1>
+            <p className="text-[14px] mt-5 text-txt thin">
+              {typetourisms[2]?.description}
+            </p>
+            <button
+              className="px-5 py-2  text-sm thin  border  rounded-full flex items-center gap-2"
+              onMouseEnter={() => setEcoBtnOver(true)}
+              onMouseLeave={() => setEcoBtnOver(false)}
+              style={{
+                backgroundColor: ecoBtnOver ? 'white' : typetourisms[2]?.color,
+                color: !ecoBtnOver ? 'white' : typetourisms[2]?.color,
+                borderColor: typetourisms[2]?.color,
+              }}
+            >
+              <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
+              {typetourisms[2]?.button_1}
+            </button>
           </div>
-        </Slider>
+        </div>
       </section>
       <section className="mb-8">
         <div
@@ -373,10 +470,10 @@ export default function FutureProject() {
               {/* TODO: add title on the backend  */}
               {future?.titele}
             </h1>
-            <button className="px-5 py-2  text-sm    hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full flex items-center gap-2">
+            {/* <button className="px-5 py-2  text-sm    hover:bg-txt  bg-white text-txt thin hover:text-white border border-txt rounded-full flex items-center gap-2">
               <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
               {future?.button_1_distinguish}
-            </button>
+            </button> */}
           </div>
           <p className="text-[14px] lg:text-[18px] thin lg:w-4/5 pt-8 scrubElements scrubFadeUp">
             {future?.start_distinguish}
