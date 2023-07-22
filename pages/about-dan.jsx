@@ -298,7 +298,7 @@ export default function AboutDan() {
           <p className="text-[#552A0E] text-center scrubElements scrubFadeUp text-[24px] tBold lg:text-[30px]   ">
             {/* TODO: add from backend once Islam is done */}
 
-            {t('Values')}
+            {about?.titele_value}
           </p>
         </div>
         <div className="container-fluid ">
@@ -327,7 +327,7 @@ export default function AboutDan() {
                   <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
                     <h1 className="transform lg:rotate-90 tBold ">
                       {/* TODO: add from backend once Islam is done */}
-                      {t('Values')}
+                      {item?.titele}
                     </h1>
                   </div>
                 )}
@@ -344,43 +344,99 @@ export default function AboutDan() {
         </p>
         <div className="container">
           <div className=" hidden lg:grid grid-cols-3 gap-16 scrubElements scrubRandom">
-            {about?.leaders?.map((item) => (
-              <div
-                onClick={() => {
-                  setOpen(true);
-                  setActiveCard(item);
-                }}
-                key={item.id}
-                className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
-              >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="thin text-[16px] text-txt">
-                      {router.locale === 'en' ? item.name_en : item.name}
-                    </p>
-                    <p className="thin text-[14px] text-txt">
-                      {router.locale === 'en' ? item.job_en : item.job}
-                    </p>
+            {about?.leaders
+              ?.filter((x) => x.role != 'management')
+              .map((item) => (
+                <div
+                  onClick={() => {
+                    setOpen(true);
+                    setActiveCard(item);
+                  }}
+                  key={item.id}
+                  className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="thin text-[16px] text-txt">
+                        {router.locale === 'en' ? item.name_en : item.name}
+                      </p>
+                      <p className="thin text-[14px] text-txt">
+                        {router.locale === 'en' ? item.job_en : item.job}
+                      </p>
+                    </div>
+                    <AiOutlineTwitter
+                      className="w-6 h-6"
+                      style={{ color: `${item.color}` }}
+                    />
                   </div>
-                  <AiOutlineTwitter
-                    className="w-6 h-6"
-                    style={{ color: `${item.color}` }}
-                  />
+                  <div className="flex items-center gap-1 mt-4">
+                    <Image width={20} height={20} src={`/home/l1.png`} alt="" />
+                    <Image width={20} height={20} src={`/home/l2.png`} alt="" />
+                    <Image width={20} height={20} src={`/home/l3.png`} alt="" />
+                    <Image width={20} height={20} src={`/home/l4.png`} alt="" />
+                  </div>
+                  <img src={item?.avatar} className="mt-5" alt="" />
                 </div>
-                <div className="flex items-center gap-1 mt-4">
-                  <Image width={20} height={20} src={`/home/l1.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l2.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l3.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l4.png`} alt="" />
-                </div>
-                <img src={item?.avatar} className="mt-5" alt="" />
-              </div>
-            ))}
+              ))}
           </div>
 
           <div className=" block lg:hidden w-full scrubElements scrubRandom">
             <Slider {...settings}>
-              {about?.leaders?.map((item) => (
+              {about?.leaders
+                ?.filter((x) => x.role != 'management')
+                .map((item) => (
+                  <div
+                    onClick={() => {
+                      setOpen(true);
+                      setActiveCard(item);
+                    }}
+                    key={item.id}
+                    className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <p className="thin text-[16px] text-txt">
+                          {router.locale === 'en' ? item.name_en : item.name}
+                        </p>
+                        <p className="thin text-[14px] text-txt">
+                          {router.locale === 'en' ? item.job_en : item.job}
+                        </p>
+                      </div>
+                      <AiOutlineTwitter
+                        className="w-6 h-6"
+                        style={{ color: `${item.color}` }}
+                      />
+                    </div>
+                    <div className="flex items-center gap-1 mt-4">
+                      <Image
+                        width={20}
+                        height={20}
+                        src={`/home/l1.png`}
+                        alt=""
+                      />
+                      <Image
+                        width={20}
+                        height={20}
+                        src={`/home/l2.png`}
+                        alt=""
+                      />
+                      <Image
+                        width={20}
+                        height={20}
+                        src={`/home/l3.png`}
+                        alt=""
+                      />
+                      <Image
+                        width={20}
+                        height={20}
+                        src={`/home/l4.png`}
+                        alt=""
+                      />
+                    </div>
+                    <img src={item?.avatar} className="mt-5" alt="" />
+                  </div>
+                ))}
+              {/* {about?.leaders?.map((item) => (
                 <div
                   key={item.id}
                   onClick={() => {
@@ -411,7 +467,7 @@ export default function AboutDan() {
                   </div>
                   <img src={item?.avatar} className="mt-5" alt="" />
                 </div>
-              ))}
+              ))} */}
             </Slider>
           </div>
         </div>
@@ -442,135 +498,97 @@ export default function AboutDan() {
           </div>
           {/* TODO:check if there uare different type of memebrs */}
           <div className=" hidden lg:grid grid-cols-3 mt-10 gap-16 scrubElements scrubFadeUp">
-            <div
-              onClick={() => setOpen(true)}
-              className="bg-[#F7F7F7] cursor-pointer px-6 pt-6 "
-            >
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="thin text-[16px] text-txt">
-                    عبدالرحمن أبا الخيل
-                  </p>
-                  <p className="thin text-[14px] text-txt">الرئيس التنفيذي</p>
+            {about?.leaders
+              ?.filter((x) => x.role === 'management')
+              .map((item) => (
+                <div
+                  onClick={() => {
+                    setOpen(true);
+                    setActiveCard(item);
+                  }}
+                  key={item.id}
+                  className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="thin text-[16px] text-txt">
+                        {router.locale === 'en' ? item.name_en : item.name}
+                      </p>
+                      <p className="thin text-[14px] text-txt">
+                        {router.locale === 'en' ? item.job_en : item.job}
+                      </p>
+                    </div>
+                    <AiOutlineTwitter
+                      className="w-6 h-6"
+                      style={{ color: `${item.color}` }}
+                    />
+                  </div>
+                  <div className="flex items-center gap-1 mt-4">
+                    <Image width={20} height={20} src={`/home/l1.png`} alt="" />
+                    <Image width={20} height={20} src={`/home/l2.png`} alt="" />
+                    <Image width={20} height={20} src={`/home/l3.png`} alt="" />
+                    <Image width={20} height={20} src={`/home/l4.png`} alt="" />
+                  </div>
+                  <img src={item?.avatar} className="mt-5" alt="" />
                 </div>
-                <AiOutlineTwitter className="w-6 h-6 text-txt" />
-              </div>
-              <div className="flex items-center gap-1 mt-4">
-                <Image width={20} height={20} src={`/home/l1.png`} alt="" />
-                <Image width={20} height={20} src={`/home/l2.png`} alt="" />
-                <Image width={20} height={20} src={`/home/l3.png`} alt="" />
-                <Image width={20} height={20} src={`/home/l4.png`} alt="" />
-              </div>
-              <img src="/about/shck.png" className="mt-5" alt="" />
-            </div>
-            <div
-              onClick={() => setOpen(true)}
-              className="bg-[#F7F7F7] cursor-pointer px-6 pt-6 "
-            >
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="thin text-[16px] text-txt">
-                    عبدالرحمن أبا الخيل
-                  </p>
-                  <p className="thin text-[14px] text-txt">الرئيس التنفيذي</p>
-                </div>
-                <AiOutlineTwitter className="w-6 h-6 text-txt" />
-              </div>
-              <div className="flex items-center gap-1 mt-4">
-                <Image width={20} height={20} src={`/home/l1.png`} alt="" />
-                <Image width={20} height={20} src={`/home/l2.png`} alt="" />
-                <Image width={20} height={20} src={`/home/l3.png`} alt="" />
-                <Image width={20} height={20} src={`/home/l4.png`} alt="" />
-              </div>
-              <img src="/about/shck.png" className="mt-5" alt="" />
-            </div>
-            <div
-              onClick={() => setOpen(true)}
-              className="bg-[#F7F7F7] cursor-pointer px-6 pt-6 "
-            >
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="thin text-[16px] text-txt">
-                    عبدالرحمن أبا الخيل
-                  </p>
-                  <p className="thin text-[14px] text-txt">الرئيس التنفيذي</p>
-                </div>
-                <AiOutlineTwitter className="w-6 h-6 text-txt" />
-              </div>
-              <div className="flex items-center gap-1 mt-4">
-                <Image width={20} height={20} src={`/home/l1.png`} alt="" />
-                <Image width={20} height={20} src={`/home/l2.png`} alt="" />
-                <Image width={20} height={20} src={`/home/l3.png`} alt="" />
-                <Image width={20} height={20} src={`/home/l4.png`} alt="" />
-              </div>
-              <img src="/about/shck.png" className="mt-5" alt="" />
-            </div>
+              ))}
           </div>
           <div className=" block mt-10 lg:hidden w-full scrubElements scrubFadeUp">
             <Slider {...settings}>
-              <div
-                onClick={() => setOpen(true)}
-                className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
-              >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="thin text-[16px] text-txt">
-                      عبدالرحمن أبا الخيل
-                    </p>
-                    <p className="thin text-[14px] text-txt">الرئيس التنفيذي</p>
+              {about?.leaders
+                ?.filter((x) => x.role === 'management')
+                .map((item) => (
+                  <div
+                    onClick={() => {
+                      setOpen(true);
+                      setActiveCard(item);
+                    }}
+                    key={item.id}
+                    className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <p className="thin text-[16px] text-txt">
+                          {router.locale === 'en' ? item.name_en : item.name}
+                        </p>
+                        <p className="thin text-[14px] text-txt">
+                          {router.locale === 'en' ? item.job_en : item.job}
+                        </p>
+                      </div>
+                      <AiOutlineTwitter
+                        className="w-6 h-6"
+                        style={{ color: `${item.color}` }}
+                      />
+                    </div>
+                    <div className="flex items-center gap-1 mt-4">
+                      <Image
+                        width={20}
+                        height={20}
+                        src={`/home/l1.png`}
+                        alt=""
+                      />
+                      <Image
+                        width={20}
+                        height={20}
+                        src={`/home/l2.png`}
+                        alt=""
+                      />
+                      <Image
+                        width={20}
+                        height={20}
+                        src={`/home/l3.png`}
+                        alt=""
+                      />
+                      <Image
+                        width={20}
+                        height={20}
+                        src={`/home/l4.png`}
+                        alt=""
+                      />
+                    </div>
+                    <img src={item?.avatar} className="mt-5" alt="" />
                   </div>
-                  <AiOutlineTwitter className="w-6 h-6 text-txt" />
-                </div>
-                <div className="flex items-center gap-1 mt-4">
-                  <Image width={20} height={20} src={`/home/l1.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l2.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l3.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l4.png`} alt="" />
-                </div>
-                <img src="/about/shck.png" className="mt-5" alt="" />
-              </div>
-              <div
-                onClick={() => setOpen(true)}
-                className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
-              >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="thin text-[16px] text-txt">
-                      عبدالرحمن أبا الخيل
-                    </p>
-                    <p className="thin text-[14px] text-txt">الرئيس التنفيذي</p>
-                  </div>
-                  <AiOutlineTwitter className="w-6 h-6 text-txt" />
-                </div>
-                <div className="flex items-center gap-1 mt-4">
-                  <Image width={20} height={20} src={`/home/l1.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l2.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l3.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l4.png`} alt="" />
-                </div>
-                <img src="/about/shck.png" className="mt-5" alt="" />
-              </div>
-              <div
-                onClick={() => setOpen(true)}
-                className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
-              >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="thin text-[16px] text-txt">
-                      عبدالرحمن أبا الخيل
-                    </p>
-                    <p className="thin text-[14px] text-txt">الرئيس التنفيذي</p>
-                  </div>
-                  <AiOutlineTwitter className="w-6 h-6 text-txt" />
-                </div>
-                <div className="flex items-center gap-1 mt-4">
-                  <Image width={20} height={20} src={`/home/l1.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l2.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l3.png`} alt="" />
-                  <Image width={20} height={20} src={`/home/l4.png`} alt="" />
-                </div>
-                <img src="/about/shck.png" className="mt-5" alt="" />
-              </div>
+                ))}
             </Slider>
           </div>
           {/* end of todo */}
@@ -620,13 +638,13 @@ const Exportable = ({ t, d }) => {
   return (
     <div className="absolute w-full h-full  flex items-center lg:items-start justify-center flex-col p-10 top-0 left-0 z-10">
       <h1 className="text-white text-[25px] lg:text-[50px] tBold text-center lg:text-left  ">
-        {t('Values')}
+        {d.titele}
       </h1>
       <p className="text-white text-[14px] lg:text-[18px] hidden   lg:block  lg:w-2/3">
-        {d.titele}
+        {d.description}
       </p>
       <p className="text-white text-[14px] lg:text-[18px] block text-center lg:hidden  lg:w-2/3">
-        {d.titele}
+        {d.description}
       </p>
     </div>
   );
