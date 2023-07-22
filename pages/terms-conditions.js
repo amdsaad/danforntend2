@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
 
-export default function NewsRead() {
+export default function Terms() {
     const { t } = useTranslation();
     const [terms, setTerms] = useState('');
     const router = useRouter();

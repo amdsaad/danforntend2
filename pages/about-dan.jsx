@@ -303,10 +303,11 @@ export default function AboutDan() {
 
             {about?.titele_value}
           </p>
+          <p className="scrubElements scrubFadeUp">{about?.description_value}</p>
         </div>
         <div className="container-fluid ">
           <div
-            className={` mt-10 flex flex-col  lg:flex-row items-center w-full h-[800px] lg:h-[500px] overflow-hidden `}
+            className={` mt-10 flex flex-col  lg:flex-row items-center w-full h-[800px] lg:h-[600px] overflow-hidden `}
           >
             {about?.rate_us?.map((item) => (
               <div
@@ -328,7 +329,7 @@ export default function AboutDan() {
                 />
                 {activeKey.id !== item.id && (
                   <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
-                    <h1 className="transform lg:rotate-90 tBold ">
+                    <h1 className="transform  tBold [writing-mode:vertical-lr]">
                       {/* TODO: add from backend once Islam is done */}
                       {item?.titele}
                     </h1>
@@ -710,7 +711,7 @@ function SideBar({
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <div className="flex h-full flex-col  bg-gradiunt border-r border-gray-50 border-opacity-50 shadow-xl">
-                    <div className="flex flex-col items-start px-8  py-6 ">
+                    <div className="flex flex-col items-start px-8  py-6 overflow-y-scroll">
                       <div
                         className="flex w-full  
                        border-opacity-50  pb-4  items-center justify-between"
@@ -724,14 +725,14 @@ function SideBar({
                           </div>
                         </div>
 
-                        <Link href="/">
+                        {/* <Link href="/">
                           <img
                             src="/logo.png"
                             style={{ width: '100%', objectFit: 'contain' }}
                             className=" h-10 "
                             alt=""
                           />
-                        </Link>
+                        </Link> */}
                       </div>
                       <img
                         src={activeCard?.avatar}
