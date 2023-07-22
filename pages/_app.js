@@ -29,14 +29,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Layout>
-      <Topbar />
-      {/* <SmootherContext.Provider value={smoother}>
-        <div id="smooth-wrapper">
-          <div id="smooth-content"> */}
-            <Component {...pageProps} />
-          {/* </div>
-        </div>
-      </SmootherContext.Provider> */}
+      <Component {...pageProps} />
       <Footer />
     </Layout>
   );

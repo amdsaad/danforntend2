@@ -10,6 +10,8 @@ const apiURL = config.api_url;
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Modal from './form/Modal';
+import Topbar from '../components/layout/Topbar';
+
 export default function Careers() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -95,6 +97,7 @@ export default function Careers() {
 
   return (
     <div className="min-h-screen relative w-full">
+      <Topbar/>
       <Modal />
       <section>
         <div className="w-full relative  min-h-screen">

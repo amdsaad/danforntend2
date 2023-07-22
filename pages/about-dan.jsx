@@ -15,6 +15,7 @@ import { useRouter } from 'next/router';
 import { AiOutlineTwitter } from 'react-icons/ai';
 import Slider from 'react-slick';
 import { gsap } from 'gsap';
+import Topbar from '../components/layout/Topbar';
 export default function AboutDan() {
   const router = useRouter();
   const [activeEffect, setActiveEffect] = useState(false);
@@ -79,6 +80,8 @@ export default function AboutDan() {
   }, []);
   return (
     <div className=" min-h-screen relative" ref={aboutRoot}>
+      <Topbar />
+
       <SideBar
         open={open}
         setOpen={setOpen}

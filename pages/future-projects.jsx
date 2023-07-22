@@ -10,6 +10,8 @@ import axios from 'axios';
 import config from '../components/config';
 const apiURL = config.api_url;
 import { gsap } from 'gsap';
+import Topbar from '../components/layout/Topbar';
+
 export default function FutureProject() {
   const router = useRouter();
   const settings = {
@@ -76,6 +78,7 @@ export default function FutureProject() {
   }, [getFuture]);
   return (
     <div className=" min-h-screen w-full relative">
+      <Topbar/>
       <section>
         <div className="w-full relative  min-h-screen">
           <Image
