@@ -23,7 +23,6 @@
   "DanTripStatistics": "إحصائيات رحلة دان",
   "LatestNews": "آخر الأخبار",
   "PrivacyAndUsagePolicy": "سياسة الخصوصية والاستخدام",
-  "AllRightsReserved": "جميع الحقوق محفوظة لشركة دان ذ.م.م. ٢٠٢٣",
   "CompanyMission": "تهدف شركة دان إلى الاستفادة من الإمكانات الطبيعية الثرية التي تزخر بها المملكة العربية السعودية، وتمكين",
   "DanLaunchLocations": "ستكون الانطلاقة لأعمال شركة دان في محافظة الأحساء، التي تُعد موطناً لأحد مواقع التراث العالمي المسجلة ضمن قائمة اليونسكو للتراث العالمي، وتضم أكبر واحة في العالم بها أكثر من مليوني شجرة نخيل. وقد اختيرت خمس وجهات إضافية، تشمل حائل والمدينة المنورة وبريدة والطائف وأبها، وذلك بناءً على سهولة الوصول إليها، والمناخ الموسمي المميز على مدار السنة، والمقومات السياحية والفعاليات الجذابة، التي توفر تجارب فريدة للزوار.",
   "Vision": "رؤيتنا",
@@ -63,8 +62,8 @@
   "City": "المدينة",
   "AreaOfInterest": "مجال الاهتمام",
   "MessageText": "نص الرسالة",
-  "FollowUs": "تابعنا",
-  "send": "ارسل",
+  "FollowUs": "Follow us",
+  "send": "Send",
   "contact_us": "تواصل معنا",
   "contact_txt": "تهدف شركة دان إلى الاستفادة من الإمكانات الطبيعية الثرية التي تزخر بها المملكة العربية السعودية، وتمكين",
   "readmore": "Read More",
@@ -79,5 +78,17 @@
     "area": "Please enter area",
     "resume": "Please upload your resume",
     "message": "Please enter message"
-  }
+  },
+  "messageSent": "Message sent successfully",
+  "messageSentError": "Message sending failed, please try again later",
+  "nav": {
+    "about": "About Dan",
+    "future": "Future Projects",
+    "careers": "Careers",
+    "contact": "Contact Us",
+    "media": "Media Center",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use"
+  },
+  "AllRightsReserved": "All rRights Reserved, Dan LLC © 2023"
 }

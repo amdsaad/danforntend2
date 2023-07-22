@@ -3,7 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { gsap } from 'gsap';
 import ScrollAnimations from '../components/scrollAnimations';
 import Image from 'next/image';
-import { BsLinkedin, BsTwitter } from 'react-icons/bs';
+import { BsLinkedin, BsTwitter, BsInstagram } from 'react-icons/bs';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { useTranslation } from 'next-i18next';
 import config from '../components/config';
@@ -24,6 +24,7 @@ export default function ContactUs() {
   });
   const [intro, setIntro] = useState('');
   const [introImage, setIntroImage] = useState('');
+  const [contacts, setContacts] = useState({});
 
   const getContact = useCallback(async () => {
     try {
@@ -44,6 +45,7 @@ export default function ContactUs() {
             });
             setIntro(response?.data?.intro_contactus);
             setIntroImage(response?.data?.intro_logo_contactus);
+            setContacts(response?.data?.contacts);
           }
         });
     } catch (error) {
@@ -75,7 +77,7 @@ export default function ContactUs() {
   }, []);
   return (
     <div className=" relative w-full min-h-screen">
-      <Topbar/>
+      <Topbar />
       <section>
         <div className="w-full relative  min-h-screen">
           <Image
@@ -147,13 +149,63 @@ export default function ContactUs() {
             <div className=" hidden lg:flex items-center gap-3">
               <p className="text-[19px] text-txt ">{t('FollowUs')}</p>
               {/* TODO: add social media from the backend */}
-              <BsTwitter className="w-6 h-6 text-txt" />
-              <BsLinkedin className="w-6 h-6 text-txt thin" />
+              {contacts.twitter ? (
+                <a
+                  href={contacts.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <BsTwitter className="w-6 h-6 text-txt" />
+                </a>
+              ) : null}
+              {contacts.linkedin ? (
+                <a
+                  href={contacts.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <BsLinkedin className="w-6 h-6 text-txt thin" />
+                </a>
+              ) : null}
+              {contacts.instagram ? (
+                <a
+                  href={contacts.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <BsInstagram className="w-6 h-6 text-txt thin" />
+                </a>
+              ) : null}
             </div>
             <div className=" flex lg:hidden items-center gap-3">
-              <p className="text-[19px] text-txt ">تابعنا</p>
-              <BsTwitter className="w-6 h-6 text-txt" />
-              <BsLinkedin className="w-6 h-6 text-txt thin" />
+              <p className="text-[19px] text-txt ">{t('FollowUs')}</p>
+              {contacts.twitter ? (
+                <a
+                  href={contacts.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <BsTwitter className="w-6 h-6 text-txt" />
+                </a>
+              ) : null}
+              {contacts.linkedin ? (
+                <a
+                  href={contacts.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <BsLinkedin className="w-6 h-6 text-txt thin" />
+                </a>
+              ) : null}
+              {contacts.instagram ? (
+                <a
+                  href={contacts.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <BsInstagram className="w-6 h-6 text-txt thin" />
+                </a>
+              ) : null}
             </div>
           </div>
           <div className="mt-10 bg-white">

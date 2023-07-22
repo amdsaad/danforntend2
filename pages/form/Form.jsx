@@ -111,9 +111,7 @@ export default function Form() {
     !formMessage
       ? (setFormMessageError(t('formError.message')), error.push('message'))
       : setFormMessageError('');
-    !formResume
-      ? (setFormResumeError(t('formError.resume')), error.push('resume'))
-      : setFormResumeError('');
+
     !formInterest
       ? (setFormInterestError(t('formError.area')), error.push('interest'))
       : setFormInterestError('');
@@ -123,37 +121,42 @@ export default function Form() {
 
   const handleform = async (e) => {
     e.preventDefault();
-    // const transporter = nodemailer.createTransport({
-    //   host: 'smtp.elasticemail.com',
-    //   port: 2525,
-    //   secure: false,
-    //   auth: {
-    //     user: 'info@dan.com',
-    //     pass: 'E7FFEAF247C0F467D87BD9D1F9BBBA58F773',
-    //   },
-    // });
-    const checkError = checkForm();
-    if (checkError.length === 0) {
-      // setIsSubmitSuccessful(true);
-      // setFormMsg('تم إرسال رسالتك بنجاح!');
+    console.log('send form');
 
+    const checkError = checkForm();
+    console.log(checkError);
+    if (!checkError.length) {
+      console.log('send form no error');
       try {
-        // const info = await transporter.sendMail({
-        //   from: '"Dan Info 👻" <info@dan.com>', // sender address
-        //   to: 'amdsaad@webse.io', // list of receivers
-        //   subject: 'Hello ✔', // Subject line
-        //   text: 'Hello world?', // plain text body
-        //   html: '<b>Hello world?</b>', // html body
-        // });
-        // console.log(info);
+        const res = await axios.post('/api/send-email', {
+          to: 'amdsaad@webse.io',
+          subject: `New Message from ${formName}`,
+          text: `
+          Name: ${formName}
+          Email: ${formEmail}
+          Mobile: ${formMobile}
+          City: ${formCity}
+          Interest: ${formInterest}
+          Message: ${formMessage}
+          `,
+        });
+        setIsSubmitSuccessful(true);
+        setFormMsg(t('messageSent'));
+
+        setFormName('');
+        setFormEmail('');
+        setFormMobile('');
+        setFormCity('');
+        setFormInterest('');
+        setFormMessage('');
       } catch (error) {
-        console.log(error);
+        setFormMsg(t('messageSentError'));
       }
     }
   };
   return (
     <div className=" relative w-full ">
-      <form onSubmit={handleform}>
+      <form>
         <div className="grid grid-cols-1 gap-1 lg:gap-3 lg:grid-cols-4">
           <div className="lg:col-span-2 col-span-4 relative pt-5">
             <input
@@ -189,7 +192,7 @@ export default function Form() {
               type="text"
               className={Input_Classes}
               placeholder={city}
-              onInput={(e) => setCity(e.target.value)}
+              onInput={(e) => setFormCity(e.target.value)}
             />
             <small className=" text-red-900">{formCityError}</small>
           </div>
@@ -224,10 +227,13 @@ export default function Form() {
             ></textarea>
           </div>
           <div className="flex flex-wrap col-span-4 justify-between items-center">
-            <button className="px-32 py-3 thin bg-[#E5E6E7] text-txt hover:bg-txt hover:text-white  bg-opacity-40 text-lg">
+            <button
+              className="px-32 py-3 thin bg-[#E5E6E7] text-txt hover:bg-txt hover:text-white  bg-opacity-40 text-lg"
+              onClick={handleform}
+            >
               {t('send')}
             </button>
-            {/* <h3>{isSubmitSuccessful && formMsg}</h3> */}
+            <h3>{isSubmitSuccessful && formMsg}</h3>
           </div>
         </div>
       </form>
