@@ -1,4 +1,4 @@
-import Topbar from "../components/layout/Topbar";
+
 import React, { useEffect, useRef, useState, useTransition, useCallback, useLayoutEffect } from "react";
 import Footer from "../components/layout/Footer";
 import Slider from "react-slick";

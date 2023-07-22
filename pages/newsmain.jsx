@@ -17,7 +17,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { gsap } from 'gsap';
 import ScrollAnimations from '../components/scrollAnimations';
-import Topbar from '../components/layout/Topbar';
+
 
 export default function Newsmain() {
   const [open, setOpen] = useState(false);
@@ -89,7 +89,7 @@ export default function Newsmain() {
 
   return (
     <div className=" w-full min-h-screen relative ">
-      <Topbar/>
+   
       <section>
         <div className="w-full relative  min-h-screen">
           <Image

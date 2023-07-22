@@ -11,7 +11,6 @@ const apiURL = config.api_url;
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Form from './form/Form';
-import Topbar from '../components/layout/Topbar';
 
 export default function ContactUs() {
   const router = useRouter();
@@ -75,7 +74,7 @@ export default function ContactUs() {
   }, []);
   return (
     <div className=" relative w-full min-h-screen">
-      <Topbar/>
+      
       <section>
         <div className="w-full relative  min-h-screen">
           <Image
