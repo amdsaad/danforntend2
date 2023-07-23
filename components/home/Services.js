@@ -188,7 +188,7 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {tourisms[0]?.button_1}
               </button>
-              <Link href={"/future-projects"} className="px-[30px] py-2   r border rounded-full flex items-center gap-2"
+              <Link href={"/future-projects"} className="px-[30px] py-2 border rounded-full flex items-center gap-2"
                 onMouseEnter={() => setAdvBtnOver2(true)}
                 onMouseLeave={() => setAdvBtnOver2(false)}
                 style={{ backgroundColor: advBtnOver2 ? 'transparent' : tourisms[0]?.color, color: !advBtnOver2 ? 'white' : tourisms[0]?.color, borderColor: tourisms[0]?.color, }}
@@ -224,7 +224,7 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {tourisms[1]?.button_1}
               </button>
-              <Link href={"/future-projects"} className="pr-3 pl-[30px] py-2  border rounded-full flex items-center gap-2"
+              <Link href={"/future-projects"} className="px-[30px] py-2  border rounded-full flex items-center gap-2"
                 onMouseEnter={() => setRuralBtnOver2(true)}
                 onMouseLeave={() => setRuralBtnOver2(false)}
                 style={{ backgroundColor: ruralBtnOver2 ? 'transparent' : tourisms[1]?.color, color: !ruralBtnOver2 ? 'white' : tourisms[1]?.color, borderColor: tourisms[1]?.color, }}
