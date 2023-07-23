@@ -307,7 +307,7 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <Image height={59} width={59} src="/home/l4.png" className="image14" alt="" />
               </div>
               <div>
-                <p className="text-[25px] tBold lg:text-[30px] text-white">{t("AboutDan")}</p>
+                <p className="text-[25px] tBold lg:text-[30px] text-white">{t("nav.about")}</p>
                 <div
                   className="text-[15px] lg:text-[16px] mt-10 thin text-white about__html"
                   dangerouslySetInnerHTML={{

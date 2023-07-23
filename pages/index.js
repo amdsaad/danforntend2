@@ -125,7 +125,11 @@ export default function Home() {
             <h1 className="text-[30px] tBold text-[#5A2910] pb-16">{t("LatestNews")}</h1>
             <div className=" grid grid-cols-1 lg:grid-cols-3 gap-10">
               {posts.map((item) => (
-                <Link key={item.id} href="/news-read" className="bg-[#e0e0e047] cursor-pointer">
+                <Link key={item.id} href={
+                  router.locale === 'en'
+                    ? `/en/news/${item.id}`
+                    : `/news/${item.id}`
+                } className="bg-[#e0e0e047] cursor-pointer">
                   <img src={item.image} alt={item.name + "image"} />
                   <div className="px-4 py-6">
                     <div className="flex items-center justify-between">
