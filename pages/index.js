@@ -58,6 +58,7 @@ export default function Home() {
         .then((response) => {
           console.log("response****", response.data.data);
           if (response.status === 200) {
+            console.log("response****", response.data.data);
             setTitle(response?.data?.data?.titele);
             setDescription(response?.data?.data?.description);
             setTourisms(response?.data?.data?.typetourisms);
