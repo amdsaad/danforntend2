@@ -17,6 +17,7 @@ import ScrollAnimations from "../scrollAnimations";
 import Modal from "../../pages/form/Modal";
 export default function Services({ tourisms, title, description, about_1, about_2, silders }) {
   const router = useRouter();
+  console.log(router.locale)
   const smoother = useRef();
   const { locale } = router;
   const advSection = useRef(null);
@@ -301,19 +302,18 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <Image height={59} width={59} src="/home/l1.png" className="image11" alt="" />
                 <Image height={59} width={59} src="/home/l2.png" className="image12" alt="" />
                 <Image height={59} width={59} src="/home/l3.png" className="image13" alt="" />
-
                 <Image height={59} width={59} src="/home/l4.png" className="image14" alt="" />
               </div>
               <div>
                 <p className="text-[25px] tBold lg:text-[30px] text-white">{t("AboutDan")}</p>
                 <div
-                  className="text-[15px] lg:text-[18px] mt-10 thin text-white"
+                  className="text-[15px] lg:text-[16px] mt-10 thin text-white about__html"
                   dangerouslySetInnerHTML={{
                     __html: about_1,
                   }}
                 ></div>
                 <div
-                  className="text-[15px] lg:text-[18px] mt-10 thin text-white"
+                  className="text-[15px] lg:text-[16px] mt-10 thin text-white about__html"
                   dangerouslySetInnerHTML={{
                     __html: about_2,
                   }}
@@ -322,11 +322,11 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <p className="text-[15px] lg:text-[18px] mt-10 thin text-white">{t("NatureConnection")}</p> */}
               </div>
               <div className="hidden lg:flex lg:flex-col items-center gap-10">
-                <Image height={94} width={93} src="/home/l1.png" className="image11" alt="" />
-                <Image height={94} width={93} src="/home/l2.png" className="image12" alt="" />
-                <Image height={94} width={93} src="/home/l3.png" className="image13" alt="" />
+                <Image height={94} width={93} src="/home/l1.png" className={router.locale === 'ar' ? "image11" : "image14"} alt="" />
+                <Image height={94} width={93} src="/home/l2.png" className={router.locale === 'ar' ? "image12" : "image13"} alt="" />
+                <Image height={94} width={93} src="/home/l3.png" className={router.locale === 'ar' ? "image13" : "image12"} alt="" />
                 <div>
-                  <Image height={94} width={93} src="/home/l4.png" className="image14" alt="" />
+                  <Image height={94} width={93} src="/home/l4.png" className={router.locale === 'ar' ? "image14" : "image11"} alt="" />
                 </div>
               </div>
             </div>
