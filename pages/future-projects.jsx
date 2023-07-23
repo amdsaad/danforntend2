@@ -11,6 +11,7 @@ import config from '../components/config';
 const apiURL = config.api_url;
 import { gsap } from 'gsap';
 import Topbar from '../components/layout/Topbar';
+import Modal from '../pages/form/Modal';
 
 export default function FutureProject() {
   const router = useRouter();
@@ -37,6 +38,22 @@ export default function FutureProject() {
     autoplay: true,
     speed: 3000,
     autoplaySpeed: 3000,
+  };
+  const animateModal = () => {
+    gsap.to('.modal', {
+      keyframes: [
+        {
+          scale: 1,
+          y: '0%',
+        },
+        {
+          backdropFilter: 'blur(10px)',
+        },
+      ],
+      duration: 2,
+      ease: 'power2.inOut',
+      onStart: () => (document.body.style = 'overflow:hidden'),
+    });
   };
   const scrollRef = useRef(null);
   const [future, setFuture] = useState('');
@@ -82,6 +99,8 @@ export default function FutureProject() {
   }, [getFuture]);
   return (
     <div className=" min-h-screen w-full relative">
+      <Modal />
+
       <Topbar />
       <section>
         <div className="w-full relative  min-h-screen">
@@ -269,6 +288,7 @@ export default function FutureProject() {
                   {typetourisms[0]?.description}
                 </p>
                 <button
+                  onClick={animateModal}
                   className="px-5 py-2 hidden text-sm mt-20  thin  border rounded-full lg:flex items-center gap-2"
                   onMouseEnter={() => setAdvBtnOver(true)}
                   onMouseLeave={() => setAdvBtnOver(false)}
@@ -338,6 +358,7 @@ export default function FutureProject() {
                 {typetourisms[2]?.description}
               </p>
               <button
+                onClick={animateModal}
                 className="px-5 py-2 hidden text-sm mt-20 thin  border  rounded-full lg:flex items-center gap-2"
                 onMouseEnter={() => setEcoBtnOver(true)}
                 onMouseLeave={() => setEcoBtnOver(false)}
@@ -376,6 +397,7 @@ export default function FutureProject() {
                 {typetourisms[0]?.description}
               </p>
               <button
+                onClick={animateModal}
                 className="px-5 py-2 text-sm   thin  border rounded-full flex items-center gap-2"
                 onMouseEnter={() => setAdvBtnOver(true)}
                 onMouseLeave={() => setAdvBtnOver(false)}

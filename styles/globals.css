@@ -215,7 +215,7 @@ float:left !important
 }
 
 .modal {
-z-index:1000
+z-index:999999
 }
 
 textarea {

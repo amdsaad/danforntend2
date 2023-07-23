@@ -8,9 +8,10 @@ export default function Modal({smoother,setSmoother}) {
   const animateModal = () => {
     smoother.paused(false)
     gsap.to(".modal", {
-      keyframes: [{ backdropFilter: "blur(0px)" }, { scale: 0, y: 0 }],
-      duration: 1.5,
-      ease: "power4.inOut",
+      keyframes: [{ backdropFilter: "blur(0px)" }, { scale: 0, y: "100%" }],
+      duration: 0.2,
+      ease: "none",
+
     });
   };
 
