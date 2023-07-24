@@ -32,14 +32,10 @@ input[type=number] {
   background:transparent;
 }
 ::-webkit-scrollbar-thumb {
+  background:black;
+  border-radius:20px
+}
 
-  background:black;
-  border-radius:20px
-}
-::-webkit-scrollbar-thumb {
-  background:black;
-  border-radius:20px
-}
 
 * {
   margin: 0;
