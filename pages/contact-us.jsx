@@ -12,7 +12,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Form from './form/Form';
 
-export default function ContactUs() {
+export default function ContactUs({smoother}) {
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [feedback, setFeedback] = useState('');
