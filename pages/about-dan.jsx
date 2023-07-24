@@ -209,6 +209,7 @@ export default function AboutDan({smoother}) {
                   onClick={() => {
                     setOpen(true);
                     setActiveCard(item);
+                    smoother.paused(true)
                   }}
                   key={item.id}
                   className="bg-[#F7F7F7] cursor-pointer px-6 pt-6 scrubElements scrubRandom"
