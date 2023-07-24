@@ -54,7 +54,7 @@ export default function AboutDan({smoother}) {
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      smoother.scrollTo(scrollRef.current,true,'top 100px')
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
   const [open, setOpen] = useState(false);
@@ -209,7 +209,7 @@ export default function AboutDan({smoother}) {
                   onClick={() => {
                     setOpen(true);
                     setActiveCard(item);
-                    smoother.paused(true)
+               
                   }}
                   key={item.id}
                   className="bg-[#F7F7F7] cursor-pointer px-6 pt-6 scrubElements scrubRandom"

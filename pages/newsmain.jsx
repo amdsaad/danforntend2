@@ -19,7 +19,7 @@ import { gsap } from 'gsap';
 import ScrollAnimations from '../components/scrollAnimations';
 
 
-export default function Newsmain({smoother}) {
+export default function Newsmain() {
   const [open, setOpen] = useState(false);
   const scrollRef = useRef(null);
   const [categories, setCategories] = useState([]);
@@ -31,7 +31,7 @@ export default function Newsmain({smoother}) {
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      smoother.scrollTo(scrollRef.current,true,'top 100px')
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
   const getCategories = useCallback(async () => {

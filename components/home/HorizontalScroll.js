@@ -5,9 +5,9 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
-import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
+
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function HorizontalScroll() {
   const [scrollPosition, setScrollPosition] = useState(0);

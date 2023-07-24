@@ -7,11 +7,11 @@ import Topbar from "../components/layout/Topbar";
 import Footer from "../components/layout/Footer";
 import { useState, useContext } from "react";
 function MyApp({ Component, pageProps }) {
-  let [smoother, setSmoother] = useState();
+ 
   return (
-    <Layout smoother={smoother} setSmoother={setSmoother}>
+    <Layout>
       <Topbar />
-      <Component {...pageProps} smoother={smoother} setSmoother={setSmoother}/>
+      <Component {...pageProps} />
       <Footer />
     </Layout>
   );

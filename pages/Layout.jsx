@@ -1,12 +1,10 @@
 import { useRouter } from "next/router";
 import { SwitchTransition, Transition } from "react-transition-group";
 import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { SmootherContext } from "../components/SmootherContext";
 import { useIsomorphicLayoutEffect } from "../components/isomorphicEffect";
 import { useState, useContext, useRef } from "react";
-const Layout = ({ children,smoother,setSmoother }) => {
+const Layout = ({ children }) => {
   const router = useRouter();
   const transitionDuration = 0.5;
   const onPageEnter = () => {
@@ -43,16 +41,7 @@ const Layout = ({ children,smoother,setSmoother }) => {
 
   
   useIsomorphicLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-    let smoother = ScrollSmoother.create({
-      smooth: 2,
-      normalizeScroll: true,
-      ignoreMobileResize: true,
-      effects: true,
-      preventDefault: true,
-      
-    });
-    setSmoother(smoother);
+    gsap.registerPlugin(ScrollTrigger);
     ScrollTrigger.refresh();
   }, []);
 
@@ -60,10 +49,7 @@ const Layout = ({ children,smoother,setSmoother }) => {
     <>
       <div className="transition-animation bg-[#fbe6ce]"></div>
       <div className="transition-animation  bg-[#fbe6ce]"></div>
-      {/* <div className="transition-animation  bg-indigo-50"></div> */}
-      <SmootherContext.Provider value={smoother}>
-        <div id="smooth-wrapper">
-          <div id="smooth-content">
+
             <SwitchTransition>
               <Transition 
               key={router.pathname} 
@@ -79,9 +65,7 @@ const Layout = ({ children,smoother,setSmoother }) => {
                 <main>{children}</main>
               </Transition>
             </SwitchTransition>
-          </div>
-        </div>
-      </SmootherContext.Provider>
+      
     </>
   );
 };

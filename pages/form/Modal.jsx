@@ -3,15 +3,15 @@ import { gsap } from "gsap";
 import Form from "./Form";
 import { FiXCircle } from "react-icons/fi";
 
-export default function Modal({smoother,setSmoother}) {
+export default function Modal(){
 
   const animateModal = () => {
-    smoother.paused(false)
+ 
     gsap.to(".modal", {
       keyframes: [{ backdropFilter: "blur(0px)" }, { scale: 0, y: "100%" }],
       duration: 0.2,
       ease: "none",
-
+      onStart: () => (document.body.style = "overflow-x:hidden"),
     });
   };
 

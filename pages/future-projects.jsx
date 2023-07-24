@@ -13,7 +13,7 @@ import { gsap } from "gsap";
 import Topbar from "../components/layout/Topbar";
 import Modal from "../pages/form/Modal";
 
-export default function FutureProject({smoother}) {
+export default function FutureProject() {
   const router = useRouter();
   const settings = {
     className: "slider variable-width",
@@ -66,7 +66,7 @@ export default function FutureProject({smoother}) {
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      smoother.scrollTo(scrollRef.current,true,'top 100px')
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
   const getFuture = useCallback(async () => {
@@ -113,9 +113,20 @@ export default function FutureProject({smoother}) {
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:justify-end items-start lg:pb-32">
-                <h1 className=" text-[24px] lg:text-[35px] text-white font-bold introFadeUp">{future?.titele}</h1>
-                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6  introFadeUp">{future?.description}</p>
-                <Image src="/home/arrow.png" width={32} height={32} onClick={scrollToElement} className=" cursor-pointer introFadeUp" alt="" />
+                <h1 className=" text-[24px] lg:text-[35px] text-white font-bold">
+                  {future?.main_titele}
+                </h1>
+                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 ">
+                  {future?.main_description}
+                </p>
+                <Image
+                  src="/home/arrow.png"
+                  width={32}
+                  height={32}
+                  onClick={scrollToElement}
+                  className=" cursor-pointer"
+                  alt=""
+                />
               </div>
             </div>
           </div>

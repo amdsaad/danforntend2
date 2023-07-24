@@ -12,7 +12,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Form from './form/Form';
 
-export default function ContactUs({smoother}) {
+export default function ContactUs() {
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [feedback, setFeedback] = useState('');
@@ -55,7 +55,7 @@ export default function ContactUs({smoother}) {
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      smoother.scrollTo(scrollRef.current,true,'top 100px')
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
   const mapStyles = {

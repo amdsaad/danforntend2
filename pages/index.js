@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState, useTransition, useCallback, useLayoutEffect } from "react";
 import Footer from "../components/layout/Footer";
 import Slider from "react-slick";
@@ -9,7 +8,7 @@ import Services from "../components/home/Services";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
-import ScrollAnimations from '../components/scrollAnimations';
+import ScrollAnimations from "../components/scrollAnimations";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 import config from "../components/config";
@@ -17,8 +16,7 @@ const apiURL = config.api_url;
 import axios from "axios";
 import { useRouter } from "next/router";
 
-
-export default function Home({smoother,setSmoother}) {
+export default function Home() {
   const router = useRouter();
   const [scrollPosition, setScrollPosition] = useState(0);
   const { locale } = router;
@@ -47,6 +45,7 @@ export default function Home({smoother,setSmoother}) {
   const [stories, setStories] = useState([]);
   const [posts, setPosts] = useState([]);
   const [silders, setSilders] = useState([]);
+  const [danNumberTitle, setDanNumberTitle] = useState("");
   const getHome = useCallback(async () => {
     try {
       await axios
@@ -67,6 +66,7 @@ export default function Home({smoother,setSmoother}) {
             setStories(response?.data?.data?.stories);
             setPosts(response?.data?.data?.posts);
             setSilders(response?.data?.data?.silders);
+            setDanNumberTitle(response?.data?.data?.plain_text);
           }
         });
     } catch (error) {
@@ -86,20 +86,19 @@ export default function Home({smoother,setSmoother}) {
 
   const { t } = useTranslation();
   return (
-
-        <div className="relative min-h-screen overflow-hidden">
-          <main>
-            <Services tourisms={tourisms} title={title} description={description} about_1={about_1} about_2={about_2} silders={silders} smoother={smoother} setSmoother={setSmoother} />
+    <div className="relative min-h-screen overflow-hidden">
+      <main>
+        <Services tourisms={tourisms} title={title} description={description} about_1={about_1} about_2={about_2} silders={silders} />
 
         <div className="w-full mt-16 lg:mt-40 mb-20 overflow-hidden scrubElements scrubFadeLeft">
           <div className="container">
-            <h1 className="text-[25px] text-center lg:bottom-20 lg:text-[30px] tBold text-[#5A2910] pb-16">{t("DanTripStatistics")}</h1>
+            <h1 className="text-[25px] text-center lg:bottom-20 lg:text-[30px] tBold text-[#5A2910] pb-16">{danNumberTitle}</h1>
             <div className="w-full hidden lg:block ">
               <Slider {...settingsDesktop}>
                 {stories.map((item, ind) => (
                   <div key={ind} className="relative w-full p-4">
                     <img key={ind} src={item.icon} alt="" className="rounded-md w-full object-cover" />
-                    <div className={router.locale === 'ar' ? "absolute bottom-5  z-10 p-4 right-5 text-right" : "absolute bottom-5 z-10 p-4 left-5 text-left"}>
+                    <div className={router.locale === "ar" ? "absolute bottom-5  z-10 p-4 right-5 text-right" : "absolute bottom-5 z-10 p-4 left-5 text-left"}>
                       <h1 className="text-white font-bold text-6xl ">
                         <span>{item.number} </span> <span className="text-[20px]">{item.text_number}</span>
                       </h1>
@@ -130,11 +129,7 @@ export default function Home({smoother,setSmoother}) {
             <h1 className="text-[30px] tBold text-[#5A2910] pb-16">{t("LatestNews")}</h1>
             <div className=" grid grid-cols-1 lg:grid-cols-3 gap-10">
               {posts.map((item) => (
-                <Link key={item.id} href={
-                  router.locale === 'en'
-                    ? `/en/news/${item.id}`
-                    : `/news/${item.id}`
-                } className="bg-[#e0e0e047] cursor-pointer">
+                <Link key={item.id} href={router.locale === "en" ? `/en/news/${item.id}` : `/news/${item.id}`} className="bg-[#e0e0e047] cursor-pointer">
                   <img src={item.image} alt={item.name + "image"} />
                   <div className="px-4 py-6">
                     <div className="flex items-center justify-between">
@@ -161,7 +156,6 @@ export default function Home({smoother,setSmoother}) {
         </div>
       </main>
     </div>
-
   );
 }
 export async function getStaticProps({ locale }) {
