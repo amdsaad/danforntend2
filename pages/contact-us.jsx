@@ -36,7 +36,7 @@ export default function ContactUs() {
         })
         .then((response) => {
           if (response.status === 200) {
-            console.log(response?.data);
+            console.log('settings', response?.data);
             setTitle(response?.data?.contactus_titele);
             setFeedback(response?.data?.feedback);
             setDefaultCenter({
