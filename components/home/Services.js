@@ -74,8 +74,7 @@ export default function Services({ tourisms, title, description, about_1, about_
   };
   useEffect(() => {
     let ctx = gsap.context(() => {
-      ScrollAnimations();
-      
+
       let panelWidth = gsap.getProperty(".panel", "width");
       let scrollWidth = gsap.getProperty(".panelcontainer", "width");
       gsap.set(".panelcontainer", { x: `${document.querySelector("html").dir === "rtl" ? "+" : "-"}` + `${scrollWidth - panelWidth}` });

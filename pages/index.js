@@ -9,6 +9,7 @@ import Services from "../components/home/Services";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+import ScrollAnimations from '../components/scrollAnimations';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 import config from "../components/config";
@@ -76,7 +77,12 @@ export default function Home({smoother,setSmoother}) {
     getHome();
   }, [getHome]);
 
-
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      ScrollAnimations();
+    });
+    return () => ctx.revert();
+  }, []);
 
   const { t } = useTranslation();
   return (
@@ -85,7 +91,7 @@ export default function Home({smoother,setSmoother}) {
           <main>
             <Services tourisms={tourisms} title={title} description={description} about_1={about_1} about_2={about_2} silders={silders} smoother={smoother} setSmoother={setSmoother} />
 
-        <div className="w-full mt-16 lg:mt-40 mb-20 overflow-hidden">
+        <div className="w-full mt-16 lg:mt-40 mb-20 overflow-hidden scrubElements scrubFadeLeft">
           <div className="container">
             <h1 className="text-[25px] text-center lg:bottom-20 lg:text-[30px] tBold text-[#5A2910] pb-16">{t("DanTripStatistics")}</h1>
             <div className="w-full hidden lg:block ">
@@ -119,7 +125,7 @@ export default function Home({smoother,setSmoother}) {
           </div>
         </div>
 
-        <div className="w-full mt-40 mb-20 overflow-hidden">
+        <div className="w-full mt-40 mb-20 overflow-hidden scrubElements scrubFadeRight">
           <div className="container">
             <h1 className="text-[30px] tBold text-[#5A2910] pb-16">{t("LatestNews")}</h1>
             <div className=" grid grid-cols-1 lg:grid-cols-3 gap-10">
