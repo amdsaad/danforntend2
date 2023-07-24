@@ -161,7 +161,7 @@ export default function Newsmain() {
               </div>
             </div>
           </div>
-          <div className="mt-10 flex items-center overflow-x-auto gap-3 scrubElements scrubFadeRight">
+          <div className="mt-10 flex items-center flex-wrap gap-3 scrubElements scrubFadeRight">
             {/* TODO: FILTER ON CLICK AS PER THE CATEGORY */}
             {categories.map((item) => (
               <div

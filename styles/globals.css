@@ -237,3 +237,11 @@ form small {
 .about__html p {
   font-family: readexProthin !important;
 }
+
+@media (max-width:450px) {
+  section{
+    overflow:hidden;
+    min-height:fit-content;
+    
+  }
+}
