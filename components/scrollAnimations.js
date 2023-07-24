@@ -3,10 +3,6 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollAnimations() {
-  const introOptions = {
-    start: "center 90%",
-    end: "+=300px",
-  };
   const scrubOptions = {
     start: "center 90%",
     end: "+=300px",
@@ -121,4 +117,6 @@ export default function ScrollAnimations() {
       });
     }
   });
+
+  
 }

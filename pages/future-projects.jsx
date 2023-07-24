@@ -13,7 +13,7 @@ import { gsap } from "gsap";
 import Topbar from "../components/layout/Topbar";
 import Modal from "../pages/form/Modal";
 
-export default function FutureProject() {
+export default function FutureProject({smoother}) {
   const router = useRouter();
   const settings = {
     className: "slider variable-width",
@@ -66,7 +66,7 @@ export default function FutureProject() {
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      smoother.scrollTo(scrollRef.current,true,'top 100px')
     }
   };
   const getFuture = useCallback(async () => {

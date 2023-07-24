@@ -69,8 +69,9 @@ export default function Services({ tourisms, title, description, about_1, about_
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      smoother.scrollTo(scrollRef.current,true,'top 100px')
     }
+
   };
   useEffect(() => {
     let ctx = gsap.context(() => {

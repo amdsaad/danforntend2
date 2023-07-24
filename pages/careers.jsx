@@ -18,7 +18,7 @@ export default function Careers({smoother,setSmoother}) {
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      smoother.scrollTo(scrollRef.current,true,'top 100px')
     }
   };
   const { t } = useTranslation();

@@ -55,7 +55,7 @@ export default function ContactUs() {
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      smoother.scrollTo(scrollRef.current,true,'top 100px')
     }
   };
   const mapStyles = {
