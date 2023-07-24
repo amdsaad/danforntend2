@@ -5,11 +5,12 @@ import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { SmootherContext } from "../components/SmootherContext";
 import { useIsomorphicLayoutEffect } from "../components/isomorphicEffect";
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 const Layout = ({ children,smoother,setSmoother }) => {
   const router = useRouter();
   const transitionDuration = 0.5;
   const onPageEnter = () => {
+    gsap.to(".introFadeUp", {y:100,opacity:0})
     gsap.to(".transition-animation", {
       x: "100%",
       duration: transitionDuration,
@@ -17,6 +18,15 @@ const Layout = ({ children,smoother,setSmoother }) => {
       borderRadius: "0",
       stagger: 0.1,
     });
+    gsap.to(".introFadeUp", {
+        y:0,
+        opacity:1,
+        duration:1,
+       stagger:.1,
+       ease:'sine'
+      });
+  
+
   };
 
   const onPageExit = () => {
@@ -28,6 +38,7 @@ const Layout = ({ children,smoother,setSmoother }) => {
       stagger: 0.1,
       revesed: true,
     });
+    
   };
 
   
@@ -54,7 +65,17 @@ const Layout = ({ children,smoother,setSmoother }) => {
         <div id="smooth-wrapper">
           <div id="smooth-content">
             <SwitchTransition>
-              <Transition key={router.pathname} timeout={transitionDuration * 1000} in={true} appear={true} onEnter={onPageEnter} onExit={onPageExit} mountOnEnter={true} unmountOnExit={true}>
+              <Transition 
+              key={router.pathname} 
+              timeout={transitionDuration * 1000} 
+              in={true} 
+              appear={true} 
+              onEnter={onPageEnter} 
+              onExit={onPageExit} 
+              mountOnEnter={true} 
+              unmountOnExit={true}
+              
+              >
                 <main>{children}</main>
               </Transition>
             </SwitchTransition>

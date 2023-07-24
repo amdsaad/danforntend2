@@ -147,14 +147,14 @@ export default function Services({ tourisms, title, description, about_1, about_
       <Modal smoother={smoother} setSmoother={setSmoother}/>
       <section id="herosection" ref={herosection}>
         <div className="w-full relative  min-h-screen">
-          <Image src="/home/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
-          <Image src="/home/heromob.png" alt="hero" className="block lg:hidden" fill objectFit="cover" />
+          <Image src="/home/hero.png" alt="hero" className="hidden lg:block introFadeUp" fill objectFit="cover" />
+          <Image src="/home/heromob.png" alt="hero" className="block lg:hidden introFadeUp" fill objectFit="cover" />
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:justify-end items-start lg:pb-32">
-                <h1 className=" text-[35px] lg:text-[50px] text-white font-bold">{title}</h1>
-                <p className="text-white text-[16px] lg:text-[22px] lg:w-2/5 py-6 ">{description}</p>
-                <Image src="/home/arrow.png" width={32} height={32} onClick={scrollToElement} className=" cursor-pointer" alt="" />
+                <h1 className=" text-[35px] lg:text-[50px] text-white font-bold introFadeUp">{title}</h1>
+                <p className="text-white text-[16px] lg:text-[22px] lg:w-2/5 py-6  introFadeUp">{description}</p>
+                <Image src="/home/arrow.png" width={32} height={32} onClick={scrollToElement} className=" cursor-pointer introFadeUp" alt="" />
               </div>
             </div>
           </div>

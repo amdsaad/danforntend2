@@ -121,20 +121,4 @@ export default function ScrollAnimations() {
       });
     }
   });
-
-
-  const introElements = gsap.utils.toArray(".introElements");
- 
-
-    
-      gsap.from(".introFadeUp", {
-        y:100,
-        opacity:0,
-        duration:1,
-       stagger:.1,
-       ease:'sine'
-      });
-    
-
-
 }

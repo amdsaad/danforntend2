@@ -66,27 +66,29 @@ export default function AboutDan() {
     getAbout();
   }, [getAbout]);
   useEffect(() => {
-    
     let ctx = gsap.context(() => {
       ScrollAnimations();
     });
     return () => ctx.revert();
   }, [about]);
+
+ 
+
   return (
     <div className=" min-h-screen relative" ref={aboutRoot}>
      
 
       <SideBar open={open} setOpen={setOpen} language={aboutDanLang} setLanguage={setAboutDanLang} activeCard={activeCard} />
       <section>
-        <div className="w-full relative  min-h-screen">
-          <Image src="/about/hero.png" alt="hero" className="hidden lg:block " fill objectFit="cover" />
-          <Image src="/about/heromob.png" alt="hero" className="block lg:hidden " fill objectFit="cover" />
+        <div className="w-full relative  min-h-screen ">
+          <Image src="/about/hero.png" alt="hero" className="hidden lg:block introFadeUp" fill objectFit="cover" />
+          <Image src="/about/heromob.png" alt="hero" className="block lg:hidden  introFadeUp" fill objectFit="cover" />
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
-              <div className=" flex flex-col h-full  justify-center  lg:lg:justify-end items-start lg:pb-32">
-                <h1 className=" text-[24px]  lg:text-[35px] text-white font-bold">{about?.titele}</h1>
-                <p className="text-white  text-[16px] lg:text-[16px] lg:w-3/5 py-6 ">{about?.description}</p>
-                <Image src="/home/arrow.png" width={32} height={32} onClick={scrollToElement} className=" cursor-pointer " alt="" />
+              <div className=" flex flex-col h-full  justify-center  lg:lg:justify-end items-start lg:pb-32 introFadeUp">
+                <h1 className=" text-[24px]  lg:text-[35px] text-white font-bold introFadeUp">{about?.titele}</h1>
+                <p className="text-white  text-[16px] lg:text-[16px] lg:w-3/5 py-6  introFadeUp">{about?.description}</p>
+                <Image src="/home/arrow.png" width={32} height={32} onClick={scrollToElement} className=" cursor-pointer  introFadeUp" alt="" />
               </div>
             </div>
           </div>
