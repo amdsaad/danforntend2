@@ -29,7 +29,7 @@ input[type="number"] {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: black;
+  background-image: linear-gradient(#4f2c14, #291508);
   border-radius: 20px;
 }
 .scrollbar-none::-webkit-scrollbar {
