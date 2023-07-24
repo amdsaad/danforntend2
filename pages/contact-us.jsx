@@ -11,7 +11,6 @@ const apiURL = config.api_url;
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Form from './form/Form';
-import Topbar from '../components/layout/Topbar';
 
 export default function ContactUs() {
   const router = useRouter();
@@ -56,7 +55,7 @@ export default function ContactUs() {
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
   const mapStyles = {
@@ -77,30 +76,30 @@ export default function ContactUs() {
   }, []);
   return (
     <div className=" relative w-full min-h-screen">
-      <Topbar />
+      
       <section>
         <div className="w-full relative  min-h-screen">
           <Image
             src="/contact/hero.png"
             alt="hero"
-            className="hidden lg:block"
+            className="hidden lg:block introFadeUp"
             fill
             objectFit="cover"
           />
           <Image
             src="/contact/heromob.png"
             alt="hero"
-            className="block lg:hidden"
+            className="block lg:hidden introFadeUp"
             fill
             objectFit="cover"
           />
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
-                <h1 className=" text-[24px]  lg:text-[35px] text-white font-bold">
+                <h1 className=" text-[24px]  lg:text-[35px] text-white font-bold introFadeUp">
                   {title}
                 </h1>
-                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 ">
+                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6  introFadeUp">
                   {feedback}
                 </p>
                 <Image
@@ -108,7 +107,7 @@ export default function ContactUs() {
                   width={32}
                   height={32}
                   onClick={scrollToElement}
-                  className=" cursor-pointer"
+                  className=" cursor-pointer introFadeUp"
                   alt=""
                 />
               </div>
@@ -143,9 +142,12 @@ export default function ContactUs() {
       </section>
       <section className="my-20">
         <div className="container">
-          <Form />
+          <div  className='scrubElements scrubFadeUp'>
 
-          <div className="flex items-center flex-col lg:flex-row gap-10 justify-between mt-10">
+          <Form />
+          </div>
+
+          <div className="flex items-center flex-col lg:flex-row gap-10 justify-between mt-10 scrubElements scrubFadeLeft">
             <div className=" hidden lg:flex items-center gap-3">
               <p className="text-[19px] text-txt ">{t('FollowUs')}</p>
               {/* TODO: add social media from the backend */}
@@ -208,7 +210,7 @@ export default function ContactUs() {
               ) : null}
             </div>
           </div>
-          <div className="mt-10 bg-white">
+          <div className="mt-10 bg-white scrubElements scrubFadeRight">
             <LoadScript googleMapsApiKey="AIzaSyDhEd4erdTFIBvGYH5r1Uyv7D7ssra05I0">
               <GoogleMap
                 mapContainerStyle={mapStyles}

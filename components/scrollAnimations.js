@@ -3,8 +3,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollAnimations() {
-  
-  const scrollTriggerOptions = {
+  const scrubOptions = {
     start: "center 90%",
     end: "+=300px",
     scrub: 1,
@@ -17,7 +16,7 @@ export default function ScrollAnimations() {
         opacity: 0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -27,7 +26,7 @@ export default function ScrollAnimations() {
         opacity: 0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -37,7 +36,7 @@ export default function ScrollAnimations() {
         opacity: 0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -46,7 +45,7 @@ export default function ScrollAnimations() {
         xPercent: 100,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -55,7 +54,7 @@ export default function ScrollAnimations() {
         xPercent: -100,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -64,7 +63,7 @@ export default function ScrollAnimations() {
         y: 100,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -75,7 +74,7 @@ export default function ScrollAnimations() {
         opacity:0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -85,7 +84,7 @@ export default function ScrollAnimations() {
         opacity:0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -95,7 +94,7 @@ export default function ScrollAnimations() {
         opacity:0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -104,7 +103,7 @@ export default function ScrollAnimations() {
         opacity:0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -113,9 +112,11 @@ export default function ScrollAnimations() {
         scale: 0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
   });
+
+  
 }

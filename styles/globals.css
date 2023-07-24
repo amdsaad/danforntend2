@@ -21,10 +21,18 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 ::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(#4f2c14, #291508);
+  border-radius: 20px;
+}
+.scrollbar-none::-webkit-scrollbar {
   width: 0;
 }
 
@@ -39,9 +47,8 @@ html {
 }
 
 body {
-overflow-x:hidden !important
+  overflow-x: hidden !important;
 }
-
 
 a {
   color: inherit;
@@ -209,25 +216,31 @@ header {
   height: 100%;
 }
 
-
 .slick-slide {
-float:left !important
+  float: left !important;
 }
 
 .modal {
-z-index:999999
+  z-index: 999999;
 }
 
 textarea {
-min-height:200px;
-resize:none
+  min-height: 200px;
+  resize: none;
 }
 
 form small {
-position:absolute;
-top:-1px
+  position: absolute;
+  top: -1px;
 }
 
 .about__html p {
   font-family: readexProthin !important;
+}
+
+.w-fullx2 {
+  width: 200%;
+}
+.h-fullx2 {
+  height: 200%;
 }
