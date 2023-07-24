@@ -113,10 +113,10 @@ export default function FutureProject() {
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:justify-end items-start lg:pb-32">
-                <h1 className=" text-[24px] lg:text-[35px] text-white font-bold">
+                <h1 className=" text-[24px] lg:text-[35px] text-white font-bold introFadeUp">
                   {future?.main_titele}
                 </h1>
-                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 ">
+                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6  introFadeUp">
                   {future?.main_description}
                 </p>
                 <Image
@@ -124,7 +124,7 @@ export default function FutureProject() {
                   width={32}
                   height={32}
                   onClick={scrollToElement}
-                  className=" cursor-pointer"
+                  className=" cursor-pointer introFadeUp"
                   alt=""
                 />
               </div>
@@ -351,8 +351,8 @@ export default function FutureProject() {
         </div>
       </section>
       <section className="mb-8">
-        <div className="container py-20 text-white overflow-hidden relative" > 
-          <img src='/future/Group 8199.png' alt="" className="absolute left-0 bottom-0 w-fullx2 h-fullx2  -z-10" data-speed=".1"   />
+        <div className="container py-20 text-white  relative" > 
+          <img src='/future/Group 8199.png' alt="" className="absolute left-0 bottom-0 w-full h-full -z-10"  />
           <div className="flex items-start gap-4 lg:items-center lg:flex-row flex-col lg:justify-between ">
             <h1 className=" tBold text-[24px] lg:text-[30px] scrubElements scrubFadeUp ">
               {/* TODO: add title on the backend  */}
