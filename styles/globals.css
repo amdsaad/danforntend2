@@ -25,7 +25,20 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 ::-webkit-scrollbar {
-  width: 0;
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  width: 10px;
+  background:transparent;
+}
+::-webkit-scrollbar-thumb {
+
+  background:black;
+  border-radius:20px
+}
+::-webkit-scrollbar-thumb {
+  background:black;
+  border-radius:20px
 }
 
 * {
