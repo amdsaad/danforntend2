@@ -142,9 +142,12 @@ export default function ContactUs() {
       </section>
       <section className="my-20">
         <div className="container">
-          <Form />
+          <div  className='scrubElements scrubFadeUp'>
 
-          <div className="flex items-center flex-col lg:flex-row gap-10 justify-between mt-10">
+          <Form />
+          </div>
+
+          <div className="flex items-center flex-col lg:flex-row gap-10 justify-between mt-10 scrubElements scrubFadeLeft">
             <div className=" hidden lg:flex items-center gap-3">
               <p className="text-[19px] text-txt ">{t('FollowUs')}</p>
               {/* TODO: add social media from the backend */}
@@ -207,7 +210,7 @@ export default function ContactUs() {
               ) : null}
             </div>
           </div>
-          <div className="mt-10 bg-white">
+          <div className="mt-10 bg-white scrubElements scrubFadeRight">
             <LoadScript googleMapsApiKey="AIzaSyDhEd4erdTFIBvGYH5r1Uyv7D7ssra05I0">
               <GoogleMap
                 mapContainerStyle={mapStyles}

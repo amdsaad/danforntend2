@@ -66,11 +66,12 @@ export default function AboutDan() {
     getAbout();
   }, [getAbout]);
   useEffect(() => {
+    
     let ctx = gsap.context(() => {
       ScrollAnimations();
     });
     return () => ctx.revert();
-  }, []);
+  }, [about]);
   return (
     <div className=" min-h-screen relative" ref={aboutRoot}>
      
@@ -78,14 +79,14 @@ export default function AboutDan() {
       <SideBar open={open} setOpen={setOpen} language={aboutDanLang} setLanguage={setAboutDanLang} activeCard={activeCard} />
       <section>
         <div className="w-full relative  min-h-screen">
-          <Image src="/about/hero.png" alt="hero" className="hidden lg:block" fill objectFit="cover" />
-          <Image src="/about/heromob.png" alt="hero" className="block lg:hidden" fill objectFit="cover" />
+          <Image src="/about/hero.png" alt="hero" className="hidden lg:block " fill objectFit="cover" />
+          <Image src="/about/heromob.png" alt="hero" className="block lg:hidden " fill objectFit="cover" />
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
-              <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
+              <div className=" flex flex-col h-full  justify-center  lg:lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[24px]  lg:text-[35px] text-white font-bold">{about?.titele}</h1>
-                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 ">{about?.description}</p>
-                <Image src="/home/arrow.png" width={32} height={32} onClick={scrollToElement} className=" cursor-pointer" alt="" />
+                <p className="text-white  text-[16px] lg:text-[16px] lg:w-3/5 py-6 ">{about?.description}</p>
+                <Image src="/home/arrow.png" width={32} height={32} onClick={scrollToElement} className=" cursor-pointer " alt="" />
               </div>
             </div>
           </div>
@@ -198,7 +199,7 @@ export default function AboutDan() {
       <section className="pb-20">
         <p className="text-[#552A0E] pb-10 text-center text-[24px] tBold lg:text-[30px]  scrubElements scrubRandom ">{about?.boardofdirectors}</p>
         <div className="container">
-          <div className=" hidden lg:grid grid-cols-3 gap-16 scrubElements scrubRandom">
+          <div className=" hidden lg:grid grid-cols-3 gap-16 ">
             {about?.leaders
               ?.filter((x) => x.role != "management")
               .map((item) => (
@@ -208,7 +209,7 @@ export default function AboutDan() {
                     setActiveCard(item);
                   }}
                   key={item.id}
-                  className="bg-[#F7F7F7] cursor-pointer px-6 pt-6"
+                  className="bg-[#F7F7F7] cursor-pointer px-6 pt-6 scrubElements scrubRandom"
                 >
                   <div className="flex items-start justify-between">
                     <div>

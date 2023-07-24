@@ -17,7 +17,6 @@ import Modal from "../../pages/form/Modal";
 export default function Services({ tourisms, title, description, about_1, about_2, silders,smoother,setSmoother }) {
   const router = useRouter();
   console.log(router.locale)
-  const smoother = useRef();
   const { locale } = router;
   const advSection = useRef(null);
   const advSection_img_1 = useRef(null);

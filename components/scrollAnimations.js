@@ -3,8 +3,11 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollAnimations() {
-  
-  const scrollTriggerOptions = {
+  const introOptions = {
+    start: "center 90%",
+    end: "+=300px",
+  };
+  const scrubOptions = {
     start: "center 90%",
     end: "+=300px",
     scrub: 1,
@@ -17,7 +20,7 @@ export default function ScrollAnimations() {
         opacity: 0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -27,7 +30,7 @@ export default function ScrollAnimations() {
         opacity: 0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -37,7 +40,7 @@ export default function ScrollAnimations() {
         opacity: 0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -46,7 +49,7 @@ export default function ScrollAnimations() {
         xPercent: 100,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -55,7 +58,7 @@ export default function ScrollAnimations() {
         xPercent: -100,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -64,7 +67,7 @@ export default function ScrollAnimations() {
         y: 100,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -75,7 +78,7 @@ export default function ScrollAnimations() {
         opacity:0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -85,7 +88,7 @@ export default function ScrollAnimations() {
         opacity:0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -95,7 +98,7 @@ export default function ScrollAnimations() {
         opacity:0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -104,7 +107,7 @@ export default function ScrollAnimations() {
         opacity:0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
@@ -113,9 +116,25 @@ export default function ScrollAnimations() {
         scale: 0,
         scrollTrigger: {
           trigger: e,
-          ...scrollTriggerOptions,
+          ...scrubOptions,
         },
       });
     }
   });
+
+
+  const introElements = gsap.utils.toArray(".introElements");
+ 
+
+    
+      gsap.from(".introFadeUp", {
+        y:100,
+        opacity:0,
+        duration:1,
+       stagger:.1,
+       ease:'sine'
+      });
+    
+
+
 }
