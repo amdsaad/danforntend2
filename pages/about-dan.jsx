@@ -362,9 +362,15 @@ export default function AboutDan() {
 const Exportable = ({ t, d }) => {
   return (
     <div className="absolute w-full h-full  flex items-center lg:items-start justify-center flex-col p-10 top-0 left-0 z-10">
-      <h1 className="text-white text-[25px] lg:text-[50px] tBold text-center lg:text-left  ">{d.titele}</h1>
-      <p className="text-white text-[14px] lg:text-[18px] hidden   lg:block  lg:w-2/3">{d.description}</p>
-      <p className="text-white text-[14px] lg:text-[18px] block text-center lg:hidden  lg:w-2/3">{d.description}</p>
+      <h1 className="text-white text-[25px] lg:text-[50px] tBold text-center lg:text-left mb-5 ">
+        {d.titele}
+      </h1>
+      <p className="text-white text-[14px] lg:text-[18px] hidden   lg:block  lg:w-2/3">
+        {d.description}
+      </p>
+      <p className="text-white text-[14px] lg:text-[18px] block text-center lg:hidden  lg:w-2/3">
+        {d.description}
+      </p>
     </div>
   );
 };

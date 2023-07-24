@@ -227,3 +227,7 @@ form small {
 position:absolute;
 top:-1px
 }
+
+.about__html p {
+  font-family: readexProthin !important;
+}

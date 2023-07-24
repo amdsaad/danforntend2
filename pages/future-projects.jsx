@@ -244,7 +244,7 @@ export default function FutureProject() {
                 </div>
               </div>
               <p className="thin text-txt text-[14px] pr-8 lg:pr-0 lg:text-[18px] scrubElements scrubFadeLeft pt-5">
-                {future?.start_distinguish}
+                {future?.start}
               </p>
             </div>
             <div className="w-full pt-6 lg:pt-[150px] lg:pr-[420px]">

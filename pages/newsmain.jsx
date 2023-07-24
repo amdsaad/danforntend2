@@ -133,7 +133,7 @@ export default function Newsmain() {
         <div className="container">
           <div className="flex items-center  justify-between">
             <h1 className="text-txt tBold text-[24px] lg:text-[30px] scrubElements scrubFadeRight">
-              {t('MediaCenter')}
+              {title}
             </h1>
             <div className="flex items-center  lg:w-auto gap-5 scrubElements scrubRotateFadeUp">
               {/* <div className="p-3 rounded-full hidden lg:flex cursor-pointer transition-all duration-500 ease-linear items-center gap-2 bg-[#552A0E] ">
@@ -217,9 +217,6 @@ export default function Newsmain() {
                 </div>
               </Link>
             ))}
-          </div>
-          <div className="mt-10 w-full py-4 cursor-pointer scrubElements scrubFadeUp tBold bg-[#e0e0e047] text-center text-txt text-[16px] lg:text-[30px]">
-            {t('LearnMore')}
           </div>
         </div>
       </section>

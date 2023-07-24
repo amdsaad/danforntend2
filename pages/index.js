@@ -57,6 +57,7 @@ export default function Home({smoother,setSmoother}) {
         .then((response) => {
           console.log("response****", response.data.data);
           if (response.status === 200) {
+            console.log("response****", response.data.data);
             setTitle(response?.data?.data?.titele);
             setDescription(response?.data?.data?.description);
             setTourisms(response?.data?.data?.typetourisms);
@@ -92,11 +93,11 @@ export default function Home({smoother,setSmoother}) {
                 {stories.map((item, ind) => (
                   <div key={ind} className="relative w-full p-4">
                     <img key={ind} src={item.icon} alt="" className="rounded-md w-full object-cover" />
-                    <div className="absolute bottom-5 right-5 z-10 p-4">
-                      <h1 className="text-white font-bold text-6xl  text-right">
+                    <div className={router.locale === 'ar' ? "absolute bottom-5  z-10 p-4 right-5 text-right" : "absolute bottom-5 z-10 p-4 left-5 text-left"}>
+                      <h1 className="text-white font-bold text-6xl ">
                         <span>{item.number} </span> <span className="text-[20px]">{item.text_number}</span>
                       </h1>
-                      <p className="text-xs text-white thin pt-1 text-right">{item.titele}</p>
+                      <p className="text-xs text-white thin pt-1">{item.titele}</p>
                     </div>
                   </div>
                 ))}
@@ -123,7 +124,11 @@ export default function Home({smoother,setSmoother}) {
             <h1 className="text-[30px] tBold text-[#5A2910] pb-16">{t("LatestNews")}</h1>
             <div className=" grid grid-cols-1 lg:grid-cols-3 gap-10">
               {posts.map((item) => (
-                <Link key={item.id} href="/news-read" className="bg-[#e0e0e047] cursor-pointer">
+                <Link key={item.id} href={
+                  router.locale === 'en'
+                    ? `/en/news/${item.id}`
+                    : `/news/${item.id}`
+                } className="bg-[#e0e0e047] cursor-pointer">
                   <img src={item.image} alt={item.name + "image"} />
                   <div className="px-4 py-6">
                     <div className="flex items-center justify-between">

@@ -12,6 +12,7 @@ export default function Footer() {
   const router = useRouter();
 
   const [contacts, setContacts] = useState({});
+  const [copyright, setCopyRight] = useState('');
   const getContact = useCallback(async () => {
     try {
       await axios
@@ -23,7 +24,7 @@ export default function Footer() {
         .then((response) => {
           if (response.status === 200) {
             setContacts(response?.data?.contacts);
-            console.log(response?.data?.contacts);
+            setCopyRight(response?.data?.app?.copyright);
           }
         });
     } catch (error) {
@@ -198,9 +199,7 @@ export default function Footer() {
             </a>
           </Link>
         </div>
-        <p className="text-xs lg:text-sm text-white thin">
-          {t('AllRightsReserved')}
-        </p>
+        <p className="text-xs lg:text-sm text-white thin">{copyright}</p>
       </div>
     </div>
   );

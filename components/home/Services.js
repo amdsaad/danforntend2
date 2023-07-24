@@ -16,6 +16,8 @@ import ScrollAnimations from "../scrollAnimations";
 import Modal from "../../pages/form/Modal";
 export default function Services({ tourisms, title, description, about_1, about_2, silders,smoother,setSmoother }) {
   const router = useRouter();
+  console.log(router.locale)
+  const smoother = useRef();
   const { locale } = router;
   const advSection = useRef(null);
   const advSection_img_1 = useRef(null);
@@ -160,6 +162,8 @@ export default function Services({ tourisms, title, description, about_1, about_
           </div>
         </div>
       </section>
+      <div ref={scrollRef}></div>
+
       <section className="w-full relative " id="advSection" ref={advSection}>
         <div className=" absolute top-0 right-0 flex items-end justify-end scrubElements scrubRight" id="advSection_img_1" ref={advSection_img_1}>
           <Image src={tourisms[0]?.images[1]?.url} className="hidden lg:hidden xl:block" alt="" width={708} height={702} />
@@ -180,13 +184,13 @@ export default function Services({ tourisms, title, description, about_1, about_
               <button onClick={animateModal}
                 onMouseEnter={() => setAdvBtnOver1(true)}
                 onMouseLeave={() => setAdvBtnOver1(false)}
-                className="tourisms0 pr-3 pl-[30px] py-2 hidden  bg-transparent  hover:text-white border  rounded-full lg:flex items-center gap-2 "
+                className="tourisms0 px-[30px] py-2 hidden  bg-transparent  hover:text-white border  rounded-full lg:flex items-center gap-2 "
                 style={{ backgroundColor: !advBtnOver1 ? 'transparent' : tourisms[0]?.color, color: advBtnOver1 ? 'white' : tourisms[0]?.color, borderColor: tourisms[0]?.color, }}
               >
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {tourisms[0]?.button_1}
               </button>
-              <Link href={"/future-projects"} className="pr-3 pl-[30px] py-2   r border rounded-full flex items-center gap-2"
+              <Link href={"/future-projects"} className="px-[30px] py-2 border rounded-full flex items-center gap-2"
                 onMouseEnter={() => setAdvBtnOver2(true)}
                 onMouseLeave={() => setAdvBtnOver2(false)}
                 style={{ backgroundColor: advBtnOver2 ? 'transparent' : tourisms[0]?.color, color: !advBtnOver2 ? 'white' : tourisms[0]?.color, borderColor: tourisms[0]?.color, }}
@@ -214,7 +218,7 @@ export default function Services({ tourisms, title, description, about_1, about_
             <h1 className="text-[25px] lg:text-[30px] bottom-20 scrubElements scrubFadeUp tBold text-[#64C07D] ">{tourisms[1]?.name}</h1>
             <p className="pt-10 pb-16 thin text-[#54290E] scrubElements scrubFadeUp text-[16px] lg:text-[18px] font-thin bottom-20">{tourisms[1]?.description}</p>
             <div className="flex items-center gap-4 scrubElements scrubFadeUp" id="ruralTourism_content_btn" ref={ruralTourism_content_btn}>
-              <button onClick={animateModal} className="pr-3 pl-[30px] py-2  border rounded-full hidden lg:flex items-center gap-2"
+              <button onClick={animateModal} className="px-[30px] py-2  border rounded-full hidden lg:flex items-center gap-2"
                 onMouseEnter={() => setRuralBtnOver1(true)}
                 onMouseLeave={() => setRuralBtnOver1(false)}
                 style={{ backgroundColor: !ruralBtnOver1 ? 'transparent' : tourisms[1]?.color, color: ruralBtnOver1 ? 'white' : tourisms[1]?.color, borderColor: tourisms[1]?.color, }}
@@ -222,7 +226,7 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {tourisms[1]?.button_1}
               </button>
-              <Link href={"/future-projects"} className="pr-3 pl-[30px] py-2  border rounded-full flex items-center gap-2"
+              <Link href={"/future-projects"} className="px-[30px] py-2  border rounded-full flex items-center gap-2"
                 onMouseEnter={() => setRuralBtnOver2(true)}
                 onMouseLeave={() => setRuralBtnOver2(false)}
                 style={{ backgroundColor: ruralBtnOver2 ? 'transparent' : tourisms[1]?.color, color: !ruralBtnOver2 ? 'white' : tourisms[1]?.color, borderColor: tourisms[1]?.color, }}
@@ -252,7 +256,7 @@ export default function Services({ tourisms, title, description, about_1, about_
             </div>
             <p className="pt-10 pb-16 thin text-[#54290E] scrubElements scrubFadeUp  text-[16px] lg:text-[18px] ">{tourisms[2]?.description}</p>
             <div className="flex items-center gap-4 scrubElements scrubFadeUp " id="ecotourism_content_btn " ref={ecotourism_content_btn}>
-              <button onClick={animateModal} className="pr-3 pl-[30px] py-2 hidde border rounded-full lg:flex items-center gap-2"
+              <button onClick={animateModal} className="px-[30px] py-2 hidde border rounded-full lg:flex items-center gap-2"
                 onMouseEnter={() => setEcoBtnOver1(true)}
                 onMouseLeave={() => setEcoBtnOver1(false)}
                 style={{ backgroundColor: !ecoBtnOver1 ? 'transparent' : tourisms[2]?.color, color: ecoBtnOver1 ? 'white' : tourisms[2]?.color, borderColor: tourisms[2]?.color, }}
@@ -260,7 +264,7 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {tourisms[2]?.button_1}
               </button>
-              <Link href={"/future-projects"} className="pr-3 pl-[30px] py-2 border rounded-full flex items-center gap-2"
+              <Link href={"/future-projects"} className="px-[30px] py-2 border rounded-full flex items-center gap-2"
                 onMouseEnter={() => setEcoBtnOver2(true)}
                 onMouseLeave={() => setEcoBtnOver2(false)}
                 style={{ backgroundColor: ecoBtnOver2 ? 'transparent' : tourisms[2]?.color, color: !ecoBtnOver2 ? 'white' : tourisms[2]?.color, borderColor: tourisms[2]?.color, }}
@@ -302,19 +306,18 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <Image height={59} width={59} src="/home/l1.png" className="image11" alt="" />
                 <Image height={59} width={59} src="/home/l2.png" className="image12" alt="" />
                 <Image height={59} width={59} src="/home/l3.png" className="image13" alt="" />
-
                 <Image height={59} width={59} src="/home/l4.png" className="image14" alt="" />
               </div>
               <div>
-                <p className="text-[25px] tBold lg:text-[30px] text-white">{t("AboutDan")}</p>
+                <p className="text-[25px] tBold lg:text-[30px] text-white">{t("nav.about")}</p>
                 <div
-                  className="text-[15px] lg:text-[18px] mt-10 thin text-white"
+                  className="text-[15px] lg:text-[16px] mt-10 thin text-white about__html"
                   dangerouslySetInnerHTML={{
                     __html: about_1,
                   }}
                 ></div>
                 <div
-                  className="text-[15px] lg:text-[18px] mt-10 thin text-white"
+                  className="text-[15px] lg:text-[16px] mt-10 thin text-white about__html"
                   dangerouslySetInnerHTML={{
                     __html: about_2,
                   }}
@@ -323,11 +326,11 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <p className="text-[15px] lg:text-[18px] mt-10 thin text-white">{t("NatureConnection")}</p> */}
               </div>
               <div className="hidden lg:flex lg:flex-col items-center gap-10">
-                <Image height={94} width={93} src="/home/l1.png" className="image11" alt="" />
-                <Image height={94} width={93} src="/home/l2.png" className="image12" alt="" />
-                <Image height={94} width={93} src="/home/l3.png" className="image13" alt="" />
+                <Image height={94} width={93} src="/home/l1.png" className={router.locale === 'ar' ? "image11" : "image14"} alt="" />
+                <Image height={94} width={93} src="/home/l2.png" className={router.locale === 'ar' ? "image12" : "image13"} alt="" />
+                <Image height={94} width={93} src="/home/l3.png" className={router.locale === 'ar' ? "image13" : "image12"} alt="" />
                 <div>
-                  <Image height={94} width={93} src="/home/l4.png" className="image14" alt="" />
+                  <Image height={94} width={93} src="/home/l4.png" className={router.locale === 'ar' ? "image14" : "image11"} alt="" />
                 </div>
               </div>
             </div>
