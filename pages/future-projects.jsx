@@ -122,10 +122,10 @@ export default function FutureProject() {
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[24px] lg:text-[35px] text-white font-bold">
-                  {future?.titele}
+                  {future?.main_titele}
                 </h1>
                 <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 ">
-                  {future?.description}
+                  {future?.main_description}
                 </p>
                 <Image
                   src="/home/arrow.png"

@@ -47,6 +47,7 @@ export default function Home() {
   const [stories, setStories] = useState([]);
   const [posts, setPosts] = useState([]);
   const [silders, setSilders] = useState([]);
+  const [danNumberTitle, setDanNumberTitle] = useState("");
   const getHome = useCallback(async () => {
     try {
       await axios
@@ -67,6 +68,8 @@ export default function Home() {
             setStories(response?.data?.data?.stories);
             setPosts(response?.data?.data?.posts);
             setSilders(response?.data?.data?.silders);
+            setDanNumberTitle(response?.data?.data?.plain_text);
+
           }
         });
     } catch (error) {
@@ -88,7 +91,7 @@ export default function Home() {
 
         <div className="w-full mt-16 lg:mt-40 mb-20 overflow-hidden">
           <div className="container">
-            <h1 className="text-[25px] text-center lg:bottom-20 lg:text-[30px] tBold text-[#5A2910] pb-16">{t("DanTripStatistics")}</h1>
+            <h1 className="text-[25px] text-center lg:bottom-20 lg:text-[30px] tBold text-[#5A2910] pb-16">{danNumberTitle}</h1>
             <div className="w-full hidden lg:block ">
               <Slider {...settingsDesktop}>
                 {stories.map((item, ind) => (
