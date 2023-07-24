@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { AiOutlineTwitter } from "react-icons/ai";
 import Slider from "react-slick";
 import { gsap } from "gsap";
-export default function AboutDan() {
+export default function AboutDan({smoother}) {
   const router = useRouter();
   const [activeEffect, setActiveEffect] = useState(false);
   const [activeKey, setActiveKey] = useState(5);
