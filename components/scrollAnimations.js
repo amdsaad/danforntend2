@@ -4,7 +4,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollAnimations() {
   const scrubOptions = {
-    start: "center 90%",
+    start: "20% 90%",
     end: "+=300px",
     scrub: 1,
   };
