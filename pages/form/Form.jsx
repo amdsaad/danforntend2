@@ -1,12 +1,10 @@
 import { useRef, useState, useCallback, useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { gsap } from 'gsap';
 import config from '../../components/config';
 const apiURL = config.api_url;
 import axios from 'axios';
 import { useRouter } from 'next/router';
-// import nodemailer from 'nodemailer';
 
 export default function Form() {
   const { t } = useTranslation();
@@ -57,25 +55,35 @@ export default function Form() {
     router.locale,
   ]);
 
+  const [formTitle, setFormTitle] = useState('');
+
+  const formTitleFunc = useCallback(async () => {
+    switch (router.route) {
+      case '/':
+        setFormTitle(title);
+        break;
+      case '/contact-us':
+        setFormTitle(title);
+        break;
+      case '/future-projects':
+        setFormTitle(title);
+        break;
+      case '/careers':
+        setFormTitle(t('Join Us'));
+        break;
+      default:
+        setFormTitle(title);
+        break;
+    }
+  }, [router.route, title, t]);
+
   useEffect(() => {
     getContact();
-  }, [getContact]);
+    formTitleFunc();
+  }, [getContact, formTitleFunc]);
 
   const Input_Classes =
     ' custominput border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin';
-
-  // const onSubmit = (data) => {
-  //   setSubmittedData(data)
-  //   console.log(data)
-  //   setFormMsg("تم إرسال رسالتك بنجاح!");
-  //   let inputs = gsap.utils.toArray("form input");
-  //   let textarea = document.querySelector("form textarea");
-  //   inputs.forEach((e) => {
-  //     e.value = "";
-  //     textarea.value = "";
-  //   });
-
-  // };
 
   const [formName, setFormName] = useState('');
   const [formNameError, setFormNameError] = useState('');
@@ -92,6 +100,8 @@ export default function Form() {
   const [formInterest, setFormInterest] = useState('');
   const [formInterestError, setFormInterestError] = useState('');
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
+  const [fileUploaded, setFileUploaded] = useState(false);
+  const [resumeFileName, setResumeFileName] = useState('');
 
   const checkForm = () => {
     const error = [];
@@ -111,17 +121,43 @@ export default function Form() {
     !formMessage
       ? (setFormMessageError(t('formError.message')), error.push('message'))
       : setFormMessageError('');
-
-    !formInterest
-      ? (setFormInterestError(t('formError.area')), error.push('interest'))
-      : setFormInterestError('');
+    router.route === '/careers'
+      ? !formResume
+        ? (setFormResumeError(t('formError.resume')), error.push('resume'))
+        : setFormResumeError('')
+      : '';
+    router.route != '/careers'
+      ? !formInterest
+        ? (setFormInterestError(t('formError.area')), error.push('interest'))
+        : setFormInterestError('')
+      : '';
 
     return error;
+  };
+  const uploadFile = (e) => {
+    console.log(e.target.files[0]);
+    setResumeFileName(e.target.files[0].name);
+    const formData = new FormData();
+
+    formData.append('file', e.target.files[0]);
+    formData.append('upload_preset', 'oghavnqi');
+    axios
+      .post('https://api.cloudinary.com/v1_1/toravl/image/upload', formData)
+      .then((response) => {
+        console.log('file uploaded', response.data.url);
+        setFormResume(response.data.url);
+        setFileUploaded(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleform = async (e) => {
     e.preventDefault();
     console.log('send form');
+    const inputs = document.querySelectorAll('input');
+    const textArea = document.querySelector('textarea');
 
     const checkError = checkForm();
     console.log(checkError);
@@ -139,6 +175,12 @@ export default function Form() {
           Interest: ${formInterest}
           Message: ${formMessage}
           `,
+          attachments: [
+            {
+              filename: resumeFileName,
+              path: formResume,
+            },
+          ],
         });
         setIsSubmitSuccessful(true);
         setFormMsg(t('messageSent'));
@@ -149,17 +191,23 @@ export default function Form() {
         setFormCity('');
         setFormInterest('');
         setFormMessage('');
+        setFormResume('');
+        setFileUploaded(false);
+        setResumeFileName('');
+        inputs.forEach((input) => {
+          input.value = '';
+        });
+        textArea.value = '';
       } catch (error) {
         setFormMsg(t('messageSentError'));
       }
     }
   };
+
   return (
     <div className=" relative w-full z-10 ">
       <div className="py-4 text-center">
-        <h1 className="text-[24px]  lg:text-[35px] font-bold">
-          {router.route != '/contact-us' ? title : ''}
-        </h1>
+        <h1 className="text-[24px]  lg:text-[35px] font-bold">{formTitle}</h1>
       </div>
       <form>
         <div className="flex flex-col gap-4 lg:flex-row flex-wrap ">
@@ -170,25 +218,25 @@ export default function Form() {
               placeholder={name}
               onInput={(e) => setFormName(e.target.value)}
             />
-            <p className=" text-red-900 text-[12px">{formNameError}</p>
+            <p className=" text-red-900 text-[12px] mt-2">{formNameError}</p>
           </div>
           <div className="w-[48.5%]">
-            <small className=" text-red-900">{formEmailError}</small>
             <input
               type="email"
               className={Input_Classes}
               placeholder={email}
               onInput={(e) => setFormEmail(e.target.value)}
             />
+            <p className=" text-red-900 text-[12px] mt-2">{formEmailError}</p>
           </div>
           <div className="w-[48.5%]">
-            <small className=" text-red-900">{formMobileError}</small>
             <input
               type="number"
               className={Input_Classes}
               placeholder={mobile}
               onInput={(e) => setFormMobile(e.target.value)}
             />
+            <p className=" text-red-900 text-[12px] mt-2">{formMobileError}</p>
           </div>
           <div className="w-[48.5%]">
             <input
@@ -197,39 +245,45 @@ export default function Form() {
               placeholder={city}
               onInput={(e) => setFormCity(e.target.value)}
             />
-            <small className=" text-red-900">{formCityError}</small>
+            <p className=" text-red-900 text-[12px] mt-2">{formCityError}</p>
           </div>
           {router.route === '/' ||
           router.route === '/contact-us' ||
           router.route === '/future-projects' ? (
             <div className="w-[48%]">
-              <small className=" text-red-900">{formInterestError}</small>
               <input
                 type="text"
                 className={Input_Classes}
                 placeholder={interest}
                 onInput={(e) => setFormInterest(e.target.value)}
               />
+              <p className=" text-red-900 text-[12px] mt-2">
+                {formInterestError}
+              </p>
             </div>
           ) : (
             <div className="w-[48%]">
-              <small className=" text-red-900"></small>
               <input
                 type="file"
                 className=""
                 placeholder={t('resume')}
                 id="resume"
+                onChange={(e) => uploadFile(e)}
               />
+              <p className=" text-red-900 text-[12px] mt-2">
+                {' '}
+                {formResumeError}
+              </p>
             </div>
           )}
 
           <div className="w-full">
-            <small className=" text-red-900">{formMessageError}</small>
             <textarea
               placeholder={message}
               className={Input_Classes}
               onInput={(e) => setFormMessage(e.target.value)}
             ></textarea>
+            <p className=" text-red-900 text-[12px]">{formMessageError}</p>
           </div>
           <div className="">
             <button

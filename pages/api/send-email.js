@@ -10,6 +10,7 @@ const handler = async (req, res) => {
                     req.body.subject,
                     req.body.to,
                     req.body.text,
+                    req.body.attachments,
                 );
                 res.status(200).send("Success");
                 break;
