@@ -399,7 +399,7 @@ function SideBar({ open, setOpen, language, setLanguage, activeCard, setActive, 
               <Transition.Child as={Fragment} enter="transform transition ease-in-out duration-500 sm:duration-700" enterFrom={language !== "rtl" ? "-translate-x-full" : "translate-x-full"} enterTo="translate-x-0" leave="transform transition ease-in-out duration-500 sm:duration-700" leaveFrom="translate-x-0" leaveTo={language !== "rtl" ? "-translate-x-full" : "translate-x-full"}>
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <div className="flex h-full flex-col  bg-gradiunt border-r border-gray-50 border-opacity-50 shadow-xl">
-                    <div className="flex flex-col items-start px-8  py-6 overflow-y-scroll">
+                    <div className="flex flex-col items-start px-8  py-6 overflow-y-scroll scrollbar-none">
                       <div
                         className="flex w-full  
                        border-opacity-50  pb-4  items-center justify-between"
