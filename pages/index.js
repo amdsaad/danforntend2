@@ -126,7 +126,7 @@ export default function Home() {
 
         <div className="w-full mt-40 mb-20 overflow-hidden scrubElements scrubFadeRight">
           <div className="container">
-            <h1 className="text-[30px] tBold text-[#5A2910] pb-16">{t("LatestNews")}</h1>
+            <h1 className="text-[30px] tBold text-[#5A2910] pb-16">{t("nav.media")}</h1>
             <div className=" grid grid-cols-1 lg:grid-cols-3 gap-10">
               {posts.map((item) => (
                 <Link key={item.id} href={router.locale === "en" ? `/en/news/${item.id}` : `/news/${item.id}`} className="bg-[#e0e0e047] cursor-pointer">

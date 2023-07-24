@@ -182,9 +182,10 @@ export default function Form() {
             },
           ],
         });
+
+        conosle.log('email res', res);
         setIsSubmitSuccessful(true);
         setFormMsg(t('messageSent'));
-
         setFormName('');
         setFormEmail('');
         setFormMobile('');
@@ -211,7 +212,7 @@ export default function Form() {
       </div>
       <form>
         <div className="flex flex-col gap-4 lg:flex-row flex-wrap ">
-          <div className="w-[48.5%]">
+          <div className="w-full lg:w-[48.5%]">
             <input
               type="text"
               className={Input_Classes}
@@ -220,7 +221,7 @@ export default function Form() {
             />
             <p className=" text-red-900 text-[12px] mt-2">{formNameError}</p>
           </div>
-          <div className="w-[48.5%]">
+          <div className="w-full lg:w-[48.5%]">
             <input
               type="email"
               className={Input_Classes}
@@ -229,7 +230,7 @@ export default function Form() {
             />
             <p className=" text-red-900 text-[12px] mt-2">{formEmailError}</p>
           </div>
-          <div className="w-[48.5%]">
+          <div className="w-full lg:w-[48.5%]">
             <input
               type="number"
               className={Input_Classes}
@@ -238,7 +239,7 @@ export default function Form() {
             />
             <p className=" text-red-900 text-[12px] mt-2">{formMobileError}</p>
           </div>
-          <div className="w-[48.5%]">
+          <div className="w-full lg:w-[48.5%]">
             <input
               type="text"
               className={Input_Classes}
@@ -250,7 +251,7 @@ export default function Form() {
           {router.route === '/' ||
           router.route === '/contact-us' ||
           router.route === '/future-projects' ? (
-            <div className="w-[48%]">
+            <div className="w-full lg:w-[48.5%]">
               <input
                 type="text"
                 className={Input_Classes}
@@ -262,7 +263,7 @@ export default function Form() {
               </p>
             </div>
           ) : (
-            <div className="w-[48%]">
+            <div className="w-full lg:w-[48.5%]">
               <input
                 type="file"
                 className=""
