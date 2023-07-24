@@ -240,6 +240,8 @@ form small {
 
 @media (max-width:450px) {
   section{
-    overflow:hidden 
+    overflow:hidden;
+    min-height:fit-content;
+    
   }
 }
