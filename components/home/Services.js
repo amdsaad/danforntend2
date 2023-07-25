@@ -138,7 +138,6 @@ export default function Services({ tourisms, title, description, about_1, about_
   }, [locale]);
 
   const { t } = useTranslation("");
-  console.log("tourisms", tourisms);
   return (
     <div ref={servicesRoot} className="relative">
       <Modal />

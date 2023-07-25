@@ -33,7 +33,6 @@ export default function AboutDan({smoother}) {
                 return current.id < previous.id ? current : previous;
               })
             );
-            console.log("activeKey", activeKey);
           }
         });
     } catch (error) {
@@ -162,7 +161,7 @@ export default function AboutDan({smoother}) {
         <div className={`absolute top-0 left-0 w-full transition duration-200 ease-linear h-full z-10 ${activeEffect && "bg_highLight"}`}></div>
       </section>
       <section className="mb-20">
-        <div className="flex flex-col items-center gap-5 lg:gap-4">
+        <div className="container flex flex-col items-center gap-5 lg:gap-4">
           <Image className="mx-auto hidden lg:block scrubElements scrubRotateFadeUp" width={84} height={84} src={`/home/l1.png`} alt="" />
           <Image className="mx-auto block lg:hidden scrubElements scrubRotateFadeUp" width={40} height={40} src={`/home/l1.png`} alt="" />
           <p className="text-[#552A0E] text-center scrubElements scrubFadeUp text-[24px] tBold lg:text-[30px]   ">
@@ -173,19 +172,19 @@ export default function AboutDan({smoother}) {
           <p className="scrubElements scrubFadeUp">{about?.description_value}</p>
         </div>
         <div className="container-fluid ">
-          <div className={` mt-10 flex flex-col  lg:flex-row items-center w-full h-[800px] lg:h-[600px] overflow-hidden `}>
+          <div className={` mt-10 flex flex-col  lg:flex-row items-center w-full min-h-[800px] lg:h-[600px] overflow-hidden `}>
             {about?.rate_us?.map((item) => (
               <div
                 key={item.id}
                 onClick={() => {
                   setActiveKey(item);
                 }}
-                className={`gridItem  ${activeKey.id === item.id ? "w-full h-[400px] lg:h-full lg:w-[80%]" : "w-full h-[130px] lg:h-full lg:w-[20%]"}  cursor-pointer relative scrubElements scrubRandom`}
+                className={`gridItem  ${activeKey.id === item.id ? "w-full min-h-[400px] lg:h-full lg:w-[80%]" : "w-full h-[130px] lg:h-full lg:w-[20%]"}  cursor-pointer relative scrubElements scrubRandom`}
               >
                 <img src={item?.icon} className=" object-cover h-full w-full" style={{ transition: "all 1s ease" }} alt="" />
                 {activeKey.id !== item.id && (
                   <div className=" absolute bottom-0 lg:bottom-20  text-white text-[25px] lg:text-[50px] left-0 w-full h-full z-10 flex items-center justify-center lg:justify-end flex-col">
-                    <h1 className="transform  tBold [writing-mode:vertical-lr]">
+                    <h1 className="transform  tBold lg:[writing-mode:vertical-lr]">
                       {/* TODO: add from backend once Islam is done */}
                       {item?.titele}
                     </h1>
