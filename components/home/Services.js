@@ -76,7 +76,7 @@ export default function Services({ tourisms, title, description, about_1, about_
       let scrollWidth = gsap.getProperty(".panelcontainer", "width");
       gsap.set(".panelcontainer", { x: `${document.querySelector("html").dir === "rtl" ? "+" : "-"}` + `${scrollWidth - panelWidth}` });
       let mm = gsap.matchMedia()
-      mm.add('(min-width:450px)',()=>{
+      mm.add('(min-width:768px)',()=>{
         let scrollTween = gsap.to(".panelcontainer", {
           x: 0,
           scrollTrigger: {
