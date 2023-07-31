@@ -107,13 +107,13 @@ export default function Careers() {
       keyframes: [
         {
           scale: 1,
-          y: window.scrollY,
+          
         },
         {
           backdropFilter: 'blur(10px)',
         },
       ],
-      duration: 2,
+      duration: .2,
       ease: 'power2.inOut',
     });
   };

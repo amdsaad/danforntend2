@@ -53,7 +53,7 @@ export default function Services({ tourisms, title, description, about_1, about_
       keyframes: [
         {
           scale: 1,
-          y: window.scrollY,
+          
         },
         {
           backdropFilter: "blur(10px)",
