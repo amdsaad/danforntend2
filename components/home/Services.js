@@ -232,7 +232,7 @@ export default function Services({ tourisms, title, description, about_1, about_
           <Image src={tourisms[2]?.images[1]?.url} className="hidden lg:block xl:hidden" alt="" width={306} height={300} />
           <Image src={tourisms[2]?.images[1]?.url} className="block lg:hidden" alt="" width={180} height={346} />
         </div>
-        <div className="container relative h-[550px] lg:h-[500px] xl:h-[700px]" id="ecotourism_content" ref={ecotourism_content}>
+        <div className="container relative min-h-[650px] lg:min-h-[500px] xl:min-h-[700px]" id="ecotourism_content" ref={ecotourism_content}>
           <div className="  pt-[350px] px-3 lg:px-0 lg:pt-40 lg:pr-10 xl:pr-0 xl:pt-80 lg:w-[500px] absolute left-0">
             <div className="flex items-center gap-5 scrubElements scrubFadeUp ">
               <h1 className="text-[18px] lg:text-[30px] tBold   text-[#1A92D3] ">{tourisms[2]?.name}</h1>
