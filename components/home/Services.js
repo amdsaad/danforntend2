@@ -75,63 +75,69 @@ export default function Services({ tourisms, title, description, about_1, about_
       let panelWidth = gsap.getProperty(".panel", "width");
       let scrollWidth = gsap.getProperty(".panelcontainer", "width");
       gsap.set(".panelcontainer", { x: `${document.querySelector("html").dir === "rtl" ? "+" : "-"}` + `${scrollWidth - panelWidth}` });
-      let scrollTween = gsap.to(".panelcontainer", {
-        x: 0,
-        scrollTrigger: {
-          trigger: ".horizontal-scroll",
-          pin: ".horizontal-scroll",
-          start: "top top",
-          scrub: 1,
-          end: "+=4000px",
-        },
-      });
+      let mm = gsap.matchMedia()
+      mm.add('(min-width:768px)',()=>{
+        let scrollTween = gsap.to(".panelcontainer", {
+          x: 0,
+          scrollTrigger: {
+            trigger: ".horizontal-scroll",
+            pin: ".horizontal-scroll",
+            start: "top top",
+            scrub: 1,
+            end: "+=4000px",
+          },
+        });
 
-      gsap.set(".image11, .image12, .image13,.image14", { opacity: 0.5, filter: "grayscale(1)" });
-      gsap.to(".image11", {
-        opacity: 1,
-        filter: "grayscale(0)",
-        scrollTrigger: {
-          trigger: "#panel_image1",
-          containerAnimation: scrollTween,
-          start: "0",
-          toggleActions: "play none none reverse",
-          id: "1",
-        },
-      });
-      gsap.to(".image12", {
-        opacity: 1,
-        filter: "grayscale(0)",
-        scrollTrigger: {
-          trigger: "#panel_image2",
-          containerAnimation: scrollTween,
-          start: "left 50%",
-          toggleActions: "play none none reverse",
-
-          id: "2",
-        },
-      });
-      gsap.to(".image13", {
-        opacity: 1,
-        filter: "grayscale(0)",
-        scrollTrigger: {
-          trigger: "#panel_image3",
-          containerAnimation: scrollTween,
-          start: "left 50%",
-          toggleActions: "play none none reverse",
-          id: "3",
-        },
-      });
-      gsap.to(".image14", {
-        opacity: 1,
-        filter: "grayscale(0)",
-        scrollTrigger: {
-          trigger: "#panel_image4",
-          containerAnimation: scrollTween,
-          start: "left 50%",
-          toggleActions: "play none none reverse",
-          id: "4",
-        },
-      });
+        gsap.set(".image11, .image12, .image13,.image14", { opacity: 0.5, filter: "grayscale(1)" });
+        gsap.to(".image11", {
+          opacity: 1,
+          filter: "grayscale(0)",
+          scrollTrigger: {
+            trigger: "#panel_image1",
+            containerAnimation: scrollTween,
+            start: "0",
+            toggleActions: "play none none reverse",
+            id: "1",
+          },
+        });
+        gsap.to(".image12", {
+          opacity: 1,
+          filter: "grayscale(0)",
+          scrollTrigger: {
+            trigger: "#panel_image2",
+            containerAnimation: scrollTween,
+            start: "left 50%",
+            toggleActions: "play none none reverse",
+  
+            id: "2",
+          },
+        });
+        gsap.to(".image13", {
+          opacity: 1,
+          filter: "grayscale(0)",
+          scrollTrigger: {
+            trigger: "#panel_image3",
+            containerAnimation: scrollTween,
+            start: "left 50%",
+            toggleActions: "play none none reverse",
+            id: "3",
+          },
+        });
+        gsap.to(".image14", {
+          opacity: 1,
+          filter: "grayscale(0)",
+          scrollTrigger: {
+            trigger: "#panel_image4",
+            containerAnimation: scrollTween,
+            start: "left 50%",
+            toggleActions: "play none none reverse",
+            id: "4",
+          },
+        });
+  
+      })
+    
+     
     }, servicesRoot);
 
     return () => ctx.revert();
