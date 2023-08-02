@@ -49,7 +49,7 @@ export default function Footer() {
               className={
                 router.pathname == '/about-dan'
                   ? 'text-pr'
-                  : ' thin hover:text-pr text-white'
+                  : ' thin transition hover:text-pr text-white'
               }
             >
               {t('nav.about')}
@@ -61,7 +61,7 @@ export default function Footer() {
               className={
                 router.pathname == '/future-projects'
                   ? 'text-pr'
-                  : ' thin hover:text-pr text-white'
+                  : ' thin transition hover:text-pr text-white'
               }
             >
               {t('nav.future')}
@@ -72,7 +72,7 @@ export default function Footer() {
               className={
                 router.pathname == '/newsmain'
                   ? 'text-pr'
-                  : ' thin hover:text-pr text-white'
+                  : ' thin transition hover:text-pr text-white'
               }
             >
               {t('nav.media')}
@@ -105,7 +105,7 @@ export default function Footer() {
               className={
                 router.pathname == '/careers'
                   ? 'text-pr'
-                  : ' thin hover:text-pr text-white'
+                  : ' thin transition hover:text-pr text-white'
               }
             >
               {t('nav.careers')}
@@ -117,7 +117,7 @@ export default function Footer() {
               className={
                 router.pathname == '/contact-us'
                   ? 'text-pr'
-                  : ' thin hover:text-pr text-white'
+                  : ' thin transition hover:text-pr text-white'
               }
             >
               {t('nav.contact')}
@@ -180,7 +180,7 @@ export default function Footer() {
               className={
                 router.pathname == '/privacy-policy'
                   ? 'text-pr'
-                  : ' thin hover:text-pr  text-white'
+                  : ' thin transition hover:text-pr  text-white'
               }
             >
               {t('nav.privacy')}
@@ -192,7 +192,7 @@ export default function Footer() {
               className={
                 router.pathname == '/terms-conditions'
                   ? 'text-pr'
-                  : ' thin hover:text-pr  text-white'
+                  : ' thin transition hover:text-pr  text-white'
               }
             >
               {t('nav.terms')}

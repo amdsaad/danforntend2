@@ -232,14 +232,14 @@ export default function Services({ tourisms, title, description, about_1, about_
           <Image src={tourisms[2]?.images[1]?.url} className="hidden lg:block xl:hidden" alt="" width={306} height={300} />
           <Image src={tourisms[2]?.images[1]?.url} className="block lg:hidden" alt="" width={180} height={346} />
         </div>
-        <div className="container relative h-[550px] lg:h-[500px] xl:h-[700px]" id="ecotourism_content" ref={ecotourism_content}>
+        <div className="container relative h-[650px] lg:h-[500px] xl:h-[700px]" id="ecotourism_content" ref={ecotourism_content}>
           <div className="  pt-[350px] px-3 lg:px-0 lg:pt-40 lg:pr-10 xl:pr-0 xl:pt-80 lg:w-[500px] absolute left-0">
             <div className="flex items-center gap-5 scrubElements scrubFadeUp ">
               <h1 className="text-[18px] lg:text-[30px] tBold   text-[#1A92D3] ">{tourisms[2]?.name}</h1>
             </div>
             <p className="pt-10 pb-16 thin text-[#54290E] scrubElements scrubFadeUp  text-[16px] lg:text-[18px] ">{tourisms[2]?.description}</p>
             <div className="flex items-center gap-4 scrubElements scrubFadeUp " id="ecotourism_content_btn " ref={ecotourism_content_btn}>
-              <button onClick={animateModal} className="px-[30px] py-2 hidde border rounded-full lg:flex items-center gap-2" onMouseEnter={() => setEcoBtnOver1(true)} onMouseLeave={() => setEcoBtnOver1(false)} style={{ backgroundColor: !ecoBtnOver1 ? "transparent" : tourisms[2]?.color, color: ecoBtnOver1 ? "white" : tourisms[2]?.color, borderColor: tourisms[2]?.color }}>
+              <button onClick={animateModal} className="px-[30px] py-2 hidden border rounded-full lg:flex items-center gap-2" onMouseEnter={() => setEcoBtnOver1(true)} onMouseLeave={() => setEcoBtnOver1(false)} style={{ backgroundColor: !ecoBtnOver1 ? "transparent" : tourisms[2]?.color, color: ecoBtnOver1 ? "white" : tourisms[2]?.color, borderColor: tourisms[2]?.color }}>
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {tourisms[2]?.button_1}
               </button>
@@ -276,8 +276,8 @@ export default function Services({ tourisms, title, description, about_1, about_
         </div>
         <div className=" relative w-screen flex  h-full">
           <div className=" container">
-            <div className="w-full grid grid-cols-1 pt-10 lg:pt-[150px] thin lg:grid-cols-2">
-              <div className="flex lg:hidden pt-20 px-4 items-center gap-10">
+            <div className="w-full grid grid-cols-1 pt-5 lg:pt-[150px] thin lg:grid-cols-2">
+              <div className="flex lg:hidden pt-5 px-4 items-center gap-10 mb-2">
                 <Image height={59} width={59} src="/home/l1.png" className="image11" alt="" />
                 <Image height={59} width={59} src="/home/l2.png" className="image12" alt="" />
                 <Image height={59} width={59} src="/home/l3.png" className="image13" alt="" />
@@ -286,7 +286,7 @@ export default function Services({ tourisms, title, description, about_1, about_
               <div>
                 <p className="text-[25px] tBold lg:text-[30px] text-white">{t("nav.about")}</p>
                 <div
-                  className="text-[15px] lg:text-[16px] mt-10 thin text-white about__html"
+                  className="text-[14px] lg:text-[14px] mt-10 thin text-white about__html"
                   dangerouslySetInnerHTML={{
                     __html: about_1,
                   }}
@@ -298,7 +298,7 @@ export default function Services({ tourisms, title, description, about_1, about_
                   </Link>
                 </div>
                 <div
-                  className="text-[15px] lg:text-[16px] thin text-white about__html"
+                  className="text-[14px] lg:text-[14px] thin text-white about__html"
                   dangerouslySetInnerHTML={{
                     __html: about_2,
                   }}
