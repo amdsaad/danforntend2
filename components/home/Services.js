@@ -48,12 +48,12 @@ export default function Services({ tourisms, title, description, about_1, about_
   const [ecoBtnOver2, setEcoBtnOver2] = useState(false);
 
   const animateModal = () => {
-   
+
     gsap.to(".modal", {
       keyframes: [
         {
           scale: 1,
-          
+
         },
         {
           backdropFilter: "blur(10px)",
@@ -76,7 +76,7 @@ export default function Services({ tourisms, title, description, about_1, about_
       let scrollWidth = gsap.getProperty(".panelcontainer", "width");
       gsap.set(".panelcontainer", { x: `${document.querySelector("html").dir === "rtl" ? "+" : "-"}` + `${scrollWidth - panelWidth}` });
       let mm = gsap.matchMedia()
-      mm.add('(min-width:768px)',()=>{
+      mm.add('(min-width:768px)', () => {
         let scrollTween = gsap.to(".panelcontainer", {
           x: 0,
           scrollTrigger: {
@@ -108,7 +108,7 @@ export default function Services({ tourisms, title, description, about_1, about_
             containerAnimation: scrollTween,
             start: "left 50%",
             toggleActions: "play none none reverse",
-  
+
             id: "2",
           },
         });
@@ -134,10 +134,10 @@ export default function Services({ tourisms, title, description, about_1, about_
             id: "4",
           },
         });
-  
+
       })
-    
-     
+
+
     }, servicesRoot);
 
     return () => ctx.revert();
@@ -291,8 +291,14 @@ export default function Services({ tourisms, title, description, about_1, about_
                     __html: about_1,
                   }}
                 ></div>
+                <div className="flex my-5">
+                  <Link href={"/about-dan"} className="px-[30px] py-2  border rounded-full flex items-center gap-2" onMouseEnter={() => setRuralBtnOver2(true)} onMouseLeave={() => setRuralBtnOver2(false)} style={{ backgroundColor: ruralBtnOver2 ? "transparent" : tourisms[0]?.color, color: !ruralBtnOver2 ? "white" : tourisms[0]?.color, borderColor: tourisms[0]?.color }}>
+                    <BiSearch className="w-5 h-5 " />
+                    {t("readmore")}
+                  </Link>
+                </div>
                 <div
-                  className="text-[15px] lg:text-[16px] mt-10 thin text-white about__html"
+                  className="text-[15px] lg:text-[16px] thin text-white about__html"
                   dangerouslySetInnerHTML={{
                     __html: about_2,
                   }}

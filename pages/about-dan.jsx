@@ -341,7 +341,6 @@ export default function AboutDan({ smoother }) {
           </div>
         </div>
       </section>
-
       <section className="pb-20">
         <p className="text-[#552A0E] pb-10 text-center text-[24px] tBold lg:text-[30px]  scrubElements scrubRandom ">
           {about?.boardofdirectors}
@@ -368,10 +367,10 @@ export default function AboutDan({ smoother }) {
                         {router.locale === 'en' ? item.job_en : item.job}
                       </p>
                     </div>
-                    <AiOutlineTwitter
+                    {/* <AiOutlineTwitter
                       className="w-6 h-6"
                       style={{ color: `${item.color}` }}
-                    />
+                    /> */}
                   </div>
                   <div className="flex items-center gap-1 mt-4">
                     <Image width={20} height={20} src={`/home/l1.png`} alt="" />
@@ -468,10 +467,10 @@ export default function AboutDan({ smoother }) {
                         {router.locale === 'en' ? item.job_en : item.job}
                       </p>
                     </div>
-                    <AiOutlineTwitter
+                    {/* <AiOutlineTwitter
                       className="w-6 h-6"
                       style={{ color: `${item.color}` }}
-                    />
+                    /> */}
                   </div>
                   <div className="flex items-center gap-1 mt-4">
                     <Image width={20} height={20} src={`/home/l1.png`} alt="" />
@@ -571,10 +570,10 @@ export default function AboutDan({ smoother }) {
                     ? about?.ceo?.job_en
                     : about?.ceo?.job}
                 </h1>
-                <AiOutlineTwitter
+                {/* <AiOutlineTwitter
                   className="w-6 h-6"
                   style={{ color: `${about?.ceo?.color}` }}
-                />
+                /> */}
               </div>
             </div>
           </div>
@@ -686,12 +685,14 @@ function SideBar({
                         alt=""
                       />
                       <p className="text-[18px] lg:text-[22px] tBold mt-3 text-white">
-                        {locale === 'en'
+                        {language === 'ltr'
                           ? activeCard?.name_en
                           : activeCard?.name}
                       </p>
                       <p className="text-[14px] lg:text-[18px] thin  mt-1 text-white">
-                        {locale === 'en' ? activeCard?.job_en : activeCard?.job}
+                        {language === 'ltr'
+                          ? activeCard?.job_en
+                          : activeCard?.job}
                       </p>
                       <div className="flex items-center gap-1 mt-4">
                         <Image
@@ -720,7 +721,7 @@ function SideBar({
                         />
                       </div>
                       <p className=" mt-4 text-[14px] lg:text-[18px] text-white thin">
-                        {locale === 'en'
+                        {language === 'ltr'
                           ? activeCard?.description_en
                           : activeCard?.description}
                       </p>
