@@ -69,7 +69,7 @@ export default function Form() {
         setFormTitle(title);
         break;
       case '/careers':
-        setFormTitle(t('Join Us'));
+        setFormTitle(t('join_us'));
         break;
       default:
         setFormTitle(title);
