@@ -193,6 +193,8 @@ export default function Services({ tourisms, title, description, about_1, about_
           </div>
         </div>
       </section>
+
+
       <section className="w-full relative overflow-hidden" id="ruralTourism" ref={ruralTourism}>
         <div className="absolute top-0 left-0 flex items-center justify-end scrubElements scrubLeft" id="ruralTourism_image1" ref={ruralTourism_image1}>
           <Image src={tourisms[1]?.images[1]?.url} className="hidden lg:hidden xl:block" alt="" width={733} height={708} />
@@ -204,7 +206,10 @@ export default function Services({ tourisms, title, description, about_1, about_
           <Image src={tourisms[1]?.images[0]?.url} className="hidden lg:block xl:hidden" alt="" width={272} height={408} />
           <Image src={tourisms[1]?.images[0]?.url} className="block lg:hidden" alt="" width={171} height={325} />
         </div>
-        <div className="container relative h-[750px] lg:h-[700px]" id="ruralTourism_content" ref={ruralTourism_content}>
+        <div id="ruralTourism_content" ref={ruralTourism_content}
+
+          className={router.locale === "ar" ? "container relative h-[750px] lg:h-[700px] flex justify-start " : "container relative h-[750px] lg:h-[700px] flex justify-end"}
+        >
           <div className=" pt-[460px] lg:pt-52 xl:pt-60 px-3 lg:px-0 lg:w-[400px] xl:w-1/3 absolute xl:right-[100px]">
             <h1 className="text-[25px] lg:text-[30px] bottom-20 scrubElements scrubFadeUp tBold text-[#64C07D] ">{tourisms[1]?.name}</h1>
             <p className="pt-10 pb-16 thin text-[#54290E] scrubElements scrubFadeUp text-[16px] lg:text-[18px] font-thin bottom-20">{tourisms[1]?.description}</p>
@@ -213,7 +218,7 @@ export default function Services({ tourisms, title, description, about_1, about_
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
                 {tourisms[1]?.button_1}
               </button>
-              <Link href={"/future-projects"} className="px-[30px] py-2  border rounded-full flex items-center gap-2" onMouseEnter={() => setRuralBtnOver2(true)} onMouseLeave={() => setRuralBtnOver2(false)} style={{ backgroundColor: ruralBtnOver2 ? "transparent" : tourisms[1]?.color, color: !ruralBtnOver2 ? "white" : tourisms[1]?.color, borderColor: tourisms[1]?.color }}>
+              <Link href={"/future-projects"} className="px-[20px] py-2  border rounded-full flex items-center gap-2" onMouseEnter={() => setRuralBtnOver2(true)} onMouseLeave={() => setRuralBtnOver2(false)} style={{ backgroundColor: ruralBtnOver2 ? "transparent" : tourisms[1]?.color, color: !ruralBtnOver2 ? "white" : tourisms[1]?.color, borderColor: tourisms[1]?.color }}>
                 <BiSearch className="w-5 h-5 " />
                 {tourisms[1]?.button_2}
               </Link>
@@ -221,6 +226,8 @@ export default function Services({ tourisms, title, description, about_1, about_
           </div>
         </div>
       </section>
+
+
       <section className="w-full relative mt-24 overflow-hidden " id="ecotourism" ref={ecotourism}>
         <div className="absolute top-0 right-0 flex items-center scrubElements scrubRight justify-end" id="ecotourism_image1" ref={ecotourism_image1}>
           <Image src={tourisms[2]?.images[0]?.url} className="hidden lg:hidden xl:block" alt="" width={704} height={706} />
@@ -251,6 +258,10 @@ export default function Services({ tourisms, title, description, about_1, about_
           </div>
         </div>
       </section>
+
+
+
+
       <section className="relative ltr horizontal-scroll  h-screen">
         <div className="panelcontainer absolute ">
           {/* {
