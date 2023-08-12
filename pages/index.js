@@ -39,7 +39,7 @@ export default function Home() {
   };
   const [tourisms, setTourisms] = useState([]);
   const [title = "", setTitle] = useState("");
-  const [description = "", setDescription] = useState("");
+  const [description, setDescription] = useState([]);
   const [about_1, setAbout1] = useState("");
   const [about_2, setAbout2] = useState("");
   const [stories, setStories] = useState([]);
@@ -59,7 +59,15 @@ export default function Home() {
           if (response.status === 200) {
             console.log("response****", response.data.data);
             setTitle(response?.data?.data?.titele);
-            setDescription(response?.data?.data?.description);
+            setDescription(response?.data?.data?.description
+              ? response?.data?.data?.description
+                .split('\n')
+                .filter((x) => x.trim().length)
+                .map((x) => x.trim())
+              : []
+
+
+            );
             setTourisms(response?.data?.data?.typetourisms);
             setAbout1(response?.data?.data?.about);
             setAbout2(response?.data?.data?.about1);

@@ -155,7 +155,13 @@ export default function Services({ tourisms, title, description, about_1, about_
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:justify-end items-start lg:pb-32">
                 <h1 className=" text-[35px] lg:text-[50px] text-white font-bold introFadeUp">{title}</h1>
-                <p className="text-white text-[16px] lg:text-[22px] lg:w-2/5 py-6  introFadeUp">{description}</p>
+                {
+                  description?.map((item, ind) => (
+                    <p key={ind} className="text-white text-[16px] lg:text-[22px] lg:w-2/5 py-6  introFadeUp">
+                      {item}
+                    </p>
+                  ))
+                }
                 <Image src="/home/arrow.png" width={32} height={32} onClick={scrollToElement} className=" cursor-pointer introFadeUp" alt="" />
               </div>
             </div>
