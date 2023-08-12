@@ -19,13 +19,13 @@ import {
 export default function ContactUs() {
   const router = useRouter();
   const [title, setTitle] = useState('');
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState([]);
   const scrollRef = useRef(null);
   const [defaultCenter, setDefaultCenter] = useState({
     lat: 0,
     lng: 0,
   });
-  const [intro, setIntro] = useState('');
+  const [intro, setIntro] = useState([]);
   const [introImage, setIntroImage] = useState('');
   const [contacts, setContacts] = useState({});
 
@@ -41,12 +41,27 @@ export default function ContactUs() {
           if (response.status === 200) {
             console.log('settings', response?.data);
             setTitle(response?.data?.contactus_titele);
-            setFeedback(response?.data?.feedback);
+            setFeedback(
+              response?.data?.feedback
+                ? response?.data?.feedback
+
+                    .split('\n')
+                    .filter((item) => item)
+                    .map((item) => item.trim())
+                : null,
+            );
             setDefaultCenter({
               lat: parseFloat(response?.data?.lat),
               lng: parseFloat(response?.data?.long),
             });
-            setIntro(response?.data?.intro_contactus);
+            setIntro(
+              response?.data?.intro_contactus
+                ? response?.data?.intro_contactus
+                    .split('\n')
+                    .filter((item) => item)
+                    .map((item) => item.trim())
+                : null,
+            );
             setIntroImage(response?.data?.intro_logo_contactus);
             setContacts(response?.data?.contacts);
           }
@@ -102,9 +117,15 @@ export default function ContactUs() {
                 <h1 className=" text-[24px]  lg:text-[35px] text-white font-bold introFadeUp">
                   {title}
                 </h1>
-                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6  introFadeUp">
-                  {feedback}
-                </p>
+                {feedback?.map((item, i) => (
+                  <p
+                    key={i}
+                    className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6  introFadeUp"
+                  >
+                    {item}
+                  </p>
+                ))}
+
                 <Image
                   src="/home/arrow.png"
                   width={32}
@@ -136,10 +157,15 @@ export default function ContactUs() {
               src={introImage}
               alt=""
             />
-            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp">
-              {/* TODO: TO BE ADDED IN THE BACKEND  */}
-              {intro}
-            </p>
+            {intro?.map((item, i) => (
+              <p
+                key={i}
+                className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp"
+              >
+                {/* TODO: TO BE ADDED IN THE BACKEND  */}
+                {item}
+              </p>
+            ))}
           </div>
         </div>
       </section>
@@ -164,7 +190,7 @@ export default function ContactUs() {
                 </a>
               ) : null}
               {contacts.threads ? (
-                <a target="_blank" href={contacts.threads} className='group'>
+                <a target="_blank" href={contacts.threads} className="group">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 23.979 23.976"

@@ -18,7 +18,6 @@ import { useRouter } from 'next/router';
 import { gsap } from 'gsap';
 import ScrollAnimations from '../components/scrollAnimations';
 
-
 export default function Newsmain() {
   const [open, setOpen] = useState(false);
   const scrollRef = useRef(null);
@@ -26,12 +25,12 @@ export default function Newsmain() {
   const [posts, setPosts] = useState([]);
   const [filteredposts, setFilteredposts] = useState([]);
   const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState([]);
   const router = useRouter();
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
   const getCategories = useCallback(async () => {
@@ -66,7 +65,12 @@ export default function Newsmain() {
               setPosts(response?.data?.data.Posts);
               setFilteredposts(response?.data?.data.Posts);
               setTitle(response?.data?.data.titele);
-              setDescription(response?.data?.data.description);
+              setDescription(
+                response?.data?.data.description
+                  .split('\n')
+                  .filter((x) => x.trim().length)
+                  .map((description) => description.trim()),
+              );
             }
           });
       } catch (error) {
@@ -89,7 +93,6 @@ export default function Newsmain() {
 
   return (
     <div className=" w-full min-h-screen relative ">
-   
       <section>
         <div className="w-full relative  min-h-screen">
           <Image
@@ -112,9 +115,15 @@ export default function Newsmain() {
                 <h1 className=" text-[24px]  lg:text-[50px] text-white font-bold introFadeUp">
                   {title}
                 </h1>
-                <p className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6  introFadeUp">
-                  {description}
-                </p>
+
+                {description?.map((item, index) => (
+                  <p
+                    key={index}
+                    className="text-white text-[16px] lg:text-[18px] lg:w-2/5 py-6  introFadeUp"
+                  >
+                    {item}
+                  </p>
+                ))}
                 <Image
                   src="/home/arrow.png"
                   width={32}

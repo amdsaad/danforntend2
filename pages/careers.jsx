@@ -24,13 +24,13 @@ export default function Careers() {
     }
   };
   const { t } = useTranslation();
-  const [culture, setCulture] = useState('');
-  const [join, setJoin] = useState('');
+  const [culture, setCulture] = useState([]);
+  const [join, setJoin] = useState([]);
   const [cultureTitle, setCultureTitle] = useState('');
   const [joinTitle, setJoinTitle] = useState('');
   const [btnFirst, setBtnFirst] = useState('');
   const [btnSecond, setBtnSecond] = useState('');
-  const [intro, setIntro] = useState('');
+  const [intro, setIntro] = useState([]);
   const [introImage, setIntroImage] = useState('');
   const [jobs, setJobs] = useState([]);
 
@@ -45,15 +45,35 @@ export default function Careers() {
         .then((response) => {
           if (response.status === 200) {
             console.log(response?.data);
-            setCulture(response?.data?.work_culture);
-            setJoin(response?.data?.Join_dan);
+            setCulture(
+              response?.data?.work_culture
+                ? response?.data?.work_culture
+                    .split('\n')
+                    .filter((x) => x?.trim().length)
+                    .map((item) => item?.trim())
+                : null,
+            );
+            setJoin(
+              response?.data?.Join_dan
+                ? response?.data?.Join_dan.split('\n')
+                    .filter((x) => x?.trim().length)
+                    .map((item) => item?.trim())
+                : null,
+            );
             setCultureTitle(response?.data?.work_titele);
             setJoinTitle(response?.data?.Join_titele);
             setBtnFirst(response?.data?.culture_button_1);
             setBtnSecond(response?.data?.culture_button_2);
             setCultureTitle(response?.data?.work_titele);
             setCulture(response?.data?.work_culture);
-            setIntro(response?.data?.intro_career);
+            setIntro(
+              response?.data?.intro_career
+                ? response?.data?.intro_career
+                    .split('\n')
+                    .filter((x) => x?.trim().length)
+                    .map((item) => item?.trim())
+                : null,
+            );
             setIntroImage(response?.data?.intro_logo_career);
           }
         });
@@ -107,13 +127,12 @@ export default function Careers() {
       keyframes: [
         {
           scale: 1,
-          
         },
         {
           backdropFilter: 'blur(10px)',
         },
       ],
-      duration: .2,
+      duration: 0.2,
       ease: 'power2.inOut',
     });
   };
@@ -144,9 +163,15 @@ export default function Careers() {
                 <h1 className=" text-[24px]  lg:text-[50px] text-white font-bold introFadeUp">
                   {cultureTitle}
                 </h1>
-                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 introFadeUp">
-                  {culture}
-                </p>
+                {culture?.map((item, index) => (
+                  <p
+                    key={index}
+                    className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 introFadeUp"
+                  >
+                    {item}
+                  </p>
+                ))}
+
                 <Image
                   src="/home/arrow.png"
                   width={32}
@@ -178,9 +203,14 @@ export default function Careers() {
               src={introImage}
               alt=""
             />
-            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp">
-              {intro}
-            </p>
+            {intro?.map((item, index) => (
+              <p
+                key={index}
+                className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp"
+              >
+                {item}
+              </p>
+            ))}
           </div>
         </div>
       </section>
@@ -204,9 +234,14 @@ export default function Careers() {
             <h1 className="text-txt tet-[16px] tBold font-medium scrubElements scrubFadeUp lg:text-[30px]">
               {joinTitle}
             </h1>
-            <p className="text-[#552A0E] text-center text-[14px] scrubElements scrubFadeUp lg:text-[18px] thin lg:w-4/5 ">
-              {join}
-            </p>
+            {join?.map((item, index) => (
+              <p
+                key={index}
+                className="text-[#552A0E] text-center text-[14px] scrubElements scrubFadeUp lg:text-[18px] thin lg:w-4/5 "
+              >
+                {item}
+              </p>
+            ))}
 
             <button
               onClick={animateModal}
@@ -265,7 +300,7 @@ export default function Careers() {
                       ? item.published_on.date
                       : item.published_on.date}
                   </p>
-                  <Link href={item.url} target='_blank' >
+                  <Link href={item.url} target="_blank">
                     <p className="font-bold cursor-pointer">
                       {t('readmore')} {' >>'}
                     </p>
