@@ -62,7 +62,10 @@ export default function FutureProject() {
   const [advBtnOver, setAdvBtnOver] = useState(false);
   const [ruralBtnOver, setRuralBtnOver] = useState(false);
   const [ecoBtnOver, setEcoBtnOver] = useState(false);
-
+  const [main_description, setMain_description] = useState([]);
+  const [intro, setIntro] = useState([]);
+  const [start, setStart] = useState([]);
+  const [goal, setGoal] = useState([]);
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
@@ -82,6 +85,30 @@ export default function FutureProject() {
             console.log('future', response?.data?.data);
             setFuture(response?.data?.data);
             setTypetourisms(response?.data?.data?.typetourisms);
+            setMain_description(
+              response?.data?.data?.main_description
+                .split('\n')
+                .filter((x) => x.trim().length)
+                .map((item) => item.trim()),
+            );
+            setIntro(
+              response?.data?.data?.intro
+                .split('\n')
+                .filter((x) => x.trim().length)
+                .map((item) => item.trim()),
+            );
+            setStart(
+              response?.data?.data?.start
+                .split('\n')
+                .filter((x) => x.trim().length)
+                .map((item) => item.trim()),
+            );
+            setGoal(
+              response?.data?.data?.goal
+                .split('\n')
+                .filter((x) => x.trim().length)
+                .map((item) => item.trim()),
+            );
           }
         });
     } catch (error) {
@@ -128,9 +155,15 @@ export default function FutureProject() {
                 <h1 className=" text-[24px] lg:text-[35px] text-white font-bold introFadeUp">
                   {future?.main_titele}
                 </h1>
-                <p className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6  introFadeUp">
-                  {future?.main_description}
-                </p>
+                {main_description?.map((item, index) => (
+                  <p
+                    key={index}
+                    className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6  introFadeUp"
+                  >
+                    {main_description}
+                  </p>
+                ))}
+
                 <Image
                   src="/home/arrow.png"
                   width={32}
@@ -162,9 +195,14 @@ export default function FutureProject() {
               src={future?.intro_logo}
               alt=""
             />
-            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp">
-              {future?.intro}
-            </p>
+            {intro.map((item, index) => (
+              <p
+                key={index}
+                className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp"
+              >
+                {item}
+              </p>
+            ))}
           </div>
         </div>
       </section>
@@ -247,9 +285,14 @@ export default function FutureProject() {
                   />
                 </div>
               </div>
-              <p className="thin text-txt text-[14px] pr-8 lg:pr-0 lg:text-[18px] scrubElements scrubFadeLeft pt-5">
-                {future?.start}
-              </p>
+              {start.map((item, index) => (
+                <p
+                  key={index}
+                  className="thin text-txt text-[14px] pr-8 lg:pr-0 lg:text-[18px] scrubElements scrubFadeLeft pt-5"
+                >
+                  {item}
+                </p>
+              ))}
             </div>
             <div className="w-full pt-6 lg:pt-[150px] lg:pr-[420px]">
               <div className="flex mt-24 items-center justify-between scrubElements scrubFadeLeft">
@@ -257,9 +300,15 @@ export default function FutureProject() {
                   {future?.goal_titele}
                 </h1>
               </div>
-              <p className="thin text-txt text-[14px] pr-8 lg:pr-0 lg:text-[18px] pt-5 scrubElements scrubFadeLeft">
-                {future?.goal}
-              </p>
+
+              {goal?.map((item, index) => (
+                <p
+                  key={index}
+                  className="thin text-txt text-[14px] pr-8 lg:pr-0 lg:text-[18px] pt-5 scrubElements scrubFadeLeft"
+                >
+                  {item}
+                </p>
+              ))}
             </div>
           </div>
         </div>
