@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useEffect,
   useLayoutEffect,
+  use,
 } from 'react';
 import ScrollAnimations from '../components/scrollAnimations';
 import Image from 'next/image';
@@ -23,6 +24,10 @@ export default function AboutDan({ smoother }) {
   const [about, setAbout] = useState({});
   const [activeCard, setActiveCard] = useState({});
   const [descriptionsArray, setdescriptionsArray] = useState([]);
+  const [vision, setvision] = useState([]);
+  const [message, setMessage] = useState([]);
+  const [leadership, setLeadership] = useState([]);
+  const [intro, setIntro] = useState([]);
   const getAbout = useCallback(async () => {
     try {
       await axios
@@ -43,7 +48,26 @@ export default function AboutDan({ smoother }) {
             setdescriptionsArray(
               response?.data?.data.description
                 .split('\n')
+                .filter((x) => x.trim().length)
                 .map((description) => description.trim()),
+            );
+            setvision(
+              response?.data?.data.vision.split('\n').map((x) => x.trim()),
+            );
+            setMessage(
+              response?.data?.data.message
+                .split('\n')
+                .filter((x) => x.trim().length)
+                .map((x) => x.trim()),
+            );
+            setLeadership(
+              response?.data?.data.leadership.split('\n').map((x) => x.trim()),
+            );
+            setIntro(
+              response?.data?.data.intro
+                .split('\n')
+                .filter((x) => x.trim().length)
+                .map((x) => (x.trim().length ? x : null)),
             );
           }
         });
@@ -154,9 +178,14 @@ export default function AboutDan({ smoother }) {
               src={about?.intro_logo}
               alt=""
             />
-            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp">
-              {about?.intro}
-            </p>
+            {intro.map((item, ind) => (
+              <p
+                key={ind}
+                className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp"
+              >
+                {item}
+              </p>
+            ))}
           </div>
         </div>
       </section>
@@ -201,9 +230,18 @@ export default function AboutDan({ smoother }) {
                 <h1 className="text-[25px] lg:text-[50px] tBold text-white text-center py-4">
                   {about?.titele_vision}
                 </h1>
-                <p className="text-center thin text-white text-[18px] px-10">
+                {vision.map((item, ind) => (
+                  <p
+                    key={ind}
+                    className="text-center thin text-white text-[18px] px-10"
+                  >
+                    {item}
+                  </p>
+                ))}
+
+                {/* <p className="text-center thin text-white text-[18px] px-10">
                   {about?.vision}
-                </p>
+                </p> */}
               </div>
               <div
                 onMouseEnter={() => {
@@ -235,9 +273,15 @@ export default function AboutDan({ smoother }) {
                 <h1 className="text-[25px] lg:text-[50px] tBold text-white text-center py-4">
                   {about?.titele_message}
                 </h1>
-                <p className="text-center thin text-white text-[18px] px-10">
-                  {about?.message}
-                </p>
+
+                {message.map((item, ind) => (
+                  <p
+                    key={ind}
+                    className="text-center thin text-white text-[18px] px-10"
+                  >
+                    {item}
+                  </p>
+                ))}
               </div>
             </div>
             <div className=" block lg:hidden w-full hide_arrow">
@@ -452,9 +496,14 @@ export default function AboutDan({ smoother }) {
             <h1 className="text-[#552A0E]  text-center text-[24px] tBold lg:text-[30px] bold scrubElements scrubFadeUp">
               {about?.titele_leadership}
             </h1>
-            <p className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp">
-              {about?.leadership}
-            </p>
+            {leadership.map((item, ind) => (
+              <p
+                key={ind}
+                className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp"
+              >
+                {item}
+              </p>
+            ))}
           </div>
           {/* TODO:check if there uare different type of memebrs */}
           <div className=" hidden lg:grid grid-cols-3 mt-10 gap-16 scrubElements scrubFadeUp">
