@@ -22,6 +22,7 @@ export default function AboutDan({ smoother }) {
   const [gridOpen, setGridOpen] = useState(false);
   const [about, setAbout] = useState({});
   const [activeCard, setActiveCard] = useState({});
+  const [descriptionsArray, setdescriptionsArray] = useState([]);
   const getAbout = useCallback(async () => {
     try {
       await axios
@@ -38,6 +39,11 @@ export default function AboutDan({ smoother }) {
               response?.data?.data?.rate_us.reduce((previous, current) => {
                 return current.id < previous.id ? current : previous;
               }),
+            );
+            setdescriptionsArray(
+              response?.data?.data.description
+                .split('\n')
+                .map((description) => description.trim()),
             );
           }
         });
@@ -106,18 +112,23 @@ export default function AboutDan({ smoother }) {
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full  justify-center  lg:lg:justify-end items-start lg:pb-32 introFadeUp">
-                <h1 className=" text-[24px]  lg:text-[35px] text-white font-bold introFadeUp">
+                <h1 className=" text-[24px]  lg:text-[35px] text-white font-bold introFadeUp mb-6">
                   {about?.titele}
                 </h1>
-                <p className="text-white  text-[16px] lg:text-[16px] lg:w-3/5 py-6  introFadeUp">
-                  {about?.description}
-                </p>
+                {descriptionsArray.map((item, ind) => (
+                  <p
+                    key={ind}
+                    className="text-white  text-[16px] lg:text-[16px] lg:w-3/5 introFadeUp mb-2"
+                  >
+                    {item}
+                  </p>
+                ))}
                 <Image
                   src="/home/arrow.png"
                   width={32}
                   height={32}
                   onClick={scrollToElement}
-                  className=" cursor-pointer  introFadeUp"
+                  className=" cursor-pointer  introFadeUp mt-6"
                   alt=""
                 />
               </div>
