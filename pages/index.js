@@ -107,11 +107,11 @@ export default function Home() {
                   <div key={ind} className="relative w-full p-4">
                     <img key={ind} src={item.icon} alt="" className="rounded-md w-full object-cover" />
                     <div className={router.locale === "ar" ? "absolute bottom-5  z-10 p-4 right-5 text-right" : "absolute bottom-5 z-10 p-4 left-5 text-left"}>
-                      <span className="text-white font-bold text-6xl flex items-end gap-2" >
+                      <h1 className="text-white font-bold text-6xl flex items-end gap-2" >
                         <span className={router.locale === 'ar' ? "inline-block order-2" : "inline-block order-1"}>{item.number} </span>
                         <span className={router.locale === 'ar' ? "inline-block order-1 text-[20px] mb-2 flex-1 text-right" : "inline-block order-2 text-[20px] mb-2 flex-1 text-left"} >{item.text_number}</span>
 
-                      </span>
+                      </h1>
                       <p className="text-xs text-white thin pt-1">{item.titele}</p>
                     </div>
                   </div>
@@ -123,9 +123,13 @@ export default function Home() {
                 {stories.map((item, ind) => (
                   <div key={ind} className="relative w-full p-4">
                     <img key={ind} src={item.icon} alt="" className="rounded-md w-full object-cover" />
-                    <div className="absolute bottom-5 right-5 z-10">
-                      <h1 className="text-white font-bold text-6xl  text-right">{item.number}</h1>
-                      <p className="text-xs text-white thin pt-1 text-right">{item.titele}</p>
+                    <div className={router.locale === "ar" ? "absolute bottom-5  z-10 p-4 right-5 text-right" : "absolute bottom-5 z-10 p-4 left-5 text-left"}>
+                      <h1 className="text-white font-bold text-6xl flex items-end gap-2" >
+                        <span className={router.locale === 'ar' ? "inline-block order-2" : "inline-block order-1"}>{item.number} </span>
+                        <span className={router.locale === 'ar' ? "inline-block order-1 text-[20px] mb-2 flex-1 text-right" : "inline-block order-2 text-[20px] mb-2 flex-1 text-left"} >{item.text_number}</span>
+
+                      </h1>
+                      <p className="text-xs text-white thin pt-1">{item.titele}</p>
                     </div>
                   </div>
                 ))}
