@@ -17,6 +17,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { gsap } from 'gsap';
 import ScrollAnimations from '../components/scrollAnimations';
+import TheHeroBg from '../components/TheHeroBg';
 
 export default function Newsmain() {
   const [open, setOpen] = useState(false);
@@ -26,6 +27,8 @@ export default function Newsmain() {
   const [filteredposts, setFilteredposts] = useState([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState([]);
+  const [mainImage, setMainImage] = useState('');
+  const [videoURL, setUrlVideoMain] = useState('');
   const router = useRouter();
   const scrollToElement = () => {
     const element = scrollRef.current;
@@ -61,7 +64,7 @@ export default function Newsmain() {
           })
           .then((response) => {
             if (response.status === 200) {
-              console.log('posts', response?.data?.data);
+              console.log('posts*****', response?.data?.data);
               setPosts(response?.data?.data.Posts);
               setFilteredposts(response?.data?.data.Posts);
               setTitle(response?.data?.data.titele);
@@ -71,6 +74,8 @@ export default function Newsmain() {
                   .filter((x) => x.trim().length)
                   .map((description) => description.trim()),
               );
+              setMainImage(response?.data?.data?.post_image);
+              setUrlVideoMain(response?.data?.data?.url_video_post);
             }
           });
       } catch (error) {
@@ -95,7 +100,8 @@ export default function Newsmain() {
     <div className=" w-full min-h-screen relative ">
       <section>
         <div className="w-full relative  min-h-screen">
-          <Image
+          <TheHeroBg mainImage={mainImage} videoURL={videoURL} />
+          {/* <Image
             src="/news/hero.png"
             alt="hero"
             className="hidden lg:block introFadeUp"
@@ -108,7 +114,7 @@ export default function Newsmain() {
             className="block lg:hidden introFadeUp"
             fill
             objectFit="cover"
-          />
+          /> */}
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">

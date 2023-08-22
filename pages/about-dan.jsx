@@ -28,8 +28,8 @@ export default function AboutDan({ smoother }) {
   const [message, setMessage] = useState([]);
   const [leadership, setLeadership] = useState([]);
   const [intro, setIntro] = useState([]);
-    const [mainImage, setMainImage] = useState('');
-    const [videoURL, setUrlVideoMain] = useState('');
+  const [mainImage, setMainImage] = useState('');
+  const [videoURL, setUrlVideoMain] = useState('');
   const getAbout = useCallback(async () => {
     try {
       await axios
@@ -40,7 +40,7 @@ export default function AboutDan({ smoother }) {
         })
         .then((response) => {
           if (response.status === 200) {
-            console.log('response ****',response?.data?.data);
+            console.log('response ****', response?.data?.data);
             setAbout(response?.data?.data);
             setActiveKey(
               response?.data?.data?.rate_us.reduce((previous, current) => {
@@ -71,8 +71,8 @@ export default function AboutDan({ smoother }) {
                 .filter((x) => x.trim().length)
                 .map((x) => (x.trim().length ? x : null)),
             );
-                setMainImage(response?.data?.data?.about_image);
-                setUrlVideoMain(response?.data?.data?.url_video_about);
+            setMainImage(response?.data?.data?.about_image);
+            setUrlVideoMain(response?.data?.data?.url_video_about);
           }
         });
     } catch (error) {

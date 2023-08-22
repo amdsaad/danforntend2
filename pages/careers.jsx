@@ -11,6 +11,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Modal from './form/Modal';
 import Link from 'next/link';
+import TheHeroBg from '../components/TheHeroBg';
 
 export default function Careers() {
   const router = useRouter();
@@ -33,6 +34,8 @@ export default function Careers() {
   const [intro, setIntro] = useState([]);
   const [introImage, setIntroImage] = useState('');
   const [jobs, setJobs] = useState([]);
+  const [mainImage, setMainImage] = useState('');
+  const [videoURL, setUrlVideoMain] = useState('');
 
   const getCareer = useCallback(async () => {
     try {
@@ -44,7 +47,7 @@ export default function Careers() {
         })
         .then((response) => {
           if (response.status === 200) {
-            console.log(response?.data);
+            console.log('response ******', response?.data);
             setCulture(
               response?.data?.work_culture
                 ? response?.data?.work_culture
@@ -75,6 +78,8 @@ export default function Careers() {
                 : null,
             );
             setIntroImage(response?.data?.intro_logo_career);
+            setMainImage(response?.data?.career_image);
+            setUrlVideoMain(response?.data?.url_video_career);
           }
         });
     } catch (error) {
@@ -143,7 +148,8 @@ export default function Careers() {
 
       <section>
         <div className="w-full relative  min-h-screen">
-          <Image
+          <TheHeroBg mainImage={mainImage} videoURL={videoURL} />
+          {/* <Image
             src="/comp/hero.png"
             alt="hero"
             className="hidden lg:block introFadeUp"
@@ -156,7 +162,7 @@ export default function Careers() {
             className="block lg:hidden introFadeUp"
             fill
             objectFit="cover"
-          />
+          /> */}
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">

@@ -16,6 +16,7 @@ import {
   AiFillLinkedin,
   AiOutlineYoutube,
 } from 'react-icons/ai';
+import TheHeroBg from '../components/TheHeroBg';
 export default function ContactUs() {
   const router = useRouter();
   const [title, setTitle] = useState('');
@@ -28,7 +29,8 @@ export default function ContactUs() {
   const [intro, setIntro] = useState([]);
   const [introImage, setIntroImage] = useState('');
   const [contacts, setContacts] = useState({});
-
+  const [mainImage, setMainImage] = useState('');
+  const [videoURL, setUrlVideoMain] = useState('');
   const getContact = useCallback(async () => {
     try {
       await axios
@@ -64,6 +66,8 @@ export default function ContactUs() {
             );
             setIntroImage(response?.data?.intro_logo_contactus);
             setContacts(response?.data?.contacts);
+            setMainImage(response?.data?.contactus_image);
+            setUrlVideoMain(response?.data?.url_video_contactus);
           }
         });
     } catch (error) {
@@ -97,7 +101,9 @@ export default function ContactUs() {
     <div className=" relative w-full min-h-screen">
       <section>
         <div className="w-full relative  min-h-screen">
-          <Image
+
+          <TheHeroBg mainImage={mainImage} videoURL={videoURL} />
+          {/* <Image
             src="/contact/hero.png"
             alt="hero"
             className="hidden lg:block introFadeUp"
@@ -110,7 +116,7 @@ export default function ContactUs() {
             className="block lg:hidden introFadeUp"
             fill
             objectFit="cover"
-          />
+          /> */}
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">

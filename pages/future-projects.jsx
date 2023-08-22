@@ -12,6 +12,7 @@ const apiURL = config.api_url;
 import { gsap } from 'gsap';
 import Topbar from '../components/layout/Topbar';
 import Modal from '../pages/form/Modal';
+import TheHeroBg from '../components/TheHeroBg';
 
 export default function FutureProject() {
   const router = useRouter();
@@ -66,6 +67,8 @@ export default function FutureProject() {
   const [intro, setIntro] = useState([]);
   const [start, setStart] = useState([]);
   const [goal, setGoal] = useState([]);
+  const [mainImage, setMainImage] = useState('');
+  const [videoURL, setUrlVideoMain] = useState('');
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
@@ -82,7 +85,7 @@ export default function FutureProject() {
         })
         .then((response) => {
           if (response.status === 200) {
-            console.log('future', response?.data?.data);
+            console.log('future*****', response?.data?.data);
             setFuture(response?.data?.data);
             setTypetourisms(response?.data?.data?.typetourisms);
             setMain_description(
@@ -109,6 +112,8 @@ export default function FutureProject() {
                 .filter((x) => x.trim().length)
                 .map((item) => item.trim()),
             );
+            setMainImage(response?.data?.data?.future_image);
+            setUrlVideoMain(response?.data?.data?.url_video_future);
           }
         });
     } catch (error) {
@@ -135,7 +140,8 @@ export default function FutureProject() {
       <Topbar />
       <section>
         <div className="w-full relative  min-h-screen">
-          <Image
+          <TheHeroBg mainImage={mainImage} videoURL={videoURL} />
+          {/* <Image
             src="/future/hero.png"
             alt="hero"
             className="hidden lg:block introFadeUp"
@@ -148,7 +154,7 @@ export default function FutureProject() {
             className="block lg:hidden introFadeUp"
             fill
             objectFit="cover"
-          />
+          /> */}
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:justify-end items-start lg:pb-32">
