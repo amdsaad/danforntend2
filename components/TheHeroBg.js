@@ -17,7 +17,7 @@ export default function TheHeroBg({ mainImage, videoURL }) {
                 videoURL ?
                     <video src={videoURL}
                         className='videoBg'
-                        autoPlay muted  loop  ></video>
+                        autoPlay muted loop  ></video>
 
                     // <img src={mainImage} alt="mainImage" className="absolute inset-0 object-cover w-full h-full" />
                     :
