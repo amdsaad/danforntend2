@@ -46,6 +46,8 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const [silders, setSilders] = useState([]);
   const [danNumberTitle, setDanNumberTitle] = useState("");
+  const [main_image, setMainImage] = useState("");
+  const [url_video_main, setUrlVideoMain] = useState("");
   const getHome = useCallback(async () => {
     try {
       await axios
@@ -75,6 +77,8 @@ export default function Home() {
             setPosts(response?.data?.data?.posts);
             setSilders(response?.data?.data?.silders);
             setDanNumberTitle(response?.data?.data?.plain_text);
+            setMainImage(response?.data?.data?.main_image);
+            setUrlVideoMain(response?.data?.data?.url_video_main);
           }
         });
     } catch (error) {
@@ -96,7 +100,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden">
       <main>
-        <Services tourisms={tourisms} title={title} description={description} about_1={about_1} about_2={about_2} silders={silders} />
+        <Services tourisms={tourisms} title={title} description={description} about_1={about_1} about_2={about_2} silders={silders} mainImage={main_image} videoURL={url_video_main} />
 
         <div className="w-full mt-16 lg:mt-40 mb-20 overflow-hidden scrubElements scrubFadeLeft">
           <div className="container">

@@ -10,11 +10,16 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import dynamic from 'next/dynamic'
+
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 import ScrollAnimations from "../scrollAnimations";
 import Modal from "../../pages/form/Modal";
-export default function Services({ tourisms, title, description, about_1, about_2, silders }) {
+import TheHeroBg from "../TheHeroBg";
+export default function Services({ tourisms, title, description, about_1, about_2, silders, mainImage, videoURL }) {
   const router = useRouter();
   console.log(router.locale);
   const { locale } = router;
@@ -149,8 +154,8 @@ export default function Services({ tourisms, title, description, about_1, about_
       <Modal />
       <section id="herosection" ref={herosection}>
         <div className="w-full relative  min-h-screen">
-          <Image src="/home/hero.png" alt="hero" className="hidden lg:block introFadeUp" fill objectFit="cover" />
-          <Image src="/home/heromob.png" alt="hero" className="block lg:hidden introFadeUp" fill objectFit="cover" />
+          <TheHeroBg mainImage={mainImage} videoURL={videoURL} />
+
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:justify-end items-start lg:pb-32">
