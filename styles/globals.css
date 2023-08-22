@@ -4,15 +4,15 @@
 
 @font-face {
   font-family: readexProRegular;
-  src: url("/fonts/ReadexPro-Regular.ttf");
+  src: url('/fonts/ReadexPro-Regular.ttf');
 }
 @font-face {
   font-family: readexProthin;
-  src: url("/fonts/ReadexPro-Light.ttf");
+  src: url('/fonts/ReadexPro-Light.ttf');
 }
 @font-face {
   font-family: readexProBold;
-  src: url("/fonts/ReadexPro-Bold.ttf");
+  src: url('/fonts/ReadexPro-Bold.ttf');
 }
 
 input::-webkit-outer-spin-button,
@@ -21,7 +21,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 ::-webkit-scrollbar {
@@ -238,19 +238,43 @@ form small {
   font-family: readexProthin !important;
 }
 
-@media (max-width:450px) {
-  section{
-    overflow:hidden;
-    min-height:fit-content;
-    
+@media (max-width: 450px) {
+  section {
+    overflow: hidden;
+    min-height: fit-content;
   }
 }
-.react-player{
+.react-player {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw!important;
-  height: 100vh!important;
+  width: 100vw !important;
+  height: 100vh !important;
   z-index: -1;
+}
 
+.videoBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .videoBg {
+    width: 100%;
+    height: auto;
+  }
+}
+@media (max-aspect-ratio: 16/9) {
+  .videoBg {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+}
+
+video {
+  object-fit: cover;
 }

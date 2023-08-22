@@ -14,18 +14,20 @@ export default function TheHeroBg({ mainImage, videoURL }) {
         <div className="absolute top-0 right-0 left-0 h-screen overflow-hidden">
 
             {
-                mainImage ?
+                videoURL ?
+                    <video src={videoURL}
+                        className='videoBg'
+                        autoPlay muted  loop  ></video>
+
+                    // <img src={mainImage} alt="mainImage" className="absolute inset-0 object-cover w-full h-full" />
+                    :
                     <Image
                         src={mainImage}
                         alt="hero"
-                        className="hidden lg:block introFadeUp"
+                        className="block introFadeUp"
                         fill
                         objectFit="cover"
                     />
-                    // <img src={mainImage} alt="mainImage" className="absolute inset-0 object-cover w-full h-full" />
-                    :
-                    <video src={videoURL}
-                        autoPlay muted width={'100%'} height={'100%'} loop className="relative" ></video>
             }
 
         </div>
