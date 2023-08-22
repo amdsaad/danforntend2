@@ -119,7 +119,8 @@ export default function AboutDan({ smoother }) {
       />
       <section>
         <div className="w-full relative  min-h-screen ">
-          <Image
+          <TheHeroBg />
+          {/* <Image
             src="/about/hero.png"
             alt="hero"
             className="hidden lg:block introFadeUp"
@@ -132,7 +133,7 @@ export default function AboutDan({ smoother }) {
             className="block lg:hidden  introFadeUp"
             fill
             objectFit="cover"
-          />
+          /> */}
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full  justify-center  lg:lg:justify-end items-start lg:pb-32 introFadeUp">
@@ -664,6 +665,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
+import TheHeroBg from '../components/TheHeroBg';
 
 function SideBar({
   open,

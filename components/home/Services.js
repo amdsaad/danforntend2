@@ -12,7 +12,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import dynamic from 'next/dynamic'
 
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
