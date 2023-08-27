@@ -68,7 +68,14 @@ export default function Careers() {
             setBtnFirst(response?.data?.culture_button_1);
             setBtnSecond(response?.data?.culture_button_2);
             setCultureTitle(response?.data?.work_titele);
-            setCulture(response?.data?.work_culture);
+            setCulture(
+              response?.data?.work_culture
+                ? response?.data?.work_culture
+                    .split('\n')
+                    .filter((x) => x?.trim().length)
+                    .map((item) => item?.trim())
+                : null,
+            );
             setIntro(
               response?.data?.intro_career
                 ? response?.data?.intro_career
