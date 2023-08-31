@@ -546,7 +546,7 @@ export default function FutureProject() {
       <section className="mb-8">
         <div className="container py-20 text-white  relative">
           <img
-            src="/future/Group 8199.png"
+            src={future?.background_image}
             alt=""
             className="absolute left-0 bottom-0 w-full h-full -z-10"
           />
