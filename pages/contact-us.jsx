@@ -101,7 +101,6 @@ export default function ContactUs() {
     <div className=" relative w-full min-h-screen">
       <section>
         <div className="w-full relative  min-h-screen">
-
           <TheHeroBg mainImage={mainImage} videoURL={videoURL} />
           {/* <Image
             src="/contact/hero.png"
@@ -120,7 +119,7 @@ export default function ContactUs() {
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
-                <h1 className=" text-[24px]  lg:text-[35px] text-white font-bold introFadeUp">
+                <h1 className=" text-[24px] lg:text-[35px] text-white font-bold introFadeUp">
                   {title}
                 </h1>
                 {feedback?.map((item, i) => (

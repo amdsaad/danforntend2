@@ -47,7 +47,7 @@ const Topbar = ({ gd, aboutDanLang, setAboutDanLang }) => {
         className={`fixed w-full ${
           isScrolled
             ? 'pt-10 pb-10'
-            : 'border-b border-gray-100 border-opacity-50 pt-10 pb-10'
+            : 'border-b border-gray-100 border-opacity-50 py-8'
         }`}
       >
         {gd ? (

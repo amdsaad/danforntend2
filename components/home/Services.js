@@ -158,10 +158,14 @@ export default function Services({ tourisms, title, description, about_1, about_
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:justify-end items-start lg:pb-32">
-                <h1 className=" text-[35px] lg:text-[50px] text-white font-bold introFadeUp">{title}</h1>
+                <h1
+
+                  className=" text-[24px] lg:text-[35px] text-white font-bold introFadeUp"
+                >{title}</h1>
                 {
                   description?.map((item, ind) => (
-                    <p key={ind} className="text-white text-[16px] lg:text-[22px] lg:w-2/5 py-6  introFadeUp">
+                    <p key={ind}
+                      className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6  introFadeUp"                    >
                       {item}
                     </p>
                   ))

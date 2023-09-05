@@ -173,13 +173,13 @@ export default function Careers() {
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full justify-center  lg:lg:justify-end items-start lg:pb-32">
-                <h1 className=" text-[24px]  lg:text-[35px] text-white font-bold introFadeUp">
+                <h1 className=" text-[24px] lg:text-[35px] text-white font-bold introFadeUp">
                   {cultureTitle}
                 </h1>
                 {culture?.map((item, index) => (
                   <p
                     key={index}
-                    className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6 introFadeUp"
+                    className="text-white text-[16px] lg:text-[16px] lg:w-3/5 py-6  introFadeUp"
                   >
                     {item}
                   </p>
