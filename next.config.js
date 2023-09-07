@@ -14,6 +14,18 @@ const nextConfig = {
         port: '',
         pathname: '/storage/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'dancompany.sa',
+        port: '',
+        pathname: '/**/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'dan.webse.io',
+        port: '',
+        pathname: '/storage/**',
+      },
     ],
   },
 
