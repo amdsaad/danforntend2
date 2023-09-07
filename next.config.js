@@ -10,18 +10,6 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'webadmin.dancompany.sa',
-        port: '',
-        pathname: '/storage/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'dancompany.sa',
-        port: '',
-        pathname: '/**/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'dan.webse.io',
         port: '',
         pathname: '/storage/**',
