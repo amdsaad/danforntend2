@@ -7,7 +7,7 @@ const nextConfig = {
   swcMinify: true,
   i18n,
   images: {
-    domains: ['webadmin.dancompany.sa', 'dancompany.sa'],
+    domains: ['webadmin.dancompany.sa', 'dancompany.sa','dan.webse.io'],
     // remotePatterns: [
     //   {
     //     protocol: 'https',
