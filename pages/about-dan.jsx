@@ -427,10 +427,6 @@ export default function AboutDan({ smoother }) {
                         {router.locale === 'en' ? item.job_en : item.job}
                       </p>
                     </div>
-                    {/* <AiOutlineTwitter
-                      className="w-6 h-6"
-                      style={{ color: `${item.color}` }}
-                    /> */}
                   </div>
                   <div className="flex items-center gap-1 mt-4">
                     <Image width={20} height={20} src={`/home/l1.png`} alt="" />
@@ -445,42 +441,61 @@ export default function AboutDan({ smoother }) {
 
           <div className=" block lg:hidden w-full scrubElements scrubRandom">
             <Slider {...settings}>
-              {about?.leaders?.map((item) => (
-                <div
-                  key={item.id}
-                  onClick={() => {
-                    setOpen(true);
-                    setActiveCard(item);
-                  }}
-                  className="bg-[#F7F7F7] px-6 pt-6"
-                >
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <p className="thin text-[16px] text-txt">
-                        {router.locale === 'en' ? item.name_en : item.name}
-                      </p>
-                      <p className="thin text-[14px] text-txt">
-                        {router.locale === 'en' ? item.job_en : item.job}
-                      </p>
+              {about?.leaders
+                ?.filter((x) => x.role != 'management')
+                .map((item) => (
+                  <div
+                    key={item.id}
+                    onClick={() => {
+                      setOpen(true);
+                      setActiveCard(item);
+                    }}
+                    className="bg-[#F7F7F7] px-6 pt-6"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <p className="thin text-[16px] text-txt">
+                          {router.locale === 'en' ? item.name_en : item.name}
+                        </p>
+                        <p className="thin text-[14px] text-txt">
+                          {router.locale === 'en' ? item.job_en : item.job}
+                        </p>
+                      </div>
                     </div>
-                    <AiOutlineTwitter
-                      className="w-6 h-6"
-                      style={{ color: `${item.color}` }}
-                    />
+                    <div className="flex items-center gap-1 mt-4">
+                      <Image
+                        width={20}
+                        height={20}
+                        src={`/home/l1.png`}
+                        alt=""
+                      />
+                      <Image
+                        width={20}
+                        height={20}
+                        src={`/home/l2.png`}
+                        alt=""
+                      />
+                      <Image
+                        width={20}
+                        height={20}
+                        src={`/home/l3.png`}
+                        alt=""
+                      />
+                      <Image
+                        width={20}
+                        height={20}
+                        src={`/home/l4.png`}
+                        alt=""
+                      />
+                    </div>
+                    <img src={item?.avatar} className="mt-5" alt="" />
                   </div>
-                  <div className="flex items-center gap-1 mt-4">
-                    <Image width={20} height={20} src={`/home/l1.png`} alt="" />
-                    <Image width={20} height={20} src={`/home/l2.png`} alt="" />
-                    <Image width={20} height={20} src={`/home/l3.png`} alt="" />
-                    <Image width={20} height={20} src={`/home/l4.png`} alt="" />
-                  </div>
-                  <img src={item?.avatar} className="mt-5" alt="" />
-                </div>
-              ))}
+                ))}
             </Slider>
           </div>
         </div>
       </section>
+
       <section className="my-20">
         <div className="container">
           <div className="flex flex-col items-center gap-5 lg:gap-10">
@@ -510,7 +525,6 @@ export default function AboutDan({ smoother }) {
               </p>
             ))}
           </div>
-          {/* TODO:check if there uare different type of memebrs */}
           <div className=" hidden lg:grid grid-cols-3 mt-10 gap-16 scrubElements scrubFadeUp">
             {about?.leaders
               ?.filter((x) => x.role === 'management')
@@ -532,10 +546,6 @@ export default function AboutDan({ smoother }) {
                         {router.locale === 'en' ? item.job_en : item.job}
                       </p>
                     </div>
-                    {/* <AiOutlineTwitter
-                      className="w-6 h-6"
-                      style={{ color: `${item.color}` }}
-                    /> */}
                   </div>
                   <div className="flex items-center gap-1 mt-4">
                     <Image width={20} height={20} src={`/home/l1.png`} alt="" />
@@ -569,10 +579,6 @@ export default function AboutDan({ smoother }) {
                           {router.locale === 'en' ? item.job_en : item.job}
                         </p>
                       </div>
-                      <AiOutlineTwitter
-                        className="w-6 h-6"
-                        style={{ color: `${item.color}` }}
-                      />
                     </div>
                     <div className="flex items-center gap-1 mt-4">
                       <Image
@@ -605,7 +611,6 @@ export default function AboutDan({ smoother }) {
                 ))}
             </Slider>
           </div>
-          {/* end of todo */}
         </div>
       </section>
 

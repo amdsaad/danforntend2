@@ -212,7 +212,7 @@ export default function FutureProject() {
           </div>
         </div>
       </section>
-      <section className=" h-[700px]  lg:h-[1000px] relative mt-20 ">
+      <section className=" h-[750px]  lg:h-[1000px] relative mt-20 ">
         <img
           src="/future/road.png"
           className="relative hidden lg:block  "
@@ -438,11 +438,11 @@ export default function FutureProject() {
         </Slider>
       </section>
 
-      <section className=" mb-20 block lg:hidden future_slide2 overflow-hidden scrubElements scrubFadeUp">
+      <section className="lg:mb-20 block lg:hidden future_slide2 overflow-hidden scrubElements scrubFadeUp">
         <div className="relative h-96 ">
           <div className="h-full w-full ">
             <div
-              className="absolute top-0 right-0 left-0 bottom-0 opacity-20"
+              className="absolute top-0 right-0 left-0 bottom-0 opacity-10"
               style={{
                 backgroundColor: typetourisms[0]?.color,
               }}
@@ -452,14 +452,14 @@ export default function FutureProject() {
               src={typetourisms[0]?.image}
               alt=""
             />
-            <div className="w-3/6  rtl absolute font-bold right-10 flex flex-col justify-center gap-8 h-full">
+            <div className="w-full  rtl absolute font-bold right-0 flex flex-col justify-center gap-8 h-full px-4">
               <h1 className="text-txt text-[22px]">{typetourisms[0]?.name}</h1>
               <p className="text-[14px]  text-txt thin">
                 {typetourisms[0]?.description}
               </p>
               <button
                 onClick={animateModal}
-                className="px-5 py-2 text-sm   thin  border rounded-full flex items-center gap-2"
+                className="px-5 py-2 text-sm thin  border rounded-full flex items-center justify-center gap-2"
                 onMouseEnter={() => setAdvBtnOver(true)}
                 onMouseLeave={() => setAdvBtnOver(false)}
                 style={{
@@ -478,7 +478,7 @@ export default function FutureProject() {
         </div>
         <div className=" relative h-96 ">
           <div
-            className="absolute top-0 right-0 left-0 bottom-0 opacity-20"
+            className="absolute top-0 right-0 left-0 bottom-0 opacity-10"
             style={{
               backgroundColor: typetourisms[1]?.color,
             }}
@@ -488,13 +488,13 @@ export default function FutureProject() {
             src={typetourisms[1]?.image}
             alt=""
           />
-          <div className="w-3/6  rtl absolute font-bold right-10 flex flex-col justify-center gap-8 h-full">
+          <div className="w-full  rtl absolute font-bold right-0 flex flex-col justify-center gap-8 h-full px-4">
             <h1 className="text-txt text-[22px]">{typetourisms[1]?.name}</h1>
             <p className="text-[14px] text-txt thin">
               {typetourisms[1]?.description}
             </p>
             <button
-              className="px-5 py-2  text-sm  thin  border rounded-full flex items-center gap-2"
+              className="px-5 py-2  text-sm  thin  border rounded-full flex items-center gap-2 justify-center"
               onMouseEnter={() => setRuralBtnOver(true)}
               onMouseLeave={() => setRuralBtnOver(false)}
               style={{
@@ -512,23 +512,23 @@ export default function FutureProject() {
         </div>
         <div className="relative h-96 ">
           <div
-            className="absolute top-0 right-0 left-0 bottom-0 opacity-20"
+            className="absolute top-0 right-0 left-0 bottom-0 opacity-10"
             style={{
               backgroundColor: typetourisms[2]?.color,
             }}
           ></div>
           <img
-            className="absolute top-0 left-0"
+            className="absolute top-0 left-0 opacity-50"
             src={typetourisms[2]?.image}
             alt=""
           />
-          <div className="w-3/6  rtl absolute font-bold right-10 flex flex-col justify-center gap-8 h-full">
+          <div className="w-full  rtl absolute font-bold right-0 flex flex-col justify-center gap-8 h-full px-4">
             <h1 className="text-txt text-[22px]">{typetourisms[2]?.name}</h1>
             <p className="text-[14px] mt-5 text-txt thin">
               {typetourisms[2]?.description}
             </p>
             <button
-              className="px-5 py-2  text-sm thin  border  rounded-full flex items-center gap-2"
+              className="px-5 py-2  text-sm thin  border  rounded-full flex items-center gap-2 justify-center"
               onMouseEnter={() => setEcoBtnOver(true)}
               onMouseLeave={() => setEcoBtnOver(false)}
               style={{
@@ -543,12 +543,12 @@ export default function FutureProject() {
           </div>
         </div>
       </section>
-      <section className="mb-8">
+      <section className="lg:mb-8">
         <div className="container py-20 text-white  relative">
           <img
             src={future?.background_image}
             alt=""
-            className="absolute left-0 bottom-0 w-full h-full -z-10"
+            className="absolute left-0 bottom-0 w-full h-full object-cover -z-10"
           />
           <div className="flex items-start gap-4 lg:items-center lg:flex-row flex-col lg:justify-between ">
             <h1 className=" tBold text-[24px] lg:text-[30px] scrubElements scrubFadeUp ">
