@@ -7,20 +7,21 @@ const nextConfig = {
   swcMinify: true,
   i18n,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'webadmin.dancompany.sa',
-        port: '',
-        pathname: '/storage/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'webadmin.dancompany.sa',
-        port: '',
-        pathname: '/_next/image/**',
-      },
-    ],
+    domains: ['webadmin.dancompany.sa', 'dancompany.sa'],
+    // remotePatterns: [
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'webadmin.dancompany.sa',
+    //     port: '',
+    //     pathname: '/storage/**',
+    //   },
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'webadmin.dancompany.sa',
+    //     port: '',
+    //     pathname: '/_next/image/**',
+    //   },
+    // ],
   },
 
 }
