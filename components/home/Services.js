@@ -178,7 +178,7 @@ export default function Services({ tourisms, title, description, about_1, about_
       </section>
       <div ref={scrollRef}></div>
 
-      <section className="w-full relative " id="advSection" ref={advSection}>
+      <section className="w-full relative overflow-hidden " id="advSection" ref={advSection}>
         <div className=" absolute top-0 right-0 flex items-end justify-end scrubElements scrubRight" id="advSection_img_1" ref={advSection_img_1}>
           <Image src={tourisms[0]?.images[1]?.url} className="hidden lg:hidden xl:block" alt="" width={708} height={702} />
           <Image src={tourisms[0]?.images[1]?.url} className="hidden lg:block xl:hidden" alt="" width={500} height={402} />
@@ -190,8 +190,11 @@ export default function Services({ tourisms, title, description, about_1, about_
           <Image src={tourisms[0]?.images[0]?.url} className="block lg:hidden" alt="" width={300} height={324} />
         </div>
 
-        <div className="container  relative h-[700px]" id="advSection_content" ref={advSection_content}>
-          <div className=" pt-96 lg:pt-52 xl:pt-60 px-3 lg:px-0 lg:w-[500px] xl:pl-20 absolute left-0 lg:pr-10 xl:pr-0 lg:left-0 xl:left-16">
+        <div id="advSection_content" ref={advSection_content}
+          className={router.locale === "ar" ? "container relative h-[750px] lg:h-[700px] flex justify-end items-center " : "container relative h-[750px] lg:h-[700px] flex justify-start items-center"}>
+          <div className="w-full lg:max-w-[450px] px-4"
+
+          >
             <h1 className="text-[25px] lg:text-[30px] tBold scrubElements scrubFadeUp  text-[#E98108]">{tourisms[0]?.name}</h1>
             <p className="pt-10 pb-16 thin text-[#54290E] scrubElements scrubFadeUp text-[16px] lg:text-[18px] font-thin ">{tourisms[0]?.description}</p>
             <div className="flex items-center gap-4 scrubElements scrubFadeUp w-full" id="advSection_content_btn" ref={advSection_content_btn}>
@@ -253,8 +256,8 @@ export default function Services({ tourisms, title, description, about_1, about_
           <Image src={tourisms[2]?.images[1]?.url} className="hidden lg:block xl:hidden" alt="" width={306} height={300} />
           <Image src={tourisms[2]?.images[1]?.url} className="block lg:hidden" alt="" width={180} height={346} />
         </div>
-        <div className="container relative h-[650px] lg:h-[500px] xl:h-[700px]" id="ecotourism_content" ref={ecotourism_content}>
-          <div className="  pt-[350px] px-3 lg:px-0 lg:pt-40 lg:pr-10 xl:pr-0 xl:pt-80 lg:w-[500px] absolute left-0">
+        <div className={router.locale === 'ar' ? "container relative h-[650px] lg:h-[500px] xl:h-[700px] flex justify-end items-center" : "container relative h-[650px] lg:h-[500px] xl:h-[700px] flex justify-start items-center"} id="ecotourism_content" ref={ecotourism_content}>
+          <div className=" w-full lg:max-w-[450px] px-4">
             <div className="flex items-center gap-5 scrubElements scrubFadeUp ">
               <h1 className="text-[18px] lg:text-[30px] tBold   text-[#1A92D3] ">{tourisms[2]?.name}</h1>
             </div>
@@ -301,14 +304,14 @@ export default function Services({ tourisms, title, description, about_1, about_
         </div>
         <div className=" relative w-screen flex  h-full">
           <div className=" container">
-            <div className="w-full grid grid-cols-1 pt-5 lg:pt-[150px] thin lg:grid-cols-2">
+            <div className="w-full grid grid-cols-1 pt-5 lg:pt-[150px] thin lg:grid-cols-3">
               <div className="flex lg:hidden pt-5 px-4 items-center gap-10 mb-2">
                 <Image height={59} width={59} src="/home/l1.png" className="image11" alt="" />
                 <Image height={59} width={59} src="/home/l2.png" className="image12" alt="" />
                 <Image height={59} width={59} src="/home/l3.png" className="image13" alt="" />
                 <Image height={59} width={59} src="/home/l4.png" className="image14" alt="" />
               </div>
-              <div>
+              <div className="col-span-2">
                 <p className="text-[25px] tBold lg:text-[30px] text-white">{t("nav.about")}</p>
                 <div
                   className="text-[14px] lg:text-[14px] mt-10 thin text-white about__html"

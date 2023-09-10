@@ -379,7 +379,7 @@ export default function AboutDan({ smoother }) {
                   activeKey.id === item.id
                     ? 'w-full min-h-[400px] lg:h-full lg:w-[80%]'
                     : 'w-full h-[130px] lg:h-full lg:w-[20%]'
-                }  cursor-pointer relative scrubElements scrubRandom`}
+                }  cursor-pointer relative scrubElements scrubFadeUp lg:scrubRandom`}
               >
                 <img
                   src={item?.icon}
@@ -402,7 +402,7 @@ export default function AboutDan({ smoother }) {
         </div>
       </section>
       <section className="pb-20">
-        <p className="text-[#552A0E] pb-10 text-center text-[24px] tBold lg:text-[30px]  scrubElements scrubRandom ">
+        <p className="text-[#552A0E] pb-10 text-center text-[24px] tBold lg:text-[30px]  lg:scrubElements  lg:scrubRandom ">
           {about?.boardofdirectors}
         </p>
         <div className="container">
@@ -416,7 +416,7 @@ export default function AboutDan({ smoother }) {
                     setActiveCard(item);
                   }}
                   key={item.id}
-                  className="bg-[#F7F7F7] cursor-pointer px-6 pt-6 scrubElements scrubRandom"
+                  className="bg-[#F7F7F7] cursor-pointer px-6 pt-6 scrubElements scrubFadeUp lg:scrubRandom"
                 >
                   <div className="flex items-start justify-between">
                     <div>
@@ -439,7 +439,7 @@ export default function AboutDan({ smoother }) {
               ))}
           </div>
 
-          <div className=" block lg:hidden w-full scrubElements scrubRandom">
+          <div className=" block lg:hidden w-full lg:scrubElements lg:scrubRandom">
             <Slider {...settings}>
               {about?.leaders
                 ?.filter((x) => x.role != 'management')
@@ -500,32 +500,32 @@ export default function AboutDan({ smoother }) {
         <div className="container">
           <div className="flex flex-col items-center gap-5 lg:gap-10">
             <Image
-              className="mx-auto hidden lg:block scrubElements scrubRotateFadeUp"
+              className="mx-auto hidden lg:block lg:scrubElements lg:scrubRotateFadeUp"
               width={84}
               height={84}
               src={`/home/l3.png`}
               alt=""
             />
             <Image
-              className="mx-auto block lg:hidden scrubElements scrubRotateFadeUp"
+              className="mx-auto block lg:hidden lg:scrubElements lg:scrubRotateFadeUp"
               width={40}
               height={40}
               src={`/home/l3.png`}
               alt=""
             />
-            <h1 className="text-[#552A0E]  text-center text-[24px] tBold lg:text-[30px] bold scrubElements scrubFadeUp">
+            <h1 className="text-[#552A0E]  text-center text-[24px] tBold lg:text-[30px] bold lg:scrubElements lg:scrubFadeUp">
               {about?.titele_leadership}
             </h1>
             {leadership.map((item, ind) => (
               <p
                 key={ind}
-                className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 scrubElements scrubFadeUp"
+                className="text-[#552A0E] text-center text-[14px] lg:text-[18px] thin lg:w-4/5 lg:scrubElements lg:scrubFadeUp"
               >
                 {item}
               </p>
             ))}
           </div>
-          <div className=" hidden lg:grid grid-cols-3 mt-10 gap-16 scrubElements scrubFadeUp">
+          <div className=" hidden lg:grid grid-cols-3 mt-10 gap-16 lg:scrubElements lg:scrubFadeUp">
             {about?.leaders
               ?.filter((x) => x.role === 'management')
               .map((item) => (
@@ -557,7 +557,7 @@ export default function AboutDan({ smoother }) {
                 </div>
               ))}
           </div>
-          <div className=" block mt-10 lg:hidden w-full scrubElements scrubFadeUp">
+          <div className=" block mt-10 lg:hidden w-full lg:scrubElements lg:scrubFadeUp">
             <Slider {...settings}>
               {about?.leaders
                 ?.filter((x) => x.role === 'management')
@@ -614,7 +614,7 @@ export default function AboutDan({ smoother }) {
         </div>
       </section>
 
-      <div className="bg-[#552A0E] w-full py-20 scrubElements scrubFadeUp">
+      <div className="bg-[#552A0E] w-full py-20">
         <div className="container">
           <h1 className="text-[25px] lg:text-[30px] tBold text-white">
             {about?.titele_ceo_message}

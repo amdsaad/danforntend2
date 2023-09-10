@@ -61,7 +61,7 @@ const Topbar = ({ gd, aboutDanLang, setAboutDanLang }) => {
             }`}
           />
         )}
-        <div className=" px-10 relative z-10 flex items-center justify-between h-full gap-5">
+        <div className="px-4 relative z-10 flex items-center justify-between h-full gap-5">
           <div className="flex  items-center gap-16 h-full">
             <Link href="/">
               <img

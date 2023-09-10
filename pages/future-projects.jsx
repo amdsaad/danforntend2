@@ -448,11 +448,11 @@ export default function FutureProject() {
               }}
             ></div>
             <img
-              className="absolute top-0 left-0 opacity-30"
+              className="absolute top-0 left-0 opacity-20"
               src={typetourisms[0]?.image}
               alt=""
             />
-            <div className="w-full  rtl absolute font-bold right-0 flex flex-col justify-center gap-8 h-full px-4">
+            <div className="w-full  rtl absolute font-bold right-0 flex flex-col justify-end pb-8 gap-8 h-full px-4">
               <h1 className="text-txt text-[22px]">{typetourisms[0]?.name}</h1>
               <p className="text-[14px]  text-txt thin">
                 {typetourisms[0]?.description}
@@ -484,11 +484,11 @@ export default function FutureProject() {
             }}
           ></div>
           <img
-            className="absolute top-0 left-0 opacity-50"
+            className="absolute top-0 left-0 opacity-20"
             src={typetourisms[1]?.image}
             alt=""
           />
-          <div className="w-full  rtl absolute font-bold right-0 flex flex-col justify-center gap-8 h-full px-4">
+          <div className="w-full  rtl absolute font-bold right-0 flex flex-col justify-end pb-8 gap-8 h-full px-4">
             <h1 className="text-txt text-[22px]">{typetourisms[1]?.name}</h1>
             <p className="text-[14px] text-txt thin">
               {typetourisms[1]?.description}
@@ -518,11 +518,11 @@ export default function FutureProject() {
             }}
           ></div>
           <img
-            className="absolute top-0 left-0 opacity-50"
+            className="absolute top-0 left-0 opacity-20"
             src={typetourisms[2]?.image}
             alt=""
           />
-          <div className="w-full  rtl absolute font-bold right-0 flex flex-col justify-center gap-8 h-full px-4">
+          <div className="w-full  rtl absolute font-bold right-0 flex flex-col justify-end pb-8 gap-8 h-full px-4">
             <h1 className="text-txt text-[22px]">{typetourisms[2]?.name}</h1>
             <p className="text-[14px] mt-5 text-txt thin">
               {typetourisms[2]?.description}
