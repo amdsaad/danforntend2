@@ -383,7 +383,7 @@ export default function AboutDan({ smoother }) {
               >
                 <img
                   src={item?.icon}
-                  className=" object-cover h-full w-full"
+                  className="absolute top-0 object-cover h-full w-full"
                   style={{ transition: 'all 1s ease' }}
                   alt=""
                 />
