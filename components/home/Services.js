@@ -229,7 +229,7 @@ export default function Services({ tourisms, title, description, about_1, about_
 
           className={router.locale === "ar" ? "container relative h-[750px] lg:h-[700px] flex justify-start " : "container relative h-[750px] lg:h-[700px] flex justify-end"}
         >
-          <div className=" pt-[460px] lg:pt-52 xl:pt-60 px-3 lg:px-0 lg:w-[400px] xl:w-1/3 absolute xl:right-[100px]">
+          <div className=" pt-[400px] lg:pt-52 xl:pt-60 px-3 lg:px-0 lg:w-[400px] xl:w-1/3 absolute xl:right-[100px]">
             <h1 className="text-[25px] lg:text-[30px] bottom-20 scrubElements scrubFadeUp tBold text-[#64C07D] ">{tourisms[1]?.name}</h1>
             <p className="thin text-[#54290E] scrubElements scrubFadeUp text-[16px] lg:text-[18px] font-thin my-8 lg:my-10">{tourisms[1]?.description}</p>
             <div className="flex items-center gap-4 scrubElements scrubFadeUp" id="ruralTourism_content_btn" ref={ruralTourism_content_btn}>

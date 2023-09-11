@@ -6,8 +6,26 @@ import Image from "next/image";
 
 
 export default function TheHeroBg({ mainImage, videoURL }) {
-    console.log("mainImage", mainImage);
-    console.log("videoURL", videoURL);
+
+
+
+
+    useEffect(() => {
+        // console.log('videoURL', videoURL)
+        // console.log('mainImage', mainImage)
+        const video = document.querySelector('.videoBg')
+
+        // check if browser is safari
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        // console.log('isSafari', isSafari)
+        if (isSafari) {
+            // video.setAttribute('playsinline', '')
+            // video.setAttribute('muted', '')
+            // video.setAttribute('autoplay', '')
+            // video.setAttribute('loop', '')
+            video.play()
+        }
+    }, [])
 
 
     return (
@@ -17,7 +35,7 @@ export default function TheHeroBg({ mainImage, videoURL }) {
                 videoURL ?
                     <video src={videoURL}
                         className='videoBg'
-                        autoPlay muted playsinline loop  ></video>
+                        autoPlay muted loop  ></video>
 
                     // <img src={mainImage} alt="mainImage" className="absolute inset-0 object-cover w-full h-full" />
                     :
