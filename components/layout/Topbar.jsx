@@ -257,7 +257,7 @@ function SideBar({ open, setOpen, language, setLanguage, t }) {
                           <Link href="/about-dan" className="text-white thin">
                             {t('nav.about')}
                           </Link>
-                          {!firstOpen ? (
+                          {/* {!firstOpen ? (
                             <SlArrowDown
                               onClick={() => setFirstOpen(!firstOpen)}
                               className="w-5 h-5 text-white"
@@ -267,9 +267,9 @@ function SideBar({ open, setOpen, language, setLanguage, t }) {
                               onClick={() => setFirstOpen(!firstOpen)}
                               className="w-5 h-5 text-white"
                             />
-                          )}
+                          )} */}
                         </div>
-                        {firstOpen && (
+                        {/* {firstOpen && (
                           <div className="mt-6">
                             <p className="text-white text-sm thin cursor-pointer">
                               {t('VisionMission')}
@@ -281,7 +281,7 @@ function SideBar({ open, setOpen, language, setLanguage, t }) {
                               {t('ExperimentalText')}
                             </p>
                           </div>
-                        )}
+                        )} */}
                       </div>
                       <div className="px-8 mt-4  border-b border-gray-50 border-opacity-50 pb-6">
                         <div className="flex cursor-pointer mt-8 items-center justify-between">
@@ -291,7 +291,7 @@ function SideBar({ open, setOpen, language, setLanguage, t }) {
                           >
                             {t('nav.future')}
                           </Link>
-                          {!secondOpen ? (
+                          {/* {!secondOpen ? (
                             <SlArrowDown
                               onClick={() => setsecondOpen(!secondOpen)}
                               className="w-5 h-5 text-white"
@@ -301,7 +301,7 @@ function SideBar({ open, setOpen, language, setLanguage, t }) {
                               onClick={() => setsecondOpen(!secondOpen)}
                               className="w-5 h-5 text-white"
                             />
-                          )}
+                          )} */}
                         </div>
                         {secondOpen && (
                           <div className="mt-6">
@@ -322,7 +322,7 @@ function SideBar({ open, setOpen, language, setLanguage, t }) {
                           <Link href="/newsmain" className="text-white thin">
                             {t('nav.media')}
                           </Link>
-                          {!thirdOpen ? (
+                          {/* {!thirdOpen ? (
                             <SlArrowDown
                               onClick={() => setThirdOpen(!thirdOpen)}
                               className="w-5 h-5 text-white"
@@ -332,7 +332,7 @@ function SideBar({ open, setOpen, language, setLanguage, t }) {
                               onClick={() => setThirdOpen(!thirdOpen)}
                               className="w-5 h-5 text-white"
                             />
-                          )}
+                          )} */}
                         </div>
                         {thirdOpen && (
                           <div className="mt-6">
@@ -353,7 +353,7 @@ function SideBar({ open, setOpen, language, setLanguage, t }) {
                           <Link href="/careers" className="text-white thin">
                             {t('nav.careers')}
                           </Link>
-                          {!fourOpen ? (
+                          {/* {!fourOpen ? (
                             <SlArrowDown
                               onClick={() => setFourOpen(!fourOpen)}
                               className="w-5 h-5 text-white"
@@ -363,7 +363,7 @@ function SideBar({ open, setOpen, language, setLanguage, t }) {
                               onClick={() => setFourOpen(!fourOpen)}
                               className="w-5 h-5 text-white"
                             />
-                          )}
+                          )} */}
                         </div>
                         {fourOpen && (
                           <div className="mt-6">
