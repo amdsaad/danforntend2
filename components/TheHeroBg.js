@@ -19,14 +19,18 @@ export default function TheHeroBg({ mainImage, videoURL }) {
         console.log('isSafari', isSafari)
         if (isSafari) {
             const videElement = document.getElementById('videoBg')
+            console.log('videElement', videElement)
             // update video attributes for autoplay for safari
-            videElement.setAttribute('autoplay', '');
-            videElement.setAttribute('muted', '');
-            videElement.setAttribute('playsinline', '');
-            videElement.setAttribute('loop', '');
-            videElement.setAttribute('controls', '');
-            videElement.setAttribute('preload', 'auto');
-            
+
+            if (videElement) {
+                videElement.setAttribute('autoplay', '');
+                videElement.setAttribute('muted', '');
+                videElement.setAttribute('playsinline', '');
+                videElement.setAttribute('loop', '');
+                videElement.setAttribute('controls', '');
+                videElement.setAttribute('preload', 'auto');
+            }
+
         }
     }, [])
 
