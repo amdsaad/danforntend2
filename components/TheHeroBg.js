@@ -17,13 +17,18 @@ export default function TheHeroBg({ mainImage, videoURL }) {
 
         // check if browser is safari
         const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        // console.log('isSafari', isSafari)
+        console.log('isSafari', isSafari)
         if (isSafari) {
             // video.setAttribute('playsinline', '')
             // video.setAttribute('muted', '')
             // video.setAttribute('autoplay', '')
             // video.setAttribute('loop', '')
-            video.play()
+            // video.play()
+
+            if (video) {
+                console.log('video', video)
+                video.play()
+            }
         }
     }, [])
 
