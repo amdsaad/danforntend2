@@ -62,16 +62,26 @@ const Topbar = ({ gd, aboutDanLang, setAboutDanLang }) => {
           />
         )}
         <div className="px-4 relative z-10 flex items-center justify-between h-full gap-5">
-          <div className="flex  items-center gap-16 h-full">
-            <Link href="/">
-              <img
-                src="/logo.png"
-                style={{ width: '100%', objectFit: 'contain' }}
-                className=" h-10 "
-                alt=""
-              />
-            </Link>
-            <div className="  hidden lg:flex items-center pt-3 gap-8">
+          <div className="h-full">
+            <div className="lg:hidden">
+              <Link href="/">
+                <img
+                  src="/logo.png"
+                  style={{ width: '100%', objectFit: 'contain' }}
+                  className=" h-10 "
+                  alt=""
+                />
+              </Link>
+            </div>
+            <div className="hidden lg:flex items-center pt-3 gap-8">
+              <Link href="/">
+                <img
+                  src="/logo.png"
+                  style={{ width: '100%', objectFit: 'contain' }}
+                  className=" h-10 "
+                  alt=""
+                />
+              </Link>
               <Link legacyBehavior href="/about-dan">
                 <a
                   className={
