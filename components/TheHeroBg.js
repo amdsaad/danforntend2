@@ -23,12 +23,11 @@ export default function TheHeroBg({ mainImage, videoURL }) {
             
 
             if (videoURL && videoRef.current) {
-                videElement.setAttribute('autoplay', '');
-                videElement.setAttribute('muted', '');
-                videElement.setAttribute('playsinline', '');
-                videElement.setAttribute('loop', '');
-                videElement.setAttribute('controls', '');
-                videElement.setAttribute('preload', 'auto');
+                videoRef.current.setAttribute("playsinline", "playsinline");
+                videoRef.current.setAttribute("muted", "muted");
+                videoRef.current.setAttribute("autoplay", "autoplay");
+                videoRef.current.setAttribute("loop", "loop");
+                videoRef.current.setAttribute("preload", "auto");
             }
 
         }
