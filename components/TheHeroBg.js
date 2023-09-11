@@ -17,10 +17,7 @@ export default function TheHeroBg({ mainImage, videoURL }) {
 
         // check if browser is safari
         const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        console.log('isSafari', isSafari)
-        if (isSafari) {
-            console.log(videoRef.current)
-            
+        if (isSafari) {           
 
             if (videoURL && videoRef.current) {
                 videoRef.current.setAttribute("playsinline", "playsinline");
