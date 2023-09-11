@@ -77,7 +77,6 @@ const Topbar = ({ gd, aboutDanLang, setAboutDanLang }) => {
               <Link href="/">
                 <img
                   src="/logo.png"
-                  style={{ width: '100%', objectFit: 'contain' }}
                   className=" h-10 "
                   alt=""
                 />
@@ -140,7 +139,7 @@ const Topbar = ({ gd, aboutDanLang, setAboutDanLang }) => {
               </Link>
             </div>
           </div>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center justify-end gap-5 flex-1">
             {otherLocales?.map((locale) => {
               const { pathname, query, asPath } = router;
               return (
