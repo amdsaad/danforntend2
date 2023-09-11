@@ -13,23 +13,23 @@ export default function TheHeroBg({ mainImage, videoURL }) {
     useEffect(() => {
         // console.log('videoURL', videoURL)
         // console.log('mainImage', mainImage)
-        const video = document.querySelector('.videoBg')
 
         // check if browser is safari
         const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
         console.log('isSafari', isSafari)
         if (isSafari) {
-            const handleFirstInteraction = () => {
-                const video = document.getElementById('videoBg');
-                video.play();
-                document.removeEventListener('click', handleFirstInteraction);
-            };
+            const videoElement = document.getElementById('videoBg');
+            if (videoElement.canPlayType('video/mp4')) {
+                videoElement.play().then(function () {
+                    // Video is playing
+                    console.log('Autoplay Video is playing')
 
-            document.addEventListener('click', handleFirstInteraction);
+                }).catch(function (error) {
+                    // Autoplay was prevented, handle it
+                    console.log('Autoplay was prevented, handle it error', error)
+                });
+            }
 
-            return () => {
-                document.removeEventListener('click', handleFirstInteraction);
-            };
         }
     }, [])
 
