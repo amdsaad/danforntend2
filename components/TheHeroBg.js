@@ -19,16 +19,17 @@ export default function TheHeroBg({ mainImage, videoURL }) {
         const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
         console.log('isSafari', isSafari)
         if (isSafari) {
-            // video.setAttribute('playsinline', '')
-            // video.setAttribute('muted', '')
-            // video.setAttribute('autoplay', '')
-            // video.setAttribute('loop', '')
-            // video.play()
-            document.addEventListener('DOMContentLoaded', function () {
-                const videoElement = document.querySelector('.videoBg');
-                videoElement.play();
-            });
+            const handleFirstInteraction = () => {
+                const video = document.getElementById('videoBg');
+                video.play();
+                document.removeEventListener('click', handleFirstInteraction);
+            };
 
+            document.addEventListener('click', handleFirstInteraction);
+
+            return () => {
+                document.removeEventListener('click', handleFirstInteraction);
+            };
         }
     }, [])
 
@@ -40,6 +41,7 @@ export default function TheHeroBg({ mainImage, videoURL }) {
                 videoURL ?
                     <video src={videoURL}
                         className='videoBg'
+                        id="videoBg"
                         autoPlay muted loop  ></video>
 
                     // <img src={mainImage} alt="mainImage" className="absolute inset-0 object-cover w-full h-full" />
