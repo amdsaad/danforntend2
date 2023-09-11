@@ -191,12 +191,12 @@ export default function Services({ tourisms, title, description, about_1, about_
         </div>
 
         <div id="advSection_content" ref={advSection_content}
-          className={router.locale === "ar" ? "container relative h-[750px] lg:h-[700px] flex justify-end items-center " : "container relative h-[750px] lg:h-[700px] flex justify-start items-center"}>
+          className={router.locale === "ar" ? "container relative h-[750px] lg:h-[700px] flex justify-end items-end lg:items-center pb-[200px] lg:pb-0" : "container relative h-[750px] lg:h-[700px] flex justify-start items-end lg:items-center pb-[200px] lg:pb-0"}>
           <div className="w-full lg:max-w-[450px] px-4"
 
           >
             <h1 className="text-[25px] lg:text-[30px] tBold scrubElements scrubFadeUp  text-[#E98108]">{tourisms[0]?.name}</h1>
-            <p className="pt-10 pb-16 thin text-[#54290E] scrubElements scrubFadeUp text-[16px] lg:text-[18px] font-thin ">{tourisms[0]?.description}</p>
+            <p className="thin text-[#54290E] scrubElements scrubFadeUp text-[16px] lg:text-[18px] font-thin my-8 lg:my-10 ">{tourisms[0]?.description}</p>
             <div className="flex items-center gap-4 scrubElements scrubFadeUp w-full" id="advSection_content_btn" ref={advSection_content_btn}>
               <button onClick={animateModal} onMouseEnter={() => setAdvBtnOver1(true)} onMouseLeave={() => setAdvBtnOver1(false)} className="tourisms0 px-[30px] py-2 hidden  bg-transparent  hover:text-white border  rounded-full lg:flex items-center gap-2 " style={{ backgroundColor: !advBtnOver1 ? "transparent" : tourisms[0]?.color, color: advBtnOver1 ? "white" : tourisms[0]?.color, borderColor: tourisms[0]?.color }}>
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
@@ -210,6 +210,8 @@ export default function Services({ tourisms, title, description, about_1, about_
           </div>
         </div>
       </section>
+
+
 
 
       <section className="w-full relative overflow-hidden" id="ruralTourism" ref={ruralTourism}>
@@ -229,7 +231,7 @@ export default function Services({ tourisms, title, description, about_1, about_
         >
           <div className=" pt-[460px] lg:pt-52 xl:pt-60 px-3 lg:px-0 lg:w-[400px] xl:w-1/3 absolute xl:right-[100px]">
             <h1 className="text-[25px] lg:text-[30px] bottom-20 scrubElements scrubFadeUp tBold text-[#64C07D] ">{tourisms[1]?.name}</h1>
-            <p className="pt-10 pb-16 thin text-[#54290E] scrubElements scrubFadeUp text-[16px] lg:text-[18px] font-thin bottom-20">{tourisms[1]?.description}</p>
+            <p className="thin text-[#54290E] scrubElements scrubFadeUp text-[16px] lg:text-[18px] font-thin my-8 lg:my-10">{tourisms[1]?.description}</p>
             <div className="flex items-center gap-4 scrubElements scrubFadeUp" id="ruralTourism_content_btn" ref={ruralTourism_content_btn}>
               <button onClick={animateModal} className="px-[30px] py-2  border rounded-full hidden lg:flex items-center gap-2" onMouseEnter={() => setRuralBtnOver1(true)} onMouseLeave={() => setRuralBtnOver1(false)} style={{ backgroundColor: !ruralBtnOver1 ? "transparent" : tourisms[1]?.color, color: ruralBtnOver1 ? "white" : tourisms[1]?.color, borderColor: tourisms[1]?.color }}>
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
@@ -242,7 +244,10 @@ export default function Services({ tourisms, title, description, about_1, about_
             </div>
           </div>
         </div>
+
       </section>
+
+
 
 
       <section className="w-full relative mt-24 overflow-hidden " id="ecotourism" ref={ecotourism}>
@@ -256,12 +261,12 @@ export default function Services({ tourisms, title, description, about_1, about_
           <Image src={tourisms[2]?.images[1]?.url} className="hidden lg:block xl:hidden" alt="" width={306} height={300} />
           <Image src={tourisms[2]?.images[1]?.url} className="block lg:hidden" alt="" width={180} height={346} />
         </div>
-        <div className={router.locale === 'ar' ? "container relative h-[650px] lg:h-[500px] xl:h-[700px] flex justify-end items-center" : "container relative h-[650px] lg:h-[500px] xl:h-[700px] flex justify-start items-center"} id="ecotourism_content" ref={ecotourism_content}>
-          <div className=" w-full lg:max-w-[450px] px-4">
+        <div className={router.locale === 'ar' ? "container relative h-[650px] lg:h-[500px] xl:h-[700px] flex justify-end items-end lg:items-center pb-[150px] lg:pb-0" : "container relative h-[650px] lg:h-[500px] xl:h-[700px] flex justify-start items-end lg:items-center pb-[150px] lg:pb-0"} id="ecotourism_content" ref={ecotourism_content}>
+          <div className="w-full lg:max-w-[450px] px-4">
             <div className="flex items-center gap-5 scrubElements scrubFadeUp ">
-              <h1 className="text-[18px] lg:text-[30px] tBold   text-[#1A92D3] ">{tourisms[2]?.name}</h1>
+              <h1 className="text-[25px] lg:text-[30px] tBold   text-[#1A92D3] ">{tourisms[2]?.name}</h1>
             </div>
-            <p className="pt-10 pb-16 thin text-[#54290E] scrubElements scrubFadeUp  text-[16px] lg:text-[18px] ">{tourisms[2]?.description}</p>
+            <p className="thin text-[#54290E] scrubElements scrubFadeUp  text-[16px] lg:text-[18px] my-8 lg:my-10 ">{tourisms[2]?.description}</p>
             <div className="flex items-center gap-4 scrubElements scrubFadeUp " id="ecotourism_content_btn " ref={ecotourism_content_btn}>
               <button onClick={animateModal} className="px-[30px] py-2 hidden border rounded-full lg:flex items-center gap-2" onMouseEnter={() => setEcoBtnOver1(true)} onMouseLeave={() => setEcoBtnOver1(false)} style={{ backgroundColor: !ecoBtnOver1 ? "transparent" : tourisms[2]?.color, color: ecoBtnOver1 ? "white" : tourisms[2]?.color, borderColor: tourisms[2]?.color }}>
                 <FaHandshake className="w-5 h-5 transform  -rotate-45 " />
@@ -276,10 +281,44 @@ export default function Services({ tourisms, title, description, about_1, about_
         </div>
       </section>
 
+      <section className="lg:hidden min-h-screen relative py-8">
+        <div className="container">
+          <div className="flex lg:hidden px-4 items-center gap-10 mb-2 relative z-50">
+            <Image height={40} width={40} src="/home/l1.png" className="image11" alt="" />
+            <Image height={40} width={40} src="/home/l2.png" className="image12" alt="" />
+            <Image height={40} width={40} src="/home/l3.png" className="image13" alt="" />
+            <Image height={40} width={40} src="/home/l4.png" className="image14" alt="" />
+          </div>
+          <div className="relative z-50 bg-red-10">
+            <p className="text-[25px] tBold lg:text-[30px] text-white my-4">{t("nav.about")}</p>
+            <div
+              className="text-[14px] lg:text-[14px] thin text-white about__html"
+              dangerouslySetInnerHTML={{
+                __html: about_1,
+              }}
+            ></div>
+            <div className="flex my-5">
+              <Link href={"/about-dan"} className="px-[30px] py-2  border rounded-full flex items-center gap-2" onMouseEnter={() => setRuralBtnOver2(true)} onMouseLeave={() => setRuralBtnOver2(false)} style={{ backgroundColor: ruralBtnOver2 ? "transparent" : tourisms[0]?.color, color: !ruralBtnOver2 ? "white" : tourisms[0]?.color, borderColor: tourisms[0]?.color }}>
+                <BiSearch className="w-5 h-5 " />
+                {t("readmore")}
+              </Link>
+            </div>
+            <div
+              className="text-[14px] lg:text-[14px] thin text-white about__html"
+              dangerouslySetInnerHTML={{
+                __html: about_2,
+              }}
+            ></div>
+          </div>
+
+        </div>
+        <div className="absolute top-0 left-0 right-0 bottom-0 ">
+          <Image src={silders[0]?.url} alt="" fill objectFit="cover" />
+        </div>
+      </section>
 
 
-
-      <section className="relative ltr horizontal-scroll  h-screen">
+      <section className=" hidden lg:block relative ltr horizontal-scroll  h-screen">
         <div className="panelcontainer absolute ">
           {/* {
             silders.map((item) => (
@@ -306,15 +345,15 @@ export default function Services({ tourisms, title, description, about_1, about_
           <div className=" container">
             <div className="w-full grid grid-cols-1 pt-5 lg:pt-[150px] thin lg:grid-cols-3">
               <div className="flex lg:hidden pt-5 px-4 items-center gap-10 mb-2">
-                <Image height={59} width={59} src="/home/l1.png" className="image11" alt="" />
-                <Image height={59} width={59} src="/home/l2.png" className="image12" alt="" />
-                <Image height={59} width={59} src="/home/l3.png" className="image13" alt="" />
-                <Image height={59} width={59} src="/home/l4.png" className="image14" alt="" />
+                <Image height={40} width={40} src="/home/l1.png" className="image11" alt="" />
+                <Image height={40} width={40} src="/home/l2.png" className="image12" alt="" />
+                <Image height={40} width={40} src="/home/l3.png" className="image13" alt="" />
+                <Image height={40} width={40} src="/home/l4.png" className="image14" alt="" />
               </div>
               <div className="col-span-2">
-                <p className="text-[25px] tBold lg:text-[30px] text-white">{t("nav.about")}</p>
+                <p className="text-[25px] tBold lg:text-[30px] text-white my-4">{t("nav.about")}</p>
                 <div
-                  className="text-[14px] lg:text-[14px] mt-10 thin text-white about__html"
+                  className="text-[14px] lg:text-[14px] thin text-white about__html"
                   dangerouslySetInnerHTML={{
                     __html: about_1,
                   }}

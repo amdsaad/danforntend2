@@ -39,7 +39,7 @@ export default function HorizontalScroll() {
   const { t } = useTranslation();
 
   return (
-    <section className="panelcontainer relative" ref={panelcontainer}>
+    <section className="panelcontainer  hhhhh relative" ref={panelcontainer}>
       <div className="panel">
         <Image src="/home/Group8029@2x.png" alt="" fill objectFit="cover" />
       </div>
