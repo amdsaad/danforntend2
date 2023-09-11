@@ -7,6 +7,7 @@ import Image from "next/image";
 
 export default function TheHeroBg({ mainImage, videoURL }) {
 
+    const videoRef = useRef(null);
 
 
 
@@ -18,11 +19,10 @@ export default function TheHeroBg({ mainImage, videoURL }) {
         const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
         console.log('isSafari', isSafari)
         if (isSafari) {
-            const videElement = document.getElementById('videoBg')
-            console.log('videElement', videElement)
-            // update video attributes for autoplay for safari
+            console.log(videoRef.current)
+            
 
-            if (videElement) {
+            if (videoURL && videoRef.current) {
                 videElement.setAttribute('autoplay', '');
                 videElement.setAttribute('muted', '');
                 videElement.setAttribute('playsinline', '');
@@ -42,6 +42,7 @@ export default function TheHeroBg({ mainImage, videoURL }) {
                 videoURL ?
                     <video src={videoURL}
                         className='videoBg'
+                        ref={videoRef}
                         id="videoBg"
                         autoPlay muted loop  ></video>
 
