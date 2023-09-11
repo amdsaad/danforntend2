@@ -32,7 +32,7 @@ export default function TheHeroBg({ mainImage, videoURL }) {
             }
 
         }
-    }, [])
+    }, [videoURL])
 
 
     return (
