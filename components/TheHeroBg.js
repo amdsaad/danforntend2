@@ -24,11 +24,11 @@ export default function TheHeroBg({ mainImage, videoURL }) {
             // video.setAttribute('autoplay', '')
             // video.setAttribute('loop', '')
             // video.play()
+            document.addEventListener('DOMContentLoaded', function () {
+                const videoElement = document.querySelector('.videoBg');
+                videoElement.play();
+            });
 
-            if (video) {
-                console.log('video', video)
-                video.play()
-            }
         }
     }, [])
 
