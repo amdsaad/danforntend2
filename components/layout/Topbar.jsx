@@ -67,7 +67,6 @@ const Topbar = ({ gd, aboutDanLang, setAboutDanLang }) => {
               <Link href="/">
                 <img
                   src="/logo.png"
-                  style={{ width: '100%', objectFit: 'contain' }}
                   className=" h-10 "
                   alt=""
                 />
