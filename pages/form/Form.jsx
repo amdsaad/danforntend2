@@ -4,6 +4,8 @@ import { useTranslation } from 'next-i18next';
 import config from '../../components/config';
 const apiURL = config.api_url;
 import axios from 'axios';
+import { gsap } from 'gsap';
+
 import { useRouter } from 'next/router';
 
 export default function Form() {
@@ -21,6 +23,7 @@ export default function Form() {
   const [feedback, setFeedback] = useState('');
   const [interest, setInterest] = useState('');
   const [submittedData, setSubmittedData] = useState({});
+  const [mailSettings,setMailSettings] = useState({});
   const getContact = useCallback(async () => {
     try {
       await axios
@@ -40,6 +43,7 @@ export default function Form() {
             setMessage(response?.data?.text_con);
             setFeedback(response?.data?.feedback);
             setInterest(response?.data?.interest);
+            setMailSettings(response?.data?.mail);
           }
         });
     } catch (error) {
@@ -164,8 +168,8 @@ export default function Form() {
     if (!checkError.length) {
       console.log('send form no error');
       try {
-        const res = await axios.post('/api/send-email', {
-          to: 'amdsaad@webse.io',
+        await axios.post('/api/send-email', {
+          to: mailSettings.mail_from_address,
           subject: `New Message from ${formName}`,
           text: `
           Name: ${formName}
@@ -182,8 +186,6 @@ export default function Form() {
             },
           ],
         });
-
-        conosle.log('email res', res);
         setIsSubmitSuccessful(true);
         setFormMsg(t('messageSent'));
         setFormName('');
@@ -199,6 +201,12 @@ export default function Form() {
           input.value = '';
         });
         textArea.value = '';
+        if(router.route === '/careers'){
+          
+           gsap.to('.modal', {
+            scale: 0,
+           });
+        }
       } catch (error) {
         setFormMsg(t('messageSentError'));
       }

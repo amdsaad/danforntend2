@@ -1,5 +1,6 @@
 import { sendMail } from "../../service/mailService";
 const handler = async (req, res) => {
+    console.log("req.body", req.body);
 
     try {
         const { method } = req;
@@ -26,6 +27,7 @@ const handler = async (req, res) => {
                 break;
         }
     } catch (err) {
+        console.log("err", err);
         res.status(400).json({
             error_code: "api_one",
             message: err.message,

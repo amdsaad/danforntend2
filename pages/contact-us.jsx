@@ -273,23 +273,19 @@ export default function ContactUs() {
               ) : null}
             </div>
           </div>
-          <div className="mt-10 bg-white scrubElements scrubFadeRight">
-            <LoadScript googleMapsApiKey="AIzaSyDhEd4erdTFIBvGYH5r1Uyv7D7ssra05I0">
-              <GoogleMap
-                mapContainerStyle={mapStyles}
-                center={defaultCenter}
-                zoom={10} // Specify the initial zoom level
-              >
-                <Marker position={defaultCenter} />
-              </GoogleMap>
-            </LoadScript>
-            {/* <img
-              src="/contact/map.png"
-              className="w-full "
-              style={{ mixBlendMode: "luminosity" }}
-              alt=""
-            /> */}
-          </div>
+          {defaultCenter.lat && defaultCenter.lng ? (
+            <div className="mt-10 bg-white scrubElements scrubFadeRight">
+              <LoadScript googleMapsApiKey="AIzaSyDhEd4erdTFIBvGYH5r1Uyv7D7ssra05I0">
+                <GoogleMap
+                  mapContainerStyle={mapStyles}
+                  center={defaultCenter}
+                  zoom={10} // Specify the initial zoom level
+                >
+                  <Marker position={defaultCenter} />
+                </GoogleMap>
+              </LoadScript>
+            </div>
+          ) : null}
         </div>
       </section>
     </div>
