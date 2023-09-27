@@ -27,7 +27,7 @@ export async function sendMail(subject, toEmail, otpText, attachments) {
     if (data.mail) {
         const transporter = nodemailer.createTransport({
             host: data.mail.mail_host,
-            port: 587,
+            port: 465,
             secure: true,
             auth: {
                 user: data.mail.mail_username,

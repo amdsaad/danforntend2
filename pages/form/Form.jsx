@@ -23,7 +23,7 @@ export default function Form() {
   const [feedback, setFeedback] = useState('');
   const [interest, setInterest] = useState('');
   const [submittedData, setSubmittedData] = useState({});
-  const [mailSettings,setMailSettings] = useState({});
+  const [mailSettings, setMailSettings] = useState({});
   const getContact = useCallback(async () => {
     try {
       await axios
@@ -201,11 +201,10 @@ export default function Form() {
           input.value = '';
         });
         textArea.value = '';
-        if(router.route === '/careers'){
-          
-           gsap.to('.modal', {
+        if (router.route === '/careers') {
+          gsap.to('.modal', {
             scale: 0,
-           });
+          });
         }
       } catch (error) {
         setFormMsg(t('messageSentError'));
@@ -301,7 +300,7 @@ export default function Form() {
             >
               {t('send')}
             </button>
-            <h3>{isSubmitSuccessful && formMsg}</h3>
+            <h3>{formMsg}</h3>
           </div>
         </div>
       </form>
