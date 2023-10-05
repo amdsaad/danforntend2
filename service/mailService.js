@@ -24,13 +24,14 @@ export async function sendMail(subject, toEmail, otpText, attachments) {
     const transporter = nodemailer.createTransport({
       host: data.mail.mail_host,
       port: 587,
-      secure: true,
+      secure: false,
       auth: {
         user: data.mail.mail_username,
         pass: data.mail.mail_password,
       },
       tls: {
         // do not fail on invalid certs
+        ciphers: 'SSLv3',
         rejectUnauthorized: false,
       },
     });
