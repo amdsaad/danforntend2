@@ -24,6 +24,7 @@ export default function Form() {
   const [interest, setInterest] = useState('');
   const [submittedData, setSubmittedData] = useState({});
   const [mailSettings, setMailSettings] = useState({});
+  const [emailTo, setEmailTo] = useState('info@dancompany.sa');
   const getContact = useCallback(async () => {
     try {
       await axios
@@ -44,6 +45,16 @@ export default function Form() {
             setFeedback(response?.data?.feedback);
             setInterest(response?.data?.interest);
             setMailSettings(response?.data?.mail);
+
+            if (router.route === '/careers') {
+              setEmailTo(response?.data?.contacts?.email_jobs);
+            }
+            if (router.route === '/contact-us') {
+              setEmailTo(response?.data?.contacts?.email);
+            }
+            if (router.route === '/future-projects') {
+              setEmailTo(response?.data?.contacts?.email_partners);
+            }
           }
         });
     } catch (error) {
@@ -57,8 +68,8 @@ export default function Form() {
     setCity,
     setMessage,
     router.locale,
+    router.route,
   ]);
-
   const [formTitle, setFormTitle] = useState('');
 
   const formTitleFunc = useCallback(async () => {
@@ -170,7 +181,7 @@ export default function Form() {
       setIsSending(true);
       try {
         await axios.post('/api/send-email', {
-          to: mailSettings.mail_from_address,
+          to: emailTo,
           subject: `New Message from ${formName}`,
           text: `
           Name: ${formName}
