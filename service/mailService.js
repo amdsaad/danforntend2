@@ -29,6 +29,10 @@ export async function sendMail(subject, toEmail, otpText, attachments) {
         user: data.mail.mail_username,
         pass: data.mail.mail_password,
       },
+      tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: false,
+      },
     });
 
     var mailOptions = {

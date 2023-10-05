@@ -209,6 +209,7 @@ export default function Form() {
           });
         }
       } catch (error) {
+        setIsSending(false);
         setFormMsg(t('messageSentError'));
       }
     }
