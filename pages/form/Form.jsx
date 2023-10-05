@@ -106,6 +106,7 @@ export default function Form() {
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
   const [fileUploaded, setFileUploaded] = useState(false);
   const [resumeFileName, setResumeFileName] = useState('');
+  const [isSending, setIsSending] = useState(false);
 
   const checkForm = () => {
     const error = [];
@@ -166,7 +167,7 @@ export default function Form() {
     const checkError = checkForm();
     console.log(checkError);
     if (!checkError.length) {
-      console.log('send form no error');
+      setIsSending(true);
       try {
         await axios.post('/api/send-email', {
           to: mailSettings.mail_from_address,
@@ -197,6 +198,7 @@ export default function Form() {
         setFormResume('');
         setFileUploaded(false);
         setResumeFileName('');
+        setIsSending(false);
         inputs.forEach((input) => {
           input.value = '';
         });
@@ -300,6 +302,7 @@ export default function Form() {
             >
               {t('send')}
             </button>
+            <h3>{isSending ? t('sending') : ''}</h3>
             <h3>{formMsg}</h3>
           </div>
         </div>
