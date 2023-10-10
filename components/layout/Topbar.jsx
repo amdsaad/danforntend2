@@ -41,6 +41,7 @@ const Topbar = ({ gd, aboutDanLang, setAboutDanLang }) => {
         setOpen={setOpen}
         language={language}
         setLanguage={setLanguage}
+        router={router}
         t={t}
       />
       <header
@@ -65,20 +66,12 @@ const Topbar = ({ gd, aboutDanLang, setAboutDanLang }) => {
           <div className="h-full">
             <div className="lg:hidden">
               <Link href="/">
-                <img
-                  src="/logo.png"
-                  className=" h-10 "
-                  alt=""
-                />
+                <img src="/logo.png" className=" h-10 " alt="" />
               </Link>
             </div>
             <div className="hidden lg:flex items-center pt-3 gap-8">
               <Link href="/">
-                <img
-                  src="/logo.png"
-                  className=" h-10 "
-                  alt=""
-                />
+                <img src="/logo.png" className=" h-10 " alt="" />
               </Link>
               <Link legacyBehavior href="/about-dan">
                 <a
@@ -170,7 +163,7 @@ import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
-function SideBar({ open, setOpen, language, setLanguage, t }) {
+function SideBar({ open, setOpen, language, setLanguage, t, router }) {
   const [firstOpen, setFirstOpen] = useState(false);
   const [secondOpen, setsecondOpen] = useState(false);
   const [thirdOpen, setThirdOpen] = useState(false);
@@ -199,21 +192,24 @@ function SideBar({ open, setOpen, language, setLanguage, t }) {
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div
-              className={`pointer-events-none fixed inset-y-0 ${
-                language === 'rtl' ? 'left-0' : 'right-0'
-              } flex max-w-full`}
+              className={`pointer-events-none fixed inset-y-0 
+              ${router.locale === 'ar' ? 'left-0' : 'right-0'} flex max-w-full`}
             >
               <Transition.Child
                 as={Fragment}
                 enter="transform transition ease-in-out duration-500 sm:duration-700"
                 enterFrom={
-                  language === 'rtl' ? '-translate-x-full' : 'translate-x-full'
+                  router.locale === 'ar'
+                    ? '-translate-x-full'
+                    : 'translate-x-full'
                 }
                 enterTo="translate-x-0"
                 leave="transform transition ease-in-out duration-500 sm:duration-700"
                 leaveFrom="translate-x-0"
                 leaveTo={
-                  language === 'rtl' ? '-translate-x-full' : 'translate-x-full'
+                  router.locale === 'ar'
+                    ? '-translate-x-full'
+                    : 'translate-x-full'
                 }
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
@@ -228,29 +224,6 @@ function SideBar({ open, setOpen, language, setLanguage, t }) {
                             />
                           </div>
                         </div>
-
-                        {language === 'rtl' ? (
-                          <h1
-                            onClick={() => {
-                              localStorage.setItem('tLang', 'ltr');
-                              setLanguage('ltr');
-                            }}
-                            className="text-white text-lg"
-                          >
-                            English
-                          </h1>
-                        ) : (
-                          <h1
-                            onClick={() => {
-                              localStorage.setItem('tLang', 'rtl');
-                              setLanguage('rtl');
-                            }}
-                            className="text-white text-lg"
-                          >
-                            {' '}
-                            عربي
-                          </h1>
-                        )}
                       </div>
                       <div className="px-8 pt-6  border-b border-gray-50 border-opacity-50 pb-6">
                         <div className="flex cursor-pointer items-center justify-between">

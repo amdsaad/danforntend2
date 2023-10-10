@@ -30,6 +30,8 @@ export default function Newsmain() {
   const [mainImage, setMainImage] = useState('');
   const [videoURL, setUrlVideoMain] = useState('');
   const router = useRouter();
+  const { t } = useTranslation();
+
   const scrollToElement = () => {
     const element = scrollRef.current;
     if (element) {
@@ -37,6 +39,11 @@ export default function Newsmain() {
     }
   };
   const getCategories = useCallback(async () => {
+    const allCat = {
+      id: 'all',
+      name: t('all'),
+      color: '#552A0E',
+    };
     try {
       await axios
         .get(`${apiURL}/categorypost`, {
@@ -46,13 +53,14 @@ export default function Newsmain() {
         })
         .then((response) => {
           if (response.status === 200) {
+            response?.data?.data?.unshift(allCat);
             setCategories(response?.data?.data);
           }
         });
     } catch (error) {
       console.log(error);
     }
-  }, [setCategories, router.locale]);
+  }, [setCategories, router.locale, t]);
   const getPosts = useCallback(
     async (id) => {
       try {
@@ -84,7 +92,6 @@ export default function Newsmain() {
     },
     [setPosts, router.locale],
   );
-  const { t } = useTranslation();
 
   useEffect(() => {
     getCategories();
@@ -150,34 +157,8 @@ export default function Newsmain() {
             <h1 className="text-txt tBold text-[24px] lg:text-[30px] scrubElements scrubFadeRight">
               {title}
             </h1>
-            <div className="flex items-center  lg:w-auto gap-5 scrubElements scrubRotateFadeUp">
-              {/* <div className="p-3 rounded-full hidden lg:flex cursor-pointer transition-all duration-500 ease-linear items-center gap-2 bg-[#552A0E] ">
-                <img src="/news/bar.png" className="w-6 h-6 " alt="" />
-              </div> */}
-              <div className="px-2 py-2 lg:p-3 rounded-full flex transition-all duration-500 ease-linear items-center gap-2 bg-[#552A0E] ">
-                {/* TODO: filter posts with title */}
-                {open && (
-                  <input
-                    type="text"
-                    className=" border-none w-28 lg:w-auto text-sm lg:text-base outline-none text-white bg-transparent"
-                    placeholder="Search"
-                    onChange={(e) => {
-                      const filtered = posts.filter((post) =>
-                        post.name.toLowerCase().includes(e.target.value),
-                      );
-                      setFilteredposts(filtered);
-                    }}
-                  />
-                )}
-                <BiSearch
-                  onClick={() => setOpen(!open)}
-                  className="w-4 h-4 lg:w-6  lg:h-6 cursor-pointer text-white"
-                />
-              </div>
-            </div>
           </div>
           <div className="mt-10 flex items-center flex-wrap gap-3 scrubElements scrubFadeRight">
-            {/* TODO: FILTER ON CLICK AS PER THE CATEGORY */}
             {categories.map((item) => (
               <div
                 key={item.id}
@@ -186,9 +167,10 @@ export default function Newsmain() {
                   backgroundColor: `${item?.color}`,
                 }}
                 onClick={() => {
-                  const filtered = posts.filter(
-                    (post) => post.category_id === item.id,
-                  );
+                  const filtered =
+                    item.id != 'all'
+                      ? posts.filter((post) => post.category_id === item.id)
+                      : posts;
                   setFilteredposts(filtered);
                 }}
               >

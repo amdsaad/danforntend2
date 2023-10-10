@@ -52,9 +52,10 @@ export default function Form() {
             if (router.route === '/contact-us') {
               setEmailTo(response?.data?.contacts?.email);
             }
-            if (router.route === '/future-projects') {
+            if (router.route === '/future-projects' || router.route === '/') {
               setEmailTo(response?.data?.contacts?.email_partners);
             }
+            console.log('email', emailTo);
           }
         });
     } catch (error) {
@@ -69,6 +70,7 @@ export default function Form() {
     setMessage,
     router.locale,
     router.route,
+    emailTo,
   ]);
   const [formTitle, setFormTitle] = useState('');
 

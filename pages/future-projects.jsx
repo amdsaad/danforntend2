@@ -387,6 +387,7 @@ export default function FutureProject() {
                 className="px-5 py-2 hidden text-sm mt-20 thin  border rounded-full lg:flex items-center gap-2"
                 onMouseEnter={() => setRuralBtnOver(true)}
                 onMouseLeave={() => setRuralBtnOver(false)}
+                onClick={animateModal}
                 style={{
                   backgroundColor: ruralBtnOver
                     ? 'white'
