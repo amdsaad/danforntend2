@@ -224,7 +224,7 @@ export default function FutureProject() {
           alt=""
         />
         <div className="absolute top-0 left-0 w-full h-full z-10">
-          <div className="container">
+          <div className="container mt-fix">
             <div className="w-full  lg:pr-[420px]">
               <div className="flex mt-20 lg:mt-24 items-center justify-between">
                 <h1 className="text-[24px] lg:text-[30px] tBold pr-10 lg:pr-0 text-txt scrubElements scrubFadeLeft">
@@ -498,6 +498,7 @@ export default function FutureProject() {
               className="px-5 py-2  text-sm  thin  border rounded-full flex items-center gap-2 justify-center"
               onMouseEnter={() => setRuralBtnOver(true)}
               onMouseLeave={() => setRuralBtnOver(false)}
+              onClick={animateModal}
               style={{
                 backgroundColor: ruralBtnOver
                   ? 'white'
@@ -532,6 +533,7 @@ export default function FutureProject() {
               className="px-5 py-2  text-sm thin  border  rounded-full flex items-center gap-2 justify-center"
               onMouseEnter={() => setEcoBtnOver(true)}
               onMouseLeave={() => setEcoBtnOver(false)}
+              onClick={animateModal}
               style={{
                 backgroundColor: ecoBtnOver ? 'white' : typetourisms[2]?.color,
                 color: !ecoBtnOver ? 'white' : typetourisms[2]?.color,

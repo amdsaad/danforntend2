@@ -124,20 +124,6 @@ export default function AboutDan({ smoother }) {
       <section>
         <div className="w-full relative  min-h-screen ">
           <TheHeroBg mainImage={mainImage} videoURL={videoURL} />
-          {/* <Image
-            src="/about/hero.png"
-            alt="hero"
-            className="hidden lg:block introFadeUp"
-            fill
-            objectFit="cover"
-          />
-          <Image
-            src="/about/heromob.png"
-            alt="hero"
-            className="block lg:hidden  introFadeUp"
-            fill
-            objectFit="cover"
-          /> */}
           <div className="absolute w-full h-full z-10">
             <div className="container h-full ">
               <div className=" flex flex-col h-full  justify-end  lg:lg:justify-end items-start pb-32 introFadeUp">
@@ -243,10 +229,6 @@ export default function AboutDan({ smoother }) {
                     {item}
                   </p>
                 ))}
-
-                {/* <p className="text-center thin text-white text-[18px] px-10">
-                  {about?.vision}
-                </p> */}
               </div>
               <div
                 onMouseEnter={() => {
@@ -305,11 +287,16 @@ export default function AboutDan({ smoother }) {
                   />
 
                   <h1 className="text-[35px] lg:text-[50px] tBold text-white text-center py-4">
-                    {t('Vision')}
+                    {about?.titele_vision}
                   </h1>
-                  <p className="text-center thin text-white pb-10 text-[16px] lg:text-[18px] px-10">
-                    {t('vison_text')}
-                  </p>
+                  {vision.map((item, ind) => (
+                    <p
+                      key={ind}
+                      className="text-center thin text-white pb-10 text-[16px] lg:text-[18px] px-10"
+                    >
+                      {item}
+                    </p>
+                  ))}
                 </div>
                 <div
                   onMouseEnter={() => setActiveEffect(true)}
@@ -324,11 +311,16 @@ export default function AboutDan({ smoother }) {
                     alt=""
                   />
                   <h1 className="text-[35px] lg:text-[50px] font-bold text-white text-center py-4">
-                    {t('Mission')}
+                    {about?.titele_message}
                   </h1>
-                  <p className="text-center thin text-white  pb-10  text-[16px] lg:text-[18px] px-10">
-                    {t('mission_text')}
-                  </p>
+                  {message.map((item, ind) => (
+                    <p
+                      key={ind}
+                      className="text-center thin text-white  pb-10  text-[16px] lg:text-[18px] px-10"
+                    >
+                      {item}
+                    </p>
+                  ))}
                 </div>
               </Slider>
             </div>

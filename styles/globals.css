@@ -278,3 +278,13 @@ form small {
 video {
   object-fit: cover;
 }
+
+.mt-fix {
+  margin-top: -50px !important;
+}
+
+@media (min-width: 1024px) {
+  .mt-fix {
+    margin-top: 0 !important;
+  }
+}
