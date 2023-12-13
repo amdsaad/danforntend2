@@ -10,7 +10,7 @@ class MyDocument extends Document {
     return (
       <Html dir={this.props.locale === "ar" ? "rtl" : "ltr"} lang={this.props.locale}>
         <Head>
-          <link rel="shortcut icon" href="/favicon.ico" />
+          <link rel="shortcut icon" href="/image/favicon.ico" />
         </Head>
         <body>
           <Main />
