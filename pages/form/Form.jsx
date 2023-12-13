@@ -158,9 +158,9 @@ export default function Form() {
     const formData = new FormData();
 
     formData.append('file', e.target.files[0]);
-    formData.append('upload_preset', 'oghavnqi');
+    formData.append('upload_preset', 'yvht9wao');
     axios
-      .post('https://api.cloudinary.com/v1_1/toravl/image/upload', formData)
+      .post('https://api.cloudinary.com/v1_1/dancompany/image/upload', formData)
       .then((response) => {
         console.log('file uploaded', response.data.url);
         setFormResume(response.data.url);
