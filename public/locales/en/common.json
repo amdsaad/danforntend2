@@ -80,7 +80,7 @@
     "message": "Please enter message"
   },
   "messageSent": "Message sent successfully",
-  "messageSentError": "Message sending failed, please try again later",
+  "messageSentError": "Message sending failed, please send you message directly to",
   "nav": {
     "about": "About Dan",
     "future": "Future Projects",
