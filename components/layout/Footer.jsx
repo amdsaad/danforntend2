@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
 import Link from 'next/link';
 import config from '../../components/config';
 const apiURL = config.api_url;
@@ -7,33 +7,22 @@ import NavContacts from './NavContacts';
 
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import { AppContext } from '../../context/AppContext';
 export default function Footer() {
   const { t } = useTranslation();
   const router = useRouter();
 
   const [contacts, setContacts] = useState({});
   const [copyright, setCopyRight] = useState('');
-  const getContact = useCallback(async () => {
-    try {
-      await axios
-        .get(`${apiURL}/settings`, {
-          headers: {
-            'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
-          },
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            setContacts(response?.data?.contacts);
-            setCopyRight(response?.data?.app?.copyright);
-          }
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }, [router.locale]);
+  const { settings } = useContext(AppContext);
+
+
   useEffect(() => {
-    getContact();
-  }, [getContact]);
+    if (settings) {
+      setContacts(settings?.contacts);
+      setCopyRight(settings?.app?.copyright);
+    }
+  }, [settings]);
   return (
     <div className=" w-full bg-[#552A0E]">
       <div className="container hidden lg:grid items-center  pt-12  lg:grid-cols-4 gap-4">

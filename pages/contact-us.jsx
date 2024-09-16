@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect } from 'react';
+import React, { useRef, useState, useCallback, useEffect, useContext } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { gsap } from 'gsap';
 import ScrollAnimations from '../components/scrollAnimations';
@@ -17,7 +17,13 @@ import {
   AiOutlineYoutube,
 } from 'react-icons/ai';
 import TheHeroBg from '../components/TheHeroBg';
+
+import { AppContext } from '../context/AppContext';
+
+
 export default function ContactUs() {
+  const { settings } = useContext(AppContext);
+
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [feedback, setFeedback] = useState([]);
@@ -31,49 +37,40 @@ export default function ContactUs() {
   const [contacts, setContacts] = useState({});
   const [mainImage, setMainImage] = useState('');
   const [videoURL, setUrlVideoMain] = useState('');
-  const getContact = useCallback(async () => {
-    try {
-      await axios
-        .get(`${apiURL}/settings`, {
-          headers: {
-            'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
-          },
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            console.log('settings', response?.data);
-            setTitle(response?.data?.contactus_titele);
-            setFeedback(
-              response?.data?.feedback
-                ? response?.data?.feedback
 
-                    .split('\n')
-                    .filter((item) => item)
-                    .map((item) => item.trim())
-                : null,
-            );
-            setDefaultCenter({
-              lat: parseFloat(response?.data?.lat),
-              lng: parseFloat(response?.data?.long),
-            });
-            setIntro(
-              response?.data?.intro_contactus
-                ? response?.data?.intro_contactus
-                    .split('\n')
-                    .filter((item) => item)
-                    .map((item) => item.trim())
-                : null,
-            );
-            setIntroImage(response?.data?.intro_logo_contactus);
-            setContacts(response?.data?.contacts);
-            setMainImage(response?.data?.contactus_image);
-            setUrlVideoMain(response?.data?.url_video_contactus);
-          }
-        });
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    if (settings) {
+      setTitle(settings?.contactus_titele);
+      setFeedback(
+        settings?.feedback
+          ? settings?.feedback
+
+            .split('\n')
+            .filter((item) => item)
+            .map((item) => item.trim())
+          : null,
+      );
+      setDefaultCenter({
+        lat: parseFloat(settings?.lat),
+        lng: parseFloat(settings?.long),
+      });
+      setIntro(
+        settings?.intro_contactus
+          ? settings?.intro_contactus
+            .split('\n')
+            .filter((item) => item)
+            .map((item) => item.trim())
+          : null,
+      );
+      setIntroImage(settings?.intro_logo_contactus);
+      setContacts(settings?.contacts);
+      setMainImage(settings?.contactus_image);
+      setUrlVideoMain(settings?.url_video_contactus);
     }
-  }, [setTitle, router.locale]);
+
+  }, [settings])
+
+
 
   const scrollToElement = () => {
     const element = scrollRef.current;
@@ -88,9 +85,7 @@ export default function ContactUs() {
 
   const { t } = useTranslation();
 
-  useEffect(() => {
-    getContact();
-  }, [getContact]);
+
   useEffect(() => {
     let ctx = gsap.context(() => {
       ScrollAnimations();

@@ -6,14 +6,19 @@ import Layout from "./Layout";
 import Topbar from "../components/layout/Topbar";
 import Footer from "../components/layout/Footer";
 import { useState, useContext } from "react";
+import { AppProvider } from '../context/AppContext';
+
 function MyApp({ Component, pageProps }) {
- 
+
   return (
-    <Layout>
-      <Topbar />
-      <Component {...pageProps} />
-      <Footer />
-    </Layout>
+    <AppProvider>
+      <Layout>
+        <Topbar />
+        <Component {...pageProps} />
+        <Footer />
+      </Layout>
+    </AppProvider>
+
   );
 }
 

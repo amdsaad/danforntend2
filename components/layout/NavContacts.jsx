@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
 import config from '../../components/config';
 const apiURL = config.api_url;
 import axios from 'axios';
@@ -7,33 +7,24 @@ import {
   AiFillLinkedin,
   AiOutlineYoutube,
 } from 'react-icons/ai';
+import { AppContext } from '../../context/AppContext';
 
 import { useRouter } from 'next/router';
 export default function Footer() {
+  const { settings } = useContext(AppContext);
+
   const router = useRouter();
 
   const [contacts, setContacts] = useState({});
-  const getContact = useCallback(async () => {
-    try {
-      await axios
-        .get(`${apiURL}/settings`, {
-          headers: {
-            'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
-          },
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            setContacts(response?.data?.contacts);
-            console.log(response?.data?.contacts);
-          }
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }, [router.locale]);
+
+
+
   useEffect(() => {
-    getContact();
-  }, [getContact]);
+    if (settings) {
+      setContacts(settings?.contacts);
+   
+    }
+  }, [settings]);
   return (
     <div className=" flex items-center gap-4">
       {contacts.instagram ? (

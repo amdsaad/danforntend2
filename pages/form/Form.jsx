@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useRef, useState, useCallback, useEffect, useContext } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import config from '../../components/config';
@@ -7,8 +7,9 @@ import axios from 'axios';
 import { gsap } from 'gsap';
 
 import { useRouter } from 'next/router';
-
+import { AppContext } from '../../context/AppContext';
 export default function Form() {
+  const { settings } = useContext(AppContext);
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -25,53 +26,7 @@ export default function Form() {
   const [submittedData, setSubmittedData] = useState({});
   const [mailSettings, setMailSettings] = useState({});
   const [emailTo, setEmailTo] = useState('info@dancompany.sa');
-  const getContact = useCallback(async () => {
-    try {
-      await axios
-        .get(`${apiURL}/settings`, {
-          headers: {
-            'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
-          },
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            console.log(response?.data);
-            setTitle(response?.data?.contactus_titele);
-            setName(response?.data?.name_con);
-            setEmail(response?.data?.email_con);
-            setMobile(response?.data?.phone_con);
-            setCity(response?.data?.city_con);
-            setMessage(response?.data?.text_con);
-            setFeedback(response?.data?.feedback);
-            setInterest(response?.data?.interest);
-            setMailSettings(response?.data?.mail);
 
-            if (router.route === '/careers') {
-              setEmailTo(response?.data?.contacts?.email_jobs);
-            }
-            if (router.route === '/contact-us') {
-              setEmailTo(response?.data?.contacts?.email);
-            }
-            if (router.route === '/future-projects' || router.route === '/') {
-              setEmailTo(response?.data?.contacts?.email_partners);
-            }
-            console.log('email', emailTo);
-          }
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }, [
-    setTitle,
-    setName,
-    setEmail,
-    setMobile,
-    setCity,
-    setMessage,
-    router.locale,
-    router.route,
-    emailTo,
-  ]);
   const [formTitle, setFormTitle] = useState('');
 
   const formTitleFunc = useCallback(async () => {
@@ -95,9 +50,29 @@ export default function Form() {
   }, [router.route, title, t]);
 
   useEffect(() => {
-    getContact();
+    if (settings) {
+      setTitle(settings?.contactus_titele);
+      setName(settings?.name_con);
+      setEmail(settings?.email_con);
+      setMobile(settings?.phone_con);
+      setCity(settings?.city_con);
+      setMessage(settings?.text_con);
+      setFeedback(settings?.feedback);
+      setInterest(settings?.interest);
+      setMailSettings(settings?.mail);
+
+      if (router.route === '/careers') {
+        setEmailTo(settings?.contacts?.email_jobs);
+      }
+      if (router.route === '/contact-us') {
+        setEmailTo(settings?.contacts?.email);
+      }
+      if (router.route === '/future-projects' || router.route === '/') {
+        setEmailTo(settings?.contacts?.email_partners);
+      }
+    }
     formTitleFunc();
-  }, [getContact, formTitleFunc]);
+  }, [settings, formTitleFunc]);
 
   const Input_Classes =
     ' custominput border-none w-full py-3 text-[19px] bg-opacity-40 placeholder:text-[19px] px-2 outline-none bg-[#E5E6E7] text-[#552a0eb3] placeholder:text-[#552a0eb3] thin';
@@ -153,7 +128,6 @@ export default function Form() {
     return error;
   };
   const uploadFile = (e) => {
-    console.log(e.target.files[0]);
     setResumeFileName(e.target.files[0].name);
     const formData = new FormData();
 
@@ -162,7 +136,6 @@ export default function Form() {
     axios
       .post('https://api.cloudinary.com/v1_1/dancompany/image/upload', formData)
       .then((response) => {
-        console.log('file uploaded', response.data.url);
         setFormResume(response.data.url);
         setFileUploaded(true);
       })
@@ -173,12 +146,10 @@ export default function Form() {
 
   const handleform = async (e) => {
     e.preventDefault();
-    console.log('send form');
     const inputs = document.querySelectorAll('input');
     const textArea = document.querySelector('textarea');
 
     const checkError = checkForm();
-    console.log(checkError);
     if (!checkError.length) {
       setIsSending(true);
       try {

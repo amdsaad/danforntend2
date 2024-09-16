@@ -33,7 +33,6 @@ export default function NewsRead() {
           })
           .then((response) => {
             if (response.status === 200) {
-              console.log('nid post', response?.data?.data);
               setPost(response?.data?.data);
             }
           });
@@ -194,7 +193,6 @@ const BigScreenVideo = () => {
           .then((response) => {
             if (response.status === 200) {
               setPost(response?.data?.data);
-              console.log(response?.data?.data);
             }
           });
       } catch (error) {

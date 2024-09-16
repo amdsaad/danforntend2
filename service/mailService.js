@@ -18,7 +18,6 @@ const emailSettings = async () => {
 };
 export async function sendMail(subject, toEmail, otpText, attachments) {
   const { data } = await emailSettings();
-  console.log('mailSettings', data.mail);
 
   if (data.mail) {
     const transporter = nodemailer.createTransport({

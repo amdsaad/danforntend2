@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback, useContext } from 'react';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import Topbar from '../components/layout/Topbar';
@@ -8,37 +8,23 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import { useTranslation } from 'next-i18next';
-
+import { AppContext } from '../context/AppContext';
 
 export default function Terms() {
+    const { settings } = useContext(AppContext)
     const { t } = useTranslation();
     const [terms, setTerms] = useState('');
     const router = useRouter();
 
 
     const [post, setPost] = useState(false);
-    const getTerms = useCallback(async () => {
-        try {
-            await axios
-                .get(`${apiURL}/settings`, {
-                    headers: {
-                        'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
-                    },
-                })
-                .then((response) => {
-                    if (response.status === 200) {
-                        console.log(response?.data?.pages.terms.content);
-                        setTerms(response?.data?.pages?.terms?.content);
-                    }
-                });
-        } catch (error) {
-            console.log(error);
-        }
-    }, []);
+
 
     useEffect(() => {
-        getTerms();
-    }, [getTerms]);
+        if (settings) {
+            setTerms(settings?.pages?.terms?.content);
+        }
+    }, [settings]);
     return (
         <div className="relative w-full min-h-screen">
             <Topbar gd={true} />

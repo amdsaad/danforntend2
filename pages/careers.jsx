@@ -1,4 +1,10 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  useContext,
+} from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import ScrollAnimations from '../components/scrollAnimations';
 import { gsap } from 'gsap';
@@ -12,7 +18,7 @@ import { useRouter } from 'next/router';
 import Modal from './form/Modal';
 import Link from 'next/link';
 import TheHeroBg from '../components/TheHeroBg';
-
+import { AppContext } from '../context/AppContext';
 export default function Careers() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -37,70 +43,7 @@ export default function Careers() {
   const [mainImage, setMainImage] = useState('');
   const [videoURL, setUrlVideoMain] = useState('');
 
-  const getCareer = useCallback(async () => {
-    try {
-      await axios
-        .get(`${apiURL}/settings`, {
-          headers: {
-            'Accept-Language': `${router.locale === 'en' ? 'en' : 'ar'}`,
-          },
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            console.log('response ******', response?.data);
-            setCulture(
-              response?.data?.work_culture
-                ? response?.data?.work_culture
-                    .split('\n')
-                    .filter((x) => x?.trim().length)
-                    .map((item) => item?.trim())
-                : null,
-            );
-            setJoin(
-              response?.data?.Join_dan
-                ? response?.data?.Join_dan.split('\n')
-                    .filter((x) => x?.trim().length)
-                    .map((item) => item?.trim())
-                : null,
-            );
-            setCultureTitle(response?.data?.work_titele);
-            setJoinTitle(response?.data?.Join_titele);
-            setBtnFirst(response?.data?.culture_button_1);
-            setBtnSecond(response?.data?.culture_button_2);
-            setCultureTitle(response?.data?.work_titele);
-            setCulture(
-              response?.data?.work_culture
-                ? response?.data?.work_culture
-                    .split('\n')
-                    .filter((x) => x?.trim().length)
-                    .map((item) => item?.trim())
-                : null,
-            );
-            setIntro(
-              response?.data?.intro_career
-                ? response?.data?.intro_career
-                    .split('\n')
-                    .filter((x) => x?.trim().length)
-                    .map((item) => item?.trim())
-                : null,
-            );
-            setIntroImage(response?.data?.intro_logo_career);
-            setMainImage(response?.data?.career_image);
-            setUrlVideoMain(response?.data?.url_video_career);
-          }
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }, [
-    setCulture,
-    setJoin,
-    setCultureTitle,
-    setJoinTitle,
-    setBtnFirst,
-    setBtnSecond,
-    router.locale,
-  ]);
+  const { settings } = useContext(AppContext);
 
   const getJobs = useCallback(async () => {
     try {
@@ -114,7 +57,6 @@ export default function Careers() {
 
         .then((response) => {
           if (response.status === 200) {
-            console.log('jobs', response?.data?.data);
             setJobs(response?.data?.data);
           }
         });
@@ -124,9 +66,53 @@ export default function Careers() {
   }, [setJobs, router.locale]);
 
   useEffect(() => {
-    getCareer();
+    if (settings) {
+      setCulture(
+        settings?.work_culture
+          ? settings?.work_culture
+              .split('\n')
+              .filter((x) => x?.trim().length)
+              .map((item) => item?.trim())
+          : null,
+      );
+      setJoin(
+        settings?.Join_dan
+          ? settings?.Join_dan.split('\n')
+              .filter((x) => x?.trim().length)
+              .map((item) => item?.trim())
+          : null,
+      );
+      setCultureTitle(settings?.work_titele);
+      setJoinTitle(settings?.Join_titele);
+      setBtnFirst(settings?.culture_button_1);
+      setBtnSecond(settings?.culture_button_2);
+      setCultureTitle(settings?.work_titele);
+      setCulture(
+        settings?.work_culture
+          ? settings?.work_culture
+              .split('\n')
+              .filter((x) => x?.trim().length)
+              .map((item) => item?.trim())
+          : null,
+      );
+      setIntro(
+        settings?.intro_career
+          ? settings?.intro_career
+              .split('\n')
+              .filter((x) => x?.trim().length)
+              .map((item) => item?.trim())
+          : null,
+      );
+      setIntroImage(settings?.intro_logo_career);
+      setMainImage(settings?.career_image);
+      setUrlVideoMain(settings?.url_video_career);
+    }
+  }, [settings]);
+
+  useEffect(() => {
     getJobs();
-  }, [getCareer, getJobs]);
+  }, [getJobs]);
+
   useEffect(() => {
     let ctx = gsap.context(() => {
       ScrollAnimations();

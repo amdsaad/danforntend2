@@ -40,7 +40,6 @@ export default function AboutDan({ smoother }) {
         })
         .then((response) => {
           if (response.status === 200) {
-            console.log('response ****', response?.data?.data);
             setAbout(response?.data?.data);
             setActiveKey(
               response?.data?.data?.rate_us.reduce((previous, current) => {

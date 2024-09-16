@@ -85,7 +85,6 @@ export default function FutureProject() {
         })
         .then((response) => {
           if (response.status === 200) {
-            console.log('future*****', response?.data?.data);
             setFuture(response?.data?.data);
             setTypetourisms(response?.data?.data?.typetourisms);
             setMain_description(
