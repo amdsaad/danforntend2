@@ -14,6 +14,7 @@
     "@heroicons/react": "^2.0.18",
     "@hookform/resolvers": "^3.1.1",
     "@react-google-maps/api": "^2.18.1",
+    "@sentry/nextjs": "8",
     "axios": "^1.4.0",
     "fs": "^0.0.1-security",
     "gsap": "./gsap/gsap-bonus.tgz",
