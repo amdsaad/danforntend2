@@ -16,7 +16,6 @@ export default function Footer() {
   const [copyright, setCopyRight] = useState('');
   const { settings } = useContext(AppContext);
 
-
   useEffect(() => {
     if (settings) {
       setContacts(settings?.contacts);
@@ -121,7 +120,17 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="/home/flogo.png" alt="" />
+            {router.locale === 'ar' ? (
+              <img
+                src="/home/PIFCo-branding Logo AR _ RGB White.png"
+                alt="pif log"
+              />
+            ) : (
+              <img
+                src="/home/PIFCo-branding Logo EN _ RGB White.png"
+                alt="pif log"
+              />
+            )}
           </a>
         </div>
       </div>
@@ -158,7 +167,17 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="/home/flogo.png" alt="" />
+            {router.locale === 'ar' ? (
+              <img
+                src="/home/PIFCo-branding Logo AR _ RGB White.png"
+                alt="pif log"
+              />
+            ) : (
+              <img
+                src="/home/PIFCo-branding Logo EN _ RGB White.png"
+                alt="pif log"
+              />
+            )}
           </a>
         </div>
       </div>
