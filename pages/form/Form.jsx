@@ -150,6 +150,9 @@ export default function Form() {
     const textArea = document.querySelector('textarea');
 
     const checkError = checkForm();
+    if (checkError.length) {
+      return;
+    }
     if (!checkError.length) {
       setIsSending(true);
       try {
