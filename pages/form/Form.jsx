@@ -128,20 +128,29 @@ export default function Form() {
     return error;
   };
   const uploadFile = (e) => {
-    setResumeFileName(e.target.files[0].name);
-    const formData = new FormData();
+    // Check if files exist and log the event for debugging
+    if (e.target && e.target.files && e.target.files.length > 0) {
+      setResumeFileName(e.target.files[0].name);
 
-    formData.append('file', e.target.files[0]);
-    formData.append('upload_preset', 'yvht9wao');
-    axios
-      .post('https://api.cloudinary.com/v1_1/dancompany/image/upload', formData)
-      .then((response) => {
-        setFormResume(response.data.url);
-        setFileUploaded(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      const formData = new FormData();
+      formData.append('file', e.target.files[0]);
+      formData.append('upload_preset', 'yvht9wao');
+
+      axios
+        .post(
+          'https://api.cloudinary.com/v1_1/dancompany/image/upload',
+          formData,
+        )
+        .then((response) => {
+          setFormResume(response.data.url);
+          setFileUploaded(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      console.log('No file selected or event target is undefined');
+    }
   };
 
   const handleform = async (e) => {
