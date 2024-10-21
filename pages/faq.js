@@ -98,7 +98,7 @@ export default function Careers() {
                 {faq.map((item, index) => (
                   <li
                     key={index}
-                    className="mb-4 bg-[#E5E6E7] p-4 cursor-pointer transition ease-in-out"
+                    className="mb-4 bg-[#E5E6E7]/50 p-4 cursor-pointer transition ease-in-out"
                     onClick={() => {
                       setFAQ(
                         faq.map((faqItem) => {
