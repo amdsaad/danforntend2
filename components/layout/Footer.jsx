@@ -1,19 +1,20 @@
-import React, { useState, useCallback, useEffect, useContext } from 'react';
-import Link from 'next/link';
-import config from '../../components/config';
+import React, { useState, useCallback, useEffect, useContext } from "react";
+import Link from "next/link";
+import config from "../../components/config";
 const apiURL = config.api_url;
-import axios from 'axios';
-import NavContacts from './NavContacts';
+import axios from "axios";
+import NavContacts from "./NavContacts";
+import Image from "next/image";
 
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
-import { AppContext } from '../../context/AppContext';
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import { AppContext } from "../../context/AppContext";
 export default function Footer() {
   const { t } = useTranslation();
   const router = useRouter();
 
   const [contacts, setContacts] = useState({});
-  const [copyright, setCopyRight] = useState('');
+  const [copyright, setCopyRight] = useState("");
   const { settings } = useContext(AppContext);
 
   useEffect(() => {
@@ -27,43 +28,67 @@ export default function Footer() {
       <div className="container hidden lg:grid items-center  pt-12  lg:grid-cols-4 gap-4">
         <div className=" flex  flex-col gap-3">
           <div className=" flex items-center gap-2">
-            <img src="/home/l1.png" className="w-5" alt="" />
-            <img src="/home/l2.png" className="w-5" alt="" />
-            <img src="/home/l3.png" className="w-5" alt="" />
-            <img src="/home/l4.png" className="w-5" alt="" />
+            <Image
+              src="/home/l1.png"
+              className="w-5"
+              width={20}
+              height={20}
+              alt="logo image"
+            />
+            <Image
+              src="/home/l2.png"
+              className="w-5"
+              width={20}
+              height={20}
+              alt="logo image"
+            />
+            <Image
+              src="/home/l3.png"
+              className="w-5"
+              width={20}
+              height={20}
+              alt="logo image"
+            />
+            <Image
+              src="/home/l4.png"
+              className="w-5"
+              width={20}
+              height={20}
+              alt="logo image"
+            />
           </div>
           <Link legacyBehavior href="/about-dan">
             <a
               className={
-                router.pathname == '/about-dan'
-                  ? 'text-pr'
-                  : ' thin transition hover:text-pr text-white'
+                router.pathname == "/about-dan"
+                  ? "text-pr"
+                  : " thin transition hover:text-pr text-white"
               }
             >
-              {t('nav.about')}
+              {t("nav.about")}
             </a>
           </Link>
 
           <Link legacyBehavior href="/future-projects">
             <a
               className={
-                router.pathname == '/future-projects'
-                  ? 'text-pr'
-                  : ' thin transition hover:text-pr text-white'
+                router.pathname == "/future-projects"
+                  ? "text-pr"
+                  : " thin transition hover:text-pr text-white"
               }
             >
-              {t('nav.future')}
+              {t("nav.future")}
             </a>
           </Link>
           <Link legacyBehavior href="/newsmain">
             <a
               className={
-                router.pathname == '/newsmain'
-                  ? 'text-pr'
-                  : ' thin transition hover:text-pr text-white'
+                router.pathname == "/newsmain"
+                  ? "text-pr"
+                  : " thin transition hover:text-pr text-white"
               }
             >
-              {t('nav.media')}
+              {t("nav.media")}
             </a>
           </Link>
         </div>
@@ -91,27 +116,37 @@ export default function Footer() {
           <Link legacyBehavior href="/careers">
             <a
               className={
-                router.pathname == '/careers'
-                  ? 'text-pr'
-                  : ' thin transition hover:text-pr text-white'
+                router.pathname == "/careers"
+                  ? "text-pr"
+                  : " thin transition hover:text-pr text-white"
               }
             >
-              {t('nav.careers')}
+              {t("nav.careers")}
             </a>
           </Link>
 
           <Link legacyBehavior href="/contact-us">
             <a
               className={
-                router.pathname == '/contact-us'
-                  ? 'text-pr'
-                  : ' thin transition hover:text-pr text-white'
+                router.pathname == "/contact-us"
+                  ? "text-pr"
+                  : " thin transition hover:text-pr text-white"
               }
             >
-              {t('nav.contact')}
+              {t("nav.contact")}
             </a>
           </Link>
-          <div className="p-4"></div>
+          <Link legacyBehavior href="/faq">
+            <a
+              className={
+                router.pathname == "/faq"
+                  ? "text-pr"
+                  : " thin transition hover:text-pr text-white"
+              }
+            >
+              {t("faq")}
+            </a>
+          </Link>
         </div>
         <div></div>
         <div className="">
@@ -120,15 +155,21 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {router.locale === 'ar' ? (
-              <img
+            {router.locale === "ar" ? (
+              <Image
                 src="/home/PIFCo-branding Logo AR _ RGB White.png"
                 alt="pif log"
+                width={324}
+                height={56}
+                className="w-auto h-auto"
               />
             ) : (
-              <img
+              <Image
                 src="/home/PIFCo-branding Logo EN _ RGB White.png"
                 alt="pif log"
+                width={324}
+                height={56}
+                className="w-auto h-auto"
               />
             )}
           </a>
@@ -154,10 +195,34 @@ export default function Footer() {
           <NavContacts />
 
           <div className=" flex items-center gap-2">
-            <img src="/home/l1.png" className="w-5" alt="" />
-            <img src="/home/l2.png" className="w-5" alt="" />
-            <img src="/home/l3.png" className="w-5" alt="" />
-            <img src="/home/l4.png" className="w-5" alt="" />
+            <Image
+              src="/home/l1.png"
+              className="w-5"
+              width={20}
+              height={20}
+              alt="logo image"
+            />
+            <Image
+              src="/home/l2.png"
+              className="w-5"
+              width={20}
+              height={20}
+              alt="logo image"
+            />
+            <Image
+              src="/home/l3.png"
+              className="w-5"
+              width={20}
+              height={20}
+              alt="logo image"
+            />
+            <Image
+              src="/home/l4.png"
+              className="w-5"
+              width={20}
+              height={20}
+              alt="logo image"
+            />
           </div>
         </div>
 
@@ -167,15 +232,21 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {router.locale === 'ar' ? (
-              <img
+            {router.locale === "ar" ? (
+              <Image
                 src="/home/PIFCo-branding Logo AR _ RGB White.png"
                 alt="pif log"
+                width={324}
+                height={56}
+                className="w-auto h-auto"
               />
             ) : (
-              <img
+              <Image
                 src="/home/PIFCo-branding Logo EN _ RGB White.png"
                 alt="pif log"
+                width={324}
+                height={56}
+                className="w-auto h-auto"
               />
             )}
           </a>
@@ -186,24 +257,24 @@ export default function Footer() {
           <Link legacyBehavior href="/privacy-policy">
             <a
               className={
-                router.pathname == '/privacy-policy'
-                  ? 'text-pr'
-                  : ' thin transition hover:text-pr  text-white'
+                router.pathname == "/privacy-policy"
+                  ? "text-pr"
+                  : " thin transition hover:text-pr  text-white"
               }
             >
-              {t('nav.privacy')}
+              {t("nav.privacy")}
             </a>
           </Link>
           <p className="text-white">|</p>
           <Link legacyBehavior href="/terms-conditions">
             <a
               className={
-                router.pathname == '/terms-conditions'
-                  ? 'text-pr'
-                  : ' thin transition hover:text-pr  text-white'
+                router.pathname == "/terms-conditions"
+                  ? "text-pr"
+                  : " thin transition hover:text-pr  text-white"
               }
             >
-              {t('nav.terms')}
+              {t("nav.terms")}
             </a>
           </Link>
         </div>
